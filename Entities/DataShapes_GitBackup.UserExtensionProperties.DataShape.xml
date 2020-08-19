@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b90"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="2"
+ schemaVersion="1052"
+ universal="password">
+    <DataShapes>
+        <DataShape
+         baseDataShape=""
+         description="Retrieves the UserExtension properties needed for Push"
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2019-12-30T06:47:19.453-08:00"
+         name="GitBackup.UserExtensionProperties.DataShape"
+         projectName="GitBackup"
+         tags="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <FieldDefinitions>
+                <FieldDefinition
+                 aspect.defaultValue="false"
+                 aspect.isPersistent="true"
+                 baseType="STRING"
+                 description="User-specific GitBackup Committer Email. Will be used instead the committer email specified at the Thing level, if UseGitCommitUserValues is set to true."
+                 name="GitCommitterEmail"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.defaultValue="false"
+                 aspect.isPersistent="true"
+                 baseType="STRING"
+                 description="User-specific GitBackup Committer Name. Will be used instead the committer name specified at the Thing level, if UseGitCommitUserValues is set to true."
+                 name="GitCommitterName"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.defaultValue="false"
+                 aspect.isPersistent="true"
+                 baseType="BOOLEAN"
+                 description="This property is used to decide of the Push will use the GitBackup Thing committer name and email, or the user specific values"
+                 name="UseGitCommitUserValues"
+                 ordinal="0"></FieldDefinition>
+            </FieldDefinitions>
+        </DataShape>
+    </DataShapes>
+</Entities>

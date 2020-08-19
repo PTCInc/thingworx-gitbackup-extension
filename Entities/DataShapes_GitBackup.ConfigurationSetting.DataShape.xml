@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b441"
+ majorVersion="8"
+ minorVersion="3"
+ modelPersistenceProviderPackage="H2PersistenceProviderPackage"
+ revision="1"
+ schemaVersion="1030"
+ universal="">
+    <DataShapes>
+        <DataShape
+         aspect.isEditableExtensionObject="true"
+         aspect.isExtension="true"
+         baseDataShape=""
+         description=""
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2019-07-02T11:08:05.385+03:00"
+         name="GitBackup.ConfigurationSetting.DataShape"
+         projectName="GitBackup"
+         tags="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <FieldDefinitions>
+                <FieldDefinition
+                 aspect.defaultValue="master"
+                 aspect.friendlyName="Initial branch"
+                 baseType="STRING"
+                 description=""
+                 name="BranchName"
+                 ordinal="7"></FieldDefinition>
+                <FieldDefinition
+                 aspect.defaultValue="jdoe@ptc.com"
+                 aspect.friendlyName="Commit Email"
+                 baseType="STRING"
+                 description=""
+                 name="CommitEmail"
+                 ordinal="3"></FieldDefinition>
+                <FieldDefinition
+                 aspect.defaultValue="John Doe"
+                 aspect.friendlyName="Commit Name"
+                 baseType="STRING"
+                 description=""
+                 name="CommitName"
+                 ordinal="2"></FieldDefinition>
+                <FieldDefinition
+                 aspect.defaultValue="GitRepository"
+                 aspect.friendlyName="File Repository"
+                 aspect.thingTemplate="FileRepository"
+                 baseType="THINGNAME"
+                 description=""
+                 name="FileRepository"
+                 ordinal="5"></FieldDefinition>
+                <FieldDefinition
+                 aspect.defaultValue="https://bitbucket.org/username/reponame"
+                 aspect.friendlyName="Git Repo URL"
+                 baseType="STRING"
+                 description=""
+                 name="GitRepoURL"
+                 ordinal="4"></FieldDefinition>
+                <FieldDefinition
+                 baseType="PASSWORD"
+                 description=""
+                 name="Password"
+                 ordinal="1"></FieldDefinition>
+                <FieldDefinition
+                 baseType="INTEGER"
+                 description=""
+                 name="ProxyPort"
+                 ordinal="10"></FieldDefinition>
+                <FieldDefinition
+                 baseType="STRING"
+                 description=""
+                 name="ProxyURL"
+                 ordinal="9"></FieldDefinition>
+                <FieldDefinition
+                 aspect.defaultValue="/smartparking"
+                 aspect.friendlyName="File Repository Path"
+                 baseType="STRING"
+                 description=""
+                 name="RepoPathName"
+                 ordinal="6"></FieldDefinition>
+                <FieldDefinition
+                 aspect.defaultValue="false"
+                 aspect.isPrimaryKey="false"
+                 baseType="BOOLEAN"
+                 description=""
+                 name="UseProxy"
+                 ordinal="11"></FieldDefinition>
+                <FieldDefinition
+                 baseType="STRING"
+                 description=""
+                 name="User"
+                 ordinal="0"></FieldDefinition>
+            </FieldDefinitions>
+        </DataShape>
+    </DataShapes>
+</Entities>

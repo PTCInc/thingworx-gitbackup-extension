@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><Entities build="b349" majorVersion="8" minorVersion="3" modelPersistenceProviderPackage="H2PersistenceProviderPackage" revision="0" schemaVersion="1030" universal=""><StateDefinitions><StateDefinition description="" documentationContent="" homeMashup="" lastModifiedDate="2018-08-21T12:46:05.088+03:00" name="GIT.InstalledState.SD" projectName="GitBackup" tags=""><Owner name="Administrator" type="User"/><avatar/><DesignTimePermissions><Create/><Read/><Update/><Delete/><Metadata/></DesignTimePermissions><RunTimePermissions/><VisibilityPermissions><Visibility/></VisibilityPermissions><ConfigurationTableDefinitions/><ConfigurationTables/><content><![CDATA[{
+  "stateDefinitions" : [ {
+    "defaultStyleDefinition" : "",
+    "defaultValue" : "true",
+    "description" : "",
+    "displayString" : "Installed",
+    "name" : ""
+  }, {
+    "defaultStyleDefinition" : "",
+    "description" : "",
+    "displayString" : "Not Installed",
+    "name" : ""
+  } ],
+  "stateType" : "string"
+}]]></content><ConfigurationChanges><ConfigurationChange changeAction="CREATE" changeReason="" timestamp="2018-08-21T12:46:05.088+03:00" user="Administrator"/></ConfigurationChanges></StateDefinition></StateDefinitions></Entities>

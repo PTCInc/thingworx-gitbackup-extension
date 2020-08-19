@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><Entities build="b349" majorVersion="8" minorVersion="3" modelPersistenceProviderPackage="H2PersistenceProviderPackage" revision="0" schemaVersion="1030" universal=""><Mashups><Mashup aspect.isEditableExtensionObject="true" aspect.isExtension="true" aspect.isResponsive="true" aspect.mashupType="mashup" columns="0.0" description="" documentationContent="" homeMashup="" lastModifiedDate="2019-01-10T17:26:30.806+02:00" name="GitBackup.Pull.Mashup" projectName="GitBackup" rows="0.0" tags=""><Owner name="Administrator" type="User"/><avatar/><DesignTimePermissions><Create/><Read/><Update/><Delete/><Metadata/></DesignTimePermissions><RunTimePermissions/><VisibilityPermissions><Visibility/></VisibilityPermissions><ConfigurationTables/><ParameterDefinitions><FieldDefinition aspect.ordinal="0" baseType="THINGNAME" description="" name="GitThing" ordinal="0"/></ParameterDefinitions><Things/><ThingShapes/><ThingTemplates><ThingTemplate>GitBackupTemplate</ThingTemplate></ThingTemplates><mashupContent><![CDATA[{
+  "CustomMashupCss" : "@-webkit-keyframes square-animation {\n  0% {\n    left: 0;\n    top: 0;\n  }\n  10.5% {\n    left: 0;\n    top: 0;\n  }\n  12.5% {\n    left: 12px;\n    top: 0;\n  }\n  23% {\n    left: 12px;\n    top: 0;\n  }\n  25% {\n    left: 24px;\n    top: 0;\n  }\n  35.5% {\n    left: 24px;\n    top: 0;\n  }\n  37.5% {\n    left: 24px;\n    top: 12px;\n  }\n  48% {\n    left: 24px;\n    top: 12px;\n  }\n  50% {\n    left: 12px;\n    top: 12px;\n  }\n  60.5% {\n    left: 12px;\n    top: 12px;\n  }\n  62.5% {\n    left: 12px;\n    top: 24px;\n  }\n  73% {\n    left: 12px;\n    top: 24px;\n  }\n  75% {\n    left: 0;\n    top: 24px;\n  }\n  85.5% {\n    left: 0;\n    top: 24px;\n  }\n  87.5% {\n    left: 0;\n    top: 12px;\n  }\n  98% {\n    left: 0;\n    top: 12px;\n  }\n  100% {\n    left: 0;\n    top: 0;\n  }\n}\n@keyframes square-animation {\n  0% {\n    left: 0;\n    top: 0;\n  }\n  10.5% {\n    left: 0;\n    top: 0;\n  }\n  12.5% {\n    left: 12px;\n    top: 0;\n  }\n  23% {\n    left: 12px;\n    top: 0;\n  }\n  25% {\n    left: 24px;\n    top: 0;\n  }\n  35.5% {\n    left: 24px;\n    top: 0;\n  }\n  37.5% {\n    left: 24px;\n    top: 12px;\n  }\n  48% {\n    left: 24px;\n    top: 12px;\n  }\n  50% {\n    left: 12px;\n    top: 12px;\n  }\n  60.5% {\n    left: 12px;\n    top: 12px;\n  }\n  62.5% {\n    left: 12px;\n    top: 24px;\n  }\n  73% {\n    left: 12px;\n    top: 24px;\n  }\n  75% {\n    left: 0;\n    top: 24px;\n  }\n  85.5% {\n    left: 0;\n    top: 24px;\n  }\n  87.5% {\n    left: 0;\n    top: 12px;\n  }\n  98% {\n    left: 0;\n    top: 12px;\n  }\n  100% {\n    left: 0;\n    top: 0;\n  }\n}\n@-webkit-keyframes hue-rotate {\n  0% {\n    -webkit-filter: hue-rotate(0deg);\n            filter: hue-rotate(0deg);\n  }\n  100% {\n    -webkit-filter: hue-rotate(360deg);\n            filter: hue-rotate(360deg);\n  }\n}\n@keyframes hue-rotate {\n  0% {\n    -webkit-filter: hue-rotate(0deg);\n            filter: hue-rotate(0deg);\n  }\n  100% {\n    -webkit-filter: hue-rotate(360deg);\n            filter: hue-rotate(360deg);\n  }\n}\nbody {\n  display: flex;\n  height: 100vh;\n  align-items: center;\n  justify-content: center;\n}\n\n.loading {\n  position: relative;\n  width: 36px;\n  height: 36px;\n  margin-top: 10px;\n  margin-left: 10px;\n  -webkit-transform: rotate(45deg);\n          transform: rotate(45deg);\n  -webkit-animation: hue-rotate 10s linear infinite both;\n          animation: hue-rotate 10s linear infinite both;\n}\n\n.loading__square {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 10px;\n  height: 10px;\n  margin: 2px;\n  border-radius: 1px;\n  background: #07a;\n  background-image: linear-gradient(45deg, #fa0 40%, #0c9 60%);\n  background-image: -moz-linear-gradient(#fa0, #fa0);\n  background-size: cover;\n  background-position: center;\n  background-attachment: fixed;\n  -webkit-animation: square-animation 10s ease-in-out infinite both;\n          animation: square-animation 10s ease-in-out infinite both;\n}\n.loading__square:nth-of-type(0) {\n  -webkit-animation-delay: 0s;\n          animation-delay: 0s;\n}\n.loading__square:nth-of-type(1) {\n  -webkit-animation-delay: -1.4285714286s;\n          animation-delay: -1.4285714286s;\n}\n.loading__square:nth-of-type(2) {\n  -webkit-animation-delay: -2.8571428571s;\n          animation-delay: -2.8571428571s;\n}\n.loading__square:nth-of-type(3) {\n  -webkit-animation-delay: -4.2857142857s;\n          animation-delay: -4.2857142857s;\n}\n.loading__square:nth-of-type(4) {\n  -webkit-animation-delay: -5.7142857143s;\n          animation-delay: -5.7142857143s;\n}\n.loading__square:nth-of-type(5) {\n  -webkit-animation-delay: -7.1428571429s;\n          animation-delay: -7.1428571429s;\n}\n.loading__square:nth-of-type(6) {\n  -webkit-animation-delay: -8.5714285714s;\n          animation-delay: -8.5714285714s;\n}\n.loading__square:nth-of-type(7) {\n  -webkit-animation-delay: -10s;\n          animation-delay: -10s;\n}\n",
+  "Data" : {
+    "DynamicThingTemplates_GitBackupTemplate" : {
+      "DataName" : "DynamicThingTemplates_GitBackupTemplate",
+      "EntityName" : "GitBackupTemplate",
+      "EntityType" : "DynamicThingTemplates",
+      "Id" : "5862b51b-7f46-421e-aaae-328674f95c45",
+      "Services" : [ {
+        "APIMethod" : "post",
+        "Characteristic" : "Services",
+        "Id" : "07b29903-949b-4962-9ef9-47ebe945a32a",
+        "Name" : "Pull",
+        "Parameters" : { },
+        "RefreshInterval" : 0,
+        "Target" : "Pull"
+      } ]
+    },
+    "Session" : {
+      "DataName" : "Session",
+      "EntityName" : "",
+      "EntityType" : "Session",
+      "Id" : "session",
+      "Services" : [ {
+        "APIMethod" : "post",
+        "Characteristic" : "Services",
+        "Id" : "SessionInterface",
+        "Name" : "GetGlobalSessionValues",
+        "Parameters" : { },
+        "RefreshInterval" : 0,
+        "Target" : "GetGlobalSessionValues"
+      } ]
+    },
+    "UserExtensions" : {
+      "DataName" : "UserExtensions",
+      "EntityName" : "",
+      "EntityType" : "UserExtensions",
+      "Id" : "UserExtensions",
+      "Services" : [ {
+        "APIMethod" : "post",
+        "Characteristic" : "Services",
+        "Id" : "UserExtensionInterface",
+        "Name" : "GetCurrentUserExtensionProperties",
+        "Parameters" : { },
+        "RefreshInterval" : 0,
+        "Target" : "GetCurrentUserExtensionProperties"
+      } ]
+    }
+  },
+  "DataBindings" : [ {
+    "Id" : "629f7d00-6a46-4537-b67f-2dc5e0f9a751",
+    "PropertyMaps" : [ {
+      "SourceProperty" : "GitThing",
+      "SourcePropertyBaseType" : "THINGNAME",
+      "TargetProperty" : "value",
+      "TargetPropertyBaseType" : "THINGNAME",
+      "TargetPropertyType" : "Entity"
+    } ],
+    "SourceArea" : "Mashup",
+    "SourceId" : "mashup-root",
+    "SourceSection" : "",
+    "TargetArea" : "Data",
+    "TargetId" : "EntityName",
+    "TargetSection" : "DynamicThingTemplates_GitBackupTemplate"
+  } ],
+  "DesignTimePermissions" : {
+    "Create" : [ ],
+    "Delete" : [ ],
+    "Metadata" : [ ],
+    "Read" : [ ],
+    "Update" : [ ]
+  },
+  "Events" : [ {
+    "EventHandlerArea" : "Data",
+    "EventHandlerId" : "DynamicThingTemplates_GitBackupTemplate",
+    "EventHandlerService" : "Pull",
+    "EventTriggerArea" : "Mashup",
+    "EventTriggerEvent" : "Loaded",
+    "EventTriggerId" : "mashup-root",
+    "EventTriggerSection" : "",
+    "Id" : "cb59f342-4685-47f7-8986-ac9a733eb762"
+  }, {
+    "EventHandlerArea" : "Mashup",
+    "EventHandlerId" : "mashup-root",
+    "EventHandlerService" : "CloseIfPopup",
+    "EventTriggerArea" : "Data",
+    "EventTriggerEvent" : "ServiceInvokeCompleted",
+    "EventTriggerId" : "Pull",
+    "EventTriggerSection" : "DynamicThingTemplates_GitBackupTemplate",
+    "Id" : "4f7a3d27-c66c-4ea4-a35c-f4255c0376ff"
+  } ],
+  "RunTimePermissions" : {
+    "permissions" : [ ]
+  },
+  "UI" : {
+    "Properties" : {
+      "AddToDashboardButtonStyle" : "DefaultAddToDashboardButtonStyle",
+      "Area" : "Mashup",
+      "BGImageRepeat" : "no-repeat",
+      "BGImageSize" : "auto",
+      "Columns" : 0,
+      "ConfigureGadgetButtonStyle" : "DefaultConfigureGadgetButtonStyle",
+      "DisplayName" : "Mashup",
+      "EnableParameterEditing" : false,
+      "Height" : 618,
+      "Id" : "mashup-root",
+      "IgnoreWarningsInViewMashup" : false,
+      "IsPrintLayout" : false,
+      "Left" : 0,
+      "MashupToEditGadget" : "DefaultMashupToEditGadget",
+      "MinHeight" : 0,
+      "MinWidth" : 0,
+      "ResponsiveLayout" : true,
+      "Rows" : 0,
+      "ShowDataLoading" : true,
+      "Style" : "DefaultMashupStyle",
+      "Title" : "",
+      "TitleBar" : false,
+      "TitleBarStyle" : "DefaultTitleBarStyle",
+      "TitleBarText" : "Gadget Title Here",
+      "Top" : 0,
+      "Type" : "mashup",
+      "Visible" : true,
+      "Width" : 1024,
+      "Z-index" : 10,
+      "__TypeDisplayName" : "Mashup",
+      "_currentParameterDefs" : [ {
+        "BaseType" : "THINGNAME",
+        "Description" : "",
+        "ParameterName" : "GitThing"
+      } ],
+      "id_index" : 4,
+      "supportsAutoResize" : true
+    },
+    "Widgets" : [ {
+      "Properties" : {
+        "Area" : "UI",
+        "DisplayName" : "panel-2",
+        "Height" : 200,
+        "HideScrollbars" : false,
+        "HorizontalAnchor" : "left",
+        "Id" : "panel-2",
+        "Left" : 285,
+        "ResponsiveLayout" : true,
+        "ShowDataLoading" : true,
+        "Style" : "DefaultContainerStyle",
+        "Top" : 300,
+        "Type" : "panel",
+        "VerticalAnchor" : "top",
+        "Visible" : true,
+        "Width" : 300,
+        "Z-index" : 10,
+        "__TypeDisplayName" : "Panel"
+      },
+      "Widgets" : [ {
+        "Properties" : {
+          "Alignment" : "center",
+          "AllowEllipsis" : false,
+          "Area" : "UI",
+          "DisplayName" : "lbl_Loading",
+          "Height" : 22,
+          "Id" : "label-3",
+          "Left" : 35,
+          "ResponsiveLayout" : false,
+          "ShowDataLoading" : true,
+          "Style" : {
+            "backgroundColor" : "",
+            "displayString" : "",
+            "fontEmphasisBold" : true,
+            "fontEmphasisItalic" : false,
+            "fontEmphasisUnderline" : false,
+            "foregroundColor" : "#0fff94",
+            "image" : "",
+            "lineColor" : "",
+            "lineStyle" : "solid",
+            "lineThickness" : 1,
+            "secondaryBackgroundColor" : "",
+            "textSize" : "xlarge"
+          },
+          "Text" : "Executing Pull from Git...",
+          "ToolTipField" : "",
+          "ToolTipStyle" : "DefaultTooltipStyle",
+          "Top" : 75,
+          "Type" : "label",
+          "Visible" : true,
+          "Width" : 180,
+          "Z-index" : 10,
+          "__TypeDisplayName" : "Label",
+          "__supportsTooltip" : true
+        },
+        "Widgets" : [ ]
+      }, {
+        "Properties" : {
+          "Area" : "UI",
+          "DisplayName" : "htmltextarea-4",
+          "Height" : 60,
+          "Id" : "htmltextarea-4",
+          "Label" : "",
+          "LabelAlignment" : "left",
+          "LabelStyle" : "DefaultWidgetLabelStyle",
+          "Left" : 95,
+          "ReadOnly" : true,
+          "ResponsiveLayout" : false,
+          "ShowBorder" : false,
+          "ShowDataLoading" : true,
+          "ShowToolbar" : true,
+          "Text" : "<div class='loading'>   <div class='loading__square'></div>   <div class='loading__square'></div>   <div class='loading__square'></div>   <div class='loading__square'></div>   <div class='loading__square'></div>   <div class='loading__square'></div>   <div class='loading__square'></div> </div>",
+          "ToolTipField" : "",
+          "ToolTipStyle" : "DefaultTooltipStyle",
+          "Top" : 15,
+          "Type" : "htmltextarea",
+          "Visible" : true,
+          "Width" : 70,
+          "Z-index" : 10,
+          "__TypeDisplayName" : "Html TextArea",
+          "__supportsLabel" : true,
+          "__supportsTooltip" : true
+        },
+        "Widgets" : [ ]
+      } ]
+    } ]
+  },
+  "mashupType" : "mashup"
+}]]></mashupContent><ConfigurationChanges><ConfigurationChange changeAction="CREATE" changeReason="Importing Extension Package Metadata" timestamp="2018-08-21T12:37:29.687+03:00" user="SuperUser"/><ConfigurationChange changeAction="MODIFY" changeReason="Importing Extension Package Metadata" timestamp="2018-08-21T12:48:29.985+03:00" user="SuperUser"/><ConfigurationChange changeAction="MODIFY" changeReason="Importing Extension Package Metadata" timestamp="2018-08-22T13:20:18.171+03:00" user="SuperUser"/><ConfigurationChange changeAction="MODIFY" changeReason="" timestamp="2018-08-29T14:43:50.358+03:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="Mashup : custom-css : updated, design : updated&#10;" timestamp="2019-01-10T17:04:34.357+02:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="Mashup : design : updated&#10;" timestamp="2019-01-10T17:26:30.806+02:00" user="Administrator"/></ConfigurationChanges></Mashup></Mashups></Entities>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b190"
+ majorVersion="8"
+ minorVersion="2"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="3"
+ schemaVersion="1020">
+    <DataShapes>
+        <DataShape
+         baseDataShape=""
+         description=""
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2018-04-26T16:59:01.972+03:00"
+         name="Git.Status.DataShape"
+         projectName=""
+         tags="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTables></ConfigurationTables>
+            <FieldDefinitions>
+                <FieldDefinition
+                 baseType="STRING"
+                 description=""
+                 name="File"
+                 ordinal="1"></FieldDefinition>
+                <FieldDefinition
+                 baseType="STRING"
+                 description=""
+                 name="Status"
+                 ordinal="2"></FieldDefinition>
+            </FieldDefinitions>
+        </DataShape>
+    </DataShapes>
+</Entities>

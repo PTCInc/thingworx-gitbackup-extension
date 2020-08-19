@@ -1,0 +1,780 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b90"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="1"
+ schemaVersion="1051"
+ universal="password">
+    <ThingShapes>
+        <ThingShape
+         aspect.isEditableExtensionObject="true"
+         aspect.isExtension="true"
+         className=""
+         description="This Utility shape is used to add useful javascript functionality to the GitBackup Things, which are built in Java."
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2020-01-08T00:38:39.046-08:00"
+         name="Git.Utility.ThingShape"
+         projectName="GitBackup"
+         tags="">
+            <PropertyDefinitions>
+                <PropertyDefinition
+                 aspect.cacheTime="0.0"
+                 aspect.dataChangeType="VALUE"
+                 aspect.defaultValue="500000"
+                 aspect.isPersistent="true"
+                 baseType="INTEGER"
+                 category=""
+                 description="Max size of the diff string that will be sent to the client browser. Anything larger than that will not be sent at all."
+                 isLocalOnly="false"
+                 name="MaxDiffSize"
+                 ordinal="2"></PropertyDefinition>
+            </PropertyDefinitions>
+            <ServiceDefinitions>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="functionality that allows exporting data from the Project DataTables/Streams/ValueStreams"
+                 isAllowOverride="false"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="ExportProjectData">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         baseType="STRING"
+                         description=""
+                         name="ProjectName"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Wrapper for the ExportToSourceControl service."
+                 isAllowOverride="false"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="ExportProjectEntities">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         baseType="BOOLEAN"
+                         description=""
+                         name="includeDependents"
+                         ordinal="2"></FieldDefinition>
+                        <FieldDefinition
+                         baseType="STRING"
+                         description=""
+                         name="ProjectName"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="wrapper for Extensions Export / ExportExtensionsToRepository"
+                 isAllowOverride="false"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="ExportProjectExtensions">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions></ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="This service wrapper allows getting the GitBackup Thing configuration without passing the Configuration table name."
+                 isAllowOverride="false"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetConfiguration">
+                    <ResultType
+                     aspect.dataShape="GitBackup.Configuration.DataShape"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions></ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Gets recursively the directories found in a subfolder in a FileRepository. Not part of the services of a FileRepository"
+                 isAllowOverride="false"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetFilteredDirectoryListing">
+                    <ResultType
+                     aspect.dataShape="FileSystemDirectory"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions></ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description=""
+                 isAllowOverride="false"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="QueryDiffFileList">
+                    <ResultType
+                     aspect.dataShape="GitBackup.CommitChangedFiles.DataShape"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         baseType="STRING"
+                         description=""
+                         name="CommitID"
+                         ordinal="1"></FieldDefinition>
+                        <FieldDefinition
+                         baseType="STRING"
+                         description=""
+                         name="FileName"
+                         ordinal="2"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Filters through the result of the Status Git command. Search is implemented in ThingWorx for flexibility."
+                 isAllowOverride="false"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="QueryStatus">
+                    <ResultType
+                     aspect.dataShape="Git.Status.DataShape"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         baseType="STRING"
+                         description=""
+                         name="SearchTerm"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Removes the lastModifiedDate. Change history is already removed by ExportToSourceControlEntities"
+                 isAllowOverride="false"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="RemoveLastModifiedDate">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions></ParameterDefinitions>
+                </ServiceDefinition>
+            </ServiceDefinitions>
+            <EventDefinitions></EventDefinitions>
+            <ServiceMappings></ServiceMappings>
+            <ServiceImplementations>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="ExportProjectData">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var params_DataTables = {
+                                        searchExpression: "*" /* STRING */ ,
+                                        types: {
+                                            "items": ["Thing"]
+                                        } /* JSON */ ,
+                                        withPermissions: true /* BOOLEAN */ ,
+                                        searchDescriptions: true /* BOOLEAN */ ,
+                                        thingShapes: {
+                                            "items": ["DataTable"]
+                                        } /* JSON */ ,
+                                        projectName: ProjectName /* PROJECTNAME */
+                                    };
+                                    
+                                    // result: INFOTABLE dataShape: SpotlightSearch
+                                    var iftbl_DataTables = Resources["SearchFunctions"].SpotlightSearch(params_DataTables);
+                                    
+                                    var params_Streams = {
+                                        searchExpression: "*" /* STRING */ ,
+                                        types: {
+                                            "items": ["Thing"]
+                                        } /* JSON */ ,
+                                        withPermissions: true /* BOOLEAN */ ,
+                                        searchDescriptions: true /* BOOLEAN */ ,
+                                        thingShapes: {
+                                            "items": ["Stream"]
+                                        } /* JSON */ ,
+                                        projectName: ProjectName /* PROJECTNAME */
+                                    };
+                                    
+                                    // result: INFOTABLE dataShape: SpotlightSearch
+                                    var iftbl_Streams = Resources["SearchFunctions"].SpotlightSearch(params_Streams);
+                                    var params_ValueStreams = {
+                                        searchExpression: "*" /* STRING */ ,
+                                        types: {
+                                            "items": ["Thing"]
+                                        } /* JSON */ ,
+                                        withPermissions: true /* BOOLEAN */ ,
+                                        searchDescriptions: true /* BOOLEAN */ ,
+                                        thingShapes: {
+                                            "items": ["ValueStream"]
+                                        } /* JSON */ ,
+                                        projectName: ProjectName /* PROJECTNAME */
+                                    };
+                                    
+                                    // result: INFOTABLE dataShape: SpotlightSearch
+                                    var iftbl_ValueStreams = Resources["SearchFunctions"].SpotlightSearch(params_ValueStreams);
+                                    var params_Wiki = {
+                                        searchExpression: "*" /* STRING */ ,
+                                        types: {
+                                            "items": ["Thing"]
+                                        } /* JSON */ ,
+                                        withPermissions: true /* BOOLEAN */ ,
+                                        searchDescriptions: true /* BOOLEAN */ ,
+                                        thingShapes: {
+                                            "items": ["Wiki"]
+                                        } /* JSON */ ,
+                                        projectName: ProjectName /* PROJECTNAME */
+                                    };
+                                    
+                                    // result: INFOTABLE dataShape: SpotlightSearch
+                                    var iftbl_Wikis = Resources["SearchFunctions"].SpotlightSearch(params_Wiki);
+                                    var params_Blogs = {
+                                        searchExpression: "*" /* STRING */ ,
+                                        types: {
+                                            "items": ["Thing"]
+                                        } /* JSON */ ,
+                                        withPermissions: true /* BOOLEAN */ ,
+                                        searchDescriptions: true /* BOOLEAN */ ,
+                                        thingShapes: {
+                                            "items": ["Blog"]
+                                        } /* JSON */ ,
+                                        projectName: ProjectName /* PROJECTNAME */
+                                    };
+                                    
+                                    // result: INFOTABLE dataShape: SpotlightSearch
+                                    var iftbl_Blogs = Resources["SearchFunctions"].SpotlightSearch(params_Blogs);
+                                    
+                                    var result1 = Resources["InfoTableFunctions"].Union({
+                                        t1: iftbl_DataTables,
+                                        t2: iftbl_Streams
+                                    });
+                                    var result2 = Resources["InfoTableFunctions"].Union({
+                                        t1: result1,
+                                        t2: iftbl_ValueStreams
+                                    });
+                                    var result3 = Resources["InfoTableFunctions"].Union({
+                                        t1: result2,
+                                        t2: iftbl_Wikis
+                                    });
+                                    var iftbl_DataEntities = Resources["InfoTableFunctions"].Union({
+                                        t1: result3,
+                                        t2: iftbl_Blogs
+                                    });
+                                    //After finishing aggregation, we tag all data entities to have a common tag to allow exporting by that tag 
+                                    var tableLength = iftbl_DataEntities.rows.length;
+                                    var hh=0;
+                                    for (var x = 0; x < tableLength; x++) {
+                                        var row = iftbl_DataEntities.rows[x];
+                                        var jsonExistingTagsArray = Things[row.name].GetTags();
+                                        var boolContainsTag = false;
+                                        for (var y = 0; y < jsonExistingTagsArray.length; y++) {
+                                            if (jsonExistingTagsArray[y] == "Applications:" + ProjectName) {
+                                                boolContainsTag = true;hh++;
+                                            }
+                                        }
+                                        if (boolContainsTag === false)
+                                            Things[row.name].AddTags({
+                                                tags: "Applications:" + ProjectName
+                                            });
+                                    }
+                                    //we get configuration data
+                                    var iftbl_ConfigurationRow = me.GetConfiguration().getRow(0);
+                                    var target = Things["ExtensionImportTargets"].importTargets.getRow(0);
+                                    var ExportURL = target.baseURL + "/DataExporter?Accept=" + encodeURIComponent("application/octet-stream") + "&path=" + encodeURIComponent(iftbl_ConfigurationRow.FileRepoPath) + "&repositoryName=" + encodeURIComponent(iftbl_ConfigurationRow.FileRepository) + "&searchTags=" + encodeURIComponent("Applications:" + ProjectName);
+                                    var params2 = {
+                                        headers: {
+                                            "appKey": target.appKey
+                                        } /* JSON */ ,
+                                        ignoreSSLErrors: true /* BOOLEAN */ ,
+                                        url: ExportURL /* STRING */
+                                    };
+                                    
+                                    // result: STRING
+                                    var str_ExportResult = Resources["ContentLoaderFunctions"].GetText(params2);
+                                    var str_TaskID = str_ExportResult.match(/(Task-)\w+/g);
+                                    var bool_IsFound = false;
+                                    var iftbl_IsDone;
+                                    
+                                    while (bool_IsFound === false) {
+                                         iftbl_IsDone = Logs["ApplicationLog"].QueryLogEntries({
+                                            maxItems: 1 /* NUMBER */ ,
+                                            searchExpression: "*" + str_TaskID +"*"+"done"+"*"/* STRING */
+                                        });
+                                        if (iftbl_IsDone.getRowCount() > 0) {
+                                            bool_IsFound = true;
+                                        }
+                                        pause(1000);
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="ExportProjectEntities">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    //Proceed only if the input parameters are valid
+                                    if (ProjectName && ProjectName != "" && includeDependents!=undefined) {
+                                    	logger.warn("Started exporting source controlled entities for Project: "+ProjectName);
+                                        //1. Get the configuration parameters that are needed as input for the ExportSourceControlledEntities
+                                        var iftbl_Config = me.GetConfiguration();
+                                    	Resources["SourceControlFunctions"].ExportSourceControlledEntities({
+                                    		path: iftbl_Config.FileRepoPath,
+                                    		includeDependents: includeDependents,
+                                    		repositoryName: iftbl_Config.FileRepository,
+                                    		projectName: ProjectName
+                                    	});
+                                        //2. Remove the lastModifiedDate
+                                        me.RemoveLastModifiedDate();
+                                        logger.warn("Finished exporting source controlled entities for Project: "+ProjectName);
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="ExportProjectExtensions">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    logger.warn("Started exporting Extensions.");
+                                    //1. Get the configuration parameters that are needed as input for the ExportExtensionToRepository
+                                    var iftbl_Config = me.GetConfiguration();
+                                    //2. Export extensions to GitBackup Thing FileRepository
+                                    Resources["ExtensionsExport"].ExportExtensionsToRepository({	repositoryPath: iftbl_Config.FileRepoPath+"/Extensions"  ,	repositoryName: iftbl_Config.FileRepository ,	overwrite: true});
+                                    logger.warn("Finished exporting Extensions. This is a complete instance Extensions export. Remove the ones that are not needed before pushing.");
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetConfiguration">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var iftbl_Cfg =  me.GetConfigurationTable({
+                                    	tableName: "Configuration" /* STRING */
+                                    });
+                                    
+                                    var result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({    infoTableName : "InfoTable",    dataShapeName : "GitBackup.Configuration.DataShape"});
+                                    // GitBackup.Configuration.DataShape entry object
+                                    
+                                    var row= iftbl_Cfg.getRow(0);
+                                    var newEntry = new Object();
+                                    newEntry.FileRepoPath = row.RepoPathName; // STRING
+                                    newEntry.User = row.User; // STRING
+                                    newEntry.Password = row.Password; // STRING
+                                    newEntry.GitRepoURL = row.GitRepoURL; // STRING
+                                    newEntry.FileRepository = row.FileRepository; // STRING
+                                    newEntry.CommitUser = row.CommitName; // STRING
+                                    newEntry.CommitEmail = row.CommitEmail; // STRING
+                                    newEntry.InitialBranch = row.BranchName;
+                                    result.AddRow(newEntry);
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetFilteredDirectoryListing">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description="Script"
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var cfg = me.GetConfiguration();
+                                    
+                                    var strRepo = cfg.FileRepository;
+                                    var str_RepoPath = cfg.FileRepoPath;
+                                    
+                                    
+                                    // result: INFOTABLE
+                                    var result = Resources["InfoTableFunctions"].RegexFilter({	inclusive: true /* BOOLEAN */,	fieldName: "parentPath" /* STRING */,	t: Things[strRepo].GetDirectoryStructure() /* INFOTABLE */,    pattern:"^"+str_RepoPath+".*$"});
+                                    
+                                    // FileSystemDirectory entry object
+                                    var newEntry = new Object();
+                                    newEntry.path = str_RepoPath; // STRING [Primary Key]
+                                    newEntry.parentPath = "/"; // STRING
+                                    newEntry.name = str_RepoPath.replace("/",""); // STRING
+                                    result.AddRow(newEntry);
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="QueryDiffFileList">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    if (CommitID!=undefined)
+                                    {
+                                    var iftbl_FileList =  me.GetCommitInfo({CommitID: CommitID }).getRow(0).ChangedFiles;
+                                    if (iftbl_FileList!=undefined)
+                                    {
+                                    if (FileName==undefined) FileName="";
+                                    var query = {
+                                      "filters": {
+                                        "fieldName": "FileName",
+                                        "type": "LIKE",
+                                        "value": "*"+FileName+"*"
+                                      }
+                                    };
+                                    
+                                    var params = {
+                                    	t: iftbl_FileList /* INFOTABLE */,
+                                    	query: query /* QUERY */
+                                    };
+                                    
+                                    // result: INFOTABLE
+                                    var result = Resources["InfoTableFunctions"].Query(params);
+                                    }
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="QueryStatus">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description="Script"
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    var iftbl_Status = Things[me.name].Status();
+                                    var query = {
+                                    	"filters": {
+                                    		"fieldName": "File",
+                                    		"type": "LIKE",
+                                    		"value": "*" + SearchTerm + "*"
+                                    	}
+                                    };
+                                    if (SearchTerm && SearchTerm != "") 
+                                    	
+                                    	 result = Resources["InfoTableFunctions"].Query({		t: iftbl_Status /* INFOTABLE */ ,		query: query /* QUERY */	});
+                                     else
+                                    	result = iftbl_Status;
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="RemoveLastModifiedDate">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description="Script"
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    //this function removes the lastModifiedDate attribute that is part of an entity exported by ThingWorx.
+                                    //in some cases this value was updated, but the actual content not, which led to "ghost" diffs showing in Git
+                                    //should be called after expporting a project via the Main mashup UI finalized.
+                                    //it is based on work by Moritz von Hasselbach (PTC)
+                                    
+                                    //1. Initialize the Repository name and subfolder needed for subsequent operations
+                                    var cfg = me.GetConfigurationTable({
+                                    	tableName: "Configuration"
+                                    });
+                                    var strRepo = cfg.FileRepository;
+                                    var str_RepoPath = cfg.RepoPathName;
+                                    
+                                    //2. Declare recursive function that builds a list with all the XML files that are present in the subfolder corresponding to this GitBackup Thing.
+                                    //It was not intended for Extensions or Data files.
+                                    function GetFiles(path) {
+                                    	//The iftbl_CurrentPathFiles is a variable initialized before calling this function
+                                    	//2.1. Adds all the files found in the root folder
+                                    	var iftbl_CurrentPathFiles = Things[strRepo].ListFiles({
+                                    		path: path,
+                                    		nameMask: "*.xml"
+                                    	});
+                                    
+                                    	//2.2. Joins the found files with the previously found files ( this works recursively)
+                                    	iftbl_FileList = Resources["InfoTableFunctions"].Union({
+                                    		t1: iftbl_CurrentPathFiles,
+                                    		t2: iftbl_FileList
+                                    	});
+                                    
+                                    	//2.3 For each of the folders found in the path, we call recursively this function
+                                    	var dirs = Things[strRepo].ListDirectories({
+                                    		path: path,
+                                    		nameMask: undefined
+                                    	});
+                                    
+                                    	//2.4 If folders exist, for each of them we call recursively this function
+                                    	if (dirs && dirs.rows.length > 0) {
+                                    		for (var j = 0; j < dirs.rows.length; j++) {
+                                    			GetFiles(dirs.rows[j].path);
+                                    		}
+                                    	}
+                                    }
+                                    
+                                    //3. Create the temporary infotable that stores all the files for processing. This variable is used in the function called next line.
+                                    var iftbl_FileList = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                    	infoTableName: "InfoTable",
+                                    	dataShapeName: "FileSystemFile"
+                                    });
+                                    //4. Call the function defined above
+                                    GetFiles(str_RepoPath);
+                                    
+                                    var int_modifiedCount=0;
+                                    //5. For each of the files that we found, we load the txt content in memory, remove the line with lastModified date, and save them back
+                                    for (var x = 0; x < iftbl_FileList.rows.length; x++) {
+                                    	var path = iftbl_FileList.rows[x].path;
+                                    	//5.1. Load the content of the entity as a text. LoadXML can not be used because it optimizes automatically the XML structure and removes useful formatting added by the ExportToSourceControlEntities. This would result in a dramatically changed file when saving it back.
+                                    	var str_XMLcontent = Things[strRepo].LoadText({
+                                    		path: path
+                                    	});
+                                    	//5.2. Find if the lastModifiedDate is present or not. If it's not present, assume that it was already removed, and do not proceed any further
+                                    	if (str_XMLcontent.indexOf("lastModifiedDate=\"") != -1) {
+                                    		//5.3.  Find the beginning index. This belongs to the first new line character _before_ lastModifiedDate (needed to delete the whole line)
+                                    		var int_BeginIndex = str_XMLcontent.lastIndexOf("\n", str_XMLcontent.indexOf("lastModifiedDate=\""));
+                                    		//5.4.  Find the ending index 
+                                    		var int_EndIndex = str_XMLcontent.indexOf("\n", int_BeginIndex + 1);
+                                    		//5.5. Build the modified string via concatenating two strings
+                                    		var str_modifiedXMLcontent = str_XMLcontent.substring(0, int_BeginIndex) + str_XMLcontent.substring(int_EndIndex);
+                                    
+                                    		//delete content..*.@lastModifiedDate; this e4x notation was used as a test initially with the Load and SaveXML functions.
+                                    		//5.6. Save the modified file
+                                    		Things[strRepo].SaveText({
+                                    			path: path,
+                                    			content: str_modifiedXMLcontent
+                                    		});
+                                            //5.7. Increment the modified file count for logging purposes
+                                            int_modifiedCount++;
+                                    	}
+                                    }
+                                    //6. Write in the script log the total number of detected files and the number of the ones that were modified.
+                                    logger.warn("Total number of XML files found: "+iftbl_FileList.rows.length+" from which "+int_modifiedCount+" had a lastModifiedTimestamp that was removed");
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+            </ServiceImplementations>
+            <Subscriptions></Subscriptions>
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations>
+                <AlertDefinitions
+                 name="MaxDiffSize"></AlertDefinitions>
+            </AlertConfigurations>
+            <InstanceRunTimePermissions></InstanceRunTimePermissions>
+        </ThingShape>
+    </ThingShapes>
+</Entities>

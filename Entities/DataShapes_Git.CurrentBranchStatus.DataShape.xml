@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b51"
+ majorVersion="8"
+ minorVersion="1"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="2"
+ schemaVersion="1010">
+    <DataShapes>
+        <DataShape
+         baseDataShape=""
+         description=""
+         documentationContent=""
+         aspect.isEditableExtensionObject="true"
+         homeMashup=""
+         lastModifiedDate="2017-12-27T17:07:13.278+02:00"
+         name="Git.CurrentBranchStatus.DataShape"
+         projectName=""
+         tags="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTables></ConfigurationTables>
+            <FieldDefinitions>
+                <FieldDefinition
+                 baseType="STRING"
+                 description=""
+                 name="BranchName"
+                 ordinal="1"></FieldDefinition>
+                <FieldDefinition
+                 baseType="BOOLEAN"
+                 description=""
+                 name="DetachedHEAD"
+                 ordinal="2"></FieldDefinition>
+            </FieldDefinitions>
+        </DataShape>
+    </DataShapes>
+</Entities>

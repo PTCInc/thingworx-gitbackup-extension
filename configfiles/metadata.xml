@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Entities>
+    <ExtensionPackages>
+        <ExtensionPackage dependsOn="" description="This extension provides various GIT capabilities that allow storing ThingWorx applications in a third party Git server" minimumThingWorxVersion="8.2.0" name="GitBackupExtension" packageVersion="3.0.1" vendor="ThingWorx Labs">
+            <JarResources>
+                <FileResource description="" file="org.eclipse.jgit-5.4.0.201906121030-r.jar" type="JAR"/>
+                <FileResource description="" file="JavaEWAH-1.1.6.jar" type="JAR"/>
+                <FileResource description="" file="jsch-0.1.54.jar" type="JAR"/>
+                <FileResource description="" file="gitbackupextension.jar" type="JAR"/>
+                <FileResource description="" file="bcpg-jdk15on-162.jar" type="JAR"/>
+            </JarResources>
+        </ExtensionPackage>
+    </ExtensionPackages>
+    <ThingPackages>
+        <ThingPackage className="gb.GitBackupTemplate" description="" name="GitExtensionPackage"/>
+    </ThingPackages>
+    <ThingTemplates>
+        <ThingTemplate aspect.isEditableExtensionObject="false" description="" name="GitBackupTemplate" thingPackage="GitExtensionPackage"/>
+    </ThingTemplates>
+    <LocalizationTables>
+        <LocalizationTable description="Default localization table" documentationContent="" homeMashup="" languageCommon="English" languageNative="English" lastModifiedDate="2017-11-03T18:18:21.412+02:00" name="Default" projectName="" tags="">
+            <Owner name="SuperUser" type="User"/>
+            <avatar/>
+            <DesignTimePermissions>
+                <Create/>
+                <Read/>
+                <Update/>
+                <Delete/>
+                <Metadata/>
+            </DesignTimePermissions>
+            <RunTimePermissions/>
+            <VisibilityPermissions>
+                <Visibility/>
+            </VisibilityPermissions>
+            <ConfigurationTables>
+                <ConfigurationTable description="Localization tokens and usage" isMultiRow="true" name="LocalizationTokens" ordinal="0">
+                    <DataShape>
+                        <FieldDefinitions>
+                            <FieldDefinition aspect.friendlyName="Translation context" baseType="STRING" description="Translation context" name="context" ordinal="3"/>
+                            <FieldDefinition aspect.friendlyName="Token name" baseType="STRING" description="Token name" name="name" ordinal="0"/>
+                            <FieldDefinition aspect.friendlyName="Token usage" baseType="STRING" description="Token usage" name="usage" ordinal="2"/>
+                            <FieldDefinition aspect.friendlyName="Localized value" baseType="STRING" description="Localized value" name="value" ordinal="1"/>
+                        </FieldDefinitions>
+                    </DataShape>
+                    <Rows>
+                        <Row>
+                            <context/>
+                            <name><![CDATA[Commit Name]]></name>
+                            <usage/>
+                            <value><![CDATA[Commit Username]]></value>
+                        </Row>
+                        <Row>
+                            <context/>
+                            <name><![CDATA[Commit Email]]></name>
+                            <usage/>
+                            <value><![CDATA[Commit Email]]></value>
+                        </Row>
+                        <Row>
+                            <context/>
+                            <name><![CDATA[Git Repo URL]]></name>
+                            <usage/>
+                            <value><![CDATA[Git Repo URL]]></value>
+                        </Row>
+                        <Row>
+                            <context/>
+                            <name><![CDATA[File Repository Path]]></name>
+                            <usage/>
+                            <value><![CDATA[File Repository Path]]></value>
+                        </Row>
+                        <Row>
+                            <context/>
+                            <name><![CDATA[Configuration]]></name>
+                            <usage/>
+                            <value><![CDATA[Configuration]]></value>
+                        </Row>
+                        <Row>
+                            <context/>
+                            <name><![CDATA[Initial branch]]></name>
+                            <usage/>
+                            <value><![CDATA[Initial branch]]></value>
+                        </Row>
+                    </Rows>
+                </ConfigurationTable>
+            </ConfigurationTables>
+            <ConfigurationChanges>
+                <ConfigurationChange changeAction="CREATE" changeReason="" timestamp="2017-11-03T18:18:21.412+02:00" user="SuperUser"/>
+            </ConfigurationChanges>
+        </LocalizationTable>
+    </LocalizationTables>
+    <Resources>
+        <Resource aspect.isCreatable="false" aspect.isEditableExtensionObject="false" className="gb.GitBackupValidation" description="" name="GitBackupValidation"/>
+    </Resources>
+</Entities>

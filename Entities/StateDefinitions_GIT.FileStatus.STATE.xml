@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><Entities build="b349" majorVersion="8" minorVersion="3" modelPersistenceProviderPackage="H2PersistenceProviderPackage" revision="0" schemaVersion="1030" universal=""><StateDefinitions><StateDefinition description="" documentationContent="" homeMashup="" lastModifiedDate="2018-08-22T15:51:58.174+03:00" name="GIT.FileStatus.STATE" projectName="GitBackup" tags=""><Owner name="Administrator" type="User"/><avatar/><DesignTimePermissions><Create/><Read/><Update/><Delete/><Metadata/></DesignTimePermissions><RunTimePermissions/><VisibilityPermissions><Visibility/></VisibilityPermissions><ConfigurationTableDefinitions/><ConfigurationTables/><content><![CDATA[{
+  "stateDefinitions" : [ {
+    "defaultStyleDefinition" : {
+      "backgroundColor" : "",
+      "displayString" : "",
+      "fontEmphasisBold" : false,
+      "fontEmphasisItalic" : false,
+      "fontEmphasisUnderline" : false,
+      "foregroundColor" : "",
+      "image" : "GIT.AddedIcon.ME",
+      "lineColor" : "",
+      "lineStyle" : "solid",
+      "lineThickness" : 1,
+      "secondaryBackgroundColor" : "",
+      "textSize" : "normal"
+    },
+    "defaultValue" : "ADD",
+    "description" : "",
+    "displayString" : "",
+    "name" : ""
+  }, {
+    "defaultStyleDefinition" : {
+      "backgroundColor" : "",
+      "displayString" : "",
+      "fontEmphasisBold" : false,
+      "fontEmphasisItalic" : false,
+      "fontEmphasisUnderline" : false,
+      "foregroundColor" : "",
+      "image" : "GIT.RemovedIcon.ME",
+      "lineColor" : "",
+      "lineStyle" : "solid",
+      "lineThickness" : 1,
+      "secondaryBackgroundColor" : "",
+      "textSize" : "normal"
+    },
+    "defaultValue" : "DELETE",
+    "description" : "",
+    "displayString" : "",
+    "name" : ""
+  }, {
+    "defaultStyleDefinition" : {
+      "backgroundColor" : "",
+      "displayString" : "",
+      "fontEmphasisBold" : false,
+      "fontEmphasisItalic" : false,
+      "fontEmphasisUnderline" : false,
+      "foregroundColor" : "",
+      "image" : "GIT.ModifiedIcon.ME",
+      "lineColor" : "",
+      "lineStyle" : "solid",
+      "lineThickness" : 1,
+      "secondaryBackgroundColor" : "",
+      "textSize" : "normal"
+    },
+    "defaultValue" : "MODIFY",
+    "description" : "",
+    "displayString" : "",
+    "name" : ""
+  }, {
+    "defaultStyleDefinition" : {
+      "backgroundColor" : "",
+      "displayString" : "",
+      "fontEmphasisBold" : false,
+      "fontEmphasisItalic" : false,
+      "fontEmphasisUnderline" : false,
+      "foregroundColor" : "",
+      "image" : "GIT.RenameIcon.ME",
+      "lineColor" : "",
+      "lineStyle" : "solid",
+      "lineThickness" : 1,
+      "secondaryBackgroundColor" : "",
+      "textSize" : "normal"
+    },
+    "defaultValue" : "RENAME",
+    "description" : "",
+    "displayString" : "",
+    "name" : ""
+  }, {
+    "defaultStyleDefinition" : {
+      "backgroundColor" : "",
+      "displayString" : "",
+      "fontEmphasisBold" : false,
+      "fontEmphasisItalic" : false,
+      "fontEmphasisUnderline" : false,
+      "foregroundColor" : "",
+      "image" : "GIT.CopyIcon.ME",
+      "lineColor" : "",
+      "lineStyle" : "solid",
+      "lineThickness" : 1,
+      "secondaryBackgroundColor" : "",
+      "textSize" : "normal"
+    },
+    "defaultValue" : "COPY",
+    "description" : "",
+    "displayString" : "",
+    "name" : ""
+  }, {
+    "defaultStyleDefinition" : {
+      "backgroundColor" : "",
+      "displayString" : "",
+      "fontEmphasisBold" : false,
+      "fontEmphasisItalic" : false,
+      "fontEmphasisUnderline" : false,
+      "foregroundColor" : "",
+      "image" : "GIT.ModifiedIcon.ME",
+      "lineColor" : "",
+      "lineStyle" : "solid",
+      "lineThickness" : 1,
+      "secondaryBackgroundColor" : "",
+      "textSize" : "normal"
+    },
+    "description" : "",
+    "displayString" : "",
+    "name" : ""
+  } ],
+  "stateType" : "string"
+}]]></content><ConfigurationChanges><ConfigurationChange changeAction="CREATE" changeReason="header : projectName : updated, name : updated&#10;" timestamp="2018-08-22T15:41:33.964+03:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="" timestamp="2018-08-22T15:51:58.174+03:00" user="Administrator"/></ConfigurationChanges></StateDefinition></StateDefinitions></Entities>

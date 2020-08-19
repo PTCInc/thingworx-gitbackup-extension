@@ -1,0 +1,847 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b12"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="0"
+ schemaVersion="1050"
+ universal="password">
+    <Mashups>
+        <Mashup
+         aspect.isEditableExtensionObject="true"
+         aspect.isExtension="true"
+         aspect.isResponsive="true"
+         aspect.mashupType="mashup"
+         columns="0.0"
+         description=""
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2019-12-31T08:20:14.698-08:00"
+         name="GitBackup.Push.Mashup"
+         projectName="GitBackup"
+         rows="0.0"
+         tags="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <ParameterDefinitions>
+                <FieldDefinition
+                 aspect.ordinal="0"
+                 baseType="THINGNAME"
+                 description=""
+                 name="GitThing"
+                 ordinal="0"></FieldDefinition>
+            </ParameterDefinitions>
+            <Things>
+                <Thing>GIT.Utility.Thing</Thing>
+            </Things>
+            <ThingShapes></ThingShapes>
+            <ThingTemplates>
+                <ThingTemplate>GitBackupTemplate</ThingTemplate>
+            </ThingTemplates>
+            <mashupContent>
+            <![CDATA[
+            {
+              "CustomMashupCss" : "@-webkit-keyframes square-animation {\n  0% {\n    left: 0;\n    top: 0;\n  }\n  10.5% {\n    left: 0;\n    top: 0;\n  }\n  12.5% {\n    left: 12px;\n    top: 0;\n  }\n  23% {\n    left: 12px;\n    top: 0;\n  }\n  25% {\n    left: 24px;\n    top: 0;\n  }\n  35.5% {\n    left: 24px;\n    top: 0;\n  }\n  37.5% {\n    left: 24px;\n    top: 12px;\n  }\n  48% {\n    left: 24px;\n    top: 12px;\n  }\n  50% {\n    left: 12px;\n    top: 12px;\n  }\n  60.5% {\n    left: 12px;\n    top: 12px;\n  }\n  62.5% {\n    left: 12px;\n    top: 24px;\n  }\n  73% {\n    left: 12px;\n    top: 24px;\n  }\n  75% {\n    left: 0;\n    top: 24px;\n  }\n  85.5% {\n    left: 0;\n    top: 24px;\n  }\n  87.5% {\n    left: 0;\n    top: 12px;\n  }\n  98% {\n    left: 0;\n    top: 12px;\n  }\n  100% {\n    left: 0;\n    top: 0;\n  }\n}\n@keyframes square-animation {\n  0% {\n    left: 0;\n    top: 0;\n  }\n  10.5% {\n    left: 0;\n    top: 0;\n  }\n  12.5% {\n    left: 12px;\n    top: 0;\n  }\n  23% {\n    left: 12px;\n    top: 0;\n  }\n  25% {\n    left: 24px;\n    top: 0;\n  }\n  35.5% {\n    left: 24px;\n    top: 0;\n  }\n  37.5% {\n    left: 24px;\n    top: 12px;\n  }\n  48% {\n    left: 24px;\n    top: 12px;\n  }\n  50% {\n    left: 12px;\n    top: 12px;\n  }\n  60.5% {\n    left: 12px;\n    top: 12px;\n  }\n  62.5% {\n    left: 12px;\n    top: 24px;\n  }\n  73% {\n    left: 12px;\n    top: 24px;\n  }\n  75% {\n    left: 0;\n    top: 24px;\n  }\n  85.5% {\n    left: 0;\n    top: 24px;\n  }\n  87.5% {\n    left: 0;\n    top: 12px;\n  }\n  98% {\n    left: 0;\n    top: 12px;\n  }\n  100% {\n    left: 0;\n    top: 0;\n  }\n}\n@-webkit-keyframes hue-rotate {\n  0% {\n    -webkit-filter: hue-rotate(0deg);\n            filter: hue-rotate(0deg);\n  }\n  100% {\n    -webkit-filter: hue-rotate(360deg);\n            filter: hue-rotate(360deg);\n  }\n}\n@keyframes hue-rotate {\n  0% {\n    -webkit-filter: hue-rotate(0deg);\n            filter: hue-rotate(0deg);\n  }\n  100% {\n    -webkit-filter: hue-rotate(360deg);\n            filter: hue-rotate(360deg);\n  }\n}\nbody {\n  display: flex;\n  height: 100vh;\n  align-items: center;\n  justify-content: center;\n}\n\n.loading {\n  position: relative;\n  width: 36px;\n  height: 36px;\n  margin-top: 10px;\n  margin-left: 10px;\n  -webkit-transform: rotate(45deg);\n          transform: rotate(45deg);\n  -webkit-animation: hue-rotate 10s linear infinite both;\n          animation: hue-rotate 10s linear infinite both;\n}\n\n.loading__square {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 10px;\n  height: 10px;\n  margin: 2px;\n  border-radius: 1px;\n  background: #07a;\n  background-image: linear-gradient(45deg, #fa0 40%, #0c9 60%);\n  background-image: -moz-linear-gradient(#fa0, #fa0);\n  background-size: cover;\n  background-position: center;\n  background-attachment: fixed;\n  -webkit-animation: square-animation 10s ease-in-out infinite both;\n          animation: square-animation 10s ease-in-out infinite both;\n}\n.loading__square:nth-of-type(0) {\n  -webkit-animation-delay: 0s;\n          animation-delay: 0s;\n}\n.loading__square:nth-of-type(1) {\n  -webkit-animation-delay: -1.4285714286s;\n          animation-delay: -1.4285714286s;\n}\n.loading__square:nth-of-type(2) {\n  -webkit-animation-delay: -2.8571428571s;\n          animation-delay: -2.8571428571s;\n}\n.loading__square:nth-of-type(3) {\n  -webkit-animation-delay: -4.2857142857s;\n          animation-delay: -4.2857142857s;\n}\n.loading__square:nth-of-type(4) {\n  -webkit-animation-delay: -5.7142857143s;\n          animation-delay: -5.7142857143s;\n}\n.loading__square:nth-of-type(5) {\n  -webkit-animation-delay: -7.1428571429s;\n          animation-delay: -7.1428571429s;\n}\n.loading__square:nth-of-type(6) {\n  -webkit-animation-delay: -8.5714285714s;\n          animation-delay: -8.5714285714s;\n}\n.loading__square:nth-of-type(7) {\n  -webkit-animation-delay: -10s;\n          animation-delay: -10s;\n}\n",
+              "Data" : {
+                "DynamicThingTemplates_GitBackupTemplate" : {
+                  "DataName" : "DynamicThingTemplates_GitBackupTemplate",
+                  "EntityName" : "GitBackupTemplate",
+                  "EntityType" : "DynamicThingTemplates",
+                  "Id" : "89660d11-e885-4a5c-aaea-e53bece8b826",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "82d26ca5-7804-444d-9494-4d3891345fd3",
+                    "Name" : "Push",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "Push"
+                  } ]
+                },
+                "Session" : {
+                  "DataName" : "Session",
+                  "EntityName" : "",
+                  "EntityType" : "Session",
+                  "Id" : "session",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "SessionInterface",
+                    "Name" : "GetGlobalSessionValues",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetGlobalSessionValues"
+                  } ]
+                },
+                "Things_GIT.Utility.Thing" : {
+                  "DataName" : "Things_GIT.Utility.Thing",
+                  "EntityName" : "GIT.Utility.Thing",
+                  "EntityType" : "Things",
+                  "Id" : "03646c90-57f1-45cf-a39f-886574c573bd",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "4b44877a-9a03-40be-b528-9f44fd39f990",
+                    "Name" : "InitUserExtensionProperties",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "InitUserExtensionProperties"
+                  } ]
+                },
+                "UserExtensions" : {
+                  "DataName" : "UserExtensions",
+                  "EntityName" : "",
+                  "EntityType" : "UserExtensions",
+                  "Id" : "UserExtensions",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "UserExtensionInterface",
+                    "Name" : "GetCurrentUserExtensionProperties",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetCurrentUserExtensionProperties"
+                  } ]
+                }
+              },
+              "DataBindings" : [ {
+                "Id" : "a6835754-f06f-4d04-abb6-51132dc64e78",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "TargetProperty" : "Visible",
+                  "TargetPropertyBaseType" : ""
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-8",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "panel-5",
+                "TargetSection" : ""
+              }, {
+                "Id" : "1eda4c69-0c80-4a00-85a5-35e46127e13c",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "GitThing",
+                  "SourcePropertyBaseType" : "THINGNAME",
+                  "TargetProperty" : "value",
+                  "TargetPropertyBaseType" : "THINGNAME",
+                  "TargetPropertyType" : "Entity"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "EntityName",
+                "TargetSection" : "DynamicThingTemplates_GitBackupTemplate"
+              }, {
+                "Id" : "6531de1b-c20f-4e05-8cc5-e3aa084b7b02",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Text",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "Message",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "textarea-17",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "Push",
+                "TargetSection" : "DynamicThingTemplates_GitBackupTemplate"
+              } ],
+              "DesignTimePermissions" : {
+                "Create" : [ ],
+                "Delete" : [ ],
+                "Metadata" : [ ],
+                "Read" : [ ],
+                "Update" : [ ]
+              },
+              "Events" : [ {
+                "EventHandlerArea" : "Mashup",
+                "EventHandlerId" : "mashup-root",
+                "EventHandlerService" : "CloseIfPopup",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "Push",
+                "EventTriggerSection" : "DynamicThingTemplates_GitBackupTemplate",
+                "Id" : "9e8e84d5-1c10-4eb5-be3d-0b76baa73e5a"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-8",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "button-15",
+                "EventTriggerSection" : "",
+                "Id" : "d077b905-04fd-4773-9961-636fc204aabf"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "DynamicThingTemplates_GitBackupTemplate",
+                "EventHandlerService" : "Push",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "button-15",
+                "EventTriggerSection" : "",
+                "Id" : "4b09f2a6-58e1-4706-a780-b033dffe6b9c"
+              }, {
+                "EventHandlerArea" : "Mashup",
+                "EventHandlerId" : "mashup-root",
+                "EventHandlerService" : "CloseIfPopup",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "button-16",
+                "EventTriggerSection" : "",
+                "Id" : "942cbca6-d408-4239-8aec-4b41afb52e5b"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-19",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "69f6c3ff-f71e-4ed0-a0ae-1fa71336f9f5"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "navigationfunction-21",
+                "EventHandlerService" : "Navigate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "button-20",
+                "EventTriggerSection" : "",
+                "Id" : "48bec983-0c8c-4797-9f23-de4fb605e899"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_GIT.Utility.Thing",
+                "EventHandlerService" : "InitUserExtensionProperties",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "c1222a85-fcae-4c34-a1c3-3e5d527006ea"
+              } ],
+              "RunTimePermissions" : {
+                "permissions" : [ ]
+              },
+              "UI" : {
+                "Properties" : {
+                  "AddToDashboardButton" : "SimplePlus",
+                  "AddToDashboardButtonStyle" : "DefaultAddToDashboardButtonStyle",
+                  "Area" : "Mashup",
+                  "BGImage" : "",
+                  "BGImageRepeat" : "no-repeat",
+                  "BGImageSize" : "auto",
+                  "Columns" : 0,
+                  "ConfigureGadgetButton" : "SimpleGear",
+                  "ConfigureGadgetButtonStyle" : "DefaultConfigureGadgetButtonStyle",
+                  "DisplayName" : "Mashup",
+                  "EnableParameterEditing" : false,
+                  "Height" : 618,
+                  "Id" : "mashup-root",
+                  "IgnoreWarningsInViewMashup" : false,
+                  "IsPrintLayout" : false,
+                  "Left" : 0,
+                  "MashupToEditGadget" : "DefaultMashupToEditGadget",
+                  "MinHeight" : 0,
+                  "MinWidth" : 0,
+                  "ResponsiveLayout" : true,
+                  "Rows" : 0,
+                  "ShowDataLoading" : true,
+                  "Style" : "DefaultMashupStyle",
+                  "StyleTheme" : "Base Theme",
+                  "Title" : "",
+                  "TitleBar" : false,
+                  "TitleBarStyle" : "DefaultTitleBarStyle",
+                  "TitleBarText" : "Gadget Title Here",
+                  "Top" : 0,
+                  "Type" : "mashup",
+                  "UseMasterTheme" : false,
+                  "UseTheme" : false,
+                  "UseThemeForHybrids" : false,
+                  "Visible" : true,
+                  "Width" : 1024,
+                  "Z-index" : 10,
+                  "__TypeDisplayName" : "Mashup",
+                  "_currentParameterDefs" : [ {
+                    "BaseType" : "THINGNAME",
+                    "Description" : "",
+                    "ParameterName" : "GitThing"
+                  } ],
+                  "id_index" : 21,
+                  "supportsAutoResize" : true
+                },
+                "Widgets" : [ {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "DisplayName" : "panel-1",
+                    "Height" : 200,
+                    "HideScrollbars" : false,
+                    "HorizontalAnchor" : "left",
+                    "Id" : "panel-1",
+                    "LastContainer" : false,
+                    "Left" : 30,
+                    "ResponsiveLayout" : true,
+                    "ShowDataLoading" : true,
+                    "Style" : "DefaultContainerStyle",
+                    "Top" : 25,
+                    "Type" : "panel",
+                    "VerticalAnchor" : "top",
+                    "Visible" : true,
+                    "Width" : 300,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Panel"
+                  },
+                  "Widgets" : [ {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "DisplayName" : "panel-5",
+                      "Height" : 261,
+                      "HideScrollbars" : false,
+                      "HorizontalAnchor" : "left",
+                      "Id" : "panel-5",
+                      "LastContainer" : false,
+                      "Left" : 0,
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "Style" : {
+                        "backgroundColor" : "#ffffff",
+                        "displayString" : "",
+                        "fontEmphasisBold" : false,
+                        "fontEmphasisItalic" : false,
+                        "fontEmphasisUnderline" : false,
+                        "foregroundColor" : "",
+                        "image" : "",
+                        "lineColor" : "",
+                        "lineStyle" : "solid",
+                        "lineThickness" : 1,
+                        "secondaryBackgroundColor" : "",
+                        "textSize" : "normal"
+                      },
+                      "Top" : 0,
+                      "Type" : "panel",
+                      "VerticalAnchor" : "top",
+                      "Visible" : false,
+                      "Width" : 500,
+                      "Z-index" : 11,
+                      "__TypeDisplayName" : "Panel"
+                    },
+                    "Widgets" : [ {
+                      "Properties" : {
+                        "Alignment" : "center",
+                        "AllowEllipsis" : false,
+                        "Area" : "UI",
+                        "DisplayName" : "lb_PushText",
+                        "Height" : 22,
+                        "Id" : "label-7",
+                        "LastContainer" : false,
+                        "Left" : 143,
+                        "ResponsiveLayout" : false,
+                        "ShowDataLoading" : true,
+                        "Style" : {
+                          "backgroundColor" : "",
+                          "displayString" : "",
+                          "fontEmphasisBold" : true,
+                          "fontEmphasisItalic" : false,
+                          "fontEmphasisUnderline" : false,
+                          "foregroundColor" : "#0fff94",
+                          "image" : "",
+                          "lineColor" : "",
+                          "lineStyle" : "solid",
+                          "lineThickness" : 1,
+                          "secondaryBackgroundColor" : "",
+                          "textSize" : "xlarge"
+                        },
+                        "Text" : "Executing Push to Git...",
+                        "ToolTipField" : "",
+                        "ToolTipStyle" : "DefaultTooltipStyle",
+                        "Top" : 125,
+                        "Type" : "label",
+                        "Visible" : true,
+                        "Width" : 220,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Label",
+                        "__supportsTooltip" : true
+                      },
+                      "Widgets" : [ ]
+                    }, {
+                      "Properties" : {
+                        "Area" : "UI",
+                        "DisplayName" : "html_LoadingIcon",
+                        "EscapeHTMLText" : false,
+                        "Height" : 60,
+                        "Id" : "htmltextarea-18",
+                        "Label" : "",
+                        "LabelAlignment" : "left",
+                        "LabelStyle" : "DefaultWidgetLabelStyle",
+                        "LastContainer" : false,
+                        "Left" : 219,
+                        "ReadOnly" : true,
+                        "ResponsiveLayout" : false,
+                        "ShowBorder" : false,
+                        "ShowDataLoading" : true,
+                        "ShowToolbar" : true,
+                        "Text" : "<div class='loading'>   <div class='loading__square'></div>   <div class='loading__square'></div>   <div class='loading__square'></div>   <div class='loading__square'></div>   <div class='loading__square'></div>   <div class='loading__square'></div>   <div class='loading__square'></div> </div>",
+                        "ToolTipField" : "",
+                        "ToolTipStyle" : "DefaultTooltipStyle",
+                        "Top" : 55,
+                        "Type" : "htmltextarea",
+                        "UseTheme" : false,
+                        "Visible" : true,
+                        "Width" : 70,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Html TextArea",
+                        "__supportsLabel" : true,
+                        "__supportsTooltip" : true
+                      },
+                      "Widgets" : [ ]
+                    } ]
+                  }, {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "AutoEvaluate" : false,
+                      "DataChangeType" : "ALWAYS",
+                      "DisplayName" : "exp_ShowPush",
+                      "Expression" : "true",
+                      "FireOnFirstValue" : false,
+                      "Height" : 28,
+                      "Id" : "expression-8",
+                      "LastContainer" : false,
+                      "Left" : 20,
+                      "Output" : false,
+                      "OutputBaseType" : "BOOLEAN",
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "Top" : 10,
+                      "Type" : "expression",
+                      "Visible" : true,
+                      "Width" : 200,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Expression",
+                      "editMode" : "edit",
+                      "helperType" : "expression"
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "ActiveStyle" : {
+                        "backgroundColor" : "#d6dadc",
+                        "displayString" : "",
+                        "fontEmphasisBold" : true,
+                        "fontEmphasisItalic" : false,
+                        "fontEmphasisUnderline" : false,
+                        "foregroundColor" : "#24292e",
+                        "image" : "GIT.PushIconHover.ME",
+                        "lineColor" : "#a1a5a8",
+                        "lineStyle" : "solid",
+                        "lineThickness" : 1,
+                        "secondaryBackgroundColor" : "#e8ebee",
+                        "textSize" : "large"
+                      },
+                      "Area" : "UI",
+                      "CancelConfirmationButton" : "button2",
+                      "ConfirmationButton1Label" : "Yes",
+                      "ConfirmationButton2Label" : "No",
+                      "ConfirmationPrompt" : "Do Action?",
+                      "ConfirmationRequired" : false,
+                      "ConfirmationTitle" : "Confirm Action",
+                      "ContextId" : "",
+                      "CustomClass" : "green-btn",
+                      "DefaultConfirmationButton" : "button1",
+                      "Disabled" : false,
+                      "DisabledStyle" : {
+                        "backgroundColor" : "#cccccc",
+                        "displayString" : "",
+                        "fontEmphasisBold" : true,
+                        "fontEmphasisItalic" : false,
+                        "fontEmphasisUnderline" : false,
+                        "foregroundColor" : "#959595",
+                        "image" : "GIT.PushIcon.ME",
+                        "lineColor" : "#aaaaaa",
+                        "lineStyle" : "solid",
+                        "lineThickness" : 1,
+                        "secondaryBackgroundColor" : "",
+                        "textSize" : "large"
+                      },
+                      "DisplayName" : "btn_Push",
+                      "FocusStyle" : {
+                        "backgroundColor" : "",
+                        "displayString" : "",
+                        "fontEmphasisBold" : false,
+                        "fontEmphasisItalic" : false,
+                        "fontEmphasisUnderline" : false,
+                        "foregroundColor" : "",
+                        "image" : "",
+                        "lineColor" : "#a1a5a8",
+                        "lineStyle" : "solid",
+                        "lineThickness" : 1,
+                        "secondaryBackgroundColor" : "",
+                        "textSize" : "normal"
+                      },
+                      "Height" : 38,
+                      "HoverStyle" : {
+                        "backgroundColor" : "#edf1f5",
+                        "displayString" : "",
+                        "fontEmphasisBold" : true,
+                        "fontEmphasisItalic" : false,
+                        "fontEmphasisUnderline" : false,
+                        "foregroundColor" : "#24292e",
+                        "image" : "GIT.PushIconHover.ME",
+                        "lineColor" : "#9fa4a9",
+                        "lineStyle" : "solid",
+                        "lineThickness" : 1,
+                        "secondaryBackgroundColor" : "#e6ebf1",
+                        "textSize" : "large"
+                      },
+                      "IconAlignment" : "left",
+                      "Id" : "button-15",
+                      "Label" : "Push",
+                      "LastContainer" : false,
+                      "Left" : 400,
+                      "ResponsiveLayout" : false,
+                      "RoundedCorners" : false,
+                      "ShowDataLoading" : true,
+                      "SingleClickSelectOnTablets" : true,
+                      "Style" : {
+                        "backgroundColor" : "#f9fbfc",
+                        "displayString" : "",
+                        "fontEmphasisBold" : true,
+                        "fontEmphasisItalic" : false,
+                        "fontEmphasisUnderline" : false,
+                        "foregroundColor" : "#24292e",
+                        "image" : "GIT.PushIcon.ME",
+                        "lineColor" : "#c8cbce",
+                        "lineStyle" : "solid",
+                        "lineThickness" : 1,
+                        "secondaryBackgroundColor" : "#eff3f6",
+                        "textSize" : "large"
+                      },
+                      "TabSequence" : 2,
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 214,
+                      "Type" : "button",
+                      "Visible" : true,
+                      "Width" : 90,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Button",
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "ActiveStyle" : {
+                        "backgroundColor" : "#d6dadc",
+                        "displayString" : "",
+                        "fontEmphasisBold" : true,
+                        "fontEmphasisItalic" : false,
+                        "fontEmphasisUnderline" : false,
+                        "foregroundColor" : "#24292e",
+                        "lineColor" : "#a1a5a8",
+                        "lineStyle" : "solid",
+                        "lineThickness" : 1,
+                        "secondaryBackgroundColor" : "#e8ebee",
+                        "textSize" : "large"
+                      },
+                      "Area" : "UI",
+                      "CancelConfirmationButton" : "button2",
+                      "ConfirmationButton1Label" : "Yes",
+                      "ConfirmationButton2Label" : "No",
+                      "ConfirmationPrompt" : "Do Action?",
+                      "ConfirmationRequired" : false,
+                      "ConfirmationTitle" : "Confirm Action",
+                      "ContextId" : "",
+                      "CustomClass" : "white-btn",
+                      "DefaultConfirmationButton" : "button1",
+                      "Disabled" : false,
+                      "DisabledStyle" : {
+                        "backgroundColor" : "#cccccc",
+                        "displayString" : "",
+                        "fontEmphasisBold" : true,
+                        "fontEmphasisItalic" : false,
+                        "fontEmphasisUnderline" : false,
+                        "foregroundColor" : "#959595",
+                        "lineColor" : "#aaaaaa",
+                        "lineStyle" : "solid",
+                        "lineThickness" : 1,
+                        "secondaryBackgroundColor" : "",
+                        "textSize" : "large"
+                      },
+                      "DisplayName" : "btn_Cancel",
+                      "FocusStyle" : {
+                        "backgroundColor" : "",
+                        "displayString" : "",
+                        "fontEmphasisBold" : false,
+                        "fontEmphasisItalic" : false,
+                        "fontEmphasisUnderline" : false,
+                        "foregroundColor" : "",
+                        "image" : "",
+                        "lineColor" : "#a1a5a8",
+                        "lineStyle" : "solid",
+                        "lineThickness" : 1,
+                        "secondaryBackgroundColor" : "",
+                        "textSize" : "normal"
+                      },
+                      "Height" : 38,
+                      "HoverStyle" : {
+                        "backgroundColor" : "#edf1f5",
+                        "displayString" : "",
+                        "fontEmphasisBold" : true,
+                        "fontEmphasisItalic" : false,
+                        "fontEmphasisUnderline" : false,
+                        "foregroundColor" : "#24292e",
+                        "lineColor" : "#9fa4a9",
+                        "lineStyle" : "solid",
+                        "lineThickness" : 1,
+                        "secondaryBackgroundColor" : "#e6ebf1",
+                        "textSize" : "large"
+                      },
+                      "IconAlignment" : "left",
+                      "Id" : "button-16",
+                      "Label" : "Cancel",
+                      "LastContainer" : false,
+                      "Left" : 10,
+                      "ResponsiveLayout" : false,
+                      "RoundedCorners" : false,
+                      "ShowDataLoading" : true,
+                      "SingleClickSelectOnTablets" : true,
+                      "Style" : {
+                        "backgroundColor" : "#f9fbfc",
+                        "displayString" : "",
+                        "fontEmphasisBold" : true,
+                        "fontEmphasisItalic" : false,
+                        "fontEmphasisUnderline" : false,
+                        "foregroundColor" : "#24292e",
+                        "lineColor" : "#c8cbce",
+                        "lineStyle" : "solid",
+                        "lineThickness" : 1,
+                        "secondaryBackgroundColor" : "#eff3f6",
+                        "textSize" : "large"
+                      },
+                      "TabSequence" : 3,
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 214,
+                      "Type" : "button",
+                      "Visible" : true,
+                      "Width" : 90,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Button",
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "CustomClass" : "text-area-push-placeholder",
+                      "DisplayName" : "txtarea_CommitMessage",
+                      "Height" : 194,
+                      "Id" : "textarea-17",
+                      "InnerShadow" : false,
+                      "Label" : "",
+                      "LabelAlignment" : "left",
+                      "LastContainer" : false,
+                      "Left" : 10,
+                      "ReadOnly" : false,
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "Style" : "DefaultTextAreaStyle",
+                      "TabSequence" : 1,
+                      "Text" : "",
+                      "TextareaFocusStyle" : "DefaultFocusStyle",
+                      "TextareaLabelStyle" : "DefaultWidgetLabelStyle",
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 10,
+                      "Type" : "textarea",
+                      "Visible" : true,
+                      "Width" : 480,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "TextArea",
+                      "__supportsLabel" : true,
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "AutoEvaluate" : false,
+                      "DataChangeType" : "NEVER",
+                      "DisplayName" : "expression-19",
+                      "Expression" : "$('.text-area-push-placeholder textarea').attr('placeholder', 'Comment');",
+                      "FireOnFirstValue" : false,
+                      "Height" : 28,
+                      "Id" : "expression-19",
+                      "LastContainer" : false,
+                      "Left" : 470,
+                      "OutputBaseType" : "NUMBER",
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "Top" : 255,
+                      "Type" : "expression",
+                      "Visible" : true,
+                      "Width" : 200,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Expression",
+                      "editMode" : "edit",
+                      "helperType" : "expression"
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "ActiveStyle" : {
+                        "backgroundColor" : "#d6dadc",
+                        "displayString" : "",
+                        "fontEmphasisBold" : true,
+                        "fontEmphasisItalic" : false,
+                        "fontEmphasisUnderline" : false,
+                        "foregroundColor" : "#24292e",
+                        "image" : "GIT.PushIconHover.ME",
+                        "lineColor" : "#a1a5a8",
+                        "lineStyle" : "solid",
+                        "lineThickness" : 1,
+                        "secondaryBackgroundColor" : "#e8ebee",
+                        "textSize" : "large"
+                      },
+                      "Area" : "UI",
+                      "CancelConfirmationButton" : "button2",
+                      "ConfirmationButton1Label" : "Yes",
+                      "ConfirmationButton2Label" : "No",
+                      "ConfirmationPrompt" : "Do Action?",
+                      "ConfirmationRequired" : false,
+                      "ConfirmationTitle" : "Confirm Action",
+                      "ContextId" : "",
+                      "CustomClass" : "blue-btn",
+                      "DefaultConfirmationButton" : "button1",
+                      "Disabled" : false,
+                      "DisabledStyle" : {
+                        "backgroundColor" : "#cccccc",
+                        "displayString" : "",
+                        "fontEmphasisBold" : true,
+                        "fontEmphasisItalic" : false,
+                        "fontEmphasisUnderline" : false,
+                        "foregroundColor" : "#959595",
+                        "image" : "GIT.PushIcon.ME",
+                        "lineColor" : "#aaaaaa",
+                        "lineStyle" : "solid",
+                        "lineThickness" : 1,
+                        "secondaryBackgroundColor" : "",
+                        "textSize" : "large"
+                      },
+                      "DisplayName" : "btn_Settings",
+                      "FocusStyle" : {
+                        "backgroundColor" : "",
+                        "displayString" : "",
+                        "fontEmphasisBold" : false,
+                        "fontEmphasisItalic" : false,
+                        "fontEmphasisUnderline" : false,
+                        "foregroundColor" : "",
+                        "image" : "",
+                        "lineColor" : "#a1a5a8",
+                        "lineStyle" : "solid",
+                        "lineThickness" : 1,
+                        "secondaryBackgroundColor" : "",
+                        "textSize" : "normal"
+                      },
+                      "Height" : 38,
+                      "HoverStyle" : {
+                        "backgroundColor" : "#edf1f5",
+                        "displayString" : "",
+                        "fontEmphasisBold" : true,
+                        "fontEmphasisItalic" : false,
+                        "fontEmphasisUnderline" : false,
+                        "foregroundColor" : "#24292e",
+                        "image" : "GIT.PushIconHover.ME",
+                        "lineColor" : "#9fa4a9",
+                        "lineStyle" : "solid",
+                        "lineThickness" : 1,
+                        "secondaryBackgroundColor" : "#e6ebf1",
+                        "textSize" : "large"
+                      },
+                      "IconAlignment" : "left",
+                      "Id" : "button-20",
+                      "Label" : "Settings",
+                      "LastContainer" : false,
+                      "Left" : 300,
+                      "ResponsiveLayout" : false,
+                      "RoundedCorners" : false,
+                      "ShowDataLoading" : true,
+                      "SingleClickSelectOnTablets" : true,
+                      "Style" : {
+                        "backgroundColor" : "#f9fbfc",
+                        "displayString" : "",
+                        "fontEmphasisBold" : true,
+                        "fontEmphasisItalic" : false,
+                        "fontEmphasisUnderline" : false,
+                        "foregroundColor" : "#24292e",
+                        "image" : "GIT.PushIcon.ME",
+                        "lineColor" : "#c8cbce",
+                        "lineStyle" : "solid",
+                        "lineThickness" : 1,
+                        "secondaryBackgroundColor" : "#eff3f6",
+                        "textSize" : "large"
+                      },
+                      "TabSequence" : 2,
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 214,
+                      "Type" : "button",
+                      "Visible" : true,
+                      "Width" : 90,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Button",
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  } ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "ClickOutsideToClose" : false,
+                    "CloseButton" : false,
+                    "Description" : "Mashup used to configure Push related settings",
+                    "DisplayName" : "PushSettings",
+                    "Id" : "navigationfunction-21",
+                    "LastContainer" : false,
+                    "Left" : 0,
+                    "MissingMashupMessage" : null,
+                    "PopupHeight" : "240",
+                    "PopupScrollbar" : "auto",
+                    "PopupTitle" : "Push Settings",
+                    "PopupWidth" : "500",
+                    "ReloadOnReplace" : false,
+                    "ShowDataLoading" : true,
+                    "TargetMashup" : "GitBackup.PushSettings.Mashup",
+                    "TargetWindow" : "new",
+                    "TargetWindowType" : "popup",
+                    "Text" : "tw.navigationfunction-ide.properties.text.default-value",
+                    "Top" : 0,
+                    "Type" : "navigationfunction",
+                    "Visible" : true,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "navigationfunction",
+                    "_currentParameterDefs" : [ ]
+                  },
+                  "Widgets" : [ ]
+                } ]
+              },
+              "mashupType" : "mashup"
+            }
+            ]]>
+            </mashupContent>
+            <preview></preview>
+        </Mashup>
+    </Mashups>
+</Entities>

@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><Entities build="b349" majorVersion="8" minorVersion="3" modelPersistenceProviderPackage="H2PersistenceProviderPackage" revision="0" schemaVersion="1030" universal=""><Mashups><Mashup aspect.isEditableExtensionObject="true" aspect.isExtension="true" aspect.isResponsive="true" aspect.mashupType="mashup" columns="0.0" description="" documentationContent="" homeMashup="" lastModifiedDate="2018-08-22T13:20:18.177+03:00" name="GitBackup.Checkout.Mashup" projectName="GitBackup" rows="0.0" tags=""><Owner name="SuperUser" type="User"/><avatar/><DesignTimePermissions><Create/><Read/><Update/><Delete/><Metadata/></DesignTimePermissions><RunTimePermissions/><VisibilityPermissions><Visibility/></VisibilityPermissions><ConfigurationTables/><ParameterDefinitions><FieldDefinition aspect.ordinal="1" baseType="STRING" description="" name="CommitOrBranch" ordinal="0"/><FieldDefinition aspect.ordinal="0" baseType="THINGNAME" description="" name="GitThing" ordinal="0"/><FieldDefinition aspect.ordinal="2" baseType="BOOLEAN" description="" name="IsBranch" ordinal="0"/></ParameterDefinitions><Things/><ThingShapes/><ThingTemplates><ThingTemplate>GitBackupTemplate</ThingTemplate></ThingTemplates><mashupContent><![CDATA[{
+  "Data" : {
+    "DynamicThingTemplates_GitBackupTemplate" : {
+      "DataName" : "DynamicThingTemplates_GitBackupTemplate",
+      "EntityName" : "GitBackupTemplate",
+      "EntityType" : "DynamicThingTemplates",
+      "Id" : "5862b51b-7f46-421e-aaae-328674f95c45",
+      "Services" : [ {
+        "APIMethod" : "post",
+        "Characteristic" : "Services",
+        "Id" : "057bd2a3-82cb-40c5-91cc-7da9e44b8f4f",
+        "Name" : "Checkout",
+        "Parameters" : { },
+        "RefreshInterval" : 0,
+        "Target" : "Checkout"
+      } ]
+    },
+    "Session" : {
+      "DataName" : "Session",
+      "EntityName" : "",
+      "EntityType" : "Session",
+      "Id" : "session",
+      "Services" : [ {
+        "APIMethod" : "post",
+        "Characteristic" : "Services",
+        "Id" : "SessionInterface",
+        "Name" : "GetGlobalSessionValues",
+        "Parameters" : { },
+        "RefreshInterval" : 0,
+        "Target" : "GetGlobalSessionValues"
+      } ]
+    },
+    "UserExtensions" : {
+      "DataName" : "UserExtensions",
+      "EntityName" : "",
+      "EntityType" : "UserExtensions",
+      "Id" : "UserExtensions",
+      "Services" : [ {
+        "APIMethod" : "post",
+        "Characteristic" : "Services",
+        "Id" : "UserExtensionInterface",
+        "Name" : "GetCurrentUserExtensionProperties",
+        "Parameters" : { },
+        "RefreshInterval" : 0,
+        "Target" : "GetCurrentUserExtensionProperties"
+      } ]
+    }
+  },
+  "DataBindings" : [ {
+    "Id" : "629f7d00-6a46-4537-b67f-2dc5e0f9a751",
+    "PropertyMaps" : [ {
+      "SourceProperty" : "GitThing",
+      "SourcePropertyBaseType" : "THINGNAME",
+      "TargetProperty" : "value",
+      "TargetPropertyBaseType" : "THINGNAME",
+      "TargetPropertyType" : "Entity"
+    } ],
+    "SourceArea" : "Mashup",
+    "SourceId" : "mashup-root",
+    "SourceSection" : "",
+    "TargetArea" : "Data",
+    "TargetId" : "EntityName",
+    "TargetSection" : "DynamicThingTemplates_GitBackupTemplate"
+  }, {
+    "Id" : "c5a748b1-14d1-46b5-9714-44dacb6ca84f",
+    "PropertyMaps" : [ {
+      "SourceProperty" : "CommitOrBranch",
+      "SourcePropertyBaseType" : "STRING",
+      "SourcePropertyType" : "Property",
+      "TargetProperty" : "Branch",
+      "TargetPropertyBaseType" : "STRING",
+      "TargetPropertyType" : "property"
+    } ],
+    "SourceArea" : "Mashup",
+    "SourceId" : "mashup-root",
+    "SourceSection" : "",
+    "TargetArea" : "UI",
+    "TargetId" : "expression-4",
+    "TargetSection" : ""
+  }, {
+    "Id" : "8542e738-a3dc-447c-a5f6-f1797482b2cb",
+    "PropertyMaps" : [ {
+      "SourceProperty" : "Output",
+      "SourcePropertyBaseType" : "STRING",
+      "SourcePropertyType" : "Property",
+      "TargetProperty" : "Text",
+      "TargetPropertyBaseType" : "STRING",
+      "TargetPropertyType" : "property"
+    } ],
+    "SourceArea" : "UI",
+    "SourceId" : "expression-4",
+    "SourceSection" : "",
+    "TargetArea" : "UI",
+    "TargetId" : "label-3",
+    "TargetSection" : ""
+  }, {
+    "Id" : "19a03e28-d0d6-4740-ba6c-d76a2e8ceda4",
+    "PropertyMaps" : [ {
+      "SourceProperty" : "CommitOrBranch",
+      "SourcePropertyBaseType" : "STRING",
+      "TargetProperty" : "BranchNameOrCommit",
+      "TargetPropertyBaseType" : "STRING",
+      "TargetPropertyType" : "Parameter"
+    } ],
+    "SourceArea" : "Mashup",
+    "SourceId" : "mashup-root",
+    "SourceSection" : "",
+    "TargetArea" : "Data",
+    "TargetId" : "Checkout",
+    "TargetSection" : "DynamicThingTemplates_GitBackupTemplate"
+  } ],
+  "DesignTimePermissions" : { },
+  "Events" : [ {
+    "EventHandlerArea" : "UI",
+    "EventHandlerId" : "expression-4",
+    "EventHandlerService" : "Evaluate",
+    "EventTriggerArea" : "Mashup",
+    "EventTriggerEvent" : "Loaded",
+    "EventTriggerId" : "mashup-root",
+    "EventTriggerSection" : "",
+    "Id" : "50db2e2b-19d8-4766-aa3a-d17dd8d0a1c7"
+  }, {
+    "EventHandlerArea" : "Data",
+    "EventHandlerId" : "DynamicThingTemplates_GitBackupTemplate",
+    "EventHandlerService" : "Checkout",
+    "EventTriggerArea" : "UI",
+    "EventTriggerEvent" : "Changed",
+    "EventTriggerId" : "expression-4",
+    "EventTriggerSection" : "",
+    "Id" : "4dfc013e-26b6-4552-9cc1-94ac3da8067a"
+  }, {
+    "EventHandlerArea" : "Mashup",
+    "EventHandlerId" : "mashup-root",
+    "EventHandlerService" : "CloseIfPopup",
+    "EventTriggerArea" : "Data",
+    "EventTriggerEvent" : "ServiceInvokeCompleted",
+    "EventTriggerId" : "Checkout",
+    "EventTriggerSection" : "DynamicThingTemplates_GitBackupTemplate",
+    "Id" : "028ff982-4d02-4f1a-94b1-bc6485a1beb0"
+  } ],
+  "RunTimePermissions" : { },
+  "UI" : {
+    "Properties" : {
+      "AddToDashboardButtonStyle" : "DefaultAddToDashboardButtonStyle",
+      "Area" : "Mashup",
+      "BGImageRepeat" : "no-repeat",
+      "BGImageSize" : "auto",
+      "Columns" : 0,
+      "ConfigureGadgetButtonStyle" : "DefaultConfigureGadgetButtonStyle",
+      "DisplayName" : "Mashup",
+      "EnableParameterEditing" : false,
+      "Height" : 618,
+      "Id" : "mashup-root",
+      "IgnoreWarningsInViewMashup" : false,
+      "IsPrintLayout" : false,
+      "Left" : 0,
+      "MashupToEditGadget" : "DefaultMashupToEditGadget",
+      "MinHeight" : 0,
+      "MinWidth" : 0,
+      "ResponsiveLayout" : true,
+      "Rows" : 0,
+      "ShowDataLoading" : true,
+      "Style" : "DefaultMashupStyle",
+      "Title" : "",
+      "TitleBar" : false,
+      "TitleBarStyle" : "DefaultTitleBarStyle",
+      "TitleBarText" : "Gadget Title Here",
+      "Top" : 0,
+      "Type" : "mashup",
+      "Visible" : true,
+      "Width" : 1024,
+      "Z-index" : 10,
+      "__TypeDisplayName" : "Mashup",
+      "_currentParameterDefs" : [ {
+        "BaseType" : "THINGNAME",
+        "Description" : "",
+        "ParameterName" : "GitThing"
+      }, {
+        "BaseType" : "STRING",
+        "Description" : "",
+        "ParameterName" : "CommitOrBranch"
+      }, {
+        "BaseType" : "BOOLEAN",
+        "Description" : "",
+        "ParameterName" : "IsBranch"
+      } ],
+      "id_index" : 4,
+      "supportsAutoResize" : true
+    },
+    "Widgets" : [ {
+      "Properties" : {
+        "Area" : "UI",
+        "DisplayName" : "panel-2",
+        "Height" : 200,
+        "HideScrollbars" : false,
+        "HorizontalAnchor" : "left",
+        "Id" : "panel-2",
+        "Left" : 285,
+        "ResponsiveLayout" : true,
+        "ShowDataLoading" : true,
+        "Style" : "DefaultContainerStyle",
+        "Top" : 300,
+        "Type" : "panel",
+        "VerticalAnchor" : "top",
+        "Visible" : true,
+        "Width" : 300,
+        "Z-index" : 10,
+        "__TypeDisplayName" : "Panel"
+      },
+      "Widgets" : [ {
+        "Properties" : {
+          "Alignment" : "center",
+          "AllowEllipsis" : false,
+          "Area" : "UI",
+          "DisplayName" : "lbl_Loading",
+          "Height" : 52,
+          "Id" : "label-3",
+          "Left" : 10,
+          "ResponsiveLayout" : false,
+          "ShowDataLoading" : true,
+          "Style" : {
+            "backgroundColor" : "",
+            "displayString" : "",
+            "fontEmphasisBold" : true,
+            "fontEmphasisItalic" : false,
+            "fontEmphasisUnderline" : false,
+            "foregroundColor" : "#0fff94",
+            "image" : "",
+            "lineColor" : "",
+            "lineStyle" : "solid",
+            "lineThickness" : 1,
+            "secondaryBackgroundColor" : "",
+            "textSize" : "xlarge"
+          },
+          "Text" : "",
+          "ToolTipField" : "",
+          "ToolTipStyle" : "DefaultTooltipStyle",
+          "Top" : 90,
+          "Type" : "label",
+          "Visible" : true,
+          "Width" : 330,
+          "Z-index" : 10,
+          "__TypeDisplayName" : "Label",
+          "__supportsTooltip" : true
+        },
+        "Widgets" : [ ]
+      }, {
+        "Properties" : {
+          "AlternateText" : "",
+          "Area" : "UI",
+          "BorderStyle" : "DefaultImageBorderStyle",
+          "DisplayName" : "img_Loading",
+          "Height" : 50,
+          "Id" : "image-1",
+          "Left" : 150,
+          "PreventCaching" : false,
+          "ResponsiveLayout" : false,
+          "Scaling" : "height",
+          "ShowDataLoading" : true,
+          "SourceURL" : "GIT.LoadingGIF.ME",
+          "ToolTipField" : "",
+          "ToolTipStyle" : "DefaultTooltipStyle",
+          "Top" : 20,
+          "Type" : "image",
+          "Visible" : true,
+          "Width" : 50,
+          "Z-index" : 9,
+          "__TypeDisplayName" : "Image",
+          "__supportsTooltip" : true
+        },
+        "Widgets" : [ ]
+      }, {
+        "Properties" : {
+          "Area" : "UI",
+          "AutoEvaluate" : false,
+          "DataChangeType" : "ALWAYS",
+          "DisplayName" : "expression-4",
+          "Expression" : "\"Checking out \"+((IsBranch==true)?\"branch\":\"commit\")+ \" \"+Branch;",
+          "FireOnFirstValue" : true,
+          "Height" : 28,
+          "Id" : "expression-4",
+          "Left" : 20,
+          "OutputBaseType" : "STRING",
+          "ResponsiveLayout" : false,
+          "ShowDataLoading" : true,
+          "Top" : 15,
+          "Type" : "expression",
+          "Visible" : true,
+          "Width" : 200,
+          "Z-index" : 10,
+          "__TypeDisplayName" : "Expression",
+          "_currentParameterDefs" : [ {
+            "BaseType" : "STRING",
+            "Description" : "",
+            "ParameterName" : "Branch"
+          }, {
+            "BaseType" : "BOOLEAN",
+            "Description" : "",
+            "ParameterName" : "IsBranch"
+          } ]
+        },
+        "Widgets" : [ ]
+      } ]
+    } ]
+  },
+  "mashupType" : "mashup"
+}]]></mashupContent><ConfigurationChanges><ConfigurationChange changeAction="CREATE" changeReason="Importing Extension Package Metadata" timestamp="2018-08-21T12:37:29.688+03:00" user="SuperUser"/><ConfigurationChange changeAction="MODIFY" changeReason="Importing Extension Package Metadata" timestamp="2018-08-21T12:48:29.990+03:00" user="SuperUser"/><ConfigurationChange changeAction="MODIFY" changeReason="Importing Extension Package Metadata" timestamp="2018-08-22T13:20:18.177+03:00" user="SuperUser"/></ConfigurationChanges></Mashup></Mashups></Entities>

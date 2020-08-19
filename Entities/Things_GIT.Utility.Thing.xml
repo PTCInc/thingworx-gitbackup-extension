@@ -1,0 +1,1229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b90"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="2"
+ schemaVersion="1052"
+ universal="password">
+    <Things>
+        <Thing
+         aspect.isEditableExtensionObject="true"
+         aspect.isExtension="true"
+         description=""
+         documentationContent=""
+         effectiveThingPackage="ConfiguredThing"
+         enabled="true"
+         homeMashup=""
+         identifier=""
+         lastModifiedDate="2020-01-07T04:18:01.082-08:00"
+         name="GIT.Utility.Thing"
+         projectName="GitBackup"
+         published="false"
+         tags=""
+         thingTemplate="GenericThing"
+         valueStream="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <ThingShape>
+                <PropertyDefinitions>
+                    <PropertyDefinition
+                     aspect.cacheTime="0.0"
+                     aspect.dataChangeType="VALUE"
+                     aspect.dataShape="Git.Status.DataShape"
+                     aspect.defaultValue="{&quot;rows&quot;:[{&quot;Status&quot;:&quot;Settings&quot;},{&quot;Status&quot;:&quot;Delete&quot;}],&quot;dataShape&quot;:{&quot;fieldDefinitions&quot;:{&quot;Status&quot;:{&quot;name&quot;:&quot;Status&quot;,&quot;aspects&quot;:{},&quot;description&quot;:&quot;&quot;,&quot;baseType&quot;:&quot;STRING&quot;,&quot;ordinal&quot;:2},&quot;File&quot;:{&quot;name&quot;:&quot;File&quot;,&quot;aspects&quot;:{},&quot;description&quot;:&quot;&quot;,&quot;baseType&quot;:&quot;STRING&quot;,&quot;ordinal&quot;:1}}}}"
+                     aspect.isLogged="false"
+                     aspect.isPersistent="true"
+                     aspect.isReadOnly="false"
+                     baseType="INFOTABLE"
+                     category=""
+                     description="Menu to modify/delete tab"
+                     isLocalOnly="false"
+                     name="tab-menu"
+                     ordinal="2"></PropertyDefinition>
+                </PropertyDefinitions>
+                <ServiceDefinitions>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="AddNewRepo">
+                        <ResultType
+                         baseType="NOTHING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="CommitEmail"
+                             ordinal="8"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="CommitUser"
+                             ordinal="7"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="GitRepository"
+                             baseType="STRING"
+                             description=""
+                             name="FileRepo"
+                             ordinal="4"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="GitRepoURL"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="InitialBranch"
+                             ordinal="9"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="Password"
+                             ordinal="6"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="3281"
+                             baseType="INTEGER"
+                             description=""
+                             name="ProxyPort"
+                             ordinal="11"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="none"
+                             baseType="STRING"
+                             description=""
+                             name="ProxyURL"
+                             ordinal="10"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="RepoName"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="RepoPath"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="false"
+                             baseType="BOOLEAN"
+                             description=""
+                             name="UseProxy"
+                             ordinal="12"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="User"
+                             ordinal="5"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Deletes a GitBackup Thing involves two operations: 1. Deleting the Thing itself and 2. Deleting the FileRepository subfolder that stored that Git repository."
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="DeteleGitThing">
+                        <ResultType
+                         baseType="NOTHING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="RepoName"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetGitExtensionVersion">
+                        <ResultType
+                         aspect.dataShape="GIT.ExtensionVersion.DS"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions></ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="This service gets the list of the Git Things in the System, plus one additional Mashup for the plus sign"
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetGitHeaderTabs">
+                        <ResultType
+                         aspect.dataShape="GitBackup.GitHeader.DS"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions></ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetGitUserExtensionsProperties">
+                        <ResultType
+                         aspect.dataShape="GitBackup.UserExtensionProperties.DataShape"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions></ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetRepoConfiguration">
+                        <ResultType
+                         aspect.dataShape="GitBackup.Configuration.DataShape"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="GitThingName"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="InitExtensionImportTargets">
+                        <ResultType
+                         baseType="NOTHING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="address"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Adds UserExtension Properties needed by the GitBackupExtension"
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="InitUserExtensionProperties">
+                        <ResultType
+                         baseType="NOTHING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions></ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="Pause">
+                        <ResultType
+                         baseType="NOTHING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="NUMBER"
+                             description="delay in seconds"
+                             name="delay"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="SetGitUserExtensionsProperties">
+                        <ResultType
+                         baseType="NOTHING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="CommitterEmail"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="CommitterName"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="BOOLEAN"
+                             description=""
+                             name="UseGitCommitUserValues"
+                             ordinal="3"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="UpdateRepo">
+                        <ResultType
+                         baseType="NOTHING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="CommitEmail"
+                             ordinal="8"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="CommitUser"
+                             ordinal="7"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="GitRepoURL"
+                             ordinal="7"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="InitialBranch"
+                             ordinal="9"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="Password"
+                             ordinal="6"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="INTEGER"
+                             description=""
+                             name="ProxyPort"
+                             ordinal="10"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="ProxyURL"
+                             ordinal="9"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="RepoName"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="BOOLEAN"
+                             description=""
+                             name="UseProxy"
+                             ordinal="8"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="User"
+                             ordinal="5"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                </ServiceDefinitions>
+                <EventDefinitions></EventDefinitions>
+                <ServiceMappings></ServiceMappings>
+                <ServiceImplementations>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="AddNewRepo">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        if (RepoName!=null&&GitRepoURL!=null)
+                                        {
+                                        // no return
+                                        Resources["EntityServices"].CreateThing({
+                                        	name: RepoName /* STRING */,
+                                        	description: "Git Repository created by UI at " + new Date() /* STRING */,
+                                        	thingTemplateName: "GitBackupTemplate" /* THINGTEMPLATENAME */,
+                                        	tags: undefined /* TAGS */
+                                        });
+                                        
+                                        Things[RepoName].EnableThing();
+                                        Things[RepoName].RestartThing();
+                                        
+                                        // CreateInfoTableFromDataShape(infoTableName:STRING("InfoTable"), dataShapeName:STRING):INFOTABLE(GitBackup.ConfigurationSetting.DataShape)
+                                        var iftbl_Configuration = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                        	infoTableName: "InfoTable",
+                                        	dataShapeName: "GitBackup.ConfigurationSetting.DataShape"
+                                        });
+                                         Things[RepoName].SetProjectName({
+                                        	projectName: "GitBackup" /* PROJECTNAME */
+                                        });
+                                        // GitBackup.ConfigurationSetting.DataShape entry object
+                                        var row_Config = new Object();
+                                        row_Config.FileRepository = FileRepo; // THINGNAME
+                                        row_Config.CommitName = CommitUser; // STRING
+                                        row_Config.User = User; // STRING
+                                        row_Config.CommitEmail = CommitEmail; // STRING
+                                        row_Config.GitRepoURL = GitRepoURL; // STRING
+                                        row_Config.RepoPathName = RepoPath; // STRING
+                                        row_Config.BranchName = InitialBranch; // STRING
+                                        row_Config.Password = encryptPropertyValue(Password);// PASSWORD
+                                        row_Config.UseProxy = UseProxy;
+                                            row_Config.ProxyURL = ProxyURL;
+                                        row_Config.ProxyPort = ProxyPort;
+                                        
+                                           
+                                        iftbl_Configuration.AddRow(row_Config);
+                                        // no return
+                                        Things[RepoName].SetConfigurationTable({
+                                        	configurationTable: iftbl_Configuration /* INFOTABLE */,
+                                        	persistent: true /* BOOLEAN */,
+                                        	tableName: "Configuration" /* STRING */
+                                        });
+                                        Things[RepoName].RestartThing();
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="DeteleGitThing">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var str_RepositoryName=Things[RepoName].GetConfiguration().FileRepository;
+                                        var str_RepositoryPathName = Things[RepoName].GetConfiguration().FileRepoPath;
+                                        logger.warn("RepoPathName is "+str_RepositoryPathName+"; RepoName is "+str_RepositoryName);
+                                        
+                                        
+                                        var params = {
+                                        	name: RepoName /* THINGNAME */
+                                        };
+                                        
+                                        // no return
+                                        Resources["EntityServices"].DeleteThing(params);
+                                        Things[str_RepositoryName].DeleteFolder({
+                                        	path: str_RepositoryPathName /* STRING */
+                                        });
+                                        logger.warn("GitBackup Thing "+RepoName+" was deleted successfully");
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetGitExtensionVersion">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var params = {
+                                            infoTableName : "InfoTable",
+                                            dataShapeName : "GIT.ExtensionVersion.DS"
+                                        };
+                                        
+                                        // CreateInfoTableFromDataShape(infoTableName:STRING("InfoTable"), dataShapeName:STRING):INFOTABLE(GIT.ExtensionVersion.DS)
+                                        var result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                        
+                                        // result: INFOTABLE dataShape: "ExtensionPackage"
+                                        var inftbl_Extensions =  Subsystems["PlatformSubsystem"].GetExtensionPackageList();
+                                        
+                                        // GIT.ExtensionVersion.DS entry object
+                                        var GitExtension = new Object();
+                                        GitExtension.ExtensionName = "GitBackupExtension"; // STRING
+                                        GitExtension.IsInstalled = false; // BOOLEAN
+                                        GitExtension.ExtensionVersion = "N/A"; // STRING
+                                        
+                                        var params = {
+                                        	inclusive: true /* BOOLEAN */,
+                                        	fieldName: "name" /* STRING */,
+                                        	t: inftbl_Extensions /* INFOTABLE */,
+                                        	pattern: "%GitBackupExtension" /* STRING */
+                                        };
+                                        
+                                        // result: INFOTABLE
+                                        iftbl_resultGit=Resources["InfoTableFunctions"].LikeFilter(params);
+                                        if (iftbl_resultGit.getRowCount()>0)
+                                        {
+                                            GitExtension.IsInstalled = true; // BOOLEAN
+                                        	GitExtension.ExtensionVersion = iftbl_resultGit.getRow(0).packageVersion; // STRING
+                                        }
+                                        result.AddRow(GitExtension);
+                                        
+                                        // GIT.ExtensionVersion.DS entry object
+                                        var DiffViewerExtension = new Object();
+                                        DiffViewerExtension.ExtensionName = "DiffViewer"; // STRING
+                                        DiffViewerExtension.IsInstalled = false; // BOOLEAN
+                                        DiffViewerExtension.ExtensionVersion = "N/A"; // STRING
+                                        
+                                        var params = {
+                                        	inclusive: true /* BOOLEAN */,
+                                        	fieldName: "name" /* STRING */,
+                                        	t: inftbl_Extensions /* INFOTABLE */,
+                                        	pattern: "DiffViewer" /* STRING */
+                                        };
+                                        
+                                        // result: INFOTABLE
+                                        iftbl_resultDiff=Resources["InfoTableFunctions"].LikeFilter(params);
+                                        if (iftbl_resultDiff.getRowCount()>0)
+                                        {
+                                            DiffViewerExtension.IsInstalled = true; // BOOLEAN
+                                        	DiffViewerExtension.ExtensionVersion = iftbl_resultDiff.getRow(0).packageVersion; // STRING
+                                        }
+                                        result.AddRow(DiffViewerExtension);
+                                        
+                                        // GIT.ExtensionVersion.DS entry object
+                                        var ExportExtensionExtension = new Object();
+                                        ExportExtensionExtension.ExtensionName = "ExportPlatformExt_Extension"; // STRING
+                                        ExportExtensionExtension.IsInstalled = false; // BOOLEAN
+                                        ExportExtensionExtension.ExtensionVersion = "N/A"; // STRING
+                                        
+                                        var params = {
+                                        	inclusive: true /* BOOLEAN */,
+                                        	fieldName: "name" /* STRING */,
+                                        	t: inftbl_Extensions /* INFOTABLE */,
+                                        	pattern: "ExportPlatformExt_Extension" /* STRING */
+                                        };
+                                        
+                                        // result: INFOTABLE
+                                        iftbl_resultExp=Resources["InfoTableFunctions"].LikeFilter(params);
+                                        if (iftbl_resultExp.getRowCount()>0)
+                                        {
+                                            ExportExtensionExtension.IsInstalled = true; // BOOLEAN
+                                        	ExportExtensionExtension.ExtensionVersion = iftbl_resultExp.getRow(0).packageVersion; // STRING
+                                        }
+                                        result.AddRow(ExportExtensionExtension);
+                                        
+                                        
+                                        //searching for the Autocomplete widget
+                                        // GIT.ExtensionVersion.DS entry object
+                                        var ExportExtensionExtension = new Object();
+                                        ExportExtensionExtension.ExtensionName = "Autocomplete"; // STRING
+                                        ExportExtensionExtension.IsInstalled = false; // BOOLEAN
+                                        ExportExtensionExtension.ExtensionVersion = "N/A"; // STRING
+                                        
+                                        var params = {
+                                        	inclusive: true /* BOOLEAN */,
+                                        	fieldName: "name" /* STRING */,
+                                        	t: inftbl_Extensions /* INFOTABLE */,
+                                        	pattern: "Autocomplete" /* STRING */
+                                        };
+                                        
+                                        // result: INFOTABLE
+                                        iftbl_resultExp=Resources["InfoTableFunctions"].LikeFilter(params);
+                                        if (iftbl_resultExp.getRowCount()>0)
+                                        {
+                                            ExportExtensionExtension.IsInstalled = true; // BOOLEAN
+                                        	ExportExtensionExtension.ExtensionVersion = iftbl_resultExp.getRow(0).packageVersion; // STRING
+                                        }
+                                        result.AddRow(ExportExtensionExtension);
+                                        
+                                        //Searching for the Infotable Selector Extension
+                                        // GIT.ExtensionVersion.DS entry object
+                                        var ExportExtensionExtension = new Object();
+                                        ExportExtensionExtension.ExtensionName = "InfoTableSelector_ExtensionPackage"; // STRING
+                                        ExportExtensionExtension.IsInstalled = false; // BOOLEAN
+                                        ExportExtensionExtension.ExtensionVersion = "N/A"; // STRING
+                                        
+                                        var params = {
+                                        	inclusive: true /* BOOLEAN */,
+                                        	fieldName: "name" /* STRING */,
+                                        	t: inftbl_Extensions /* INFOTABLE */,
+                                        	pattern: "InfoTableSelector_ExtensionPackage" /* STRING */
+                                        };
+                                        
+                                        // result: INFOTABLE
+                                        iftbl_resultExp=Resources["InfoTableFunctions"].LikeFilter(params);
+                                        if (iftbl_resultExp.getRowCount()>0)
+                                        {
+                                            ExportExtensionExtension.IsInstalled = true; // BOOLEAN
+                                        	ExportExtensionExtension.ExtensionVersion = iftbl_resultExp.getRow(0).packageVersion; // STRING
+                                        }
+                                        result.AddRow(ExportExtensionExtension);
+                                        
+                                        //Searching for the FileTuilities Extension
+                                        // GIT.ExtensionVersion.DS entry object
+                                        var ExportExtensionExtension = new Object();
+                                        ExportExtensionExtension.ExtensionName = "FileUtilities"; // STRING
+                                        ExportExtensionExtension.IsInstalled = false; // BOOLEAN
+                                        ExportExtensionExtension.ExtensionVersion = "N/A"; // STRING
+                                        
+                                        var params = {
+                                        	inclusive: true /* BOOLEAN */,
+                                        	fieldName: "name" /* STRING */,
+                                        	t: inftbl_Extensions /* INFOTABLE */,
+                                        	pattern: "FileUtilities" /* STRING */
+                                        };
+                                        
+                                        // result: INFOTABLE
+                                        iftbl_resultExp=Resources["InfoTableFunctions"].LikeFilter(params);
+                                        if (iftbl_resultExp.getRowCount()>0)
+                                        {
+                                            ExportExtensionExtension.IsInstalled = true; // BOOLEAN
+                                        	ExportExtensionExtension.ExtensionVersion = iftbl_resultExp.getRow(0).packageVersion; // STRING
+                                        }
+                                        result.AddRow(ExportExtensionExtension);
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetGitHeaderTabs">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        //1. Creating holder infotable for the result
+                                        // CreateInfoTableFromDataShape(infoTableName:STRING("InfoTable"), dataShapeName:STRING):INFOTABLE(GitBackup.GitHeader.DS)
+                                        var iftbl_Result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                            infoTableName: "InfoTable",
+                                            dataShapeName: "GitBackup.GitHeader.DS"
+                                        });
+                                        
+                                        //2. Getting a list of all the Git Things, required for insertion in the holder infotable
+                                        // result: INFOTABLE dataShape: RootEntityList
+                                        var iftbl_GitThings = ThingTemplates["GitBackupTemplate"].QueryImplementingThings({
+                                            maxItems: undefined /* NUMBER */,
+                                            nameMask: undefined /* STRING */,
+                                            query: undefined /* QUERY */,
+                                            tags: undefined /* TAGS */
+                                        });
+                                        
+                                        //3. Looping through all the Git Things and adding them in the result infotable
+                                        var tableLength = iftbl_GitThings.rows.length;
+                                        
+                                        for (var x = 0; x < tableLength; x++) {
+                                            var row = iftbl_GitThings.rows[x];
+                                            // GitBackup.GitHeader.DS entry object
+                                            var newEntry = new Object();
+                                            newEntry.HeightY = 50; // NUMBER
+                                            newEntry.MashupName = "GitBackup.NameTab.Mashup"; // STRING
+                                            newEntry.GitThingName = row.name; // STRING
+                                            newEntry.WidthX = 230; // NUMBER
+                                            iftbl_Result.AddRow(newEntry);
+                                        }
+                                        
+                                        //4.
+                                        // GitBackup.GitHeader.DS entry object
+                                        /*
+                                        var plusMashupEntry = new Object();
+                                        plusMashupEntry.HeightY = 50; // NUMBER
+                                        plusMashupEntry.MashupName = "GitBackup.NewTab.Mashup"; // STRING
+                                        plusMashupEntry.GitThingName = "NewTab"; // STRING
+                                        plusMashupEntry.WidthX = 50; // NUMBER
+                                        
+                                        iftbl_Result.AddRow(plusMashupEntry);
+                                        */
+                                        result = iftbl_Result;
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetGitUserExtensionsProperties">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        // result: INFOTABLE
+                                        var result = Resources["CurrentSessionInfo"].GetCurrentUserExtensionProperties();
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetRepoConfiguration">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var params = {
+                                            infoTableName : "InfoTable",
+                                            dataShapeName : "GitBackup.Configuration.DataShape"
+                                        };
+                                        
+                                        // CreateInfoTableFromDataShape(infoTableName:STRING("InfoTable"), dataShapeName:STRING):INFOTABLE(GitBackup.Configuration.DataShape)
+                                        var result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
+                                        
+                                        var iftbl_Cfg = Things[GitThingName].GetConfigurationTable({tableName:"Configuration"});
+                                        // GitBackup.Configuration.DataShape entry object
+                                        var newEntry = new Object();
+                                        newEntry.FileRepoPath = iftbl_Cfg.getRow(0).RepoPathName; // STRING
+                                        newEntry.CommitUser = iftbl_Cfg.getRow(0).CommitName; // STRING
+                                        newEntry.CommitEmail = iftbl_Cfg.getRow(0).CommitEmail; // STRING
+                                        newEntry.User = iftbl_Cfg.getRow(0).User; // STRING
+                                        newEntry.FileRepository = iftbl_Cfg.getRow(0).FileRepository; // STRING
+                                        newEntry.GitRepoURL = iftbl_Cfg.getRow(0).GitRepoURL; // STRING
+                                        newEntry.InitialBranch = iftbl_Cfg.getRow(0).BranchName; // STRING
+                                        newEntry.UseProxy = iftbl_Cfg.getRow(0).UseProxy;
+                                        newEntry.ProxyURL = iftbl_Cfg.getRow(0).ProxyURL;
+                                        newEntry.ProxyPort = iftbl_Cfg.getRow(0).ProxyPort;
+                                        newEntry.Password = iftbl_Cfg.getRow(0).Password; // PASSWORD
+                                        result.AddRow(newEntry);
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="InitExtensionImportTargets">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        //The Import AppKey is generated based on the currently logged in user
+                                        var str_CurrentUser = Resources["CurrentSessionInfo"].GetCurrentUser();
+                                        var dt_ExpDate = dateAddYears(new Date(), 1);
+                                        if (ApplicationKeys["GitExtensionAppKey"]) 
+                                        {
+                                            Resources["EntityServices"].DeleteApplicationKey({name: "GitExtensionAppKey" /* APPLICATIONKEYNAME */});
+                                        }
+                                        //if the current user does now have rights to import extensions, then the whole extension import process will fail
+                                        var params = {
+                                            name: "GitExtensionAppKey" /* STRING */,
+                                            description: "Appkey generated by the Git Extension; do not remove or reuse in any script or code; it's automatically refreshed each time the GitBackup.Main.Mashup is opened." /* STRING */,
+                                            user: str_CurrentUser /* USERNAME */,
+                                            expirationDate: dt_ExpDate /* DATETIME */
+                                        };
+                                        
+                                        Resources["EntityServices"].CreateApplicationKey(params);
+                                        
+                                        var existingRow = new Object();
+                                        existingRow.name = "localhost";
+                                        var CurrentTargets = Things["ExtensionImportTargets"].importTargets;
+                                        CurrentTargets.Delete(existingRow);
+                                        Things["ExtensionImportTargets"].importTargets=CurrentTargets;
+                                        
+                                        // ExtensionImportTargetDS entry object
+                                        var newEntry = new Object();
+                                        newEntry.baseURL = address+"/Thingworx";
+                                        // STRING
+                                        newEntry.name = "localhost";
+                                        // STRING - isPrimaryKey = true
+                                        newEntry.appKey =   encryptPropertyValue(ApplicationKeys["GitExtensionAppKey"].GetKeyID());
+                                        // PASSWORD
+                                        
+                                        
+                                        
+                                        var CurrentTargets = Things["ExtensionImportTargets"].importTargets;
+                                        CurrentTargets.AddRow(newEntry);
+                                        Things["ExtensionImportTargets"].importTargets=CurrentTargets;
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="InitUserExtensionProperties">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var str_CurrentUser = Resources["CurrentSessionInfo"].GetCurrentUser();
+                                        
+                                        if (str_CurrentUser!==undefined&&Users[str_CurrentUser]["UseGitCommitUserValues"]===undefined)
+                                        {
+                                             ThingShapes["UserExtensions"].AddPropertyDefinition({
+                                        	defaultValue: false /* STRING */,
+                                        	remoteBindingAspects: undefined /* JSON */,
+                                        	description: "This property is used to decide of the Push will use the GitBackup Thing committer name and email, or the user specific values" /* STRING */,
+                                        	readOnly: false /* BOOLEAN */,
+                                        	type: "BOOLEAN" /* BASETYPENAME */,
+                                        	remote: false /* BOOLEAN */,
+                                        	remotePropertyName: undefined /* STRING */,
+                                        	timeout: undefined /* INTEGER */,
+                                        	pushType: undefined /* STRING */,
+                                        	dataChangeThreshold: undefined /* NUMBER */,
+                                        	logged: false /* BOOLEAN */,
+                                        	name: "UseGitCommitUserValues" /* STRING */,
+                                        	pushThreshold: undefined /* NUMBER */,
+                                        	dataChangeType: undefined /* STRING */,
+                                        	category: undefined /* STRING */,
+                                        	persistent: true /* BOOLEAN */,
+                                        	dataShape: undefined /* DATASHAPENAME */
+                                        });	
+                                             ThingShapes["UserExtensions"].AddPropertyDefinition({
+                                        	defaultValue: "User name" /* STRING */,
+                                        	remoteBindingAspects: undefined /* JSON */,
+                                        	description: "User-specific GitBackup Committer Name. Will be used instead the committer name specified at the Thing level, if UseGitCommitUserValues is set to true." /* STRING */,
+                                        	readOnly: false /* BOOLEAN */,
+                                        	type: "STRING" /* BASETYPENAME */,
+                                        	remote: false /* BOOLEAN */,
+                                        	remotePropertyName: undefined /* STRING */,
+                                        	timeout: undefined /* INTEGER */,
+                                        	pushType: undefined /* STRING */,
+                                        	dataChangeThreshold: undefined /* NUMBER */,
+                                        	logged: false /* BOOLEAN */,
+                                        	name: "GitCommitterName" /* STRING */,
+                                        	pushThreshold: undefined /* NUMBER */,
+                                        	dataChangeType: undefined /* STRING */,
+                                        	category: undefined /* STRING */,
+                                        	persistent: true /* BOOLEAN */,
+                                        	dataShape: undefined /* DATASHAPENAME */
+                                        });
+                                            ThingShapes["UserExtensions"].AddPropertyDefinition({
+                                        	defaultValue: "user@email.com" /* STRING */,
+                                        	remoteBindingAspects: undefined /* JSON */,
+                                        	description: "User-specific GitBackup Committer Email. Will be used instead the committer email specified at the Thing level, if UseGitCommitUserValues is set to true." /* STRING */,
+                                        	readOnly: false /* BOOLEAN */,
+                                        	type: "STRING" /* BASETYPENAME */,
+                                        	remote: false /* BOOLEAN */,
+                                        	remotePropertyName: undefined /* STRING */,
+                                        	timeout: undefined /* INTEGER */,
+                                        	pushType: undefined /* STRING */,
+                                        	dataChangeThreshold: undefined /* NUMBER */,
+                                        	logged: false /* BOOLEAN */,
+                                        	name: "GitCommitterEmail" /* STRING */,
+                                        	pushThreshold: undefined /* NUMBER */,
+                                        	dataChangeType: undefined /* STRING */,
+                                        	category: undefined /* STRING */,
+                                        	persistent: true /* BOOLEAN */,
+                                        	dataShape: undefined /* DATASHAPENAME */
+                                        });
+                                            
+                                        Resources["EntityServices"].RestartDependenciesForThingShape( {
+                                        	name: "UserExtensions" /* THINGSHAPENAME */
+                                        });
+                                        
+                                        
+                                            
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="Pause">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        pause(delay * 100);
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="SetGitUserExtensionsProperties">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var str_CurrentUser = Resources["CurrentSessionInfo"].GetCurrentUser();
+                                        
+                                        if (str_CurrentUser!==undefined)
+                                        {
+                                            Users[str_CurrentUser]["UseGitCommitUserValues"]=UseGitCommitUserValues;
+                                            Users[str_CurrentUser]["GitCommitterName"]=CommitterName;
+                                            Users[str_CurrentUser]["GitCommitterEmail"]=CommitterEmail;
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="UpdateRepo">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description="Script"
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        if (RepoName !== null && GitRepoURL !== null) {
+                                        
+                                        	// table: INFOTABLE dataShape: ""
+                                        	var iftbl_Configuration = Things[RepoName].GetConfigurationTable({
+                                        		tableName: "Configuration" /* STRING */
+                                        	});
+                                        
+                                        	// CreateInfoTableFromDataShape(infoTableName:STRING("InfoTable"), dataShapeName:STRING):INFOTABLE(GitBackup.ConfigurationSetting.DataShape)
+                                        	var iftbl_ConfigurationNew = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                        		infoTableName: "InfoTable",
+                                        		dataShapeName: "GitBackup.ConfigurationSetting.DataShape"
+                                        	});
+                                        
+                                        	var row_Config = iftbl_Configuration.getRow(0);
+                                        	//We do not allow the user to change the File Repository as the Extension does not handle this usecase
+                                        	row_Config.FileRepository = row_Config.FileRepository; // THINGNAME
+                                        
+                                        	row_Config.CommitName = CommitUser; // STRING
+                                        	row_Config.User = User; // STRING
+                                        	row_Config.CommitEmail = CommitEmail; // STRING
+                                        	//We do not allow the user to change the GitRepository URL as the Extension does not handle this usecase
+                                        	row_Config.GitRepoURL = row_Config.GitRepoURL; // STRING
+                                        	//We do not allow the user to change the File Repository Path as the Extension does not handle this usecase
+                                        	//row_Config.RepoPathName = row_Config.RepoPathName; // STRING
+                                        	row_Config.BranchName = InitialBranch; // STRING
+                                        	row_Config.Password = encryptPropertyValue(Password); // PASSWORD
+                                        	row_Config.UseProxy = UseProxy;
+                                        	row_Config.ProxyURL = ProxyURL;
+                                        	row_Config.ProxyPort = ProxyPort;
+                                        
+                                        	iftbl_ConfigurationNew.AddRow(row_Config);
+                                        
+                                        
+                                        	Things[RepoName].SetConfigurationTable({
+                                        		configurationTable: iftbl_ConfigurationNew /* INFOTABLE */ ,
+                                        		persistent: false /* BOOLEAN */ ,
+                                        		tableName: "Configuration" /* STRING */
+                                        	});
+                                        	Things[RepoName].SaveConfigurationTables();
+                                        	//restart to reinitialize the proxy
+                                        	Things[RepoName].RestartThing();
+                                        	logger.warn("Git Thing configuration was updated successfully.");
+                                        } else logger.error("Could not update GitThing. Either RepoName or GitRepoURL did not contain data.");
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                </ServiceImplementations>
+                <Subscriptions></Subscriptions>
+            </ThingShape>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations>
+                <AlertDefinitions
+                 name="tab-menu"></AlertDefinitions>
+            </AlertConfigurations>
+            <ImplementedShapes>
+                <ImplementedShape
+                 name="GitBackup.Bitbucket.ThingShape"
+                 type="ThingShape"></ImplementedShape>
+            </ImplementedShapes>
+            <ThingProperties>
+                <BitBucketAPIRepositoryURL>
+                    <Value>
+                    <![CDATA[
+                    https://api.bitbucket.org/2.0
+                    ]]>
+                    </Value>
+                    <Timestamp>2018-08-24T03:22:56.276-07:00</Timestamp>
+                    <Quality>GOOD</Quality>
+                </BitBucketAPIRepositoryURL>
+                <tab-menu>
+                    <Value>
+                        <infoTable>
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description=""
+                                     name="File"
+                                     ordinal="1"></FieldDefinition>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description=""
+                                     name="Status"
+                                     ordinal="2"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <File></File>
+                                    <Status>
+                                    <![CDATA[
+                                    Settings
+                                    ]]>
+                                    </Status>
+                                </Row>
+                                <Row>
+                                    <File></File>
+                                    <Status>
+                                    <![CDATA[
+                                    Delete
+                                    ]]>
+                                    </Status>
+                                </Row>
+                            </Rows>
+                        </infoTable>
+                    </Value>
+                    <Timestamp>2019-09-18T08:12:13.450-07:00</Timestamp>
+                    <Quality>GOOD</Quality>
+                </tab-menu>
+            </ThingProperties>
+        </Thing>
+    </Things>
+</Entities>

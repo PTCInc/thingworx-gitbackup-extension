@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><Entities build="b349" majorVersion="8" minorVersion="3" modelPersistenceProviderPackage="H2PersistenceProviderPackage" revision="0" schemaVersion="1030" universal=""><Mashups><Mashup aspect.isResponsive="true" aspect.mashupType="mashup" columns="0.0" description="" documentationContent="" homeMashup="" lastModifiedDate="2018-12-27T14:23:05.401+02:00" name="GitBackup.ExtensionStatus.Mashup" projectName="GitBackup" rows="0.0" tags=""><Owner name="Administrator" type="User"/><avatar/><DesignTimePermissions><Create/><Read/><Update/><Delete/><Metadata/></DesignTimePermissions><RunTimePermissions/><VisibilityPermissions><Visibility/></VisibilityPermissions><ConfigurationTables/><ParameterDefinitions><FieldDefinition aspect.ordinal="0" baseType="STRING" description="" name="ExtensionName" ordinal="0"/><FieldDefinition aspect.ordinal="1" baseType="BOOLEAN" description="" name="IsInstalled" ordinal="0"/><FieldDefinition aspect.ordinal="2" baseType="STRING" description="" name="Version" ordinal="0"/></ParameterDefinitions><Things/><ThingShapes/><ThingTemplates/><mashupContent><![CDATA[{
+  "CustomMashupCss" : "",
+  "Data" : {
+    "Session" : {
+      "DataName" : "Session",
+      "EntityName" : "",
+      "EntityType" : "Session",
+      "Id" : "session",
+      "Services" : [ {
+        "APIMethod" : "post",
+        "Characteristic" : "Services",
+        "Id" : "SessionInterface",
+        "Name" : "GetGlobalSessionValues",
+        "Parameters" : { },
+        "RefreshInterval" : 0,
+        "Target" : "GetGlobalSessionValues"
+      } ]
+    },
+    "UserExtensions" : {
+      "DataName" : "UserExtensions",
+      "EntityName" : "",
+      "EntityType" : "UserExtensions",
+      "Id" : "UserExtensions",
+      "Services" : [ {
+        "APIMethod" : "post",
+        "Characteristic" : "Services",
+        "Id" : "UserExtensionInterface",
+        "Name" : "GetCurrentUserExtensionProperties",
+        "Parameters" : { },
+        "RefreshInterval" : 0,
+        "Target" : "GetCurrentUserExtensionProperties"
+      } ]
+    }
+  },
+  "DataBindings" : [ {
+    "Id" : "15e8d7b5-c084-4457-99ee-e3432ee9e222",
+    "PropertyMaps" : [ {
+      "SourceProperty" : "Output",
+      "SourcePropertyBaseType" : "STRING",
+      "TargetProperty" : "CustomClass",
+      "TargetPropertyBaseType" : "STRING"
+    } ],
+    "SourceArea" : "UI",
+    "SourceId" : "expression-11",
+    "SourceSection" : "",
+    "TargetArea" : "Mashup",
+    "TargetId" : "mashup-root",
+    "TargetSection" : ""
+  }, {
+    "Id" : "ccd05bd1-e000-450e-b0db-0a6151ead6d5",
+    "PropertyMaps" : [ {
+      "SourceProperty" : "IsInstalled",
+      "SourcePropertyBaseType" : "BOOLEAN",
+      "TargetProperty" : "IsInstalled",
+      "TargetPropertyBaseType" : "BOOLEAN"
+    } ],
+    "SourceArea" : "Mashup",
+    "SourceId" : "mashup-root",
+    "SourceSection" : "",
+    "TargetArea" : "UI",
+    "TargetId" : "expression-11",
+    "TargetSection" : ""
+  }, {
+    "Id" : "44ff44ad-ca6c-45f2-b7d5-ac5bf1439725",
+    "PropertyMaps" : [ {
+      "SourceProperty" : "ExtensionName",
+      "SourcePropertyBaseType" : "STRING",
+      "SourcePropertyType" : "Property",
+      "TargetProperty" : "Text",
+      "TargetPropertyBaseType" : "STRING",
+      "TargetPropertyType" : "property"
+    } ],
+    "SourceArea" : "Mashup",
+    "SourceId" : "mashup-root",
+    "SourceSection" : "",
+    "TargetArea" : "UI",
+    "TargetId" : "label-18",
+    "TargetSection" : ""
+  }, {
+    "Id" : "01a51238-02fe-477e-8c5f-f3fd4e8afb8c",
+    "PropertyMaps" : [ {
+      "SourceProperty" : "Version",
+      "SourcePropertyBaseType" : "STRING",
+      "SourcePropertyType" : "Property",
+      "TargetProperty" : "version",
+      "TargetPropertyBaseType" : "STRING",
+      "TargetPropertyType" : "property"
+    } ],
+    "SourceArea" : "Mashup",
+    "SourceId" : "mashup-root",
+    "SourceSection" : "",
+    "TargetArea" : "UI",
+    "TargetId" : "expression-19",
+    "TargetSection" : ""
+  }, {
+    "Id" : "979ca8d8-7c50-4ef3-8d1d-fac78bf87d5c",
+    "PropertyMaps" : [ {
+      "SourceProperty" : "Output",
+      "SourcePropertyBaseType" : "STRING",
+      "SourcePropertyType" : "Property",
+      "TargetProperty" : "Text",
+      "TargetPropertyBaseType" : "STRING",
+      "TargetPropertyType" : "property"
+    } ],
+    "SourceArea" : "UI",
+    "SourceId" : "expression-19",
+    "SourceSection" : "",
+    "TargetArea" : "UI",
+    "TargetId" : "label-13",
+    "TargetSection" : ""
+  } ],
+  "DesignTimePermissions" : {
+    "Create" : [ ],
+    "Delete" : [ ],
+    "Metadata" : [ ],
+    "Read" : [ ],
+    "Update" : [ ]
+  },
+  "Events" : [ ],
+  "RunTimePermissions" : {
+    "permissions" : [ ]
+  },
+  "UI" : {
+    "Properties" : {
+      "AddToDashboardButtonStyle" : "DefaultAddToDashboardButtonStyle",
+      "Area" : "Mashup",
+      "BGImageRepeat" : "no-repeat",
+      "BGImageSize" : "auto",
+      "Columns" : 0,
+      "ConfigureGadgetButtonStyle" : "DefaultConfigureGadgetButtonStyle",
+      "DisplayName" : "Mashup",
+      "EnableParameterEditing" : false,
+      "Height" : 618,
+      "Id" : "mashup-root",
+      "IgnoreWarningsInViewMashup" : false,
+      "IsPrintLayout" : false,
+      "Left" : 0,
+      "MashupToEditGadget" : "DefaultMashupToEditGadget",
+      "MinHeight" : 0,
+      "MinWidth" : 0,
+      "ResponsiveLayout" : true,
+      "Rows" : 0,
+      "ShowDataLoading" : true,
+      "Style" : "DefaultContainerStyle",
+      "Title" : "",
+      "TitleBar" : false,
+      "TitleBarStyle" : "DefaultTitleBarStyle",
+      "TitleBarText" : "Gadget Title Here",
+      "Top" : 0,
+      "Type" : "mashup",
+      "Visible" : true,
+      "Width" : 1024,
+      "Z-index" : 10,
+      "__TypeDisplayName" : "Mashup",
+      "_currentParameterDefs" : [ {
+        "BaseType" : "STRING",
+        "Description" : "",
+        "ParameterName" : "ExtensionName"
+      }, {
+        "BaseType" : "BOOLEAN",
+        "Description" : "",
+        "ParameterName" : "IsInstalled"
+      }, {
+        "BaseType" : "STRING",
+        "Description" : "",
+        "ParameterName" : "Version"
+      } ],
+      "id_index" : 19,
+      "supportsAutoResize" : true
+    },
+    "Widgets" : [ {
+      "Properties" : {
+        "Area" : "UI",
+        "DisplayName" : "panel-12",
+        "Height" : 200,
+        "HideScrollbars" : false,
+        "HorizontalAnchor" : "left",
+        "Id" : "panel-12",
+        "Left" : 200,
+        "ResponsiveLayout" : true,
+        "ShowDataLoading" : true,
+        "Style" : {
+          "backgroundColor" : "",
+          "displayString" : "",
+          "fontEmphasisBold" : false,
+          "fontEmphasisItalic" : false,
+          "fontEmphasisUnderline" : false,
+          "foregroundColor" : "",
+          "image" : "",
+          "lineColor" : "",
+          "lineStyle" : "solid",
+          "lineThickness" : 1,
+          "secondaryBackgroundColor" : "",
+          "textSize" : "normal"
+        },
+        "Top" : 60,
+        "Type" : "panel",
+        "VerticalAnchor" : "top",
+        "Visible" : true,
+        "Width" : 300,
+        "Z-index" : 10,
+        "__TypeDisplayName" : "Panel"
+      },
+      "Widgets" : [ {
+        "Properties" : {
+          "Alignment" : "left",
+          "AllowEllipsis" : false,
+          "Area" : "UI",
+          "CustomClass" : "label-version full-width-label",
+          "DisplayName" : "label-13",
+          "Height" : 22,
+          "Id" : "label-13",
+          "Left" : 25,
+          "ResponsiveLayout" : false,
+          "ShowDataLoading" : true,
+          "Style" : {
+            "backgroundColor" : "",
+            "displayString" : "",
+            "fontEmphasisBold" : false,
+            "fontEmphasisItalic" : false,
+            "fontEmphasisUnderline" : false,
+            "foregroundColor" : "#212121",
+            "image" : "",
+            "lineColor" : "",
+            "lineStyle" : "solid",
+            "lineThickness" : 1,
+            "secondaryBackgroundColor" : "",
+            "textSize" : "xlarge"
+          },
+          "ToolTipField" : "",
+          "ToolTipStyle" : "DefaultTooltipStyle",
+          "Top" : 30,
+          "Type" : "label",
+          "Visible" : true,
+          "Width" : 105,
+          "Z-index" : 10,
+          "__TypeDisplayName" : "Label",
+          "__supportsTooltip" : true
+        },
+        "Widgets" : [ ]
+      }, {
+        "Properties" : {
+          "Alignment" : "left",
+          "AllowEllipsis" : true,
+          "Area" : "UI",
+          "CustomClass" : "full-witdh-label",
+          "DisplayName" : "label-18",
+          "Height" : 27,
+          "Id" : "label-18",
+          "Left" : 25,
+          "ResponsiveLayout" : false,
+          "ShowDataLoading" : true,
+          "Style" : {
+            "backgroundColor" : "",
+            "displayString" : "",
+            "fontEmphasisBold" : false,
+            "fontEmphasisItalic" : false,
+            "fontEmphasisUnderline" : false,
+            "foregroundColor" : "#ffffff",
+            "image" : "",
+            "lineColor" : "",
+            "lineStyle" : "solid",
+            "lineThickness" : 1,
+            "secondaryBackgroundColor" : "",
+            "textSize" : "20px"
+          },
+          "ToolTipField" : "",
+          "ToolTipStyle" : "DefaultTooltipStyle",
+          "Top" : 62,
+          "Type" : "label",
+          "Visible" : true,
+          "Width" : 225,
+          "Z-index" : 10,
+          "__TypeDisplayName" : "Label",
+          "__supportsTooltip" : true
+        },
+        "Widgets" : [ ]
+      }, {
+        "Properties" : {
+          "Area" : "UI",
+          "AutoEvaluate" : true,
+          "DataChangeType" : "VALUE",
+          "Description" : "",
+          "DisplayName" : "exp_Add_V_toVersionName",
+          "Expression" : "\"v\"+version",
+          "FireOnFirstValue" : false,
+          "Height" : 28,
+          "Id" : "expression-19",
+          "Left" : 340,
+          "OutputBaseType" : "STRING",
+          "ResponsiveLayout" : false,
+          "ShowDataLoading" : true,
+          "Top" : 65,
+          "Type" : "expression",
+          "Visible" : true,
+          "Width" : 200,
+          "Z-index" : 10,
+          "__TypeDisplayName" : "Expression",
+          "_currentParameterDefs" : [ {
+            "BaseType" : "STRING",
+            "Description" : "",
+            "ParameterName" : "version"
+          } ]
+        },
+        "Widgets" : [ ]
+      }, {
+        "Properties" : {
+          "Area" : "UI",
+          "AutoEvaluate" : true,
+          "DataChangeType" : "VALUE",
+          "DisplayName" : "expression-11",
+          "Expression" : "if (IsInstalled===true) {\"valid\";} else {\"NotInstalled\"}",
+          "FireOnFirstValue" : false,
+          "Height" : 24,
+          "Id" : "expression-11",
+          "Left" : 940,
+          "OutputBaseType" : "STRING",
+          "ResponsiveLayout" : false,
+          "ShowDataLoading" : true,
+          "Top" : 80,
+          "Type" : "expression",
+          "Visible" : true,
+          "Width" : 255,
+          "Z-index" : 10,
+          "__TypeDisplayName" : "Expression",
+          "_currentParameterDefs" : [ {
+            "BaseType" : "BOOLEAN",
+            "Description" : "",
+            "ParameterName" : "IsInstalled"
+          } ]
+        },
+        "Widgets" : [ ]
+      } ]
+    } ]
+  },
+  "mashupType" : "mashup"
+}]]></mashupContent><ConfigurationChanges><ConfigurationChange changeAction="CREATE" changeReason="" timestamp="2018-08-21T12:46:05.094+03:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="" timestamp="2018-08-22T12:24:33.545+03:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="" timestamp="2018-08-22T12:25:08.149+03:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="" timestamp="2018-08-22T12:26:13.807+03:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="" timestamp="2018-08-22T12:26:24.240+03:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="" timestamp="2018-09-07T12:15:20.078+03:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="" timestamp="2018-09-07T12:17:17.611+03:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="" timestamp="2018-09-07T12:17:45.039+03:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="" timestamp="2018-09-07T12:18:00.587+03:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="Mashup : custom-css : updated, design : updated&#10;" timestamp="2018-09-07T12:24:19.008+03:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="Mashup : custom-css : updated&#10;" timestamp="2018-09-07T12:24:32.097+03:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="Mashup : design : updated&#10;" timestamp="2018-09-07T12:34:17.598+03:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="Mashup : design : updated&#10;" timestamp="2018-12-27T14:23:05.401+02:00" user="Administrator"/></ConfigurationChanges></Mashup></Mashups></Entities>

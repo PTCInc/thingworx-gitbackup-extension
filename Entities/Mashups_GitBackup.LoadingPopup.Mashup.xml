@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><Entities build="b108" majorVersion="8" minorVersion="1" modelPersistenceProviderPackage="PostgresPersistenceProviderPackage" revision="1" schemaVersion="1010"><Mashups><Mashup aspect.isResponsive="true" aspect.isEditableExtensionObject="true" aspect.mashupType="mashup" columns="0.0" description="" documentationContent="" homeMashup="" lastModifiedDate="2017-12-14T12:51:35.755+02:00" name="GitBackup.LoadingPopup.Mashup" projectName="" rows="0.0" tags=""><Owner name="Administrator" type="User"/><avatar/><DesignTimePermissions><Create/><Read/><Update/><Delete/><Metadata/></DesignTimePermissions><RunTimePermissions/><VisibilityPermissions><Visibility/></VisibilityPermissions><ConfigurationTables/><ParameterDefinitions/><Things/><ThingShapes/><ThingTemplates/><mashupContent><![CDATA[{
+  "Data" : {
+    "Session" : {
+      "DataName" : "Session",
+      "EntityName" : "",
+      "EntityType" : "Session",
+      "Id" : "session",
+      "Services" : [ {
+        "APIMethod" : "post",
+        "Characteristic" : "Services",
+        "Id" : "SessionInterface",
+        "Name" : "GetGlobalSessionValues",
+        "Parameters" : { },
+        "RefreshInterval" : 0,
+        "Target" : "GetGlobalSessionValues"
+      } ]
+    },
+    "UserExtensions" : {
+      "DataName" : "UserExtensions",
+      "EntityName" : "",
+      "EntityType" : "UserExtensions",
+      "Id" : "UserExtensions",
+      "Services" : [ {
+        "APIMethod" : "post",
+        "Characteristic" : "Services",
+        "Id" : "UserExtensionInterface",
+        "Name" : "GetCurrentUserExtensionProperties",
+        "Parameters" : { },
+        "RefreshInterval" : 0,
+        "Target" : "GetCurrentUserExtensionProperties"
+      } ]
+    }
+  },
+  "DataBindings" : [ ],
+  "DesignTimePermissions" : { },
+  "Events" : [ ],
+  "RunTimePermissions" : { },
+  "UI" : {
+    "Properties" : {
+      "AddToDashboardButtonStyle" : "DefaultAddToDashboardButtonStyle",
+      "Area" : "Mashup",
+      "BGImageRepeat" : "no-repeat",
+      "BGImageSize" : "auto",
+      "Columns" : 0,
+      "ConfigureGadgetButtonStyle" : "DefaultConfigureGadgetButtonStyle",
+      "DisplayName" : "Mashup",
+      "EnableParameterEditing" : false,
+      "Height" : 618,
+      "Id" : "mashup-root",
+      "IgnoreWarningsInViewMashup" : false,
+      "IsPrintLayout" : false,
+      "Left" : 0,
+      "MashupToEditGadget" : "DefaultMashupToEditGadget",
+      "MinHeight" : 0,
+      "MinWidth" : 0,
+      "ResponsiveLayout" : true,
+      "Rows" : 0,
+      "ShowDataLoading" : true,
+      "Style" : "DefaultMashupStyle",
+      "Title" : "",
+      "TitleBar" : false,
+      "TitleBarStyle" : "DefaultTitleBarStyle",
+      "TitleBarText" : "Gadget Title Here",
+      "Top" : 0,
+      "Type" : "mashup",
+      "Visible" : true,
+      "Width" : 1024,
+      "Z-index" : 10,
+      "__TypeDisplayName" : "Mashup",
+      "id_index" : 1,
+      "supportsAutoResize" : true
+    },
+    "Widgets" : [ {
+      "Properties" : {
+        "AlternateText" : "",
+        "Area" : "UI",
+        "BorderStyle" : "DefaultImageBorderStyle",
+        "DisplayName" : "img_Loading",
+        "Height" : 100,
+        "Id" : "image-1",
+        "Left" : 110,
+        "PreventCaching" : false,
+        "ResponsiveLayout" : true,
+        "Scaling" : "height",
+        "ShowDataLoading" : true,
+        "SourceURL" : "GIT.LoadingGIF.ME",
+        "ToolTipField" : "",
+        "ToolTipStyle" : "DefaultTooltipStyle",
+        "Top" : 65,
+        "Type" : "image",
+        "Visible" : true,
+        "Width" : 100,
+        "Z-index" : 10,
+        "__TypeDisplayName" : "Image",
+        "__supportsTooltip" : true
+      },
+      "Widgets" : [ ]
+    } ]
+  },
+  "mashupType" : "mashup"
+}]]></mashupContent><ConfigurationChanges><ConfigurationChange changeAction="CREATE" changeReason="header : name : updated&#10;documentation : updated&#10;" timestamp="2017-12-14T12:51:35.755+02:00" user="Administrator"/></ConfigurationChanges></Mashup></Mashups></Entities>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><Entities build="b349" majorVersion="8" minorVersion="3" modelPersistenceProviderPackage="H2PersistenceProviderPackage" revision="0" schemaVersion="1030" universal=""><StateDefinitions><StateDefinition description="" documentationContent="" homeMashup="" lastModifiedDate="2018-08-27T11:22:04.932+03:00" name="GIT.RepoURL.STATE" projectName="GitBackup" tags=""><Owner name="Administrator" type="User"/><avatar/><DesignTimePermissions><Create/><Read/><Update/><Delete/><Metadata/></DesignTimePermissions><RunTimePermissions/><VisibilityPermissions><Visibility/></VisibilityPermissions><ConfigurationTableDefinitions/><ConfigurationTables/><content><![CDATA[{
+  "stateDefinitions" : [ {
+    "defaultStyleDefinition" : "",
+    "defaultValue" : "BitBucket",
+    "description" : "",
+    "displayString" : "BitBucket",
+    "name" : "BitBucket"
+  }, {
+    "defaultStyleDefinition" : "",
+    "defaultValue" : "Other",
+    "description" : "",
+    "displayString" : "Other",
+    "name" : "Other"
+  }, {
+    "defaultStyleDefinition" : "",
+    "description" : "",
+    "displayString" : "BitBucket",
+    "name" : "BitBucket"
+  } ],
+  "stateType" : "string"
+}]]></content><ConfigurationChanges><ConfigurationChange changeAction="CREATE" changeReason="header : name : updated&#10;" timestamp="2018-08-24T14:58:50.102+03:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="" timestamp="2018-08-24T14:59:07.844+03:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="" timestamp="2018-08-27T09:38:40.023+03:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="" timestamp="2018-08-27T10:47:05.934+03:00" user="Administrator"/><ConfigurationChange changeAction="MODIFY" changeReason="" timestamp="2018-08-27T11:22:04.931+03:00" user="Administrator"/></ConfigurationChanges></StateDefinition></StateDefinitions></Entities>

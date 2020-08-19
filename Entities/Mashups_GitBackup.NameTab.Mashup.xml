@@ -1,0 +1,779 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b2319"
+ majorVersion="8"
+ minorVersion="4"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="4"
+ schemaVersion="1041"
+ universal="password">
+    <Mashups>
+        <Mashup
+         aspect.isEditableExtensionObject="true"
+         aspect.isExtension="true"
+         aspect.isResponsive="true"
+         aspect.mashupType="mashup"
+         columns="0.0"
+         description=""
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2019-09-16T17:26:35.151+03:00"
+         name="GitBackup.NameTab.Mashup"
+         projectName="GitBackup"
+         rows="0.0"
+         tags="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <ParameterDefinitions>
+                <FieldDefinition
+                 aspect.ordinal="0"
+                 baseType="STRING"
+                 description=""
+                 name="GitThingName"
+                 ordinal="0"></FieldDefinition>
+            </ParameterDefinitions>
+            <Things>
+                <Thing>GIT.Utility.Thing</Thing>
+            </Things>
+            <ThingShapes></ThingShapes>
+            <ThingTemplates></ThingTemplates>
+            <mashupContent>
+            <![CDATA[
+            {
+              "CustomMashupCss" : "",
+              "Data" : {
+                "Session" : {
+                  "DataName" : "Session",
+                  "EntityName" : "",
+                  "EntityType" : "Session",
+                  "Id" : "session",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "SessionInterface",
+                    "Name" : "GetGlobalSessionValues",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetGlobalSessionValues"
+                  } ]
+                },
+                "Things_GIT.Utility.Thing" : {
+                  "DataName" : "Things_GIT.Utility.Thing",
+                  "EntityName" : "GIT.Utility.Thing",
+                  "EntityType" : "Things",
+                  "Id" : "854a8e40-0ec9-4180-8801-4a4c1a696380",
+                  "Services" : [ {
+                    "APIMethod" : "get",
+                    "Characteristic" : "Services",
+                    "Id" : "1c15776e-1885-4835-aa9d-b2b9d74211a1",
+                    "Name" : "GetProperties",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetProperties"
+                  } ]
+                },
+                "UserExtensions" : {
+                  "DataName" : "UserExtensions",
+                  "EntityName" : "",
+                  "EntityType" : "UserExtensions",
+                  "Id" : "UserExtensions",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "UserExtensionInterface",
+                    "Name" : "GetCurrentUserExtensionProperties",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetCurrentUserExtensionProperties"
+                  } ]
+                }
+              },
+              "DataBindings" : [ {
+                "Id" : "1522373e-ac6b-442b-941c-d702f3d1c37a",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "GitThingName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "Text",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "label-3",
+                "TargetSection" : ""
+              }, {
+                "Id" : "7ce3afd3-9aaa-4478-8077-a7b5a668ff72",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "GitThingName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "ToolTipField",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "label-3",
+                "TargetSection" : ""
+              }, {
+                "Id" : "baa4788e-8f35-4ef4-9e83-06ec56a855c5",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "tab-menu",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "Data",
+                  "TargetPropertyBaseType" : "INFOTABLE",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetProperties",
+                "SourceSection" : "Things_GIT.Utility.Thing",
+                "TargetArea" : "UI",
+                "TargetId" : "dhxlist-5",
+                "TargetSection" : ""
+              }, {
+                "Id" : "b61fb809-3b2b-4788-9f3b-f9a4bcc1499f",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "tab-menu",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "Data",
+                  "TargetPropertyBaseType" : "INFOTABLE",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetProperties",
+                "SourceSection" : "Things_GIT.Utility.Thing",
+                "TargetArea" : "UI",
+                "TargetId" : "infotableselector-6",
+                "TargetSection" : ""
+              }, {
+                "Id" : "09fae08a-6e41-42a4-bd43-1b74e3d39498",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "tab-menu[SelectedRows].Status",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "isModify",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetProperties",
+                "SourceSection" : "Things_GIT.Utility.Thing",
+                "TargetArea" : "UI",
+                "TargetId" : "validator-7",
+                "TargetSection" : ""
+              }, {
+                "Id" : "39dfb884-f1b9-4427-9d50-8b45a02c0b80",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "GitThingName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "ThingName",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "navigation-4",
+                "TargetSection" : ""
+              }, {
+                "Id" : "48f04edf-67e3-4cde-a530-04f5dd378520",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "tab-menu[SelectedRows].Status",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "isDelete",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetProperties",
+                "SourceSection" : "Things_GIT.Utility.Thing",
+                "TargetArea" : "UI",
+                "TargetId" : "validator-9",
+                "TargetSection" : ""
+              }, {
+                "Id" : "ac4dcf7c-8fae-4a74-a6c6-493940be1fcc",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "GitThingName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "GitThingName",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "navigation-11",
+                "TargetSection" : ""
+              } ],
+              "DesignTimePermissions" : {
+                "Create" : [ ],
+                "Delete" : [ ],
+                "Metadata" : [ ],
+                "Read" : [ ],
+                "Update" : [ ]
+              },
+              "Events" : [ {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_GIT.Utility.Thing",
+                "EventHandlerService" : "GetProperties",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "fe1f0a6d-75c5-4240-8865-32dbba9dc9d5"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "infotableselector-6",
+                "EventHandlerService" : "ClearSelectedRows",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "tab-menu.SelectedRowsChanged",
+                "EventTriggerId" : "GetProperties",
+                "EventTriggerSection" : "Things_GIT.Utility.Thing",
+                "Id" : "d740d6c8-70e8-4ff9-83c5-300d321fa386"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "navigation-4",
+                "EventHandlerService" : "Navigate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "True",
+                "EventTriggerId" : "validator-7",
+                "EventTriggerSection" : "",
+                "Id" : "71f35959-5b08-4d0f-8113-58e95bb5d81c"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "navigation-11",
+                "EventHandlerService" : "Navigate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "True",
+                "EventTriggerId" : "validator-9",
+                "EventTriggerSection" : "",
+                "Id" : "bc847d05-567e-4bf7-b9f5-565de17222cb"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-13",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "button-12",
+                "EventTriggerSection" : "",
+                "Id" : "c2f620ab-ad3f-4f90-bd79-7809d3a5f21e"
+              } ],
+              "RunTimePermissions" : {
+                "permissions" : [ ]
+              },
+              "UI" : {
+                "Properties" : {
+                  "AddToDashboardButton" : "SimplePlus",
+                  "AddToDashboardButtonStyle" : "DefaultAddToDashboardButtonStyle",
+                  "Area" : "Mashup",
+                  "BGImage" : "",
+                  "BGImageRepeat" : "no-repeat",
+                  "BGImageSize" : "auto",
+                  "Columns" : 0,
+                  "ConfigureGadgetButton" : "SimpleGear",
+                  "ConfigureGadgetButtonStyle" : "DefaultConfigureGadgetButtonStyle",
+                  "DisplayName" : "Mashup",
+                  "EnableParameterEditing" : false,
+                  "Height" : 618,
+                  "Id" : "mashup-root",
+                  "IgnoreWarningsInViewMashup" : false,
+                  "IsPrintLayout" : false,
+                  "Left" : 0,
+                  "MashupToEditGadget" : "DefaultMashupToEditGadget",
+                  "MinHeight" : 0,
+                  "MinWidth" : 0,
+                  "ResponsiveLayout" : true,
+                  "Rows" : 0,
+                  "ShowDataLoading" : true,
+                  "Style" : "DefaultContainerStyle",
+                  "StyleTheme" : "Base Theme",
+                  "Title" : "",
+                  "TitleBar" : false,
+                  "TitleBarStyle" : "DefaultTitleBarStyle",
+                  "TitleBarText" : "Gadget Title Here",
+                  "Top" : 0,
+                  "Type" : "mashup",
+                  "UseThemeForHybrids" : false,
+                  "Visible" : true,
+                  "Width" : 1024,
+                  "Z-index" : 10,
+                  "__TypeDisplayName" : "Mashup",
+                  "_currentParameterDefs" : [ {
+                    "BaseType" : "STRING",
+                    "Description" : "",
+                    "ParameterName" : "GitThingName"
+                  } ],
+                  "id_index" : 13,
+                  "supportsAutoResize" : true
+                },
+                "Widgets" : [ {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "DisplayName" : "panel-2",
+                    "Height" : 200,
+                    "HideScrollbars" : true,
+                    "HorizontalAnchor" : "left",
+                    "Id" : "panel-2",
+                    "Left" : 115,
+                    "ResponsiveLayout" : true,
+                    "ShowDataLoading" : true,
+                    "Style" : "DefaultContainerStyle",
+                    "Top" : 75,
+                    "Type" : "panel",
+                    "VerticalAnchor" : "top",
+                    "Visible" : true,
+                    "Width" : 300,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Panel"
+                  },
+                  "Widgets" : [ {
+                    "Properties" : {
+                      "Alignment" : "left",
+                      "AllowEllipsis" : true,
+                      "Area" : "UI",
+                      "CustomClass" : "weight600 git-tabs",
+                      "DisplayName" : "lb_Title",
+                      "Height" : 22,
+                      "Id" : "label-3",
+                      "Left" : 10,
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "Style" : {
+                        "backgroundColor" : "",
+                        "displayString" : "",
+                        "fontEmphasisBold" : false,
+                        "fontEmphasisItalic" : false,
+                        "fontEmphasisUnderline" : false,
+                        "foregroundColor" : "#232b2d",
+                        "image" : "",
+                        "lineColor" : "",
+                        "lineStyle" : "solid",
+                        "lineThickness" : 1,
+                        "secondaryBackgroundColor" : "",
+                        "textSize" : "xlarge"
+                      },
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 15,
+                      "Type" : "label",
+                      "Visible" : true,
+                      "Width" : 205,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Label",
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Alignment" : "left",
+                      "Area" : "UI",
+                      "ClickOutsideToClose" : false,
+                      "DisplayName" : "nav_Modify",
+                      "FixedPopupHeight" : 620,
+                      "FixedPopupWidth" : 520,
+                      "Height" : 65,
+                      "Icon" : "",
+                      "IconAlignment" : "left",
+                      "Id" : "navigation-4",
+                      "Left" : 60,
+                      "MashupName" : "GitBackup.ModifyRepo.Mashup",
+                      "MashupParameters" : [ {
+                        "BaseType" : "STRING",
+                        "Description" : "",
+                        "ParameterName" : "ThingName",
+                        "ParmDef" : {
+                          "aspects" : {
+                            "ordinal" : "0"
+                          },
+                          "baseType" : "STRING",
+                          "description" : "",
+                          "name" : "ThingName",
+                          "ordinal" : 0
+                        }
+                      }, {
+                        "BaseType" : "INFOTABLE",
+                        "Description" : "",
+                        "ParameterName" : "userRepositories",
+                        "ParmDef" : {
+                          "aspects" : {
+                            "dataShape" : "QueryRepository.DataShape",
+                            "ordinal" : "1"
+                          },
+                          "baseType" : "INFOTABLE",
+                          "description" : "",
+                          "name" : "userRepositories",
+                          "ordinal" : 0
+                        }
+                      } ],
+                      "MessageToShow" : "Mashup must be selected",
+                      "ModalPopupOpacity" : 0.5,
+                      "NavigationActiveStyle" : "DefaultNavigationActiveStyle",
+                      "NavigationFocusStyle" : "DefaultContainerStyle",
+                      "NavigationHoverStyle" : "DefaultNavigationHoverStyle",
+                      "PopupScrolling" : "auto",
+                      "PopupTitle" : "",
+                      "PopupTitleStyle" : "DefaultContainerStyle",
+                      "ReloadOnReplace" : false,
+                      "ResponsiveLayout" : false,
+                      "RoundedCorners" : true,
+                      "ShowCloseButton" : false,
+                      "ShowDataLoading" : true,
+                      "ShowMessageIfNoMashup" : false,
+                      "SingleClickSelectOnTablets" : true,
+                      "Style" : "DefaultNavigationStyle",
+                      "TabSequence" : 0,
+                      "TargetWindow" : "modal-popup",
+                      "Text" : "Settings",
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 125,
+                      "Transparent" : false,
+                      "Type" : "navigation",
+                      "Visible" : false,
+                      "Width" : 240,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Navigation",
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Alignment" : "left",
+                      "Area" : "UI",
+                      "AutoSelectFirstRow" : false,
+                      "ClearIfNoSelection" : false,
+                      "ComboDropdownButtonStyle" : "DefaultComboDropdownButtonStyle",
+                      "ComboEnableCheckbox" : false,
+                      "ComboItemHighlightedStyle" : "DefaultComboItemHighlightedStyle",
+                      "ComboTextboxStyle" : "DefaultComboTextboxStyle",
+                      "CustomClass" : "dropdown-tab",
+                      "DisableSelectedStyle" : false,
+                      "DisplayField" : "Status",
+                      "DisplayName" : "lst_Menu",
+                      "DropdownButtonStyle" : "DefaultDropdownButtonStyle",
+                      "DropdownSelectedStyle" : "DefaultDropdownSelectedStyle",
+                      "DropdownStyle" : "DefaultDropdownStyle",
+                      "EnableKeyboardSelections" : true,
+                      "EnableToolTips" : true,
+                      "Height" : 38,
+                      "HeightOfDropdownView" : 170,
+                      "Id" : "dhxlist-5",
+                      "Label" : "",
+                      "LabelAlignment" : "left",
+                      "Left" : 210,
+                      "ListBackgroundStyle" : "DefaultListBackgroundStyle",
+                      "ListFocusStyle" : "DefaultFocusStyle",
+                      "ListItemAlternateStyle" : {
+                        "backgroundColor" : "#ffffff",
+                        "displayString" : "",
+                        "fontEmphasisBold" : false,
+                        "fontEmphasisItalic" : false,
+                        "fontEmphasisUnderline" : false,
+                        "foregroundColor" : "#656565",
+                        "image" : "",
+                        "lineColor" : "",
+                        "lineStyle" : "solid",
+                        "lineThickness" : 1,
+                        "secondaryBackgroundColor" : "",
+                        "textSize" : "xlarge"
+                      },
+                      "ListItemHoverStyle" : {
+                        "backgroundColor" : "#f4f4f4",
+                        "displayString" : "",
+                        "fontEmphasisBold" : false,
+                        "fontEmphasisItalic" : false,
+                        "fontEmphasisUnderline" : false,
+                        "foregroundColor" : "#454545",
+                        "image" : "",
+                        "lineColor" : "",
+                        "lineStyle" : "solid",
+                        "lineThickness" : 1,
+                        "secondaryBackgroundColor" : "",
+                        "textSize" : "xlarge"
+                      },
+                      "ListItemSelectedStyle" : {
+                        "backgroundColor" : "#eeeeee",
+                        "displayString" : "",
+                        "fontEmphasisBold" : false,
+                        "fontEmphasisItalic" : false,
+                        "fontEmphasisUnderline" : false,
+                        "foregroundColor" : "#333333",
+                        "image" : "",
+                        "lineColor" : "",
+                        "lineStyle" : "solid",
+                        "lineThickness" : 1,
+                        "secondaryBackgroundColor" : "",
+                        "textSize" : "xlarge"
+                      },
+                      "ListItemStyle" : {
+                        "backgroundColor" : "#ffffff",
+                        "displayString" : "",
+                        "fontEmphasisBold" : false,
+                        "fontEmphasisItalic" : false,
+                        "fontEmphasisUnderline" : false,
+                        "foregroundColor" : "#656565",
+                        "image" : "",
+                        "lineColor" : "",
+                        "lineStyle" : "solid",
+                        "lineThickness" : 1,
+                        "secondaryBackgroundColor" : "",
+                        "textSize" : "xlarge"
+                      },
+                      "ListLabelStyle" : "DefaultWidgetLabelStyle",
+                      "MultiSelect" : false,
+                      "NumberOfItemsInDropdownView" : 2,
+                      "NumberOfItemsPerPage" : 500,
+                      "ResponsiveLayout" : false,
+                      "RowHeight" : 38,
+                      "ShowDataLoading" : false,
+                      "SingleClickSelectOnTablets" : false,
+                      "TabSequence" : -1,
+                      "TextIfNoSelectionType" : "editable",
+                      "TextVerticalAlignment" : 38,
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 4,
+                      "Type" : "dhxlist",
+                      "ValueField" : "Status",
+                      "View" : "dropdown",
+                      "Visible" : true,
+                      "Width" : 38,
+                      "WidthOfDropdownView" : 110,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "List",
+                      "__supportsLabel" : true,
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "AnyRowsSelected" : false,
+                      "Area" : "UI",
+                      "DisplayName" : "infotableselector-6",
+                      "Height" : 28,
+                      "Id" : "infotableselector-6",
+                      "Left" : 400,
+                      "NoRowsSelected" : false,
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "Top" : 65,
+                      "Type" : "infotableselector",
+                      "Visible" : false,
+                      "Width" : 200,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Infotable Selector"
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "AutoEvaluate" : true,
+                      "DisplayName" : "val_IsModified",
+                      "Expression" : "isModify == \"Settings\"",
+                      "Height" : 28,
+                      "Id" : "validator-7",
+                      "Left" : 0,
+                      "Output" : false,
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "Top" : 200,
+                      "Type" : "validator",
+                      "Visible" : true,
+                      "Width" : 200,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Validator",
+                      "_currentParameterDefs" : [ {
+                        "BaseType" : "STRING",
+                        "Description" : "",
+                        "ParameterName" : "isModify"
+                      } ],
+                      "editMode" : "edit",
+                      "helperType" : "validator"
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "AutoEvaluate" : true,
+                      "DisplayName" : "val_IsDelete",
+                      "Expression" : "isDelete == \"Delete\"",
+                      "Height" : 28,
+                      "Id" : "validator-9",
+                      "Left" : 370,
+                      "Output" : false,
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "Top" : 240,
+                      "Type" : "validator",
+                      "Visible" : true,
+                      "Width" : 200,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Validator",
+                      "_currentParameterDefs" : [ {
+                        "BaseType" : "STRING",
+                        "Description" : "",
+                        "ParameterName" : "isDelete"
+                      } ],
+                      "editMode" : "edit",
+                      "helperType" : "validator"
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Alignment" : "left",
+                      "Area" : "UI",
+                      "ClickOutsideToClose" : false,
+                      "DisplayName" : "nav_ConfirmDelete",
+                      "FixedPopupHeight" : 150,
+                      "FixedPopupWidth" : 750,
+                      "Height" : 60,
+                      "Icon" : "",
+                      "IconAlignment" : "left",
+                      "Id" : "navigation-11",
+                      "Left" : 60,
+                      "MashupName" : "GitBackup.ConfirmDeleteThing.Mashup",
+                      "MashupParameters" : [ {
+                        "BaseType" : "STRING",
+                        "Description" : "",
+                        "ParameterName" : "GitThingName",
+                        "ParmDef" : {
+                          "aspects" : {
+                            "ordinal" : "0"
+                          },
+                          "baseType" : "STRING",
+                          "description" : "",
+                          "name" : "GitThingName",
+                          "ordinal" : 0
+                        }
+                      } ],
+                      "MessageToShow" : "Mashup must be selected",
+                      "ModalPopupOpacity" : 0.5,
+                      "NavigationActiveStyle" : "DefaultNavigationActiveStyle",
+                      "NavigationFocusStyle" : "DefaultContainerStyle",
+                      "NavigationHoverStyle" : "DefaultNavigationHoverStyle",
+                      "PopupScrolling" : "auto",
+                      "PopupTitle" : "",
+                      "PopupTitleStyle" : "DefaultContainerStyle",
+                      "ReloadOnReplace" : false,
+                      "ResponsiveLayout" : false,
+                      "RoundedCorners" : true,
+                      "ShowCloseButton" : false,
+                      "ShowDataLoading" : true,
+                      "ShowMessageIfNoMashup" : false,
+                      "SingleClickSelectOnTablets" : true,
+                      "Style" : "DefaultNavigationStyle",
+                      "TabSequence" : 0,
+                      "TargetWindow" : "modal-popup",
+                      "Text" : "Confirm delete thing",
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 205,
+                      "Transparent" : false,
+                      "Type" : "navigation",
+                      "Visible" : false,
+                      "Width" : 240,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Navigation",
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "ActiveStyle" : "DefaultButtonActiveStyle",
+                      "Area" : "UI",
+                      "CancelConfirmationButton" : "button2",
+                      "ConfirmationButton1Label" : "Yes",
+                      "ConfirmationButton2Label" : "No",
+                      "ConfirmationPrompt" : "Do Action?",
+                      "ConfirmationRequired" : false,
+                      "ConfirmationTitle" : "Confirm Action",
+                      "ContextId" : "",
+                      "CustomClass" : "dropdown-btn",
+                      "DefaultConfirmationButton" : "button1",
+                      "Disabled" : false,
+                      "DisabledStyle" : "DefaultButtonDisabledStyle",
+                      "DisplayName" : "button-12",
+                      "FocusStyle" : "DefaultButtonFocusStyle",
+                      "Height" : 38,
+                      "HoverStyle" : "DefaultButtonHoverStyle",
+                      "IconAlignment" : "left",
+                      "Id" : "button-12",
+                      "Label" : "",
+                      "Left" : 185,
+                      "ResponsiveLayout" : false,
+                      "RoundedCorners" : true,
+                      "ShowDataLoading" : true,
+                      "SingleClickSelectOnTablets" : true,
+                      "Style" : "DefaultButtonStyle",
+                      "TabSequence" : 0,
+                      "ToolTipField" : "",
+                      "ToolTipStyle" : "DefaultTooltipStyle",
+                      "Top" : 4,
+                      "Type" : "button",
+                      "Visible" : true,
+                      "Width" : 38,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Button",
+                      "__supportsTooltip" : true
+                    },
+                    "Widgets" : [ ]
+                  }, {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "AutoEvaluate" : false,
+                      "DataChangeType" : "VALUE",
+                      "DisplayName" : "expression-13",
+                      "Expression" : "widget.boundingBox['par' + 'ent']().find('.dropdown-tab .dhxlist-dropdown-btn').click()",
+                      "FireOnFirstValue" : false,
+                      "Height" : 28,
+                      "Id" : "expression-13",
+                      "Left" : 100,
+                      "OutputBaseType" : "NUMBER",
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "Top" : 60,
+                      "Type" : "expression",
+                      "Visible" : true,
+                      "Width" : 200,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Expression"
+                    },
+                    "Widgets" : [ ]
+                  } ]
+                } ]
+              },
+              "mashupType" : "mashup"
+            }
+            ]]>
+            </mashupContent>
+            
+        </Mashup>
+    </Mashups>
+</Entities>

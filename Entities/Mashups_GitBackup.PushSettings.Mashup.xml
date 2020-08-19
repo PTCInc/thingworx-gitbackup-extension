@@ -1,0 +1,762 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b90"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="1"
+ schemaVersion="1051"
+ universal="password">
+    <Mashups>
+        <Mashup
+         aspect.isEditableExtensionObject="true"
+         aspect.isExtension="true"
+         aspect.isFlex="true"
+         aspect.isResponsive="true"
+         aspect.mashupType="mashup"
+         columns="0.0"
+         description="Settings mashup for Push parameters"
+         documentationContent=""
+         homeMashup=""
+         lastModifiedDate="2020-01-08T07:55:21.405-08:00"
+         name="GitBackup.PushSettings.Mashup"
+         projectName=""
+         rows="0.0"
+         tags="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <ParameterDefinitions></ParameterDefinitions>
+            <Things>
+                <Thing>GIT.Utility.Thing</Thing>
+            </Things>
+            <ThingShapes></ThingShapes>
+            <ThingTemplates></ThingTemplates>
+            <mashupContent>
+            <![CDATA[
+            {
+              "CustomMashupCss" : "",
+              "Data" : {
+                "Session" : {
+                  "DataName" : "Session",
+                  "EntityName" : "",
+                  "EntityType" : "Session",
+                  "Id" : "session",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "SessionInterface",
+                    "Name" : "GetGlobalSessionValues",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetGlobalSessionValues"
+                  } ]
+                },
+                "Things_GIT.Utility.Thing" : {
+                  "DataName" : "Things_GIT.Utility.Thing",
+                  "EntityName" : "GIT.Utility.Thing",
+                  "EntityType" : "Things",
+                  "Id" : "147a3d92-7c37-47f7-b4ef-0e96f3b9ec35",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "f9bfb1de-4099-4719-b18e-4ff5defa3f4c",
+                    "Name" : "GetGitUserExtensionsProperties",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetGitUserExtensionsProperties"
+                  }, {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "ef9dc9b6-afb0-43b6-91a0-705b609163be",
+                    "Name" : "SetGitUserExtensionsProperties",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "SetGitUserExtensionsProperties"
+                  } ]
+                },
+                "UserExtensions" : {
+                  "DataName" : "UserExtensions",
+                  "EntityName" : "",
+                  "EntityType" : "UserExtensions",
+                  "Id" : "UserExtensions",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "UserExtensionInterface",
+                    "Name" : "GetCurrentUserExtensionProperties",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetCurrentUserExtensionProperties"
+                  } ]
+                }
+              },
+              "DataBindings" : [ {
+                "Id" : "26e954c1-d39f-483d-88f9-389bbc7945bf",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "GitCommitterEmail",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "Text",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetGitUserExtensionsProperties",
+                "SourceSection" : "Things_GIT.Utility.Thing",
+                "TargetArea" : "UI",
+                "TargetId" : "textbox-18",
+                "TargetSection" : ""
+              }, {
+                "Id" : "e5baff92-d52d-4242-8ac8-7bfe54054308",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "UseGitCommitUserValues",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "State",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetGitUserExtensionsProperties",
+                "SourceSection" : "Things_GIT.Utility.Thing",
+                "TargetArea" : "UI",
+                "TargetId" : "checkbox-25",
+                "TargetSection" : ""
+              }, {
+                "Id" : "cbe40ec8-7887-45b5-9b6c-f85c733f9b33",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "GitCommitterName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "Text",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetGitUserExtensionsProperties",
+                "SourceSection" : "Things_GIT.Utility.Thing",
+                "TargetArea" : "UI",
+                "TargetId" : "textbox-16",
+                "TargetSection" : ""
+              }, {
+                "Id" : "2bcb4398-d297-4bf7-84e5-626e0be91c5e",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "State",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "TargetProperty" : "UseGitCommitUserValues",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "checkbox-25",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "SetGitUserExtensionsProperties",
+                "TargetSection" : "Things_GIT.Utility.Thing"
+              }, {
+                "Id" : "e1ba3b41-7a4a-42d6-9d19-1bd56ad35afa",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Text",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "CommitterName",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "textbox-16",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "SetGitUserExtensionsProperties",
+                "TargetSection" : "Things_GIT.Utility.Thing"
+              }, {
+                "Id" : "3496d79b-11d6-46fb-a4f0-52aa4854b2f4",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Text",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "CommitterEmail",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "textbox-18",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "SetGitUserExtensionsProperties",
+                "TargetSection" : "Things_GIT.Utility.Thing"
+              } ],
+              "DesignTimePermissions" : {
+                "Create" : [ ],
+                "Delete" : [ ],
+                "Metadata" : [ ],
+                "Read" : [ ],
+                "Update" : [ ]
+              },
+              "Events" : [ {
+                "EventHandlerArea" : "Mashup",
+                "EventHandlerId" : "mashup-root",
+                "EventHandlerService" : "CloseIfPopup",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "button-13",
+                "EventTriggerSection" : "",
+                "Id" : "867bda16-a78c-49a5-9cd0-61195f624ee9"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_GIT.Utility.Thing",
+                "EventHandlerService" : "GetGitUserExtensionsProperties",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "c4513bf9-bc96-46e9-b43d-6feb00739861"
+              }, {
+                "EventHandlerArea" : "Mashup",
+                "EventHandlerId" : "mashup-root",
+                "EventHandlerService" : "CloseIfPopup",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "SetGitUserExtensionsProperties",
+                "EventTriggerSection" : "Things_GIT.Utility.Thing",
+                "Id" : "e54dcca3-8345-48b5-9143-b3263e954156"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_GIT.Utility.Thing",
+                "EventHandlerService" : "SetGitUserExtensionsProperties",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "button-14",
+                "EventTriggerSection" : "",
+                "Id" : "bcc54e2d-c4c9-46e6-8b80-1a7d020c2797"
+              } ],
+              "RunTimePermissions" : {
+                "permissions" : [ ]
+              },
+              "UI" : {
+                "Properties" : {
+                  "AddToDashboardButton" : "SimplePlus",
+                  "AddToDashboardButtonStyle" : "DefaultAddToDashboardButtonStyle",
+                  "Area" : "Mashup",
+                  "BGImage" : "",
+                  "BGImageRepeat" : "no-repeat",
+                  "BGImageSize" : "auto",
+                  "Columns" : 0,
+                  "ConfigureGadgetButton" : "SimpleGear",
+                  "ConfigureGadgetButtonStyle" : "DefaultConfigureGadgetButtonStyle",
+                  "DisplayName" : "Mashup",
+                  "EnableParameterEditing" : false,
+                  "Height" : 618,
+                  "Id" : "mashup-root",
+                  "IgnoreWarningsInViewMashup" : false,
+                  "IsPrintLayout" : false,
+                  "Left" : 0,
+                  "MashupToEditGadget" : "DefaultMashupToEditGadget",
+                  "MinHeight" : 0,
+                  "MinWidth" : 0,
+                  "ResponsiveLayout" : true,
+                  "Rows" : 0,
+                  "ShowDataLoading" : true,
+                  "Style" : "DefaultMashupStyle",
+                  "StyleProperties" : {
+                    "data" : { },
+                    "meta" : {
+                      "type" : "WidgetStyler",
+                      "version" : "1.0"
+                    }
+                  },
+                  "StyleTheme" : "PTC Convergence Theme",
+                  "Title" : "",
+                  "TitleBar" : false,
+                  "TitleBarStyle" : "DefaultTitleBarStyle",
+                  "TitleBarText" : "Gadget Title Here",
+                  "Top" : 0,
+                  "Type" : "mashup",
+                  "UseMasterTheme" : false,
+                  "UseTheme" : false,
+                  "UseThemeForHybrids" : false,
+                  "Visible" : true,
+                  "Width" : 1024,
+                  "Z-index" : 10,
+                  "__TypeDisplayName" : "Mashup",
+                  "id_index" : 25,
+                  "supportsAutoResize" : true
+                },
+                "Widgets" : [ {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "DisplayName" : "container-2",
+                    "EnableExpandCollapse" : false,
+                    "Expanded" : true,
+                    "Id" : "flexcontainer-2",
+                    "LastContainer" : true,
+                    "ResponsiveLayout" : true,
+                    "ShowDataLoading" : true,
+                    "ShowExpandCollapseTab" : false,
+                    "SourceURL" : "",
+                    "Style" : "DefaultContainerStyle",
+                    "StyleProperties" : { },
+                    "Type" : "flexcontainer",
+                    "UseTheme" : true,
+                    "Visible" : true,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Responsive Container",
+                    "align-content" : "flex-start",
+                    "align-items" : "flex-start",
+                    "flex-basis" : "auto",
+                    "flex-direction" : "column",
+                    "flex-grow" : "1",
+                    "flex-max-height" : "",
+                    "flex-max-width" : "",
+                    "flex-min-height" : "",
+                    "flex-min-width" : "",
+                    "flex-shrink" : "1",
+                    "flex-size" : "default",
+                    "flex-wrap" : "nowrap",
+                    "iconClass" : "widgets-flexcontainer",
+                    "isLocked" : false,
+                    "justify-content" : "flex-start",
+                    "positioning" : "responsive",
+                    "userCannotRemove" : true
+                  },
+                  "Widgets" : [ {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "DisplayName" : "container-21",
+                      "EnableExpandCollapse" : false,
+                      "Expanded" : true,
+                      "Id" : "flexcontainer-21",
+                      "LastContainer" : false,
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "ShowExpandCollapseTab" : false,
+                      "SourceURL" : "",
+                      "Style" : "DefaultContainerStyle",
+                      "StyleProperties" : { },
+                      "Type" : "flexcontainer",
+                      "UseTheme" : true,
+                      "Visible" : true,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Responsive Container",
+                      "align-content" : "flex-start",
+                      "align-items" : "center",
+                      "flex-basis" : "auto",
+                      "flex-direction" : "row",
+                      "flex-grow" : "1",
+                      "flex-max-height" : "",
+                      "flex-max-width" : "",
+                      "flex-min-height" : "",
+                      "flex-min-width" : "",
+                      "flex-shrink" : "1",
+                      "flex-size" : "default",
+                      "flex-wrap" : "nowrap",
+                      "iconClass" : "widgets-flexcontainer",
+                      "isLocked" : false,
+                      "justify-content" : "center",
+                      "positioning" : "responsive",
+                      "userCannotRemove" : false
+                    },
+                    "Widgets" : [ {
+                      "Properties" : {
+                        "Alignment" : "left",
+                        "AllowEllipsis" : false,
+                        "Area" : "UI",
+                        "DisplayName" : "label-22",
+                        "Height" : 22,
+                        "Id" : "label-22",
+                        "LastContainer" : false,
+                        "Left" : 50,
+                        "Margin" : "5",
+                        "ResponsiveLayout" : false,
+                        "ShowDataLoading" : true,
+                        "Style" : "DefaultLabelStyle",
+                        "Text" : "Use User-specific Values for Push?",
+                        "ToolTipField" : "",
+                        "ToolTipStyle" : "DefaultTooltipStyle",
+                        "Top" : 110,
+                        "Type" : "label",
+                        "Visible" : true,
+                        "Width" : 215,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Label",
+                        "__supportsTooltip" : true,
+                        "isLocked" : false
+                      },
+                      "Widgets" : [ ]
+                    }, {
+                      "Properties" : {
+                        "Area" : "UI",
+                        "Disabled" : false,
+                        "DisplayName" : "cb_UseUserValues",
+                        "FocusStyle" : "DefaultFocusStyle",
+                        "Height" : 22,
+                        "Id" : "checkbox-25",
+                        "LastContainer" : false,
+                        "Left" : 1140,
+                        "Margin" : "0",
+                        "Prompt" : " ",
+                        "ResponsiveLayout" : false,
+                        "ShowDataLoading" : true,
+                        "State" : false,
+                        "Style" : "DefaultCheckboxStyle",
+                        "TabSequence" : 0,
+                        "ToolTipField" : "",
+                        "ToolTipStyle" : "DefaultTooltipStyle",
+                        "Top" : 95,
+                        "Type" : "checkbox",
+                        "Visible" : true,
+                        "Width" : 35,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Checkbox",
+                        "__supportsTooltip" : true
+                      },
+                      "Widgets" : [ ]
+                    } ]
+                  }, {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "DisplayName" : "container-6",
+                      "EnableExpandCollapse" : false,
+                      "Expanded" : true,
+                      "Id" : "flexcontainer-6",
+                      "LastContainer" : false,
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "ShowExpandCollapseTab" : false,
+                      "SourceURL" : "",
+                      "Style" : "DefaultContainerStyle",
+                      "StyleProperties" : { },
+                      "Type" : "flexcontainer",
+                      "UseTheme" : true,
+                      "Visible" : true,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Responsive Container",
+                      "align-content" : "flex-start",
+                      "align-items" : "center",
+                      "flex-basis" : "auto",
+                      "flex-direction" : "row",
+                      "flex-grow" : "3",
+                      "flex-max-height" : "",
+                      "flex-max-width" : "",
+                      "flex-min-height" : "",
+                      "flex-min-width" : "",
+                      "flex-shrink" : "1",
+                      "flex-size" : "default",
+                      "flex-wrap" : "nowrap",
+                      "iconClass" : "widgets-flexcontainer",
+                      "isLocked" : false,
+                      "justify-content" : "center",
+                      "positioning" : "responsive",
+                      "userCannotRemove" : false
+                    },
+                    "Widgets" : [ {
+                      "Properties" : {
+                        "Alignment" : "left",
+                        "AllowEllipsis" : false,
+                        "Area" : "UI",
+                        "DisplayName" : "lb_CommitterName",
+                        "Height" : 22,
+                        "Id" : "label-15",
+                        "LastContainer" : false,
+                        "Left" : 50,
+                        "Margin" : "5",
+                        "ResponsiveLayout" : false,
+                        "ShowDataLoading" : true,
+                        "Style" : "DefaultLabelStyle",
+                        "Text" : "Committer Name:",
+                        "ToolTipField" : "",
+                        "ToolTipStyle" : "DefaultTooltipStyle",
+                        "Top" : 110,
+                        "Type" : "label",
+                        "Visible" : true,
+                        "Width" : 120,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Label",
+                        "__supportsTooltip" : true,
+                        "isLocked" : false
+                      },
+                      "Widgets" : [ ]
+                    }, {
+                      "Properties" : {
+                        "Area" : "UI",
+                        "CursorPosition" : 0,
+                        "DefaultTextboxFocusStyle" : "DefaultFocusStyle",
+                        "DisplayName" : "tb_CommitterName",
+                        "Height" : 24,
+                        "Id" : "textbox-16",
+                        "InnerShadow" : true,
+                        "Label" : "",
+                        "LabelAlignment" : "left",
+                        "LastContainer" : false,
+                        "Left" : 305,
+                        "Margin" : "5",
+                        "MaskInputCharacters" : false,
+                        "PlaceholderText" : "",
+                        "ReadOnly" : false,
+                        "ResponsiveLayout" : false,
+                        "ShowDataLoading" : true,
+                        "Style" : "DefaultTextBoxStyle",
+                        "TabSequence" : 0,
+                        "Text" : "",
+                        "TextAlign" : "left",
+                        "TextboxLabelStyle" : "DefaultWidgetLabelStyle",
+                        "ToolTipField" : "",
+                        "ToolTipStyle" : "DefaultTooltipStyle",
+                        "Top" : 120,
+                        "Type" : "textbox",
+                        "Visible" : true,
+                        "Width" : 200,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "TextBox",
+                        "__supportsLabel" : true,
+                        "__supportsTooltip" : true
+                      },
+                      "Widgets" : [ ]
+                    } ]
+                  }, {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "DisplayName" : "container-4",
+                      "EnableExpandCollapse" : false,
+                      "Expanded" : true,
+                      "Id" : "flexcontainer-4",
+                      "LastContainer" : false,
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "ShowExpandCollapseTab" : false,
+                      "SourceURL" : "",
+                      "Style" : "DefaultContainerStyle",
+                      "StyleProperties" : { },
+                      "Type" : "flexcontainer",
+                      "UseTheme" : true,
+                      "Visible" : true,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Responsive Container",
+                      "align-content" : "flex-start",
+                      "align-items" : "center",
+                      "flex-basis" : "auto",
+                      "flex-direction" : "row",
+                      "flex-grow" : "3",
+                      "flex-max-height" : "",
+                      "flex-max-width" : "",
+                      "flex-min-height" : "",
+                      "flex-min-width" : "",
+                      "flex-shrink" : "1",
+                      "flex-size" : "default",
+                      "flex-wrap" : "nowrap",
+                      "iconClass" : "widgets-flexcontainer",
+                      "isLocked" : false,
+                      "justify-content" : "center",
+                      "positioning" : "responsive",
+                      "userCannotRemove" : false
+                    },
+                    "Widgets" : [ {
+                      "Properties" : {
+                        "Alignment" : "left",
+                        "AllowEllipsis" : false,
+                        "Area" : "UI",
+                        "DisplayName" : "lb_CommitterEmail",
+                        "Height" : 22,
+                        "Id" : "label-17",
+                        "LastContainer" : false,
+                        "Left" : 50,
+                        "Margin" : "5",
+                        "ResponsiveLayout" : false,
+                        "ShowDataLoading" : true,
+                        "Style" : "DefaultLabelStyle",
+                        "Text" : "Committer Email:",
+                        "ToolTipField" : "",
+                        "ToolTipStyle" : "DefaultTooltipStyle",
+                        "Top" : 110,
+                        "Type" : "label",
+                        "Visible" : true,
+                        "Width" : 105,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Label",
+                        "__supportsTooltip" : true,
+                        "isLocked" : false
+                      },
+                      "Widgets" : [ ]
+                    }, {
+                      "Properties" : {
+                        "Area" : "UI",
+                        "CursorPosition" : 0,
+                        "DefaultTextboxFocusStyle" : "DefaultFocusStyle",
+                        "DisplayName" : "tb_CommitterEmail",
+                        "Height" : 24,
+                        "Id" : "textbox-18",
+                        "InnerShadow" : true,
+                        "Label" : "",
+                        "LabelAlignment" : "left",
+                        "LastContainer" : false,
+                        "Left" : 305,
+                        "Margin" : "5",
+                        "MaskInputCharacters" : false,
+                        "PlaceholderText" : "",
+                        "ReadOnly" : false,
+                        "ResponsiveLayout" : false,
+                        "ShowDataLoading" : true,
+                        "Style" : "DefaultTextBoxStyle",
+                        "TabSequence" : 0,
+                        "Text" : "",
+                        "TextAlign" : "left",
+                        "TextboxLabelStyle" : "DefaultWidgetLabelStyle",
+                        "ToolTipField" : "",
+                        "ToolTipStyle" : "DefaultTooltipStyle",
+                        "Top" : 120,
+                        "Type" : "textbox",
+                        "Visible" : true,
+                        "Width" : 200,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "TextBox",
+                        "__supportsLabel" : true,
+                        "__supportsTooltip" : true
+                      },
+                      "Widgets" : [ ]
+                    } ]
+                  }, {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "DisplayName" : "container-3",
+                      "EnableExpandCollapse" : false,
+                      "Expanded" : true,
+                      "Id" : "flexcontainer-3",
+                      "LastContainer" : false,
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "ShowExpandCollapseTab" : false,
+                      "SourceURL" : "",
+                      "Style" : "DefaultContainerStyle",
+                      "StyleProperties" : { },
+                      "Type" : "flexcontainer",
+                      "UseTheme" : true,
+                      "Visible" : true,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Responsive Container",
+                      "align-content" : "flex-start",
+                      "align-items" : "center",
+                      "flex-basis" : "auto",
+                      "flex-direction" : "row",
+                      "flex-grow" : "1",
+                      "flex-max-height" : "",
+                      "flex-max-width" : "",
+                      "flex-min-height" : "",
+                      "flex-min-width" : "",
+                      "flex-shrink" : "3",
+                      "flex-size" : "default",
+                      "flex-wrap" : "nowrap",
+                      "iconClass" : "widgets-flexcontainer",
+                      "isLocked" : false,
+                      "justify-content" : "space-between",
+                      "positioning" : "responsive",
+                      "userCannotRemove" : false
+                    },
+                    "Widgets" : [ {
+                      "Properties" : {
+                        "ActiveStyle" : "DefaultButtonActiveStyle",
+                        "Area" : "UI",
+                        "CancelConfirmationButton" : "button2",
+                        "ConfirmationButton1Label" : "Yes",
+                        "ConfirmationButton2Label" : "No",
+                        "ConfirmationPrompt" : "Do Action?",
+                        "ConfirmationRequired" : false,
+                        "ConfirmationTitle" : "Confirm Action",
+                        "ContextId" : "",
+                        "CustomClass" : "white-btn",
+                        "DefaultConfirmationButton" : "button1",
+                        "Disabled" : false,
+                        "DisabledStyle" : "DefaultButtonDisabledStyle",
+                        "DisplayName" : "btn_Cancel",
+                        "FocusStyle" : "DefaultButtonFocusStyle",
+                        "Height" : 30,
+                        "HoverStyle" : "DefaultButtonHoverStyle",
+                        "IconAlignment" : "left",
+                        "Id" : "button-13",
+                        "Label" : "Cancel",
+                        "LastContainer" : false,
+                        "Left" : 0,
+                        "Margin" : "5",
+                        "ResponsiveLayout" : false,
+                        "RoundedCorners" : true,
+                        "ShowDataLoading" : true,
+                        "SingleClickSelectOnTablets" : true,
+                        "Style" : "DefaultButtonStyle",
+                        "TabSequence" : 0,
+                        "ToolTipField" : "",
+                        "ToolTipStyle" : "DefaultTooltipStyle",
+                        "Top" : 0,
+                        "Type" : "button",
+                        "Visible" : true,
+                        "Width" : 75,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Button",
+                        "__supportsTooltip" : true
+                      },
+                      "Widgets" : [ ]
+                    }, {
+                      "Properties" : {
+                        "ActiveStyle" : "DefaultButtonActiveStyle",
+                        "Area" : "UI",
+                        "CancelConfirmationButton" : "button2",
+                        "ConfirmationButton1Label" : "Yes",
+                        "ConfirmationButton2Label" : "No",
+                        "ConfirmationPrompt" : "Do Action?",
+                        "ConfirmationRequired" : false,
+                        "ConfirmationTitle" : "Confirm Action",
+                        "ContextId" : "",
+                        "CustomClass" : "green-btn",
+                        "DefaultConfirmationButton" : "button1",
+                        "Disabled" : false,
+                        "DisabledStyle" : "DefaultButtonDisabledStyle",
+                        "DisplayName" : "btn_Save",
+                        "FocusStyle" : "DefaultButtonFocusStyle",
+                        "Height" : 30,
+                        "HoverStyle" : "DefaultButtonHoverStyle",
+                        "IconAlignment" : "left",
+                        "Id" : "button-14",
+                        "Label" : "Save",
+                        "LastContainer" : false,
+                        "Left" : 0,
+                        "Margin" : "5",
+                        "ResponsiveLayout" : false,
+                        "RoundedCorners" : true,
+                        "ShowDataLoading" : true,
+                        "SingleClickSelectOnTablets" : true,
+                        "Style" : "DefaultButtonStyle",
+                        "TabSequence" : 0,
+                        "ToolTipField" : "",
+                        "ToolTipStyle" : "DefaultTooltipStyle",
+                        "Top" : 0,
+                        "Type" : "button",
+                        "Visible" : true,
+                        "Width" : 75,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Button",
+                        "__supportsTooltip" : true
+                      },
+                      "Widgets" : [ ]
+                    } ]
+                  } ]
+                } ]
+              },
+              "mashupType" : "mashup"
+            }
+            ]]>
+            </mashupContent>
+            <preview></preview>
+        </Mashup>
+    </Mashups>
+</Entities>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><Entities build="b349" majorVersion="8" minorVersion="3" modelPersistenceProviderPackage="H2PersistenceProviderPackage" revision="0" schemaVersion="1030" universal=""><StateDefinitions><StateDefinition aspect.isEditableExtensionObject="true" aspect.isExtension="true" description="" documentationContent="" homeMashup="" lastModifiedDate="2018-08-21T12:46:05.099+03:00" name="GIT.LeftStateMenu.STATE" projectName="GitBackup" tags=""><Owner name="Administrator" type="User"/><avatar/><DesignTimePermissions><Create/><Read/><Update/><Delete/><Metadata/></DesignTimePermissions><RunTimePermissions/><VisibilityPermissions><Visibility/></VisibilityPermissions><ConfigurationTableDefinitions/><ConfigurationTables/><content><![CDATA[{
+  "stateDefinitions" : [ {
+    "defaultStyleDefinition" : {
+      "backgroundColor" : "",
+      "displayString" : "",
+      "fontEmphasisBold" : false,
+      "fontEmphasisItalic" : false,
+      "fontEmphasisUnderline" : false,
+      "foregroundColor" : "",
+      "image" : "GIT.MainIcon.ME",
+      "lineColor" : "",
+      "lineStyle" : "solid",
+      "lineThickness" : 1,
+      "secondaryBackgroundColor" : "",
+      "textSize" : "normal"
+    },
+    "defaultValue" : "Main",
+    "description" : "",
+    "displayString" : "icon",
+    "name" : "icon"
+  }, {
+    "defaultStyleDefinition" : {
+      "backgroundColor" : "",
+      "displayString" : "",
+      "fontEmphasisBold" : false,
+      "fontEmphasisItalic" : false,
+      "fontEmphasisUnderline" : false,
+      "foregroundColor" : "",
+      "image" : "GIT.BranchIcon.ME",
+      "lineColor" : "",
+      "lineStyle" : "solid",
+      "lineThickness" : 1,
+      "secondaryBackgroundColor" : "",
+      "textSize" : "normal"
+    },
+    "defaultValue" : "Advanced",
+    "description" : "",
+    "displayString" : "",
+    "name" : "icon"
+  }, {
+    "defaultStyleDefinition" : {
+      "backgroundColor" : "",
+      "displayString" : "icon",
+      "fontEmphasisBold" : false,
+      "fontEmphasisItalic" : false,
+      "fontEmphasisUnderline" : false,
+      "foregroundColor" : "",
+      "image" : "GIT.Status.ME",
+      "lineColor" : "",
+      "lineStyle" : "solid",
+      "lineThickness" : 1,
+      "secondaryBackgroundColor" : "",
+      "textSize" : "normal"
+    },
+    "defaultValue" : "Version",
+    "description" : "",
+    "displayString" : "icon",
+    "name" : ""
+  }, {
+    "defaultStyleDefinition" : {
+      "backgroundColor" : "",
+      "displayString" : "",
+      "fontEmphasisBold" : false,
+      "fontEmphasisItalic" : false,
+      "fontEmphasisUnderline" : false,
+      "foregroundColor" : "",
+      "image" : "GIT.MainIcon.ME",
+      "lineColor" : "",
+      "lineStyle" : "solid",
+      "lineThickness" : 1,
+      "secondaryBackgroundColor" : "",
+      "textSize" : "normal"
+    },
+    "description" : "",
+    "displayString" : "Main",
+    "name" : "Main"
+  } ],
+  "stateType" : "string"
+}]]></content><ConfigurationChanges><ConfigurationChange changeAction="CREATE" changeReason="Importing Extension Package Metadata" timestamp="2018-08-21T12:37:29.678+03:00" user="SuperUser"/><ConfigurationChange changeAction="MODIFY" changeReason="" timestamp="2018-08-21T12:46:05.099+03:00" user="Administrator"/></ConfigurationChanges></StateDefinition></StateDefinitions></Entities>
