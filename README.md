@@ -14,4 +14,4 @@ Documentation is maintained in a PDF specific for each release.
 
 Download the extension from the Releases section above, link here for ease of use: https://github.com/PTCInc/thingworx-gitbackup-extension/releases .
 
-This Extension is provided as-is and without warranty or support. It is not part of the PTC product suite. Users are free to use, fork and modify them at their own risk. Community contributions are welcomed and can be accepted based on their content.
+This Extension is provided as-is and without warranty or support. It is not part of the PTC product suite. This project is licensed under the terms of the MIT license.
