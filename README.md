@@ -1,4 +1,4 @@
-# thingworx-gitbackup-extension
+# ThingWorx GitBackup Extension
 [Unofficial/Not Supported] Contains the code of the ThingWorx GitBackup Extension built on Extension SDK version 8.5.0 (not provided here)
 
 This is an Ant Eclipse (Version: 2019-09 R4.13.0) project that uses the ThingWorx Eclipse plugin, available in the PTC Marketplace.
