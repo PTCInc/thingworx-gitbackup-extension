@@ -60,6 +60,7 @@ import com.thingworx.metadata.annotations.ThingworxServiceResult;
 import com.thingworx.relationships.RelationshipTypes.ThingworxRelationshipTypes;
 import com.thingworx.resources.entities.EntityServices;
 import com.thingworx.security.users.User;
+import com.thingworx.system.ContextType;
 import com.thingworx.things.Thing;
 import com.thingworx.things.repository.FileRepositoryThing;
 
@@ -130,16 +131,16 @@ public class GitBackupTemplate extends Thing {
 	}
 	
 	@Override
-	protected void stopThing() throws Exception
+	protected void stopThing(ContextType ctx) throws Exception
 	{
 		Git Mygit = GetRepository();
 		Mygit.getRepository().close();
 		Mygit.close();
-		super.stopThing();
+		super.stopThing(null);
 	}
 	
 	@Override
-	protected void initializeThing() throws Exception {
+	protected void initializeThing(ContextType ctx) throws Exception {
 		
 		// Initialize internal fields based on the Configuration Table
 		this.str_User = ((String) getConfigurationSetting(Const.str_ConfTableName, Const.str_User));
@@ -161,7 +162,7 @@ public class GitBackupTemplate extends Thing {
 				Const.str_ProxyPort));
 		
 		
-		super.initializeThing();
+		super.initializeThing(null);
 		
 		
 		ProxySelector.setDefault(new ProxySelector() {
