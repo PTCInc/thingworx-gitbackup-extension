@@ -81,7 +81,7 @@ import com.thingworx.types.primitives.StringPrimitive;
 						"friendlyName:Commit Name", "defaultValue:John Doe" }),
 
 				@ThingworxFieldDefinition(name = Const.str_CommitEmail, description = "", baseType = "STRING", ordinal = 3, aspects = {
-						"friendlyName:Commit Email", "defaultValue: jdoe@ptc.com" }),
+						"friendlyName:Commit Email", "defaultValue:jdoe@ptc.com" }),
 
 				@ThingworxFieldDefinition(name = Const.str_GitRepoURL, description = "", baseType = "STRING", ordinal = 4, aspects = {
 						"defaultValue:https://bitbucket.org/username/reponame", "friendlyName:Git Repo URL" }),
@@ -102,7 +102,9 @@ import com.thingworx.types.primitives.StringPrimitive;
 				@ThingworxFieldDefinition(name = Const.str_ProxyURL, description = "The HTTP proxy used for connection to the remote; leave blank if not used ", baseType = "STRING", ordinal = 9, aspects = {
 						"friendlyName:Proxy URL", "defaultValue:proxyHostName" }),
 				@ThingworxFieldDefinition(name = Const.str_ProxyPort, description = "Proxy Port", baseType = "INTEGER", ordinal = 10, aspects = {
-						"friendlyName:Proxy Port", "defaultValue:0" })
+						"friendlyName:Proxy Port", "defaultValue:0" }),
+				@ThingworxFieldDefinition(name = Const.str_LocalizationTokensPrefix, description = "Prefix used for exporting Localization tokens", baseType = "STRING", ordinal = 10, aspects = {
+						"friendlyName:Localization Tokens Prefix", "defaultValue:prefix" }),
 				
 				
 				//,@ThingworxFieldDefinition(name = Const.str_DefaultProjectToExport, description = "", baseType = "STRING", ordinal = 8, aspects = {
@@ -138,6 +140,7 @@ public class GitBackupTemplate extends Thing {
 	
 	@Override
 	protected void initializeThing() throws Exception {
+		
 		// Initialize internal fields based on the Configuration Table
 		this.str_User = ((String) getConfigurationSetting(Const.str_ConfTableName, Const.str_User));
 		this.str_Password = ((String) getConfigurationSetting(Const.str_ConfTableName, Const.str_Password));

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Entities>
     <ExtensionPackages>
-        <ExtensionPackage dependsOn="" description="This extension provides various GIT capabilities that allow storing ThingWorx applications in a third party Git server" minimumThingWorxVersion="8.2.0" name="GitBackupExtension" packageVersion="3.0.1" vendor="ThingWorx Labs">
+        <ExtensionPackage dependsOn="" description="This extension provides various GIT capabilities that allow storing ThingWorx applications in a third party Git server" minimumThingWorxVersion="8.4.0" name="GitBackupExtension" packageVersion="4.0.0" vendor="Open Source / Vladimir Rosu">
             <JarResources>
-                <FileResource description="" file="org.eclipse.jgit-5.4.0.201906121030-r.jar" type="JAR"/>
+                <FileResource description="" file="org.eclipse.jgit-5.8.1.202007141445-r.jar" type="JAR"/>
                 <FileResource description="" file="JavaEWAH-1.1.6.jar" type="JAR"/>
-                <FileResource description="" file="jsch-0.1.54.jar" type="JAR"/>
                 <FileResource description="" file="gitbackupextension.jar" type="JAR"/>
-                <FileResource description="" file="bcpg-jdk15on-162.jar" type="JAR"/>
+                <FileResource description="" file="jsch-0.1.55.jar" type="JAR"/>
+                <FileResource description="" file="bcpg-jdk15on-1.66.jar" type="JAR"/>
             </JarResources>
         </ExtensionPackage>
     </ExtensionPackages>
@@ -78,6 +78,30 @@
                             <name><![CDATA[Initial branch]]></name>
                             <usage/>
                             <value><![CDATA[Initial branch]]></value>
+                        </Row>
+                        <Row>
+                            <context/>
+                            <name><![CDATA[Use Proxy?]]></name>
+                            <usage/>
+                            <value><![CDATA[Use Proxy?]]></value>
+                        </Row>
+                        <Row>
+                            <context/>
+                            <name><![CDATA[Proxy URL]]></name>
+                            <usage/>
+                            <value><![CDATA[Proxy URL]]></value>
+                        </Row>
+                        <Row>
+                            <context/>
+                            <name><![CDATA[Proxy Port]]></name>
+                            <usage/>
+                            <value><![CDATA[Proxy Port]]></value>
+                        </Row>
+                        <Row>
+                            <context/>
+                            <name><![CDATA[Localization Tokens Prefix]]></name>
+                            <usage/>
+                            <value><![CDATA[Localization Tokens Prefix]]></value>
                         </Row>
                     </Rows>
                 </ConfigurationTable>

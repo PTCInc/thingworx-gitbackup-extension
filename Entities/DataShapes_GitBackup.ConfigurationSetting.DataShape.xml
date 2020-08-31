@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Entities
- build="b441"
+ build="b103"
  majorVersion="8"
- minorVersion="3"
- modelPersistenceProviderPackage="H2PersistenceProviderPackage"
- revision="1"
- schemaVersion="1030"
- universal="">
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="5"
+ schemaVersion="1054"
+ universal="password">
     <DataShapes>
         <DataShape
          aspect.isEditableExtensionObject="true"
@@ -15,7 +15,7 @@
          description=""
          documentationContent=""
          homeMashup=""
-         lastModifiedDate="2019-07-02T11:08:05.385+03:00"
+         lastModifiedDate="2020-08-28T06:20:20.701-07:00"
          name="GitBackup.ConfigurationSetting.DataShape"
          projectName="GitBackup"
          tags="">
@@ -70,6 +70,12 @@
                  description=""
                  name="GitRepoURL"
                  ordinal="4"></FieldDefinition>
+                <FieldDefinition
+                 aspect.isPrimaryKey="false"
+                 baseType="STRING"
+                 description="prefix used for exporting Localization Tokens"
+                 name="LocalizationTokensPrefix"
+                 ordinal="12"></FieldDefinition>
                 <FieldDefinition
                  baseType="PASSWORD"
                  description=""

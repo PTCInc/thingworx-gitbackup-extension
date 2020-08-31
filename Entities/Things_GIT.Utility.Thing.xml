@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Entities
- build="b90"
+ build="b103"
  majorVersion="8"
  minorVersion="5"
  modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
- revision="2"
- schemaVersion="1052"
+ revision="5"
+ schemaVersion="1054"
  universal="password">
     <Things>
         <Thing
          aspect.isEditableExtensionObject="true"
          aspect.isExtension="true"
-         description=""
+         description="Contains services required for working with the GitBackup things, but which don't make sense to be present at the Git thing level."
          documentationContent=""
          effectiveThingPackage="ConfiguredThing"
          enabled="true"
          homeMashup=""
          identifier=""
-         lastModifiedDate="2020-01-07T04:18:01.082-08:00"
+         lastModifiedDate="2020-08-28T08:09:44.325-07:00"
          name="GIT.Utility.Thing"
          projectName="GitBackup"
          published="false"
@@ -64,6 +64,36 @@
                      isLocalOnly="false"
                      isOpen="false"
                      isPrivate="false"
+                     name="AddEntitiesToExportList">
+                        <ResultType
+                         aspect.dataShape="SpotlightSearch"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.dataShape="SpotlightSearch"
+                             baseType="INFOTABLE"
+                             description=""
+                             name="existingEntities"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.dataShape="SpotlightSearch"
+                             baseType="INFOTABLE"
+                             description=""
+                             name="newEntitiesToExport"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
                      name="AddNewRepo">
                         <ResultType
                          baseType="NOTHING"
@@ -97,6 +127,11 @@
                              description=""
                              name="InitialBranch"
                              ordinal="9"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="prefix used for exporting Localization Tokens"
+                             name="LocalizationTokensPrefix"
+                             ordinal="13"></FieldDefinition>
                             <FieldDefinition
                              baseType="STRING"
                              description=""
@@ -218,6 +253,39 @@
                      isLocalOnly="false"
                      isOpen="false"
                      isPrivate="false"
+                     name="GetProjectEntities">
+                        <ResultType
+                         aspect.dataShape="SpotlightSearch"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="entityName"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="entityType"
+                             ordinal="4"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="project"
+                             ordinal="2"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
                      name="GetRepoConfiguration">
                         <ResultType
                          aspect.dataShape="GitBackup.Configuration.DataShape"
@@ -231,6 +299,33 @@
                              description=""
                              name="GitThingName"
                              ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="This will import an entity in the system."
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="ImportEntity">
+                        <ResultType
+                         baseType="NOTHING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="relative to the repository"
+                             name="entityPath"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="FileRepositoryName"
+                             ordinal="2"></FieldDefinition>
                         </ParameterDefinitions>
                     </ServiceDefinition>
                     <ServiceDefinition
@@ -291,6 +386,36 @@
                              description="delay in seconds"
                              name="delay"
                              ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Removes entities from the export entity list"
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="RemoveEntitiesFromExportList">
+                        <ResultType
+                         aspect.dataShape="SpotlightSearch"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             aspect.dataShape="SpotlightSearch"
+                             baseType="INFOTABLE"
+                             description=""
+                             name="entitiesToRemove"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.dataShape="SpotlightSearch"
+                             baseType="INFOTABLE"
+                             description=""
+                             name="existingEntities"
+                             ordinal="2"></FieldDefinition>
                         </ParameterDefinitions>
                     </ServiceDefinition>
                     <ServiceDefinition
@@ -363,6 +488,11 @@
                             <FieldDefinition
                              baseType="STRING"
                              description=""
+                             name="LocalizationTokensPrefix"
+                             ordinal="11"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
                              name="Password"
                              ordinal="6"></FieldDefinition>
                             <FieldDefinition
@@ -399,6 +529,54 @@
                     <ServiceImplementation
                      description=""
                      handlerName="Script"
+                     name="AddEntitiesToExportList">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        if (!existingEntities)
+                                        	existingEntities = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                        	infoTableName: "result" /* STRING */,
+                                        	dataShapeName: "SpotlightSearch" /* DATASHAPENAME */
+                                        });
+                                        
+                                        var tableLength = newEntitiesToExport.rows.length;
+                                        for (var x=0; x < tableLength; x++) {
+                                            var row = newEntitiesToExport.rows[x];
+                                            existingEntities.Delete(row);
+                                        
+                                        }
+                                        
+                                        
+                                        var result = Resources["InfoTableFunctions"].Union({
+                                        	t1: existingEntities /* INFOTABLE */,
+                                        	t2: newEntitiesToExport /* INFOTABLE */
+                                        });
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
                      name="AddNewRepo">
                         <ConfigurationTables>
                             <ConfigurationTable
@@ -419,50 +597,47 @@
                                     <Row>
                                         <code>
                                         <![CDATA[
-                                        if (RepoName!=null&&GitRepoURL!=null)
-                                        {
-                                        // no return
-                                        Resources["EntityServices"].CreateThing({
-                                        	name: RepoName /* STRING */,
-                                        	description: "Git Repository created by UI at " + new Date() /* STRING */,
-                                        	thingTemplateName: "GitBackupTemplate" /* THINGTEMPLATENAME */,
-                                        	tags: undefined /* TAGS */
-                                        });
+                                        if (RepoName != null && GitRepoURL != null) {
+                                        	// no return
+                                        	Resources["EntityServices"].CreateThing({
+                                        		name: RepoName /* STRING */ ,
+                                        		description: "Git Repository created by user "+Resources["CurrentSessionInfo"].GetCurrentUser()+" at " + new Date() /* STRING */ ,
+                                        		thingTemplateName: "GitBackupTemplate" /* THINGTEMPLATENAME */ ,
+                                        		tags: undefined /* TAGS */
+                                        	});
                                         
-                                        Things[RepoName].EnableThing();
-                                        Things[RepoName].RestartThing();
+                                        	Things[RepoName].EnableThing();
+                                        	Things[RepoName].RestartThing();
                                         
-                                        // CreateInfoTableFromDataShape(infoTableName:STRING("InfoTable"), dataShapeName:STRING):INFOTABLE(GitBackup.ConfigurationSetting.DataShape)
-                                        var iftbl_Configuration = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
-                                        	infoTableName: "InfoTable",
-                                        	dataShapeName: "GitBackup.ConfigurationSetting.DataShape"
-                                        });
-                                         Things[RepoName].SetProjectName({
-                                        	projectName: "GitBackup" /* PROJECTNAME */
-                                        });
-                                        // GitBackup.ConfigurationSetting.DataShape entry object
-                                        var row_Config = new Object();
-                                        row_Config.FileRepository = FileRepo; // THINGNAME
-                                        row_Config.CommitName = CommitUser; // STRING
-                                        row_Config.User = User; // STRING
-                                        row_Config.CommitEmail = CommitEmail; // STRING
-                                        row_Config.GitRepoURL = GitRepoURL; // STRING
-                                        row_Config.RepoPathName = RepoPath; // STRING
-                                        row_Config.BranchName = InitialBranch; // STRING
-                                        row_Config.Password = encryptPropertyValue(Password);// PASSWORD
-                                        row_Config.UseProxy = UseProxy;
-                                            row_Config.ProxyURL = ProxyURL;
-                                        row_Config.ProxyPort = ProxyPort;
+                                        	// CreateInfoTableFromDataShape(infoTableName:STRING("InfoTable"), dataShapeName:STRING):INFOTABLE(GitBackup.ConfigurationSetting.DataShape)
+                                        	var iftbl_Configuration = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                        		infoTableName: "InfoTable",
+                                        		dataShapeName: "GitBackup.ConfigurationSetting.DataShape"
+                                        	});
+                                        	// GitBackup.ConfigurationSetting.DataShape entry object
+                                        	var row_Config = new Object();
+                                        	row_Config.FileRepository = FileRepo; // THINGNAME
+                                        	row_Config.CommitName = CommitUser; // STRING
+                                        	row_Config.User = User; // STRING
+                                        	row_Config.CommitEmail = CommitEmail; // STRING
+                                        	row_Config.GitRepoURL = GitRepoURL; // STRING
+                                        	row_Config.RepoPathName = RepoPath; // STRING
+                                        	row_Config.BranchName = InitialBranch; // STRING
+                                        	row_Config.Password = encryptPropertyValue(Password); // PASSWORD
+                                        	row_Config.UseProxy = UseProxy;
+                                        	row_Config.ProxyURL = ProxyURL;
+                                        	row_Config.ProxyPort = ProxyPort;
+                                        	row_Config.LocalizationTokensPrefix = LocalizationTokensPrefix;
                                         
-                                           
-                                        iftbl_Configuration.AddRow(row_Config);
-                                        // no return
-                                        Things[RepoName].SetConfigurationTable({
-                                        	configurationTable: iftbl_Configuration /* INFOTABLE */,
-                                        	persistent: true /* BOOLEAN */,
-                                        	tableName: "Configuration" /* STRING */
-                                        });
-                                        Things[RepoName].RestartThing();
+                                        
+                                        	iftbl_Configuration.AddRow(row_Config);
+                                        	// no return
+                                        	Things[RepoName].SetConfigurationTable({
+                                        		configurationTable: iftbl_Configuration /* INFOTABLE */ ,
+                                        		persistent: true /* BOOLEAN */ ,
+                                        		tableName: "Configuration" /* STRING */
+                                        	});
+                                        	Things[RepoName].RestartThing();
                                         }
                                         ]]>
                                         </code>
@@ -799,6 +974,90 @@
                     <ServiceImplementation
                      description=""
                      handlerName="Script"
+                     name="GetProjectEntities">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        if (project == undefined || project == "")
+                                        	throw "Can not retrieve the entities that are part of the Project. The project name was not specified or it's empty";
+                                        if (!Projects[project])
+                                        	throw "Can not retrieve the entities that are part of the Project. Project " + project + " is not found";
+                                        
+                                        
+                                        var params = {
+                                        	maxItems: 10000 /* NUMBER */,
+                                        	searchExpression: undefined /* STRING */,
+                                        	types: undefined /* JSON */,
+                                        	withPermissions: undefined /* BOOLEAN */,
+                                        	endDate: undefined /* DATETIME */,
+                                        	aspects: undefined /* JSON */,
+                                        	excludedAspects: undefined /* JSON */,
+                                        	tags: undefined /* TAGS */,
+                                        	thingTemplates: undefined /* JSON */,
+                                        	searchDescriptions: undefined /* BOOLEAN */,
+                                        	thingShapes: undefined /* JSON */,
+                                        	sortBy: "lastModifiedDate" /* STRING */,
+                                        	isAscending: false /* BOOLEAN */,
+                                        	projectName: project /* PROJECTNAME */,
+                                        	maxSearchItems: undefined /* NUMBER */,
+                                        	startDate: undefined /* DATETIME */
+                                        };
+                                        
+                                        // result: INFOTABLE dataShape: SpotlightSearch
+                                        var result = Resources["SearchFunctions"].SpotlightSearch(params);
+                                        
+                                        
+                                        
+                                        if (entityName != undefined && entityName != "") {
+                                        	result = Resources["InfoTableFunctions"].Query({
+                                        		t: result /* INFOTABLE */ ,
+                                        		query: {
+                                        			"filters": {
+                                        				"type": "LIKE",
+                                        				"fieldName": "name",
+                                        				"value": "*"+entityName+"*"
+                                        			}
+                                        		}
+                                        	});
+                                        }
+                                        if (entityType != undefined && entityType != "") {
+                                        	result = Resources["InfoTableFunctions"].Query({
+                                        		t: result /* INFOTABLE */ ,
+                                        		query: {
+                                        			"filters": {
+                                        				"type": "LIKE",
+                                        				"fieldName": "type",
+                                        				"value": "*"+entityType+"*"
+                                        			}
+                                        		}
+                                        	});
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
                      name="GetRepoConfiguration">
                         <ConfigurationTables>
                             <ConfigurationTable
@@ -841,7 +1100,64 @@
                                         newEntry.ProxyURL = iftbl_Cfg.getRow(0).ProxyURL;
                                         newEntry.ProxyPort = iftbl_Cfg.getRow(0).ProxyPort;
                                         newEntry.Password = iftbl_Cfg.getRow(0).Password; // PASSWORD
+                                        newEntry.LocalizationTokensPrefix = iftbl_Cfg.getRow(0).LocalizationTokensPrefix;
                                         result.AddRow(newEntry);
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="ImportEntity">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        logger.warn("Started single entity import.");
+                                        //1. Import entity 
+                                        var appKey = ApplicationKeys["GitExtensionAppKey"].GetKeyID();
+                                        var URL = Things["ExtensionImportTargets"].importTargets.getRow(0).baseURL+"/Importer?IgnoreBadValueStreamData=false&WithSubsystems=false&overwritePropertyValues=true&purpose=import&usedefaultdataprovider=true";
+                                        var params = {
+                                        	proxyScheme: undefined /* STRING */,
+                                        	headers: {"appKey": appKey, "X-XSRF-TOKEN":"TWX-XSRF-TOKEN-VALUE"} /* JSON */,
+                                        	ignoreSSLErrors: true /* BOOLEAN */,
+                                        	useNTLM: undefined /* BOOLEAN */,
+                                        	partsToSend: undefined /* INFOTABLE */,
+                                        	workstation: undefined /* STRING */,
+                                        	useProxy: undefined /* BOOLEAN */,
+                                        	repository: FileRepositoryName /* STRING */,
+                                        	proxyHost: undefined /* STRING */,
+                                        	url: URL /* STRING */,
+                                        	timeout: undefined /* NUMBER */,
+                                        	proxyPort: undefined /* INTEGER */,
+                                        	password: undefined /* STRING */,
+                                        	pathOnRepository: entityPath /* STRING */,
+                                        	domain: undefined /* STRING */,
+                                        	username: undefined /* STRING */
+                                        };
+                                        
+                                        // result: JSON
+                                        var result = Resources["ContentLoaderFunctions"].PostMultipart(params);
+                                        logger.warn("Finished importing single Entity "+entityPath+".");
                                         ]]>
                                         </code>
                                     </Row>
@@ -1049,6 +1365,46 @@
                     <ServiceImplementation
                      description=""
                      handlerName="Script"
+                     name="RemoveEntitiesFromExportList">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        if (existingEntities && existingEntities.getRowCount() > 0) {
+                                        
+                                        	var tableLength = entitiesToRemove.rows.length;
+                                        	for (var x = 0; x < tableLength; x++) {
+                                        		var row = entitiesToRemove.rows[x];
+                                        		existingEntities.Delete(row);
+                                        
+                                        	}
+                                            result = existingEntities;
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
                      name="SetGitUserExtensionsProperties">
                         <ConfigurationTables>
                             <ConfigurationTable
@@ -1136,6 +1492,7 @@
                                         	row_Config.UseProxy = UseProxy;
                                         	row_Config.ProxyURL = ProxyURL;
                                         	row_Config.ProxyPort = ProxyPort;
+                                            row_Config.LocalizationTokensPrefix=LocalizationTokensPrefix;
                                         
                                         	iftbl_ConfigurationNew.AddRow(row_Config);
                                         

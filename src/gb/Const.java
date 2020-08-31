@@ -12,6 +12,7 @@ public final class Const {
 	public final static String str_RepoPathName = "RepoPathName";
 	public final static String str_InitialBranch = "BranchName";
 	public final static String str_DefaultProjectToExport = "DefaultExportProject";
+	public final static String str_LocalizationTokensPrefix = "LocalizationTokensPrefix";
 	//PlatformInfo property Names
 	public final static String str_PlatformInfo_URLPropertyName="URL";
 	public final static String str_PlatformInfo_AppKeyPropertyName = "AppKey";

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Entities
- build="b90"
+ build="b103"
  majorVersion="8"
  minorVersion="5"
  modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
- revision="1"
- schemaVersion="1051"
+ revision="5"
+ schemaVersion="1054"
  universal="password">
     <ThingShapes>
         <ThingShape
@@ -15,7 +15,7 @@
          description="This Utility shape is used to add useful javascript functionality to the GitBackup Things, which are built in Java."
          documentationContent=""
          homeMashup=""
-         lastModifiedDate="2020-01-08T00:38:39.046-08:00"
+         lastModifiedDate="2020-08-31T04:57:13.486-07:00"
          name="Git.Utility.ThingShape"
          projectName="GitBackup"
          tags="">
@@ -33,6 +33,28 @@
                  ordinal="2"></PropertyDefinition>
             </PropertyDefinitions>
             <ServiceDefinitions>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description=""
+                 isAllowOverride="false"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="ExportLocalizationToken">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions>
+                        <FieldDefinition
+                         baseType="STRING"
+                         description=""
+                         name="prefix"
+                         ordinal="1"></FieldDefinition>
+                    </ParameterDefinitions>
+                </ServiceDefinition>
                 <ServiceDefinition
                  aspect.isAsync="false"
                  category=""
@@ -58,7 +80,7 @@
                 <ServiceDefinition
                  aspect.isAsync="false"
                  category=""
-                 description="Wrapper for the ExportToSourceControl service."
+                 description="Wrapper for the ExportToSourceControl service.&#xA;BE WARNED: this service will clean ALL your project files with the lastModifiedDate and PersistanceProvider. This will happen regardless of what files you actually changed."
                  isAllowOverride="false"
                  isLocalOnly="false"
                  isOpen="false"
@@ -70,6 +92,12 @@
                      name="result"
                      ordinal="0"></ResultType>
                     <ParameterDefinitions>
+                        <FieldDefinition
+                         aspect.dataShape="SpotlightSearch"
+                         baseType="INFOTABLE"
+                         description="Optional; if not set all project entities will be exported"
+                         name="EntitiesToExport"
+                         ordinal="3"></FieldDefinition>
                         <FieldDefinition
                          baseType="BOOLEAN"
                          description=""
@@ -186,6 +214,22 @@
                 <ServiceDefinition
                  aspect.isAsync="false"
                  category=""
+                 description="Removes the ConfigurationTableDefinitions to allow compatibility with 8.2. This service should be used only if you're doing crossplatform development between 8.5 and 8.2/8.3. Enable or disable in the ExportProjectEntities services"
+                 isAllowOverride="false"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="RemoveConfigurationTableDefinitions">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions></ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
                  description="Removes the lastModifiedDate. Change history is already removed by ExportToSourceControlEntities"
                  isAllowOverride="false"
                  isLocalOnly="false"
@@ -199,10 +243,199 @@
                      ordinal="0"></ResultType>
                     <ParameterDefinitions></ParameterDefinitions>
                 </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Removes the mashup preview tag to allow compatibility with 8.2. This service should be used only if you're doing crossplatform development between 8.5 and 8.2/8.3"
+                 isAllowOverride="false"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="RemoveMashupPreviewTag">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions></ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="Removes the modelPersistenceProviderPackage."
+                 isAllowOverride="false"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="RemoveModelPersistenceProviderPackage">
+                    <ResultType
+                     baseType="NOTHING"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions></ParameterDefinitions>
+                </ServiceDefinition>
             </ServiceDefinitions>
             <EventDefinitions></EventDefinitions>
             <ServiceMappings></ServiceMappings>
             <ServiceImplementations>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="ExportLocalizationToken">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    //Created by Tanguy Parmentier / PTC
+                                    
+                                    //1. Initialize the Repository name and subfolder needed for subsequent operations
+                                    var iftbl_Config = me.GetConfiguration();
+                                    var strRepo = iftbl_Config.FileRepository;
+                                    if (prefix==undefined||prefix=="")
+                                    prefix = iftbl_Config.LocalizationTokensPrefix;
+                                    
+                                    var str_RepoPath = iftbl_Config.FileRepoPath + "/LocalizationTables" + "/" + prefix;
+                                    try {
+                                    	//2. Export LocalizationTables to that specific path
+                                    	Resources["SourceControlFunctions"].ExportSourceControlledEntities({
+                                    		path: str_RepoPath /* STRING */ ,
+                                    		repositoryName: strRepo,
+                                    		collection: "LocalizationTables" /* PROJECTNAME */
+                                    	});
+                                    
+                                    	//3. Create the temporary infotable that stores all the files for processing. This variable is used in the function called next line.
+                                    	var iftbl_FileList = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                    		infoTableName: "InfoTable",
+                                    		dataShapeName: "FileSystemFile"
+                                    	});
+                                    	//4. Populate the iftbl_FileList with all the exported localization tables
+                                    	GetFiles(str_RepoPath);
+                                    	//result = iftbl_FileList;
+                                    	var int_modifiedCount = 0;
+                                    	//5. For each of the files that we found, we load the txt content in memory, remove the tags which don't contain our prefix, the lastModified date and persistenceProvider, and save them back
+                                    	var tableLengthLocTbl = iftbl_FileList.rows.length;
+                                    	for (var x = 0; x < tableLengthLocTbl; x++) {
+                                    		var file = iftbl_FileList.rows[x];
+                                    		if (file.name == "System.xml") {
+                                    			//Remove and skip
+                                    			Things[strRepo].DeleteFile({
+                                    				path: file.path /* STRING */
+                                    			});
+                                    			continue;
+                                    		}
+                                    
+                                    		//5.1 Get the content       
+                                    		var path = file.path;
+                                    		var str_XMLcontent = Things[strRepo].LoadText({
+                                    			path: path
+                                    		});
+                                    		//5.2 Remove the lastModifiedDate
+                                    		if (str_XMLcontent.indexOf("lastModifiedDate=\"") != -1) {
+                                    			//5.3.  Find the beginning index. This belongs to the first new line character _before_ lastModifiedDate (needed to delete the whole line)
+                                    			var int_BeginIndex = str_XMLcontent.lastIndexOf("\n", str_XMLcontent.indexOf("lastModifiedDate=\""));
+                                    			//5.4.  Find the ending index 
+                                    			var int_EndIndex = str_XMLcontent.indexOf("\n", int_BeginIndex + 1);
+                                    			//5.5. Build the modified string via concatenating two strings
+                                    			str_XMLcontent = str_XMLcontent.substring(0, int_BeginIndex) + str_XMLcontent.substring(int_EndIndex);
+                                    		}
+                                    		//5.3. Remove the PersistanceProvidePackage
+                                    		var str_ModPersPackage = "modelPersistenceProviderPackage=\"";
+                                    		if (str_XMLcontent.indexOf(str_ModPersPackage) != -1) {
+                                    			//5.3.  Find the beginning index. This belongs to the first new line character _before_ lastModifiedDate (needed to delete the whole line)
+                                    			var int_BeginIndex = str_XMLcontent.lastIndexOf("\n", str_XMLcontent.indexOf(str_ModPersPackage));
+                                    			//5.4.  Find the ending index 
+                                    			var int_EndIndex = str_XMLcontent.indexOf("\n", int_BeginIndex + 1);
+                                    			//5.5. Build the modified string via concatenating two strings
+                                    			str_XMLcontent = str_XMLcontent.substring(0, int_BeginIndex) + str_XMLcontent.substring(int_EndIndex);
+                                    		}
+                                    		//5.4 Remove the unneeded tags
+                                    		var rowsIndex = str_XMLcontent.indexOf("<Rows>") + 6;
+                                    		var endRowsIndex = str_XMLcontent.indexOf("</Rows>");
+                                    		str_modifiedXMLcontent = str_XMLcontent.substring(0, rowsIndex) + str_XMLcontent.substring(endRowsIndex);
+                                    		var attrName = "<Row>";
+                                    		var attrNameEnd = "</Row>";
+                                    		var foundNumber = 0;
+                                    		//processing a max of 10000 localization tokens per file
+                                    		for (var i = 0; i < 10000; i++) {
+                                    			var startIndex = str_XMLcontent.indexOf(attrName);
+                                    			var prefixIndex = str_XMLcontent.indexOf(prefix);
+                                    			if (startIndex == -1 || prefixIndex == -1) {
+                                    				//logger.trace("Break after iteration " + i);
+                                    				break;
+                                    			}
+                                    			var endIndex = str_XMLcontent.indexOf(attrNameEnd) + (attrNameEnd.length);
+                                    			var nameContent = str_XMLcontent.substring(startIndex, endIndex);
+                                    			//logger.trace("content for iteration " + i + " " +nameContent);
+                                    			if (nameContent.indexOf(prefix) != -1) {				
+                                    				str_modifiedXMLcontent = str_modifiedXMLcontent.substring(0, rowsIndex) + nameContent + str_modifiedXMLcontent.substring(rowsIndex);
+                                    				foundNumber++;
+                                    			}
+                                    			str_XMLcontent = str_XMLcontent.substring(endIndex);
+                                    
+                                    		}
+                                    		//5.5. Save the modified file
+                                    		Things[strRepo].SaveText({
+                                    			path: path,
+                                    			content: str_modifiedXMLcontent
+                                    		});
+                                    		logger.warn('Succesfully exported Localization Tables, found '+foundNumber  + ' localization tokens matching prefix  ' + prefix);
+                                    	}
+                                    } catch (err) {
+                                    	throw err + err.stack;
+                                    }
+                                    
+                                    //3. Declare recursive function that builds a list with all the Localization Table XML files that are present in the subfolder corresponding to this GitBackup Thing.
+                                    function GetFiles(path) {
+                                    	//The iftbl_CurrentPathFiles is a variable initialized before calling this function
+                                    	//3.1. Adds all the files found in the root folder, only when you are in LocalizationTable folder
+                                    	var pathCheck = "" + path;
+                                    	if (path.indexOf("LocalizationTables") != -1) {
+                                    		//3.1.1 Lists the current path XML Localization Tables
+                                    		var iftbl_CurrentPathFiles = Things[strRepo].ListFiles({
+                                    			path: path,
+                                    			nameMask: "*.xml"
+                                    		});
+                                    		//3.2. Joins the found tables with the previously found files (this works recursively)
+                                    		iftbl_FileList = Resources["InfoTableFunctions"].Union({
+                                    			t1: iftbl_CurrentPathFiles,
+                                    			t2: iftbl_FileList
+                                    		});
+                                    	}
+                                    	//3.2 For each of the folders found in the path, we call recursively this function
+                                    	var dirs = Things[strRepo].ListDirectories({
+                                    		path: path,
+                                    		nameMask: undefined
+                                    	});
+                                    	//3.3 If folders exist, for each of them we call recursively this function
+                                    	if (dirs && dirs.rows.length > 0) {
+                                    		for (var j = 0; j < dirs.rows.length; j++) {
+                                    			GetFiles(dirs.rows[j].path);
+                                    		}
+                                    	}
+                                    }
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
                 <ServiceImplementation
                  description=""
                  handlerName="Script"
@@ -395,19 +628,123 @@
                                     <code>
                                     <![CDATA[
                                     //Proceed only if the input parameters are valid
-                                    if (ProjectName && ProjectName != "" && includeDependents!=undefined) {
-                                    	logger.warn("Started exporting source controlled entities for Project: "+ProjectName);
-                                        //1. Get the configuration parameters that are needed as input for the ExportSourceControlledEntities
-                                        var iftbl_Config = me.GetConfiguration();
+                                    var str_tempExportFolder = "a" + dateFormat(new Date(), "yyyyMMddHHmmss");
+                                    
+                                    var bool_ExportSpecificEntities = false;
+                                    
+                                    if (ProjectName == undefined || ProjectName == "")
+                                    	throw "Error exporting Entities: No project name was provided";
+                                    if (includeDependents == undefined)
+                                    	includeDependents = false;
+                                    
+                                    
+                                    if (EntitiesToExport != undefined && EntitiesToExport.getRowCount() > 0)
+                                    	bool_ExportSpecificEntities = true;
+                                    
+                                    if (bool_ExportSpecificEntities == true) {
+                                    	logger.warn("Started exporting subset of " + EntitiesToExport.getRowCount() + " entities for Project: "+ProjectName);
+                                    	ExportSpecificEntities(EntitiesToExport);
+                                    } else {
+                                    	logger.warn("Started exporting all source controlled entities for Project: " + ProjectName);
+                                    	//1. Get the configuration parameters that are needed as input for the ExportSourceControlledEntities
+                                    	var iftbl_Config = me.GetConfiguration();
                                     	Resources["SourceControlFunctions"].ExportSourceControlledEntities({
                                     		path: iftbl_Config.FileRepoPath,
                                     		includeDependents: includeDependents,
                                     		repositoryName: iftbl_Config.FileRepository,
                                     		projectName: ProjectName
                                     	});
-                                        //2. Remove the lastModifiedDate
-                                        me.RemoveLastModifiedDate();
-                                        logger.warn("Finished exporting source controlled entities for Project: "+ProjectName);
+                                    
+                                    }
+                                    
+                                    //3. Remove the lastModifiedDate
+                                    me.RemoveLastModifiedDate();
+                                    //4. Remove the modelPersistenceProviderPackage; this is useful when you are working in the same version but different persistence providers are used;
+                                    me.RemoveModelPersistenceProviderPackage();
+                                    //ThingWorx imports files which do not have this attribute (verified in 8.5.4)
+                                    //5. Remove the ConfigurationTableDefinitions - ONLY ACTIVATE FOR 8.2
+                                    //me.RemoveConfigurationTableDefinitions();
+                                    //6. Remove the mashup preview tag - ONLY ACTIVATE FOR 8.2
+                                    //me.RemoveMashupPreviewTag();
+                                    bool_ExportSpecificEntities==true?logger.warn("Finished exporting subset of " +EntitiesToExport.getRowCount() + " entities for Project: "+ProjectName):logger.warn("Finished exporting all source controlled entities for Project: " + ProjectName);
+                                    
+                                    function ExportSpecificEntities(entityList) {
+                                    	//1. Export all the entities in a temporary folder
+                                    	var iftbl_Config = me.GetConfiguration();
+                                    	Resources["SourceControlFunctions"].ExportSourceControlledEntities({
+                                    		path: str_tempExportFolder,
+                                    		includeDependents: includeDependents,
+                                    		repositoryName: iftbl_Config.FileRepository,
+                                    		projectName: ProjectName,
+                                    		tags: undefined
+                                    	});
+                                    	//2. Move each entity file to the original filerepository path, overwriting the specified entity
+                                    	var tableLength = entityList.rows.length;
+                                    	for (var x = 0; x < tableLength; x++) {
+                                    		var row = entityList.rows[x];
+                                    		var str_EntityName = row.name;
+                                    		var str_EntityType = row.type;
+                                    		//Entities can have the same name across collections, so when we move them we must detect the full path (that includes the type)
+                                    		//the spotlight search returns only the type, and we must convert that to the collection name that is used when exporting
+                                    		switch (str_EntityType) {
+                                    			case "Project":
+                                    			case "Thing":
+                                    			case "ThingTemplate":
+                                    			case "ThingShape":
+                                    			case "DataShape":
+                                    			case "ModelTag":
+                                    			case "Network":
+                                    			case "IndustrialConnection":
+                                    			case "IntegrationConnector":
+                                    			case "Mashup":
+                                    			case "Master":
+                                    			case "MashupTemplate":
+                                    			case "Gadget":
+                                    			case "Dashboard":
+                                    			case "Menu":
+                                    			case "MediaEntity":
+                                    			case "StyleDefinition":
+                                    			case "StyleTheme":
+                                    			case "StateDefinition":
+                                    			case "DataTable":
+                                    			case "Stream":
+                                    			case "ValueStream":
+                                    			case "DataTag":
+                                    			case "PersistenceProvider":
+                                    			case "Blog":
+                                    			case "Wiki":
+                                    			case "UserGroup":
+                                    			case "User":
+                                    			case "Organization":
+                                    			case "ApplicationKey":
+                                    			case "DirectoryService":
+                                    			case "Authenticator":
+                                    			case "LocalizationTable":
+                                    			case "Resource":
+                                    			case "Subsystem":
+                                    				if (str_EntityType == "Wiki" || str_EntityType == "Blog" || str_EntityType == "ValueStream" || str_EntityType == "Stream" || str_EntityType == "DataTable" || str_EntityType == "IndustrialConnection" || str_EntityType == "IntegrationConnector")
+                                    					str_EntityType = "Thing";
+                                    				if (str_EntityType == "Master" || str_EntityType == "MashupTemplate" || str_EntityType == "Gadget")
+                                    					str_EntityType = "Mashup";
+                                    				if (str_EntityType == "MediaEntity")
+                                    					str_EntityType = "MediaEntitie";
+                                    				if (str_EntityType == "UserGroup")
+                                    					str_EntityType = "Group";
+                                    				str_EntityType += "s";
+                                    				Things[iftbl_Config.FileRepository].MoveFile({
+                                    					targetPath: iftbl_Config.FileRepoPath + "/" + ProjectName + "/" + str_EntityType + "/" + str_EntityName + ".xml" /* STRING */ ,
+                                    					overwrite: true /* BOOLEAN */ ,
+                                    					sourcePath: str_tempExportFolder + "/" + ProjectName + "/" + str_EntityType + "/" + str_EntityName + ".xml" /* STRING */
+                                    				});
+                                    				break;
+                                    			default:
+                                    				break;
+                                    		}
+                                    	}
+                                    	//3. Delete the tempory folder
+                                    	Things[iftbl_Config.FileRepository].DeleteFolder({
+                                    		path: str_tempExportFolder /* STRING */
+                                    	});
                                     }
                                     ]]>
                                     </code>
@@ -492,6 +829,7 @@
                                     newEntry.CommitUser = row.CommitName; // STRING
                                     newEntry.CommitEmail = row.CommitEmail; // STRING
                                     newEntry.InitialBranch = row.BranchName;
+                                    newEntry.LocalizationTokensPrefix = row.LocalizationTokensPrefix;
                                     result.AddRow(newEntry);
                                     ]]>
                                     </code>
@@ -644,6 +982,114 @@
                 <ServiceImplementation
                  description=""
                  handlerName="Script"
+                 name="RemoveConfigurationTableDefinitions">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description="Script"
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    //this function removes the lastModifiedDate attribute that is part of an entity exported by ThingWorx.
+                                    //in some cases this value was updated, but the actual content not, which led to "ghost" diffs showing in Git
+                                    //should be called after expporting a project via the Main mashup UI finalized.
+                                    //it is based on work by Moritz von Hasselbach (PTC)
+                                    
+                                    //1. Initialize the Repository name and subfolder needed for subsequent operations
+                                    var cfg = me.GetConfigurationTable({
+                                    	tableName: "Configuration"
+                                    });
+                                    var strRepo = cfg.FileRepository;
+                                    var str_RepoPath = cfg.RepoPathName;
+                                    
+                                    //2. Declare recursive function that builds a list with all the XML files that are present in the subfolder corresponding to this GitBackup Thing.
+                                    //It was not intended for Extensions or Data files.
+                                    function GetFiles(path) {
+                                    	//The iftbl_CurrentPathFiles is a variable initialized before calling this function
+                                    	//2.1. Adds all the files found in the root folder
+                                    	var iftbl_CurrentPathFiles = Things[strRepo].ListFiles({
+                                    		path: path,
+                                    		nameMask: "*.xml"
+                                    	});
+                                    
+                                    	//2.2. Joins the found files with the previously found files ( this works recursively)
+                                    	iftbl_FileList = Resources["InfoTableFunctions"].Union({
+                                    		t1: iftbl_CurrentPathFiles,
+                                    		t2: iftbl_FileList
+                                    	});
+                                    
+                                    	//2.3 For each of the folders found in the path, we call recursively this function
+                                    	var dirs = Things[strRepo].ListDirectories({
+                                    		path: path,
+                                    		nameMask: undefined
+                                    	});
+                                    
+                                    	//2.4 If folders exist, for each of them we call recursively this function
+                                    	if (dirs && dirs.rows.length > 0) {
+                                    		for (var j = 0; j < dirs.rows.length; j++) {
+                                    			GetFiles(dirs.rows[j].path);
+                                    		}
+                                    	}
+                                    }
+                                    
+                                    //3. Create the temporary infotable that stores all the files for processing. This variable is used in the function called next line.
+                                    var iftbl_FileList = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                    	infoTableName: "InfoTable",
+                                    	dataShapeName: "FileSystemFile"
+                                    });
+                                    //4. Call the function defined above
+                                    GetFiles(str_RepoPath);
+                                    
+                                    var int_modifiedCount=0;
+                                    //5. For each of the files that we found, we load the txt content in memory, remove the line with lastModified date, and save them back
+                                    for (var x = 0; x < iftbl_FileList.rows.length; x++) {
+                                    	var path = iftbl_FileList.rows[x].path;
+                                    	//5.1. Load the content of the entity as a text. LoadXML can not be used because it optimizes automatically the XML structure and removes useful formatting added by the ExportToSourceControlEntities. This would result in a dramatically changed file when saving it back.
+                                    	var str_XMLcontent = Things[strRepo].LoadText({
+                                    		path: path
+                                    	});
+                                    	//5.2. Find if the ConfigurationTableDefinitions is present or not. If it's not present, assume that it was already removed, and do not proceed any further
+                                    	var str_ConfTableDefinitions = "<ConfigurationTableDefinitions></ConfigurationTableDefinitions>";
+                                        if (str_XMLcontent.indexOf(str_ConfTableDefinitions) != -1) {
+                                    		//5.3.  Find the beginning index. This belongs to the first new line character _before_ lastModifiedDate (needed to delete the whole line)
+                                    		var int_BeginIndex = str_XMLcontent.lastIndexOf("\n", str_XMLcontent.indexOf(str_ConfTableDefinitions));
+                                    		//5.4.  Find the ending index 
+                                    		var int_EndIndex = str_XMLcontent.indexOf("\n", int_BeginIndex + 1);
+                                    		//5.5. Build the modified string via concatenating two strings
+                                    		var str_modifiedXMLcontent = str_XMLcontent.substring(0, int_BeginIndex) + str_XMLcontent.substring(int_EndIndex);
+                                    		//5.6. Save the modified file
+                                    		Things[strRepo].SaveText({
+                                    			path: path,
+                                    			content: str_modifiedXMLcontent
+                                    		});
+                                            //5.7. Increment the modified file count for logging purposes
+                                            int_modifiedCount++;
+                                    	}
+                                    }
+                                    //6. Write in the script log the total number of detected files and the number of the ones that were modified.
+                                    logger.warn("Total number of XML files found: "+iftbl_FileList.rows.length+" from which "+int_modifiedCount+" had a ConfigurationTableDefinition that was removed");
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
                  name="RemoveLastModifiedDate">
                     <ConfigurationTables>
                         <ConfigurationTable
@@ -743,6 +1189,222 @@
                                     }
                                     //6. Write in the script log the total number of detected files and the number of the ones that were modified.
                                     logger.warn("Total number of XML files found: "+iftbl_FileList.rows.length+" from which "+int_modifiedCount+" had a lastModifiedTimestamp that was removed");
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="RemoveMashupPreviewTag">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description="Script"
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    //this function removes the lastModifiedDate attribute that is part of an entity exported by ThingWorx.
+                                    //in some cases this value was updated, but the actual content not, which led to "ghost" diffs showing in Git
+                                    //should be called after expporting a project via the Main mashup UI finalized.
+                                    //it is based on work by Moritz von Hasselbach (PTC)
+                                    
+                                    //1. Initialize the Repository name and subfolder needed for subsequent operations
+                                    var cfg = me.GetConfigurationTable({
+                                    	tableName: "Configuration"
+                                    });
+                                    var strRepo = cfg.FileRepository;
+                                    var str_RepoPath = cfg.RepoPathName;
+                                    
+                                    //2. Declare recursive function that builds a list with all the XML files that are present in the subfolder corresponding to this GitBackup Thing.
+                                    //It was not intended for Extensions or Data files.
+                                    function GetFiles(path) {
+                                    	//The iftbl_CurrentPathFiles is a variable initialized before calling this function
+                                    	//2.1. Adds all the files found in the root folder
+                                    	var iftbl_CurrentPathFiles = Things[strRepo].ListFiles({
+                                    		path: path,
+                                    		nameMask: "*.xml"
+                                    	});
+                                    
+                                    	//2.2. Joins the found files with the previously found files ( this works recursively)
+                                    	iftbl_FileList = Resources["InfoTableFunctions"].Union({
+                                    		t1: iftbl_CurrentPathFiles,
+                                    		t2: iftbl_FileList
+                                    	});
+                                    
+                                    	//2.3 For each of the folders found in the path, we call recursively this function
+                                    	var dirs = Things[strRepo].ListDirectories({
+                                    		path: path,
+                                    		nameMask: undefined
+                                    	});
+                                    
+                                    	//2.4 If folders exist, for each of them we call recursively this function
+                                    	if (dirs && dirs.rows.length > 0) {
+                                    		for (var j = 0; j < dirs.rows.length; j++) {
+                                    			GetFiles(dirs.rows[j].path);
+                                    		}
+                                    	}
+                                    }
+                                    
+                                    //3. Create the temporary infotable that stores all the files for processing. This variable is used in the function called next line.
+                                    var iftbl_FileList = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                    	infoTableName: "InfoTable",
+                                    	dataShapeName: "FileSystemFile"
+                                    });
+                                    //4. Call the function defined above
+                                    GetFiles(str_RepoPath);
+                                    
+                                    var int_modifiedCount=0;
+                                    //5. For each of the files that we found, we load the txt content in memory, remove the line with lastModified date, and save them back
+                                    for (var x = 0; x < iftbl_FileList.rows.length; x++) {
+                                    	var path = iftbl_FileList.rows[x].path;
+                                    	//5.1. Load the content of the entity as a text. LoadXML can not be used because it optimizes automatically the XML structure and removes useful formatting added by the ExportToSourceControlEntities. This would result in a dramatically changed file when saving it back.
+                                    	var str_XMLcontent = Things[strRepo].LoadText({
+                                    		path: path
+                                    	});
+                                    	//5.2. Find if the modelPersistenceProviderPackage is present or not. If it's not present, assume that it was already removed, and do not proceed any further
+                                    	var str_MashupPreviewTag = "<preview></preview>";
+                                        if (str_XMLcontent.indexOf(str_MashupPreviewTag) != -1) {
+                                    		//5.3.  Find the beginning index. This belongs to the first new line character _before_ lastModifiedDate (needed to delete the whole line)
+                                    		var int_BeginIndex = str_XMLcontent.lastIndexOf("\n", str_XMLcontent.indexOf(str_MashupPreviewTag));
+                                    		//5.4.  Find the ending index 
+                                    		var int_EndIndex = str_XMLcontent.indexOf("\n", int_BeginIndex + 1);
+                                    		//5.5. Build the modified string via concatenating two strings
+                                    		var str_modifiedXMLcontent = str_XMLcontent.substring(0, int_BeginIndex) + str_XMLcontent.substring(int_EndIndex);
+                                    		//5.6. Save the modified file
+                                    		Things[strRepo].SaveText({
+                                    			path: path,
+                                    			content: str_modifiedXMLcontent
+                                    		});
+                                            //5.7. Increment the modified file count for logging purposes
+                                            int_modifiedCount++;
+                                    	}
+                                    }
+                                    //6. Write in the script log the total number of detected files and the number of the ones that were modified.
+                                    logger.warn("Total number of XML files found: "+iftbl_FileList.rows.length+" from which "+int_modifiedCount+" had a mashup preview tag that was removed");
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="RemoveModelPersistenceProviderPackage">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description="Script"
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    //this function removes the lastModifiedDate attribute that is part of an entity exported by ThingWorx.
+                                    //in some cases this value was updated, but the actual content not, which led to "ghost" diffs showing in Git
+                                    //should be called after expporting a project via the Main mashup UI finalized.
+                                    //it is based on work by Moritz von Hasselbach (PTC)
+                                    
+                                    //1. Initialize the Repository name and subfolder needed for subsequent operations
+                                    var cfg = me.GetConfigurationTable({
+                                    	tableName: "Configuration"
+                                    });
+                                    var strRepo = cfg.FileRepository;
+                                    var str_RepoPath = cfg.RepoPathName;
+                                    
+                                    //2. Declare recursive function that builds a list with all the XML files that are present in the subfolder corresponding to this GitBackup Thing.
+                                    //It was not intended for Extensions or Data files.
+                                    function GetFiles(path) {
+                                    	//The iftbl_CurrentPathFiles is a variable initialized before calling this function
+                                    	//2.1. Adds all the files found in the root folder
+                                    	var iftbl_CurrentPathFiles = Things[strRepo].ListFiles({
+                                    		path: path,
+                                    		nameMask: "*.xml"
+                                    	});
+                                    
+                                    	//2.2. Joins the found files with the previously found files ( this works recursively)
+                                    	iftbl_FileList = Resources["InfoTableFunctions"].Union({
+                                    		t1: iftbl_CurrentPathFiles,
+                                    		t2: iftbl_FileList
+                                    	});
+                                    
+                                    	//2.3 For each of the folders found in the path, we call recursively this function
+                                    	var dirs = Things[strRepo].ListDirectories({
+                                    		path: path,
+                                    		nameMask: undefined
+                                    	});
+                                    
+                                    	//2.4 If folders exist, for each of them we call recursively this function
+                                    	if (dirs && dirs.rows.length > 0) {
+                                    		for (var j = 0; j < dirs.rows.length; j++) {
+                                    			GetFiles(dirs.rows[j].path);
+                                    		}
+                                    	}
+                                    }
+                                    
+                                    //3. Create the temporary infotable that stores all the files for processing. This variable is used in the function called next line.
+                                    var iftbl_FileList = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                    	infoTableName: "InfoTable",
+                                    	dataShapeName: "FileSystemFile"
+                                    });
+                                    //4. Call the function defined above
+                                    GetFiles(str_RepoPath);
+                                    
+                                    var int_modifiedCount=0;
+                                    //5. For each of the files that we found, we load the txt content in memory, remove the line with lastModified date, and save them back
+                                    for (var x = 0; x < iftbl_FileList.rows.length; x++) {
+                                    	var path = iftbl_FileList.rows[x].path;
+                                    	//5.1. Load the content of the entity as a text. LoadXML can not be used because it optimizes automatically the XML structure and removes useful formatting added by the ExportToSourceControlEntities. This would result in a dramatically changed file when saving it back.
+                                    	var str_XMLcontent = Things[strRepo].LoadText({
+                                    		path: path
+                                    	});
+                                    	//5.2. Find if the modelPersistenceProviderPackage is present or not. If it's not present, assume that it was already removed, and do not proceed any further
+                                    	var str_ModPersPackage = "modelPersistenceProviderPackage=\"";
+                                        if (str_XMLcontent.indexOf(str_ModPersPackage) != -1) {
+                                    		//5.3.  Find the beginning index. This belongs to the first new line character _before_ lastModifiedDate (needed to delete the whole line)
+                                    		var int_BeginIndex = str_XMLcontent.lastIndexOf("\n", str_XMLcontent.indexOf(str_ModPersPackage));
+                                    		//5.4.  Find the ending index 
+                                    		var int_EndIndex = str_XMLcontent.indexOf("\n", int_BeginIndex + 1);
+                                    		//5.5. Build the modified string via concatenating two strings
+                                    		var str_modifiedXMLcontent = str_XMLcontent.substring(0, int_BeginIndex) + str_XMLcontent.substring(int_EndIndex);
+                                    		//5.6. Save the modified file
+                                    		Things[strRepo].SaveText({
+                                    			path: path,
+                                    			content: str_modifiedXMLcontent
+                                    		});
+                                            //5.7. Increment the modified file count for logging purposes
+                                            int_modifiedCount++;
+                                    	}
+                                    }
+                                    //6. Write in the script log the total number of detected files and the number of the ones that were modified.
+                                    logger.warn("Total number of XML files found: "+iftbl_FileList.rows.length+" from which "+int_modifiedCount+" had a modelPersistenceProviderPackage that was removed");
                                     ]]>
                                     </code>
                                 </Row>

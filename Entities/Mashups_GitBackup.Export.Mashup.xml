@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Entities
- build="b90"
+ build="b103"
  majorVersion="8"
  minorVersion="5"
  modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
- revision="2"
- schemaVersion="1052"
+ revision="5"
+ schemaVersion="1054"
  universal="password">
     <Mashups>
         <Mashup
@@ -17,7 +17,7 @@
          description="Shows when pressing the Export button. Contains various Export related functionality. It is generally a wrapper on top of standard ThingWorx Export functionality created to allow faster exporting."
          documentationContent=""
          homeMashup=""
-         lastModifiedDate="2020-01-07T04:40:21.628-08:00"
+         lastModifiedDate="2020-08-31T05:21:16.424-07:00"
          name="GitBackup.Export.Mashup"
          projectName="GitBackup"
          rows="0.0"
@@ -106,6 +106,18 @@
                     },
                     "RefreshInterval" : 0,
                     "Target" : "ExportProjectExtensions"
+                  }, {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "28f35cb3-182f-4297-b5f5-ef2527acc4ef",
+                    "Name" : "ExportLocalizationToken",
+                    "Parameters" : { },
+                    "Properties" : {
+                      "CustomSuccessMessage" : "Localization tokens exported successfully.",
+                      "ShowSuccessMessage" : true
+                    },
+                    "RefreshInterval" : 0,
+                    "Target" : "ExportLocalizationToken"
                   } ]
                 },
                 "Session" : {
@@ -153,6 +165,16 @@
                     "Characteristic" : "Services",
                     "Id" : "38598c35-2ac3-45f7-984f-6311614ddd6e",
                     "Name" : "Pause2",
+                    "Parameters" : {
+                      "delay" : 20
+                    },
+                    "RefreshInterval" : 0,
+                    "Target" : "Pause"
+                  }, {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "7efc3fd8-3d7e-40b1-997a-22e8a8ede676",
+                    "Name" : "Pause3",
                     "Parameters" : {
                       "delay" : 20
                     },
@@ -478,6 +500,261 @@
                 "TargetArea" : "UI",
                 "TargetId" : "expression-14",
                 "TargetSection" : ""
+              }, {
+                "Id" : "a9409941-c624-4274-a66e-23915752157f",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Entity",
+                  "SourcePropertyBaseType" : "PROJECTNAME",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "Project",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "entitypicker-16",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "navigation-49",
+                "TargetSection" : ""
+              }, {
+                "Id" : "020214f8-988d-40dd-9f99-faa31bbbf339",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "EntitiesToExport",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "Data",
+                  "TargetPropertyBaseType" : "INFOTABLE",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "navigation-49",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "infotableselector-50",
+                "TargetSection" : ""
+              }, {
+                "Id" : "67471362-a865-4e01-93fc-bea8860af38e",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "Text",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-51",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "navigation-49",
+                "TargetSection" : ""
+              }, {
+                "Id" : "bcf98ac9-e37f-4c1c-9cd8-01fa2c11d8e6",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "RowCount",
+                  "SourcePropertyBaseType" : "NUMBER",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "rowCount",
+                  "TargetPropertyBaseType" : "NUMBER",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "infotableselector-50",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-51",
+                "TargetSection" : ""
+              }, {
+                "Id" : "75f171d0-24d2-491c-bbca-9dc656307660",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "EntitiesToExport",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "TargetProperty" : "EntitiesToExport",
+                  "TargetPropertyBaseType" : "INFOTABLE",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "navigation-49",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "ExportProjectEntities",
+                "TargetSection" : "DynamicThingShapes_Git.Utility.ThingShape"
+              }, {
+                "Id" : "a784bf31-6bee-47f7-b88c-dd17ccb0e3e4",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Entity",
+                  "SourcePropertyBaseType" : "PROJECTNAME",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "ProjectName",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "entitypicker-16",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-52",
+                "TargetSection" : ""
+              }, {
+                "Id" : "9eeb1375-df03-432a-8185-f6a06a9aeb25",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "Visible",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-52",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "navigation-49",
+                "TargetSection" : ""
+              }, {
+                "Id" : "366a328f-5a04-41b4-9cab-f3356f026e73",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "Visible",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-52",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "button-20",
+                "TargetSection" : ""
+              }, {
+                "Id" : "64aa625d-a786-40b2-9765-298f90e0546b",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Entity",
+                  "SourcePropertyBaseType" : "PROJECTNAME",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "ProjectName",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "entitypicker-24",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-55",
+                "TargetSection" : ""
+              }, {
+                "Id" : "80aa9977-86ba-4f36-842a-cb7627856874",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "Visible",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-55",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "button-26",
+                "TargetSection" : ""
+              }, {
+                "Id" : "16da4180-16b5-48bb-94e3-aed1ebba470b",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "LocalizationTokensPrefix",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "Text",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetConfiguration",
+                "SourceSection" : "DynamicThingShapes_Git.Utility.ThingShape",
+                "TargetArea" : "UI",
+                "TargetId" : "textbox-68",
+                "TargetSection" : ""
+              }, {
+                "Id" : "50566a26-67a3-4046-9133-a4a11cff5bce",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "CustomClass",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "eventsrouter-64",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "button-60",
+                "TargetSection" : ""
+              }, {
+                "Id" : "fe505c88-f215-44ab-b881-5a9a8116e35c",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "Input1",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-69",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "eventsrouter-64",
+                "TargetSection" : ""
+              }, {
+                "Id" : "9484c446-b700-4ff6-a68d-c5f705953f91",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "Input2",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-70",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "eventsrouter-64",
+                "TargetSection" : ""
+              }, {
+                "Id" : "6f8cfc20-685d-4bda-bc68-0bed5fe52e92",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "Input3",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-71",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "eventsrouter-64",
+                "TargetSection" : ""
+              }, {
+                "Id" : "ac11267b-6b6a-43b8-90ae-e9c5b93b402e",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Text",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "prefix",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "textbox-68",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "ExportLocalizationToken",
+                "TargetSection" : "DynamicThingShapes_Git.Utility.ThingShape"
               } ],
               "DesignTimePermissions" : {
                 "Create" : [ ],
@@ -675,6 +952,60 @@
                 "EventTriggerId" : "ExportProjectExtensions",
                 "EventTriggerSection" : "DynamicThingShapes_Git.Utility.ThingShape",
                 "Id" : "f10d2f27-7e9e-45e0-b5f3-3c707cd5bf5b"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "DynamicThingShapes_Git.Utility.ThingShape",
+                "EventHandlerService" : "ExportLocalizationToken",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "button-60",
+                "EventTriggerSection" : "",
+                "Id" : "5387bc1f-a27b-4439-91bd-cefd95f3340b"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-69",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "button-60",
+                "EventTriggerSection" : "",
+                "Id" : "bda44031-4681-40d9-9948-2d68209bcdf4"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-70",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "ExportLocalizationToken",
+                "EventTriggerSection" : "DynamicThingShapes_Git.Utility.ThingShape",
+                "Id" : "5ef7d3d0-7593-41cd-8384-78994c658567"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_GIT.Utility.Thing",
+                "EventHandlerService" : "Pause3",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "ExportLocalizationToken",
+                "EventTriggerSection" : "DynamicThingShapes_Git.Utility.ThingShape",
+                "Id" : "51d1c9ec-4774-468f-aead-5bf852c8cb0a"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-71",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "Pause3",
+                "EventTriggerSection" : "Things_GIT.Utility.Thing",
+                "Id" : "7422c93a-936a-4f89-9362-494a200d99b1"
+              }, {
+                "EventHandlerArea" : "UI",
+                "EventHandlerId" : "expression-71",
+                "EventHandlerService" : "Evaluate",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "07c0f88d-3e50-432b-9eb4-a1160476109f"
               } ],
               "RunTimePermissions" : {
                 "permissions" : [ ]
@@ -722,7 +1053,7 @@
                     "Description" : "",
                     "ParameterName" : "GitThingName"
                   } ],
-                  "id_index" : 47,
+                  "id_index" : 71,
                   "supportsAutoResize" : true
                 },
                 "Widgets" : [ {
@@ -750,10 +1081,10 @@
                     "PctColumn6" : 1,
                     "PctColumn7" : 1,
                     "PctColumn8" : 1,
-                    "PctRow1" : 33.333333333333336,
-                    "PctRow2" : 33.333333333333336,
-                    "PctRow3" : 33.333333333333336,
-                    "PctRow4" : 33.333333333333336,
+                    "PctRow1" : 25,
+                    "PctRow2" : 25,
+                    "PctRow3" : 25.000000000000007,
+                    "PctRow4" : 25,
                     "PctRow5" : 0,
                     "PctRow6" : 0,
                     "PctRow7" : 0,
@@ -764,7 +1095,7 @@
                     "ResponsiveLayout" : true,
                     "RightSidebar" : false,
                     "RightSidebarWidth" : 0,
-                    "Rows" : 3,
+                    "Rows" : 4,
                     "ShowDataLoading" : true,
                     "Spacing" : 0,
                     "Top" : 140,
@@ -807,6 +1138,7 @@
                     "Widgets" : [ {
                       "Properties" : {
                         "Area" : "UI",
+                        "ContainerClass" : "",
                         "CustomClass" : "border-bottom1",
                         "DisplayName" : "panel-5",
                         "Height" : 200,
@@ -897,13 +1229,15 @@
                             "name" : "RepoPathName"
                           }, {
                             "BaseType" : "STRING",
+                            "BindingType" : "",
                             "Description" : "",
                             "ParameterName" : "FileRepository",
                             "bindingDirection" : "",
                             "bindingStatus" : false,
                             "isBindingSource" : false,
                             "isBindingTarget" : true,
-                            "name" : "FileRepository"
+                            "name" : "FileRepository",
+                            "propertyName" : "FileRepository"
                           } ]
                         },
                         "Widgets" : [ ]
@@ -943,6 +1277,7 @@
                     "Widgets" : [ {
                       "Properties" : {
                         "Area" : "UI",
+                        "ContainerClass" : "",
                         "CustomClass" : "border-bottom1 border-top1",
                         "DisplayName" : "panel-11",
                         "Height" : 200,
@@ -1078,9 +1413,9 @@
                           "HoverStyle" : "DefaultButtonHoverStyle",
                           "IconAlignment" : "left",
                           "Id" : "button-20",
-                          "Label" : "Export",
+                          "Label" : "Export entities",
                           "LastContainer" : false,
-                          "Left" : 600,
+                          "Left" : 628,
                           "ResponsiveLayout" : false,
                           "RoundedCorners" : true,
                           "ShowDataLoading" : true,
@@ -1092,7 +1427,7 @@
                           "Top" : 45,
                           "Type" : "button",
                           "Visible" : true,
-                          "Width" : 120,
+                          "Width" : 125,
                           "Z-index" : 10,
                           "__TypeDisplayName" : "Button",
                           "__supportsTooltip" : true
@@ -1212,6 +1547,419 @@
                           "__TypeDisplayName" : "Expression"
                         },
                         "Widgets" : [ ]
+                      }, {
+                        "Properties" : {
+                          "Alignment" : "center",
+                          "Area" : "UI",
+                          "ClickOutsideToClose" : false,
+                          "CustomClass" : "blue-btn",
+                          "DisplayName" : "navigation-49",
+                          "FixedPopupHeight" : 500,
+                          "FixedPopupWidth" : 1000,
+                          "Height" : 38,
+                          "Icon" : "",
+                          "IconAlignment" : "left",
+                          "Id" : "navigation-49",
+                          "LastContainer" : false,
+                          "Left" : 498,
+                          "MashupName" : "GitBackup.EntityPicker.Mashup",
+                          "MashupParameters" : [ {
+                            "BaseType" : "STRING",
+                            "Description" : "",
+                            "ParameterName" : "Project",
+                            "ParmDef" : {
+                              "aspects" : {
+                                "bindingDirection" : "IN",
+                                "isMandatory" : "false",
+                                "ordinal" : "1"
+                              },
+                              "baseType" : "STRING",
+                              "description" : "",
+                              "name" : "Project",
+                              "ordinal" : 0
+                            }
+                          }, {
+                            "BaseType" : "INFOTABLE",
+                            "Description" : "",
+                            "ParameterName" : "EntitiesToExport",
+                            "ParmDef" : {
+                              "aspects" : {
+                                "bindingDirection" : "BOTH",
+                                "dataShape" : "SpotlightSearch",
+                                "isMandatory" : "false",
+                                "ordinal" : "0"
+                              },
+                              "baseType" : "INFOTABLE",
+                              "description" : "",
+                              "name" : "EntitiesToExport",
+                              "ordinal" : 0
+                            }
+                          } ],
+                          "MessageToShow" : "Mashup must be selected",
+                          "ModalPopupOpacity" : 0.5,
+                          "NavigationActiveStyle" : "DefaultNavigationActiveStyle",
+                          "NavigationFocusStyle" : "DefaultNavigationFocusStyle",
+                          "NavigationHoverStyle" : {
+                            "backgroundColor" : "rgba(48,169,250,1)",
+                            "displayString" : "",
+                            "fontEmphasisBold" : false,
+                            "fontEmphasisItalic" : false,
+                            "fontEmphasisUnderline" : false,
+                            "foregroundColor" : "rgba(255,255,255,1)",
+                            "image" : "",
+                            "lineColor" : "",
+                            "lineStyle" : "solid",
+                            "lineThickness" : 1,
+                            "secondaryBackgroundColor" : "",
+                            "textSize" : "normal"
+                          },
+                          "PopupScrolling" : "auto",
+                          "PopupTitle" : "",
+                          "PopupTitleStyle" : "DefaultPopupTitleStyle",
+                          "ReloadOnReplace" : false,
+                          "ResponsiveLayout" : false,
+                          "RoundedCorners" : false,
+                          "ShowCloseButton" : true,
+                          "ShowDataLoading" : true,
+                          "ShowMessageIfNoMashup" : false,
+                          "SingleClickSelectOnTablets" : true,
+                          "Style" : {
+                            "backgroundColor" : "rgba(42,165,245,1)",
+                            "displayString" : "",
+                            "fontEmphasisBold" : false,
+                            "fontEmphasisItalic" : false,
+                            "fontEmphasisUnderline" : false,
+                            "foregroundColor" : "rgba(255,255,255,1)",
+                            "image" : "",
+                            "lineColor" : "",
+                            "lineStyle" : "solid",
+                            "lineThickness" : 1,
+                            "secondaryBackgroundColor" : "",
+                            "textSize" : "normal"
+                          },
+                          "TabSequence" : 0,
+                          "TargetWindow" : "popup",
+                          "Text" : "",
+                          "ToolTipField" : "",
+                          "ToolTipStyle" : "DefaultTooltipStyle",
+                          "Top" : 45,
+                          "Transparent" : false,
+                          "Type" : "navigation",
+                          "Visible" : true,
+                          "Width" : 125,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "Navigation",
+                          "__supportsTooltip" : true
+                        },
+                        "Widgets" : [ ]
+                      }, {
+                        "Properties" : {
+                          "AnyRowsSelected" : false,
+                          "Area" : "UI",
+                          "DisplayName" : "infotableselector-50",
+                          "HasRows" : false,
+                          "Height" : 28,
+                          "Id" : "infotableselector-50",
+                          "LastContainer" : false,
+                          "Left" : 432,
+                          "NoRows" : false,
+                          "NoRowsSelected" : false,
+                          "ResponsiveLayout" : false,
+                          "ShowDataLoading" : true,
+                          "Top" : 84,
+                          "Type" : "infotableselector",
+                          "Visible" : false,
+                          "Width" : 60,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "Infotable Selector"
+                        },
+                        "Widgets" : [ ]
+                      } ]
+                    } ]
+                  }, {
+                    "Properties" : {
+                      "AnimateExpandCollapse" : true,
+                      "Area" : "UI",
+                      "BGImageRepeat" : "no-repeat",
+                      "BGImageSize" : "auto",
+                      "DisplayName" : "Row",
+                      "ExpandCollapseTabLocation" : "outside",
+                      "Expanded" : true,
+                      "Id" : "container-54",
+                      "LastContainer" : false,
+                      "MinHeight" : 0,
+                      "MinWidth" : 0,
+                      "Overlay" : false,
+                      "OverlayIsTransparent" : false,
+                      "ResponsiveLayout" : true,
+                      "ShowDataLoading" : true,
+                      "ShowExpandCollapseTab" : false,
+                      "Style" : "DefaultContainerStyle",
+                      "TabCollapseStyle" : "DefaultTabCollapseStyle",
+                      "TabExpandStyle" : "DefaultTabExpandStyle",
+                      "TabHeight" : 36,
+                      "TabLocation" : "center",
+                      "TabOffset" : 0,
+                      "TabWidth" : 36,
+                      "Type" : "container",
+                      "Visible" : true,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Container",
+                      "userCannotRemove" : true
+                    },
+                    "Widgets" : [ {
+                      "Properties" : {
+                        "Area" : "UI",
+                        "ContainerClass" : "",
+                        "CustomClass" : "border-bottom1 border-top1",
+                        "DisplayName" : "panel-56",
+                        "Height" : 200,
+                        "HideScrollbars" : false,
+                        "HorizontalAnchor" : "left",
+                        "Id" : "panel-56",
+                        "LastContainer" : false,
+                        "Left" : 150,
+                        "ResponsiveLayout" : true,
+                        "ShowDataLoading" : true,
+                        "Style" : "DefaultContainerStyle",
+                        "Top" : 70,
+                        "Type" : "panel",
+                        "VerticalAnchor" : "top",
+                        "Visible" : true,
+                        "Width" : 300,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Panel"
+                      },
+                      "Widgets" : [ {
+                        "Properties" : {
+                          "Alignment" : "left",
+                          "AllowEllipsis" : false,
+                          "Area" : "UI",
+                          "CustomClass" : "full-width-label",
+                          "DisplayName" : "label-59",
+                          "Height" : 27,
+                          "Id" : "label-59",
+                          "LastContainer" : false,
+                          "Left" : 45,
+                          "ResponsiveLayout" : false,
+                          "ShowDataLoading" : true,
+                          "Style" : {
+                            "backgroundColor" : "",
+                            "displayString" : "",
+                            "fontEmphasisBold" : false,
+                            "fontEmphasisItalic" : false,
+                            "fontEmphasisUnderline" : false,
+                            "foregroundColor" : "#000000",
+                            "image" : "",
+                            "lineColor" : "",
+                            "lineStyle" : "solid",
+                            "lineThickness" : 1,
+                            "secondaryBackgroundColor" : "",
+                            "textSize" : "xxl"
+                          },
+                          "Text" : "Export localization tokens",
+                          "ToolTipField" : "",
+                          "ToolTipStyle" : "DefaultTooltipStyle",
+                          "Top" : 10,
+                          "Type" : "label",
+                          "Visible" : true,
+                          "Width" : 240,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "Label",
+                          "__supportsTooltip" : true
+                        },
+                        "Widgets" : [ ]
+                      }, {
+                        "Properties" : {
+                          "ActiveStyle" : "DefaultButtonActiveStyle",
+                          "Area" : "UI",
+                          "CancelConfirmationButton" : "button2",
+                          "ConfirmationButton1Label" : "Yes",
+                          "ConfirmationButton2Label" : "No",
+                          "ConfirmationPrompt" : "Do Action?",
+                          "ConfirmationRequired" : false,
+                          "ConfirmationTitle" : "Confirm Action",
+                          "ContextId" : "",
+                          "CustomClass" : "blue-btn",
+                          "DefaultConfirmationButton" : "button1",
+                          "Description" : "",
+                          "Disabled" : false,
+                          "DisabledStyle" : "DefaultButtonDisabledStyle",
+                          "DisplayName" : "button-60",
+                          "FocusStyle" : "DefaultButtonFocusStyle",
+                          "Height" : 44,
+                          "HoverStyle" : "DefaultButtonHoverStyle",
+                          "IconAlignment" : "left",
+                          "Id" : "button-60",
+                          "Label" : "Export localization tokens",
+                          "LastContainer" : false,
+                          "Left" : 628,
+                          "ResponsiveLayout" : false,
+                          "RoundedCorners" : true,
+                          "ShowDataLoading" : true,
+                          "SingleClickSelectOnTablets" : true,
+                          "Style" : "DefaultButtonStyle",
+                          "TabSequence" : 2,
+                          "ToolTipField" : "",
+                          "ToolTipStyle" : "DefaultTooltipStyle",
+                          "Top" : 45,
+                          "Type" : "button",
+                          "Visible" : true,
+                          "Width" : 135,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "Button",
+                          "__supportsTooltip" : true
+                        },
+                        "Widgets" : [ ]
+                      }, {
+                        "Properties" : {
+                          "Area" : "UI",
+                          "AutoEvaluate" : false,
+                          "DataChangeType" : "VALUE",
+                          "DisplayName" : "expression-61",
+                          "Expression" : "$('.exp-entities input.twInlineSearch-input').attr('tabindex', '1001');",
+                          "FireOnFirstValue" : false,
+                          "Height" : 28,
+                          "Id" : "expression-61",
+                          "LastContainer" : false,
+                          "Left" : 385,
+                          "OutputBaseType" : "NOTHING",
+                          "ResponsiveLayout" : false,
+                          "ShowDataLoading" : true,
+                          "Top" : 15,
+                          "Type" : "expression",
+                          "Visible" : true,
+                          "Width" : 200,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "Expression"
+                        },
+                        "Widgets" : [ ]
+                      }, {
+                        "Properties" : {
+                          "Area" : "UI",
+                          "AutoEvaluate" : false,
+                          "DataChangeType" : "ALWAYS",
+                          "Description" : "",
+                          "DisplayName" : "expression-62",
+                          "Expression" : "\"blue-btn\"",
+                          "FireOnFirstValue" : false,
+                          "Height" : 28,
+                          "Id" : "expression-62",
+                          "LastContainer" : false,
+                          "Left" : 580,
+                          "OutputBaseType" : "STRING",
+                          "ResponsiveLayout" : false,
+                          "ShowDataLoading" : true,
+                          "Top" : 0,
+                          "Type" : "expression",
+                          "Visible" : true,
+                          "Width" : 200,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "Expression"
+                        },
+                        "Widgets" : [ ]
+                      }, {
+                        "Properties" : {
+                          "Area" : "UI",
+                          "AutoEvaluate" : false,
+                          "DataChangeType" : "ALWAYS",
+                          "Description" : "",
+                          "DisplayName" : "expression-63",
+                          "Expression" : "\"blue-btn loading-btn\"",
+                          "FireOnFirstValue" : false,
+                          "Height" : 28,
+                          "Id" : "expression-63",
+                          "LastContainer" : false,
+                          "Left" : 860,
+                          "OutputBaseType" : "STRING",
+                          "ResponsiveLayout" : false,
+                          "ShowDataLoading" : true,
+                          "Top" : 20,
+                          "Type" : "expression",
+                          "Visible" : true,
+                          "Width" : 200,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "Expression"
+                        },
+                        "Widgets" : [ ]
+                      }, {
+                        "Properties" : {
+                          "Area" : "UI",
+                          "DataShape" : "",
+                          "DataType" : "STRING",
+                          "DisplayName" : "eventsrouter-64",
+                          "Id" : "eventsrouter-64",
+                          "LastContainer" : false,
+                          "Left" : 765,
+                          "NumberOfInputs" : 3,
+                          "ResponsiveLayout" : false,
+                          "ShowDataLoading" : true,
+                          "Top" : 55,
+                          "Type" : "eventsrouter",
+                          "Visible" : true,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "Events Router"
+                        },
+                        "Widgets" : [ ]
+                      }, {
+                        "Properties" : {
+                          "Area" : "UI",
+                          "AutoEvaluate" : false,
+                          "DataChangeType" : "ALWAYS",
+                          "Description" : "",
+                          "DisplayName" : "expression-65",
+                          "Expression" : "\"green-btn done-btn\"",
+                          "FireOnFirstValue" : false,
+                          "Height" : 28,
+                          "Id" : "expression-65",
+                          "LastContainer" : false,
+                          "Left" : 860,
+                          "OutputBaseType" : "STRING",
+                          "ResponsiveLayout" : false,
+                          "ShowDataLoading" : true,
+                          "Top" : 90,
+                          "Type" : "expression",
+                          "Visible" : true,
+                          "Width" : 200,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "Expression"
+                        },
+                        "Widgets" : [ ]
+                      }, {
+                        "Properties" : {
+                          "Area" : "UI",
+                          "CursorPosition" : 0,
+                          "DefaultTextboxFocusStyle" : "DefaultFocusStyle",
+                          "DisplayName" : "textbox-68",
+                          "Height" : 38,
+                          "Id" : "textbox-68",
+                          "InnerShadow" : true,
+                          "Label" : "",
+                          "LabelAlignment" : "left",
+                          "LastContainer" : false,
+                          "Left" : 45,
+                          "MaskInputCharacters" : false,
+                          "PlaceholderText" : "",
+                          "ReadOnly" : false,
+                          "ResponsiveLayout" : false,
+                          "ShowDataLoading" : true,
+                          "Style" : "DefaultTextBoxStyle",
+                          "TabSequence" : 0,
+                          "Text" : "",
+                          "TextAlign" : "left",
+                          "TextboxLabelStyle" : "DefaultWidgetLabelStyle",
+                          "ToolTipField" : "Change only if you want to export another prefix",
+                          "ToolTipStyle" : "DefaultTooltipStyle",
+                          "Top" : 45,
+                          "Type" : "textbox",
+                          "Visible" : true,
+                          "Width" : 255,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "TextBox",
+                          "__supportsLabel" : true,
+                          "__supportsTooltip" : true
+                        },
+                        "Widgets" : [ ]
                       } ]
                     } ]
                   }, {
@@ -1248,6 +1996,7 @@
                     "Widgets" : [ {
                       "Properties" : {
                         "Area" : "UI",
+                        "ContainerClass" : "",
                         "CustomClass" : "border-bottom1 border-top1",
                         "DisplayName" : "panel-22",
                         "Height" : 200,
@@ -1322,7 +2071,7 @@
                             "textSize" : "xxl"
                           },
                           "Text" : "Export data",
-                          "ToolTipField" : "",
+                          "ToolTipField" : "Export Stream and DataTable data rows",
                           "ToolTipStyle" : "DefaultTooltipStyle",
                           "Top" : 10,
                           "Type" : "label",
@@ -1355,9 +2104,9 @@
                           "HoverStyle" : "DefaultButtonHoverStyle",
                           "IconAlignment" : "left",
                           "Id" : "button-26",
-                          "Label" : "Export",
+                          "Label" : "Export data",
                           "LastContainer" : false,
-                          "Left" : 600,
+                          "Left" : 628,
                           "ResponsiveLayout" : false,
                           "RoundedCorners" : true,
                           "ShowDataLoading" : true,
@@ -1369,7 +2118,7 @@
                           "Top" : 45,
                           "Type" : "button",
                           "Visible" : true,
-                          "Width" : 120,
+                          "Width" : 125,
                           "Z-index" : 10,
                           "__TypeDisplayName" : "Button",
                           "__supportsTooltip" : true
@@ -1522,6 +2271,7 @@
                     "Widgets" : [ {
                       "Properties" : {
                         "Area" : "UI",
+                        "ContainerClass" : "",
                         "CustomClass" : "border-bottom1 border-top1",
                         "DisplayName" : "panel-28",
                         "Height" : 200,
@@ -1602,9 +2352,9 @@
                           "HoverStyle" : "DefaultButtonHoverStyle",
                           "IconAlignment" : "left",
                           "Id" : "button-31",
-                          "Label" : "Export",
+                          "Label" : "Export extensions",
                           "LastContainer" : false,
-                          "Left" : 600,
+                          "Left" : 628,
                           "ResponsiveLayout" : false,
                           "RoundedCorners" : true,
                           "ShowDataLoading" : true,
@@ -1616,7 +2366,7 @@
                           "Top" : 45,
                           "Type" : "button",
                           "Visible" : true,
-                          "Width" : 120,
+                          "Width" : 125,
                           "Z-index" : 10,
                           "__TypeDisplayName" : "Button",
                           "__supportsTooltip" : true
@@ -1713,6 +2463,174 @@
                       } ]
                     } ]
                   } ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "AutoEvaluate" : true,
+                    "DataChangeType" : "VALUE",
+                    "DisplayName" : "showNumberOfEntities",
+                    "Expression" : "if (rowCount==undefined||rowCount==0)\n\"Optional: Select Entities to export\";\nelse if (rowCount==1)\n    \"1 Entity selected to Export\"\nelse\n    rowCount+ \" Entities selected to Export\"",
+                    "FireOnFirstValue" : false,
+                    "Height" : 28,
+                    "Id" : "expression-51",
+                    "LastContainer" : false,
+                    "Left" : 0,
+                    "OutputBaseType" : "STRING",
+                    "ShowDataLoading" : true,
+                    "Top" : 0,
+                    "Type" : "expression",
+                    "Visible" : true,
+                    "Width" : 200,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Expression",
+                    "_currentParameterDefs" : [ {
+                      "BaseType" : "NUMBER",
+                      "Description" : "",
+                      "ParameterName" : "rowCount",
+                      "bindingDirection" : "Target",
+                      "bindingStatus" : true,
+                      "bindingType" : "Property",
+                      "isBindingSource" : false,
+                      "isBindingTarget" : true,
+                      "name" : "rowCount"
+                    } ]
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "AutoEvaluate" : true,
+                    "DataChangeType" : "VALUE",
+                    "DisplayName" : "MakeExportButtonVisible",
+                    "Expression" : "if (ProjectName!=undefined&&ProjectName!=\"\")  true\nelse  false",
+                    "FireOnFirstValue" : false,
+                    "Height" : 28,
+                    "Id" : "expression-52",
+                    "LastContainer" : false,
+                    "Left" : 0,
+                    "OutputBaseType" : "BOOLEAN",
+                    "ShowDataLoading" : true,
+                    "Top" : 0,
+                    "Type" : "expression",
+                    "Visible" : true,
+                    "Width" : 200,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Expression",
+                    "_currentParameterDefs" : [ {
+                      "BaseType" : "STRING",
+                      "Description" : "",
+                      "ParameterName" : "ProjectName",
+                      "bindingDirection" : "Target",
+                      "bindingStatus" : true,
+                      "bindingType" : "Property",
+                      "isBindingSource" : false,
+                      "isBindingTarget" : true,
+                      "name" : "ProjectName"
+                    } ]
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "AutoEvaluate" : true,
+                    "DataChangeType" : "VALUE",
+                    "DisplayName" : "MakeDataExportVisible",
+                    "Expression" : "if (ProjectName!=undefined&&ProjectName!=\"\")  true\nelse  false",
+                    "FireOnFirstValue" : false,
+                    "Height" : 28,
+                    "Id" : "expression-55",
+                    "LastContainer" : false,
+                    "Left" : 0,
+                    "OutputBaseType" : "BOOLEAN",
+                    "ShowDataLoading" : true,
+                    "Top" : 0,
+                    "Type" : "expression",
+                    "Visible" : true,
+                    "Width" : 200,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Expression",
+                    "_currentParameterDefs" : [ {
+                      "BaseType" : "STRING",
+                      "Description" : "",
+                      "ParameterName" : "ProjectName",
+                      "bindingDirection" : "Target",
+                      "bindingStatus" : false,
+                      "bindingType" : "Property",
+                      "isBindingSource" : false,
+                      "isBindingTarget" : true,
+                      "name" : "ProjectName"
+                    } ]
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "AutoEvaluate" : false,
+                    "DataChangeType" : "ALWAYS",
+                    "DisplayName" : "exp_makeLocalizationBlueLoading",
+                    "Expression" : "\"blue-btn loading-btn\"",
+                    "FireOnFirstValue" : false,
+                    "Height" : 28,
+                    "Id" : "expression-69",
+                    "LastContainer" : false,
+                    "Left" : 0,
+                    "OutputBaseType" : "STRING",
+                    "ShowDataLoading" : true,
+                    "Top" : 0,
+                    "Type" : "expression",
+                    "Visible" : true,
+                    "Width" : 200,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Expression",
+                    "_currentParameterDefs" : [ ]
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "AutoEvaluate" : false,
+                    "DataChangeType" : "ALWAYS",
+                    "DisplayName" : "exp_LocalizatiionGreenDone",
+                    "Expression" : "\"green-btn done-btn\"",
+                    "FireOnFirstValue" : false,
+                    "Height" : 28,
+                    "Id" : "expression-70",
+                    "LastContainer" : false,
+                    "Left" : 0,
+                    "OutputBaseType" : "STRING",
+                    "ShowDataLoading" : true,
+                    "Top" : 0,
+                    "Type" : "expression",
+                    "Visible" : true,
+                    "Width" : 200,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Expression",
+                    "_currentParameterDefs" : [ ]
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "AutoEvaluate" : false,
+                    "DataChangeType" : "ALWAYS",
+                    "DisplayName" : "exp_LocalizationBlueAgain",
+                    "Expression" : "\"blue-btn\"",
+                    "FireOnFirstValue" : false,
+                    "Height" : 28,
+                    "Id" : "expression-71",
+                    "LastContainer" : false,
+                    "Left" : 0,
+                    "OutputBaseType" : "STRING",
+                    "ShowDataLoading" : true,
+                    "Top" : 0,
+                    "Type" : "expression",
+                    "Visible" : true,
+                    "Width" : 200,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Expression",
+                    "_currentParameterDefs" : [ ]
+                  },
+                  "Widgets" : [ ]
                 } ]
               },
               "mashupType" : "mashup"

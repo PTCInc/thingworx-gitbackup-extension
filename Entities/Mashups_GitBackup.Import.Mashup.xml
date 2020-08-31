@@ -9,16 +9,14 @@
  universal="password">
     <Mashups>
         <Mashup
-         aspect.isEditableExtensionObject="true"
-         aspect.isExtension="true"
          aspect.isResponsive="true"
          aspect.mashupType="mashup"
          columns="0.0"
-         description=""
+         description="Shows when pressing the Import button. Contains various import related functionality. It is generally a wrapper on top of standard ThingWorx Import functionality."
          documentationContent=""
          homeMashup=""
-         lastModifiedDate="2020-08-28T07:16:25.256-07:00"
-         name="GitBackup.Version.Mashup"
+         lastModifiedDate="2020-08-28T01:30:32.700-07:00"
+         name="GitBackup.Import.Mashup"
          projectName="GitBackup"
          rows="0.0"
          tags="">
@@ -36,11 +34,20 @@
             </VisibilityPermissions>
             <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
             <ConfigurationTables></ConfigurationTables>
-            <ParameterDefinitions></ParameterDefinitions>
+            <ParameterDefinitions>
+                <FieldDefinition
+                 aspect.ordinal="0"
+                 baseType="STRING"
+                 description=""
+                 name="GitThingName"
+                 ordinal="0"></FieldDefinition>
+            </ParameterDefinitions>
             <Things>
                 <Thing>GIT.Utility.Thing</Thing>
             </Things>
-            <ThingShapes></ThingShapes>
+            <ThingShapes>
+                <ThingShape>Git.Utility.ThingShape</ThingShape>
+            </ThingShapes>
             <ThingTemplates></ThingTemplates>
             <mashupContent>
             <![CDATA[
@@ -48,6 +55,57 @@
               "ConfigurationTables" : { },
               "CustomMashupCss" : "",
               "Data" : {
+                "DynamicThingShapes_Git.Utility.ThingShape" : {
+                  "DataName" : "DynamicThingShapes_Git.Utility.ThingShape",
+                  "EntityName" : "Git.Utility.ThingShape",
+                  "EntityType" : "DynamicThingShapes",
+                  "Id" : "c2cf3589-527c-4d26-9a40-118b416504a4",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "155db89c-ce99-4c00-959e-7b650366722b",
+                    "Name" : "GetConfiguration",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetConfiguration"
+                  }, {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "6edfe925-0672-4734-9631-8d51c5523766",
+                    "Name" : "ExportProjectData",
+                    "Parameters" : { },
+                    "Properties" : {
+                      "CustomSuccessMessage" : "Data has been exported successfully",
+                      "ShowSuccessMessage" : true
+                    },
+                    "RefreshInterval" : 0,
+                    "Target" : "ExportProjectData"
+                  }, {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "a672e47f-0174-460d-a39b-7afcb6695393",
+                    "Name" : "ExportProjectEntities",
+                    "Parameters" : { },
+                    "Properties" : {
+                      "CustomSuccessMessage" : "Entities have been exported successfully",
+                      "ShowSuccessMessage" : true
+                    },
+                    "RefreshInterval" : 0,
+                    "Target" : "ExportProjectEntities"
+                  }, {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "72df5754-b2b7-4cde-84d1-7c18b9fa5153",
+                    "Name" : "ExportProjectExtensions",
+                    "Parameters" : { },
+                    "Properties" : {
+                      "CustomSuccessMessage" : "Extensions exported. Remove the ones that are not needed before Push.",
+                      "ShowSuccessMessage" : true
+                    },
+                    "RefreshInterval" : 0,
+                    "Target" : "ExportProjectExtensions"
+                  } ]
+                },
                 "Session" : {
                   "DataName" : "Session",
                   "EntityName" : "",
@@ -67,15 +125,37 @@
                   "DataName" : "Things_GIT.Utility.Thing",
                   "EntityName" : "GIT.Utility.Thing",
                   "EntityType" : "Things",
-                  "Id" : "a62b905c-f67f-496f-90c7-0e8ba3ff8cf0",
+                  "Id" : "f2a66c79-5f01-4afb-8b16-7f590511d3fa",
                   "Services" : [ {
                     "APIMethod" : "post",
                     "Characteristic" : "Services",
-                    "Id" : "24a93064-2548-487d-89c9-d49c8c1650d1",
-                    "Name" : "GetGitExtensionVersion",
-                    "Parameters" : { },
+                    "Id" : "f6e006f5-0e98-43ff-b82e-6caa06d3ee31",
+                    "Name" : "Pause",
+                    "Parameters" : {
+                      "delay" : 20
+                    },
                     "RefreshInterval" : 0,
-                    "Target" : "GetGitExtensionVersion"
+                    "Target" : "Pause"
+                  }, {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "b3ae55db-9642-4bfb-aa49-b4f6273864d8",
+                    "Name" : "Pause1",
+                    "Parameters" : {
+                      "delay" : 20
+                    },
+                    "RefreshInterval" : 0,
+                    "Target" : "Pause"
+                  }, {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "38598c35-2ac3-45f7-984f-6311614ddd6e",
+                    "Name" : "Pause2",
+                    "Parameters" : {
+                      "delay" : 20
+                    },
+                    "RefreshInterval" : 0,
+                    "Target" : "Pause"
                   } ]
                 },
                 "UserExtensions" : {
@@ -95,21 +175,69 @@
                 }
               },
               "DataBindings" : [ {
-                "Id" : "3f593c87-c173-4886-86f9-037ed1301439",
+                "Id" : "286280bd-6270-47e1-a237-aaf09f1fba2d",
                 "PropertyMaps" : [ {
-                  "SourceProperty" : "",
-                  "SourcePropertyBaseType" : "INFOTABLE",
-                  "SourcePropertyType" : "InfoTable",
-                  "TargetProperty" : "Data",
-                  "TargetPropertyBaseType" : "INFOTABLE",
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "Text",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "expression-14",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "label-6",
+                "TargetSection" : ""
+              }, {
+                "Id" : "baf3069c-6c1f-4725-8010-f82918b3aad7",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "FileRepoPath",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "RepoPathName",
+                  "TargetPropertyBaseType" : "STRING",
                   "TargetPropertyType" : "property"
                 } ],
                 "SourceArea" : "Data",
                 "SourceDetails" : "AllData",
-                "SourceId" : "GetGitExtensionVersion",
-                "SourceSection" : "Things_GIT.Utility.Thing",
+                "SourceId" : "GetConfiguration",
+                "SourceSection" : "DynamicThingShapes_Git.Utility.ThingShape",
                 "TargetArea" : "UI",
-                "TargetId" : "collection-7",
+                "TargetId" : "expression-14",
+                "TargetSection" : ""
+              }, {
+                "Id" : "2774ef2a-5b3f-41ed-bb10-9fb56813bc75",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "GitThingName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "value",
+                  "TargetPropertyBaseType" : "THINGNAME",
+                  "TargetPropertyType" : "Entity"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "EntityName",
+                "TargetSection" : "DynamicThingShapes_Git.Utility.ThingShape"
+              }, {
+                "Id" : "e5324485-4ef4-4f12-8405-7dd1afbdd969",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "FileRepository",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "FileRepository",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetConfiguration",
+                "SourceSection" : "DynamicThingShapes_Git.Utility.ThingShape",
+                "TargetArea" : "UI",
+                "TargetId" : "expression-14",
                 "TargetSection" : ""
               } ],
               "DesignTimePermissions" : {
@@ -121,13 +249,40 @@
               },
               "Events" : [ {
                 "EventHandlerArea" : "Data",
-                "EventHandlerId" : "Things_GIT.Utility.Thing",
-                "EventHandlerService" : "GetGitExtensionVersion",
+                "EventHandlerId" : "DynamicThingShapes_Git.Utility.ThingShape",
+                "EventHandlerService" : "GetConfiguration",
                 "EventTriggerArea" : "Mashup",
                 "EventTriggerEvent" : "Loaded",
                 "EventTriggerId" : "mashup-root",
                 "EventTriggerSection" : "",
-                "Id" : "4efaea2f-ba31-4f94-a698-e29626815d09"
+                "Id" : "edffa75f-eda3-400e-accd-0cf1522f675a"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_GIT.Utility.Thing",
+                "EventHandlerService" : "Pause2",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "ExportProjectData",
+                "EventTriggerSection" : "DynamicThingShapes_Git.Utility.ThingShape",
+                "Id" : "30241f4c-8e48-43ef-84f6-b1d3e8897630"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_GIT.Utility.Thing",
+                "EventHandlerService" : "Pause1",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "ExportProjectEntities",
+                "EventTriggerSection" : "DynamicThingShapes_Git.Utility.ThingShape",
+                "Id" : "b601f26d-76c3-4b4b-8fee-9221d66eb657"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_GIT.Utility.Thing",
+                "EventHandlerService" : "Pause",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "ExportProjectExtensions",
+                "EventTriggerSection" : "DynamicThingShapes_Git.Utility.ThingShape",
+                "Id" : "f10d2f27-7e9e-45e0-b5f3-3c707cd5bf5b"
               } ],
               "RunTimePermissions" : {
                 "permissions" : [ ]
@@ -170,8 +325,12 @@
                   "Width" : 1024,
                   "Z-index" : 10,
                   "__TypeDisplayName" : "Mashup",
-                  "_currentParameterDefs" : [ ],
-                  "id_index" : 7,
+                  "_currentParameterDefs" : [ {
+                    "BaseType" : "STRING",
+                    "Description" : "",
+                    "ParameterName" : "GitThingName"
+                  } ],
+                  "id_index" : 47,
                   "supportsAutoResize" : true
                 },
                 "Widgets" : [ {
@@ -187,7 +346,7 @@
                     "IncludeSpacingInFixedAreas" : false,
                     "IsPrintLayout" : false,
                     "LastContainer" : false,
-                    "Left" : 370,
+                    "Left" : 410,
                     "LeftSidebar" : false,
                     "LeftSidebarWidth" : 0,
                     "Orientation" : "vertical",
@@ -200,9 +359,9 @@
                     "PctColumn7" : 1,
                     "PctColumn8" : 1,
                     "PctRow1" : 100,
-                    "PctRow2" : 0,
-                    "PctRow3" : 0,
-                    "PctRow4" : 0,
+                    "PctRow2" : 100,
+                    "PctRow3" : 33.333333333333336,
+                    "PctRow4" : 33.333333333333336,
                     "PctRow5" : 0,
                     "PctRow6" : 0,
                     "PctRow7" : 0,
@@ -216,7 +375,7 @@
                     "Rows" : 1,
                     "ShowDataLoading" : true,
                     "Spacing" : 0,
-                    "Top" : 90,
+                    "Top" : 140,
                     "Type" : "layout",
                     "Visible" : true,
                     "Z-index" : 10,
@@ -258,30 +417,17 @@
                         "Area" : "UI",
                         "ContainerClass" : "",
                         "CustomClass" : "border-bottom1",
-                        "DisplayName" : "panel-4",
+                        "DisplayName" : "panel-5",
                         "Height" : 200,
                         "HideScrollbars" : false,
                         "HorizontalAnchor" : "left",
-                        "Id" : "panel-4",
+                        "Id" : "panel-5",
                         "LastContainer" : false,
-                        "Left" : 735,
+                        "Left" : 655,
                         "ResponsiveLayout" : true,
                         "ShowDataLoading" : true,
-                        "Style" : {
-                          "backgroundColor" : "#ffffff",
-                          "displayString" : "",
-                          "fontEmphasisBold" : false,
-                          "fontEmphasisItalic" : false,
-                          "fontEmphasisUnderline" : false,
-                          "foregroundColor" : "",
-                          "image" : "",
-                          "lineColor" : "",
-                          "lineStyle" : "solid",
-                          "lineThickness" : 1,
-                          "secondaryBackgroundColor" : "",
-                          "textSize" : "normal"
-                        },
-                        "Top" : 10,
+                        "Style" : "DefaultContainerStyle",
+                        "Top" : 25,
                         "Type" : "panel",
                         "VerticalAnchor" : "top",
                         "Visible" : true,
@@ -295,11 +441,11 @@
                           "AllowEllipsis" : false,
                           "Area" : "UI",
                           "CustomClass" : "label-center",
-                          "DisplayName" : "label-5",
-                          "Height" : 22,
-                          "Id" : "label-5",
+                          "DisplayName" : "lb_Import",
+                          "Height" : 27,
+                          "Id" : "label-6",
                           "LastContainer" : false,
-                          "Left" : 420,
+                          "Left" : 200,
                           "ResponsiveLayout" : false,
                           "ShowDataLoading" : true,
                           "Style" : {
@@ -308,21 +454,21 @@
                             "fontEmphasisBold" : false,
                             "fontEmphasisItalic" : false,
                             "fontEmphasisUnderline" : false,
-                            "foregroundColor" : "#333333",
+                            "foregroundColor" : "#000000",
                             "image" : "",
                             "lineColor" : "",
                             "lineStyle" : "solid",
                             "lineThickness" : 1,
                             "secondaryBackgroundColor" : "",
-                            "textSize" : "28px"
+                            "textSize" : "20px"
                           },
-                          "Text" : "Extensions version",
+                          "Text" : "Import project",
                           "ToolTipField" : "",
                           "ToolTipStyle" : "DefaultTooltipStyle",
-                          "Top" : 10,
+                          "Top" : 8,
                           "Type" : "label",
                           "Visible" : true,
-                          "Width" : 285,
+                          "Width" : 240,
                           "Z-index" : 10,
                           "__TypeDisplayName" : "Label",
                           "__supportsTooltip" : true
@@ -330,58 +476,44 @@
                         "Widgets" : [ ]
                       }, {
                         "Properties" : {
-                          "Alignment" : "left",
                           "Area" : "UI",
-                          "CustomClass" : "",
-                          "DisplayName" : "link-518",
-                          "Height" : 20,
-                          "Id" : "link-518",
+                          "AutoEvaluate" : true,
+                          "DataChangeType" : "VALUE",
+                          "DisplayName" : "expression-14",
+                          "Expression" : "\"Exporting  to File Repository: \"+FileRepository+\" in path: \" + RepoPathName",
+                          "FireOnFirstValue" : false,
+                          "Height" : 28,
+                          "Id" : "expression-14",
                           "LastContainer" : false,
-                          "Left" : 20,
-                          "LinkDisplay" : "textOnly",
-                          "LinkHoverStyle" : {
-                            "backgroundColor" : "",
-                            "displayString" : "",
-                            "fontEmphasisBold" : false,
-                            "fontEmphasisItalic" : false,
-                            "fontEmphasisUnderline" : true,
-                            "foregroundColor" : "#1a9fff",
-                            "image" : "",
-                            "lineColor" : "",
-                            "lineStyle" : "solid",
-                            "lineThickness" : 1,
-                            "secondaryBackgroundColor" : "",
-                            "textSize" : "xlarge"
-                          },
-                          "LinkStyle" : {
-                            "backgroundColor" : "",
-                            "displayString" : "",
-                            "fontEmphasisBold" : false,
-                            "fontEmphasisItalic" : false,
-                            "fontEmphasisUnderline" : false,
-                            "foregroundColor" : "#1a9fff",
-                            "image" : "",
-                            "lineColor" : "",
-                            "lineStyle" : "solid",
-                            "lineThickness" : 1,
-                            "secondaryBackgroundColor" : "",
-                            "textSize" : "xlarge"
-                          },
+                          "Left" : 0,
+                          "OutputBaseType" : "STRING",
                           "ResponsiveLayout" : false,
                           "ShowDataLoading" : true,
-                          "SourceURL" : "https://github.com/PTCInc/thingworx-gitbackup-extension/releases",
-                          "TabSequence" : 0,
-                          "TargetWindow" : "new",
-                          "Text" : "Get the latest version",
-                          "ToolTipField" : "",
-                          "ToolTipStyle" : "DefaultTooltipStyle",
-                          "Top" : 16,
-                          "Type" : "link",
+                          "Top" : 5,
+                          "Type" : "expression",
                           "Visible" : true,
-                          "Width" : 150,
+                          "Width" : 200,
                           "Z-index" : 10,
-                          "__TypeDisplayName" : "Link",
-                          "__supportsTooltip" : true
+                          "__TypeDisplayName" : "Expression",
+                          "_currentParameterDefs" : [ {
+                            "BaseType" : "STRING",
+                            "Description" : "",
+                            "ParameterName" : "RepoPathName",
+                            "bindingDirection" : "",
+                            "bindingStatus" : true,
+                            "isBindingSource" : false,
+                            "isBindingTarget" : true,
+                            "name" : "RepoPathName"
+                          }, {
+                            "BaseType" : "STRING",
+                            "Description" : "",
+                            "ParameterName" : "FileRepository",
+                            "bindingDirection" : "",
+                            "bindingStatus" : false,
+                            "isBindingSource" : false,
+                            "isBindingTarget" : true,
+                            "name" : "FileRepository"
+                          } ]
                         },
                         "Widgets" : [ ]
                       } ]
@@ -392,10 +524,10 @@
                       "Area" : "UI",
                       "BGImageRepeat" : "no-repeat",
                       "BGImageSize" : "auto",
-                      "DisplayName" : "Row 1",
+                      "DisplayName" : "Row",
                       "ExpandCollapseTabLocation" : "outside",
                       "Expanded" : true,
-                      "Id" : "container-3",
+                      "Id" : "container-12",
                       "LastContainer" : false,
                       "MinHeight" : 0,
                       "MinWidth" : 0,
@@ -404,20 +536,7 @@
                       "ResponsiveLayout" : true,
                       "ShowDataLoading" : true,
                       "ShowExpandCollapseTab" : false,
-                      "Style" : {
-                        "backgroundColor" : "#f5f6fa",
-                        "displayString" : "",
-                        "fontEmphasisBold" : false,
-                        "fontEmphasisItalic" : false,
-                        "fontEmphasisUnderline" : false,
-                        "foregroundColor" : "",
-                        "image" : "",
-                        "lineColor" : "",
-                        "lineStyle" : "solid",
-                        "lineThickness" : 1,
-                        "secondaryBackgroundColor" : "",
-                        "textSize" : "normal"
-                      },
+                      "Style" : "DefaultContainerStyle",
                       "TabCollapseStyle" : "DefaultTabCollapseStyle",
                       "TabExpandStyle" : "DefaultTabExpandStyle",
                       "TabHeight" : 36,
@@ -430,96 +549,7 @@
                       "__TypeDisplayName" : "Container",
                       "userCannotRemove" : true
                     },
-                    "Widgets" : [ {
-                      "Properties" : {
-                        "AllowSelection" : true,
-                        "AlwaysUseCustomScrollerOniOS" : true,
-                        "Area" : "UI",
-                        "AutoSelectFirstRow" : true,
-                        "BottomPadding" : 22,
-                        "CellActiveStyle" : "DefaultCollectionCellActiveStyle",
-                        "CellBorderRadius" : "4px",
-                        "CellBoxShadow" : "0 2px 6px rgba(0,0,0,0.2)",
-                        "CellHoverStyle" : "DefaultCollectionCellHoverStyle",
-                        "CellMashupSelectedField" : "",
-                        "CellMenuStates" : "DefaultMenuStates",
-                        "CellMenuStatesIconGravity" : "Left",
-                        "CellMenuStatesIconSize" : 16,
-                        "CellMenuStatesOrientation" : "Horizontal",
-                        "CellMenuStatesUseBuiltin" : false,
-                        "CellMultipleSelectionType" : "Disabled",
-                        "CellPointer" : "Auto",
-                        "CellSelectedStyle" : "DefaultCollectionCellSelectedStyle",
-                        "CellStyle" : "DefaultCollectionCellStyle",
-                        "DisableWrapping" : false,
-                        "DisplayName" : "collection-7",
-                        "FlowLayoutAlignment" : "Center",
-                        "FlowLayoutContentGravity" : "Center",
-                        "FlowLayoutGravity" : "Spaced",
-                        "FooterHeight" : 44,
-                        "FooterSectionParam" : "",
-                        "HandleSelectionUpdates" : true,
-                        "HasSelectedCells" : false,
-                        "HeaderHeight" : 44,
-                        "HeaderSectionParam" : "",
-                        "Height" : 300,
-                        "Id" : "collection-7",
-                        "ItemLoadBehavior" : "loadUnload",
-                        "LastContainer" : false,
-                        "Left" : 115,
-                        "LeftAlignFinalRow" : false,
-                        "Mashup" : "GitBackup.ExtensionStatus.Mashup",
-                        "MashupGlobalPropertyBinding" : "{}",
-                        "MashupHeight" : 120,
-                        "MashupPropertyBinding" : "{\"ExtensionName\":\"ExtensionName\",\"IsInstalled\":\"IsInstalled\",\"ExtensionVersion\":\"Version\"}",
-                        "MashupWidth" : 370,
-                        "MasonryLayoutBottomPadding" : 22,
-                        "MasonryLayoutCellSpacing" : 22,
-                        "MasonryLayoutColumnSpacing" : 22,
-                        "MasonryLayoutColumnSpeeds" : "1, 2, 0.5, 1, 2, 0.5",
-                        "MasonryLayoutColumnWidth" : 0,
-                        "MasonryLayoutNumberOfColumns" : 5,
-                        "MasonryLayoutTopPadding" : 22,
-                        "MinimumSpacing" : 0,
-                        "MultiSelect" : false,
-                        "OffScreenBufferFactor" : 0.1,
-                        "PinFootersToBottom" : false,
-                        "PinHeadersToTop" : false,
-                        "PlaysIntroAnimation" : true,
-                        "ResponsiveLayout" : true,
-                        "RippleEffectStyle" : "DefaultCollectionRippleStyle",
-                        "RowSpacing" : 44,
-                        "ScrollbarType" : "hover",
-                        "ScrollsToSelectedCell" : false,
-                        "SectionInsetBottom" : 0,
-                        "SectionInsetLeft" : 0,
-                        "SectionInsetRight" : 0,
-                        "SectionInsetTop" : 0,
-                        "SelectedCellsCount" : 0,
-                        "ShowDataLoading" : true,
-                        "ShowFooters" : false,
-                        "ShowHeaders" : false,
-                        "SortAscending" : false,
-                        "SortField" : "ExtensionName",
-                        "Top" : 115,
-                        "TopPadding" : 22,
-                        "Type" : "collection",
-                        "UIDField" : "ExtensionName",
-                        "UseCustomScrollerOnWindowsDesktops" : true,
-                        "UseMashupDimensions" : false,
-                        "UseRippleEffect" : false,
-                        "View" : "flow",
-                        "Visible" : true,
-                        "Width" : 400,
-                        "Z-index" : 10,
-                        "_CanDoubleClick" : false,
-                        "_EventDataShape" : "{\"ExtensionName\":{\"name\":\"ExtensionName\",\"aspects\":{\"isPrimaryKey\":false},\"description\":\"\",\"baseType\":\"STRING\",\"ordinal\":1},\"ExtensionVersion\":{\"name\":\"ExtensionVersion\",\"aspects\":{\"isPrimaryKey\":false},\"description\":\"\",\"baseType\":\"STRING\",\"ordinal\":2},\"IsInstalled\":{\"name\":\"IsInstalled\",\"aspects\":{\"isPrimaryKey\":false},\"description\":\"\",\"baseType\":\"BOOLEAN\",\"ordinal\":3}}",
-                        "_GlobalDataShape" : "{}",
-                        "_MenuDefinition" : "[]",
-                        "__TypeDisplayName" : "Collection"
-                      },
-                      "Widgets" : [ ]
-                    } ]
+                    "Widgets" : [ ]
                   } ]
                 } ]
               },
