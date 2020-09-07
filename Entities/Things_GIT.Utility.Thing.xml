@@ -818,7 +818,7 @@
                                         //Searching for the Infotable Selector Extension
                                         // GIT.ExtensionVersion.DS entry object
                                         var ExportExtensionExtension = new Object();
-                                        ExportExtensionExtension.ExtensionName = "InfoTableSelector_ExtensionPackage"; // STRING
+                                        ExportExtensionExtension.ExtensionName = "GitInfoTableSelector_ExtensionPackage"; // STRING
                                         ExportExtensionExtension.IsInstalled = false; // BOOLEAN
                                         ExportExtensionExtension.ExtensionVersion = "N/A"; // STRING
                                         
@@ -826,7 +826,7 @@
                                         	inclusive: true /* BOOLEAN */,
                                         	fieldName: "name" /* STRING */,
                                         	t: inftbl_Extensions /* INFOTABLE */,
-                                        	pattern: "InfoTableSelector_ExtensionPackage" /* STRING */
+                                        	pattern: "GitInfoTableSelector_ExtensionPackage" /* STRING */
                                         };
                                         
                                         // result: INFOTABLE

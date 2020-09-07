@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Entities>
     <ExtensionPackages>
-        <ExtensionPackage dependsOn="" description="This extension provides various GIT capabilities that allow storing ThingWorx applications in a third party Git server" minimumThingWorxVersion="8.4.0" name="GitBackupExtension" packageVersion="4.0.0" vendor="Open Source / Vladimir Rosu">
+        <ExtensionPackage dependsOn="" description="This extension provides various GIT capabilities that allow storing ThingWorx applications in a third party Git server" minimumThingWorxVersion="8.4.0" name="GitBackupExtension" packageVersion="4.0.1" vendor="Open Source / Vladimir Rosu">
             <JarResources>
                 <FileResource description="" file="org.eclipse.jgit-5.8.1.202007141445-r.jar" type="JAR"/>
                 <FileResource description="" file="JavaEWAH-1.1.6.jar" type="JAR"/>
