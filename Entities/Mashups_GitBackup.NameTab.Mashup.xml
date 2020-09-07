@@ -584,7 +584,7 @@
                       "ResponsiveLayout" : false,
                       "ShowDataLoading" : true,
                       "Top" : 65,
-                      "Type" : "infotableselector",
+                      "Type" : "gitinfotableselector",
                       "Visible" : false,
                       "Width" : 200,
                       "Z-index" : 10,
