@@ -17,10 +17,15 @@ public final class Const {
 	public final static String str_PlatformInfo_URLPropertyName="URL";
 	public final static String str_PlatformInfo_AppKeyPropertyName = "AppKey";
 	//Entity names
-	public final static String str_UtilityThingShapeName = "Git.Utility.ThingShape";
-	public final static String str_CommitListDataShapeName = "Git.CommitList.DataShape";
-	public final static String str_CommitInfoDataShapeName="GitBackup.CommitInfo.DataShape";
-	public final static String str_CommitChangedFiles="GitBackup.CommitChangedFiles.DataShape";
+	
+		public final static String str_UtilityThingShapeName = "Git.Utility.ThingShape";
+		public final static String str_CommitListDataShapeName = "Git.CommitList.DataShape";
+		public final static String str_CommitInfoDataShapeName="GitBackup.CommitInfo.DataShape";
+		public final static String str_CommitChangedFiles="GitBackup.CommitChangedFiles.DataShape";
+		public final static String str_UtilityThingName = "GIT.Utility.Thing";
+		
+	
+	
 	//Proxy related settings
 	public final static String str_UseProxy="UseProxy";
 	public final static String str_ProxyURL = "ProxyURL";

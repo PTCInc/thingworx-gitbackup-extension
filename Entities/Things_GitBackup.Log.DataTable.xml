@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ build="b103"
+ majorVersion="8"
+ minorVersion="5"
+ modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
+ revision="5"
+ schemaVersion="1054"
+ universal="password">
+    <Things>
+        <Thing
+         description=""
+         documentationContent=""
+         effectiveThingPackage="DataTableThing"
+         enabled="true"
+         homeMashup="DataTableEditor"
+         identifier=""
+         lastModifiedDate="2020-09-17T03:04:23.681-07:00"
+         name="GitBackup.Log.DataTable"
+         projectName="GitBackup"
+         published="false"
+         tags=""
+         thingTemplate="DataTable"
+         valueStream="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables>
+                <ConfigurationTable
+                 description="Data Thing Configuration"
+                 isMultiRow="false"
+                 name="DataThingSettings"
+                 ordinal="0">
+                    <DataShape>
+                        <FieldDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="Persistence Provider Name"
+                             name="persistenceProvider"
+                             ordinal="0"></FieldDefinition>
+                        </FieldDefinitions>
+                    </DataShape>
+                    <Rows>
+                        <Row>
+                            <persistenceProvider>
+                            <![CDATA[
+                            ThingworxPersistenceProvider
+                            ]]>
+                            </persistenceProvider>
+                        </Row>
+                    </Rows>
+                </ConfigurationTable>
+                <ConfigurationTable
+                 description="Data Shape Configuration"
+                 isMultiRow="false"
+                 name="Settings"
+                 ordinal="0">
+                    <DataShape>
+                        <FieldDefinitions>
+                            <FieldDefinition
+                             aspect.friendlyName="Data Shape"
+                             baseType="DATASHAPENAME"
+                             description="Data shape"
+                             name="dataShape"
+                             ordinal="0"></FieldDefinition>
+                        </FieldDefinitions>
+                    </DataShape>
+                    <Rows>
+                        <Row>
+                            <accumulatedDataShape>
+                                <json>
+                                <![CDATA[
+                                {"fieldDefinitions":{"User":{"name":"User","aspects":{"isPrimaryKey":false},"description":"","baseType":"STRING","ordinal":5},"ServiceName":{"name":"ServiceName","aspects":{"isPrimaryKey":false},"description":"","baseType":"STRING","ordinal":2},"Content":{"name":"Content","aspects":{"isPrimaryKey":false},"description":"","baseType":"STRING","ordinal":0},"ID":{"name":"ID","aspects":{"isPrimaryKey":true},"description":"","baseType":"GUID","ordinal":1},"Source":{"name":"Source","aspects":{"isPrimaryKey":false},"description":"","baseType":"STRING","ordinal":3},"timestamp":{"name":"timestamp","aspects":{"isPrimaryKey":false},"description":"","baseType":"DATETIME","ordinal":4}}}
+                                ]]>
+                                </json>
+                            </accumulatedDataShape>
+                            <dataShape>
+                            <![CDATA[
+                            GitBackup.Log.DataShape
+                            ]]>
+                            </dataShape>
+                        </Row>
+                    </Rows>
+                </ConfigurationTable>
+                <ConfigurationTable
+                 description="Index Settings"
+                 isMultiRow="true"
+                 name="Indexes"
+                 ordinal="1">
+                    <DataShape>
+                        <FieldDefinitions>
+                            <FieldDefinition
+                             aspect.friendlyName="Index Field Names"
+                             baseType="STRING"
+                             description="Index fields"
+                             name="fieldNames"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.friendlyName="Index Name"
+                             baseType="STRING"
+                             description="Index name"
+                             name="name"
+                             ordinal="0"></FieldDefinition>
+                        </FieldDefinitions>
+                    </DataShape>
+                    <Rows></Rows>
+                </ConfigurationTable>
+                <ConfigurationTable
+                 description="Configurable options to tune Data Table performance"
+                 isMultiRow="false"
+                 name="PersistenceProviderCustomSettings"
+                 ordinal="2">
+                    <DataShape>
+                        <FieldDefinitions>
+                            <FieldDefinition
+                             aspect.friendlyName="Persistence Provider Custom Settings Table"
+                             baseType="INFOTABLE"
+                             description="Persistence Provider Custom Config Table"
+                             name="customConfigTable"
+                             ordinal="0"></FieldDefinition>
+                        </FieldDefinitions>
+                    </DataShape>
+                    <Rows>
+                        <Row>
+                            <customConfigTable>
+                                <infoTable>
+                                    <DataShape>
+                                        <FieldDefinitions></FieldDefinitions>
+                                    </DataShape>
+                                    <Rows></Rows>
+                                </infoTable>
+                            </customConfigTable>
+                        </Row>
+                    </Rows>
+                </ConfigurationTable>
+            </ConfigurationTables>
+            <ThingShape>
+                <PropertyDefinitions>
+                    <PropertyDefinition
+                     aspect.cacheTime="0.0"
+                     aspect.dataChangeType="VALUE"
+                     aspect.defaultValue="10.0"
+                     aspect.isPersistent="true"
+                     baseType="NUMBER"
+                     category=""
+                     description=""
+                     isLocalOnly="false"
+                     name="CurrentCountToEmpty"
+                     ordinal="2"></PropertyDefinition>
+                </PropertyDefinitions>
+                <ServiceDefinitions>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="DeleteOldestEntries">
+                        <ResultType
+                         baseType="NOTHING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions></ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="QueryDataTableEntriesSorted">
+                        <ResultType
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="QUERY"
+                             description=""
+                             name="query"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                </ServiceDefinitions>
+                <EventDefinitions></EventDefinitions>
+                <ServiceMappings></ServiceMappings>
+                <ServiceImplementations>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="DeleteOldestEntries">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        // result: INTEGER
+                                        var int_DataTableEntryCount = me.GetDataTableEntryCount();
+                                        //if there are more than 100 rows, delete the oldest 10 rows and reset the Counter
+                                        if (int_DataTableEntryCount >=100) {
+                                        	logger.warn("GitBackup Log DataTable contains more than 100 entries, actual count is " + int_DataTableEntryCount + ". Starting deleting oldest 10 entries.");
+                                        	iftbl_ValuesToDelete = me.QueryDataTableEntries({
+                                        		maxItems: int_DataTableEntryCount,
+                                        	});
+                                        
+                                        	var sort = new Object();
+                                        	sort.name = "timestamp";
+                                        	sort.ascending = true;
+                                        	iftbl_ValuesToDelete.Sort(sort);
+                                        
+                                        	iftbl_ValuesToDelete = Resources["InfoTableFunctions"].TopN({
+                                        		maxItems: 10 /* NUMBER */ ,
+                                        		t: iftbl_ValuesToDelete /* INFOTABLE */
+                                        	});
+                                        	iftbl_ValuesToDelete.rows.toArray().forEach(row => {
+                                        		me.DeleteDataTableEntryByKey({
+                                        			key: row.key /* STRING */
+                                        		});
+                                        	});
+                                        
+                                        	
+                                        	logger.warn("new table entry count" + me.GetDataTableEntryCount());
+                                        }
+                                        //me.QueryDataTableEntries({
+                                        //	values: undefined /* INFOTABLE */ ,
+                                        //	maxItems: undefined /* NUMBER */ ,
+                                        //	tags: undefined /* TAGS */ ,
+                                        //	source: undefined /* STRING */ ,
+                                        //	query: undefined /* QUERY */
+                                        //});
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="QueryDataTableEntriesSorted">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        if (!query) {
+                                        	query = new Object();
+                                        } else {
+                                        	query = JSON.parse(query);
+                                        }
+                                        query.sorts = [{
+                                        	fieldName: "timestamp",
+                                        	isAscending: false
+                                        }];
+                                        
+                                        result = me.QueryDataTableEntries({
+                                        	maxItems: 100 /* NUMBER */ ,
+                                        	query: query /* QUERY */
+                                        });
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                </ServiceImplementations>
+                <Subscriptions>
+                    <Subscription
+                     description=""
+                     enabled="true"
+                     eventName="Add"
+                     name="CleanOnReachedCounter"
+                     source=""
+                     sourceProperty=""
+                     sourceType="Thing">
+                        <ServiceImplementation
+                         description=""
+                         handlerName="Script"
+                         name="CleanOnReachedCounter">
+                            <ConfigurationTables>
+                                <ConfigurationTable
+                                 description=""
+                                 isMultiRow="false"
+                                 name="Script"
+                                 ordinal="0">
+                                    <DataShape>
+                                        <FieldDefinitions>
+                                            <FieldDefinition
+                                             baseType="STRING"
+                                             description="code"
+                                             name="code"
+                                             ordinal="0"></FieldDefinition>
+                                        </FieldDefinitions>
+                                    </DataShape>
+                                    <Rows>
+                                        <Row>
+                                            <code>
+                                            <![CDATA[
+                                            --me.CurrentCountToEmpty;
+                                            if (me.CurrentCountToEmpty <= 0) {
+                                                logger.warn("Reached limit of 10 consecutive log entries for purging the GitBackup Log DataTable.");
+                                            	me.DeleteOldestEntries();;
+                                            	//reset the counter
+                                            	me.CurrentCountToEmpty = 10;
+                                            }
+                                            ]]>
+                                            </code>
+                                        </Row>
+                                    </Rows>
+                                </ConfigurationTable>
+                            </ConfigurationTables>
+                        </ServiceImplementation>
+                    </Subscription>
+                </Subscriptions>
+            </ThingShape>
+            <PropertyBindings></PropertyBindings>
+            <RemotePropertyBindings></RemotePropertyBindings>
+            <RemoteServiceBindings></RemoteServiceBindings>
+            <RemoteEventBindings></RemoteEventBindings>
+            <AlertConfigurations>
+                <AlertDefinitions
+                 name="CurrentCountToEmpty"></AlertDefinitions>
+            </AlertConfigurations>
+            <ImplementedShapes></ImplementedShapes>
+            <ThingProperties>
+                <CurrentCountToEmpty>
+                    <Value>9.0</Value>
+                    <Timestamp>2020-09-17T12:44:09.248-07:00</Timestamp>
+                    <Quality>GOOD</Quality>
+                </CurrentCountToEmpty>
+            </ThingProperties>
+        </Thing>
+    </Things>
+</Entities>

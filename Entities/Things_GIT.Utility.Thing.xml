@@ -17,7 +17,7 @@
          enabled="true"
          homeMashup=""
          identifier=""
-         lastModifiedDate="2020-08-28T08:09:44.325-07:00"
+         lastModifiedDate="2020-09-17T11:44:20.454-07:00"
          name="GIT.Utility.Thing"
          projectName="GitBackup"
          published="false"
@@ -84,6 +84,48 @@
                              description=""
                              name="newEntitiesToExport"
                              ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="AddLogEntry">
+                        <ResultType
+                         baseType="NOTHING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="Content"
+                             ordinal="4"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="ServiceName"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="Source"
+                             ordinal="5"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="DATETIME"
+                             description=""
+                             name="timestamp"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="User"
+                             ordinal="2"></FieldDefinition>
                         </ParameterDefinitions>
                     </ServiceDefinition>
                     <ServiceDefinition
@@ -193,6 +235,22 @@
                              name="RepoName"
                              ordinal="1"></FieldDefinition>
                         </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description=""
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetEmptyInfotable">
+                        <ResultType
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions></ParameterDefinitions>
                     </ServiceDefinition>
                     <ServiceDefinition
                      aspect.isAsync="false"
@@ -577,6 +635,58 @@
                     <ServiceImplementation
                      description=""
                      handlerName="Script"
+                     name="AddLogEntry">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var guid_EntryID = generateGUID();
+                                        
+                                        var values =  DataShapes["GitBackup.Log.DataShape"].CreateValues();
+                                        // GitBackup.Log.DataShape entry object
+                                        var newEntry = new Object();
+                                        newEntry.ID = guid_EntryID; // GUID [Primary Key]
+                                        newEntry.timestamp = timestamp; // DATETIME
+                                        newEntry.User = User; // STRING
+                                        newEntry.ServiceName = ServiceName; // STRING
+                                        newEntry.Content = Content; // STRING
+                                        newEntry.Source = Source; // STRING
+                                        values.AddRow(newEntry);
+                                        
+                                        
+                                        // id: STRING
+                                        var id =  Things["GitBackup.Log.DataTable"].AddDataTableEntry({
+                                        	sourceType: undefined /* STRING */,
+                                        	values: values /* INFOTABLE */,
+                                        	location: undefined /* LOCATION */,
+                                        	source: Source /* STRING */,
+                                        	tags: undefined /* TAGS */
+                                        });
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
                      name="AddNewRepo">
                         <ConfigurationTables>
                             <ConfigurationTable
@@ -684,6 +794,37 @@
                                         	path: str_RepositoryPathName /* STRING */
                                         });
                                         logger.warn("GitBackup Thing "+RepoName+" was deleted successfully");
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetEmptyInfotable">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        result = { dataShape: { fieldDefinitions : {} }, rows: [] };
                                         ]]>
                                         </code>
                                     </Row>
