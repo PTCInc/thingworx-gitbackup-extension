@@ -17,7 +17,7 @@
          description="Shows when pressing the Export button. Contains various Export related functionality. It is generally a wrapper on top of standard ThingWorx Export functionality created to allow faster exporting."
          documentationContent=""
          homeMashup=""
-         lastModifiedDate="2020-08-31T05:21:16.424-07:00"
+         lastModifiedDate="2020-09-17T12:43:39.781-07:00"
          name="GitBackup.Export.Mashup"
          projectName="GitBackup"
          rows="0.0"
@@ -82,18 +82,6 @@
                     },
                     "RefreshInterval" : 0,
                     "Target" : "ExportProjectData"
-                  }, {
-                    "APIMethod" : "post",
-                    "Characteristic" : "Services",
-                    "Id" : "a672e47f-0174-460d-a39b-7afcb6695393",
-                    "Name" : "ExportProjectEntities",
-                    "Parameters" : { },
-                    "Properties" : {
-                      "CustomSuccessMessage" : "Entities have been exported successfully",
-                      "ShowSuccessMessage" : true
-                    },
-                    "RefreshInterval" : 0,
-                    "Target" : "ExportProjectEntities"
                   }, {
                     "APIMethod" : "post",
                     "Characteristic" : "Services",
@@ -296,22 +284,6 @@
                 "TargetId" : "eventsrouter-34",
                 "TargetSection" : ""
               }, {
-                "Id" : "ba5bc7bd-2835-49f9-97dd-c66168b3d57c",
-                "PropertyMaps" : [ {
-                  "SourceProperty" : "Output",
-                  "SourcePropertyBaseType" : "STRING",
-                  "SourcePropertyType" : "Property",
-                  "TargetProperty" : "CustomClass",
-                  "TargetPropertyBaseType" : "STRING",
-                  "TargetPropertyType" : "property"
-                } ],
-                "SourceArea" : "UI",
-                "SourceId" : "eventsrouter-40",
-                "SourceSection" : "",
-                "TargetArea" : "UI",
-                "TargetId" : "button-20",
-                "TargetSection" : ""
-              }, {
                 "Id" : "9399757f-f3f4-4d15-a542-cb733a7b702e",
                 "PropertyMaps" : [ {
                   "SourceProperty" : "Output",
@@ -454,36 +426,6 @@
                 "TargetId" : "EntityName",
                 "TargetSection" : "DynamicThingShapes_Git.Utility.ThingShape"
               }, {
-                "Id" : "f113eb79-cf59-4b1b-81be-78cadbf0b94e",
-                "PropertyMaps" : [ {
-                  "SourceProperty" : "State",
-                  "SourcePropertyBaseType" : "BOOLEAN",
-                  "TargetProperty" : "includeDependents",
-                  "TargetPropertyBaseType" : "BOOLEAN",
-                  "TargetPropertyType" : "Parameter"
-                } ],
-                "SourceArea" : "UI",
-                "SourceId" : "checkbox-15",
-                "SourceSection" : "",
-                "TargetArea" : "Data",
-                "TargetId" : "ExportProjectEntities",
-                "TargetSection" : "DynamicThingShapes_Git.Utility.ThingShape"
-              }, {
-                "Id" : "1ce2bc2c-e998-40b4-bab1-0c82d209e2f5",
-                "PropertyMaps" : [ {
-                  "SourceProperty" : "Entity",
-                  "SourcePropertyBaseType" : "PROJECTNAME",
-                  "TargetProperty" : "ProjectName",
-                  "TargetPropertyBaseType" : "STRING",
-                  "TargetPropertyType" : "Parameter"
-                } ],
-                "SourceArea" : "UI",
-                "SourceId" : "entitypicker-16",
-                "SourceSection" : "",
-                "TargetArea" : "Data",
-                "TargetId" : "ExportProjectEntities",
-                "TargetSection" : "DynamicThingShapes_Git.Utility.ThingShape"
-              }, {
                 "Id" : "e5324485-4ef4-4f12-8405-7dd1afbdd969",
                 "PropertyMaps" : [ {
                   "SourceProperty" : "FileRepository",
@@ -517,69 +459,6 @@
                 "TargetId" : "navigation-49",
                 "TargetSection" : ""
               }, {
-                "Id" : "020214f8-988d-40dd-9f99-faa31bbbf339",
-                "PropertyMaps" : [ {
-                  "SourceProperty" : "EntitiesToExport",
-                  "SourcePropertyBaseType" : "INFOTABLE",
-                  "SourcePropertyType" : "Property",
-                  "TargetProperty" : "Data",
-                  "TargetPropertyBaseType" : "INFOTABLE",
-                  "TargetPropertyType" : "property"
-                } ],
-                "SourceArea" : "UI",
-                "SourceId" : "navigation-49",
-                "SourceSection" : "",
-                "TargetArea" : "UI",
-                "TargetId" : "infotableselector-50",
-                "TargetSection" : ""
-              }, {
-                "Id" : "67471362-a865-4e01-93fc-bea8860af38e",
-                "PropertyMaps" : [ {
-                  "SourceProperty" : "Output",
-                  "SourcePropertyBaseType" : "STRING",
-                  "SourcePropertyType" : "Property",
-                  "TargetProperty" : "Text",
-                  "TargetPropertyBaseType" : "STRING",
-                  "TargetPropertyType" : "property"
-                } ],
-                "SourceArea" : "UI",
-                "SourceId" : "expression-51",
-                "SourceSection" : "",
-                "TargetArea" : "UI",
-                "TargetId" : "navigation-49",
-                "TargetSection" : ""
-              }, {
-                "Id" : "bcf98ac9-e37f-4c1c-9cd8-01fa2c11d8e6",
-                "PropertyMaps" : [ {
-                  "SourceProperty" : "RowCount",
-                  "SourcePropertyBaseType" : "NUMBER",
-                  "SourcePropertyType" : "Property",
-                  "TargetProperty" : "rowCount",
-                  "TargetPropertyBaseType" : "NUMBER",
-                  "TargetPropertyType" : "property"
-                } ],
-                "SourceArea" : "UI",
-                "SourceId" : "infotableselector-50",
-                "SourceSection" : "",
-                "TargetArea" : "UI",
-                "TargetId" : "expression-51",
-                "TargetSection" : ""
-              }, {
-                "Id" : "75f171d0-24d2-491c-bbca-9dc656307660",
-                "PropertyMaps" : [ {
-                  "SourceProperty" : "EntitiesToExport",
-                  "SourcePropertyBaseType" : "INFOTABLE",
-                  "TargetProperty" : "EntitiesToExport",
-                  "TargetPropertyBaseType" : "INFOTABLE",
-                  "TargetPropertyType" : "Parameter"
-                } ],
-                "SourceArea" : "UI",
-                "SourceId" : "navigation-49",
-                "SourceSection" : "",
-                "TargetArea" : "Data",
-                "TargetId" : "ExportProjectEntities",
-                "TargetSection" : "DynamicThingShapes_Git.Utility.ThingShape"
-              }, {
                 "Id" : "a784bf31-6bee-47f7-b88c-dd17ccb0e3e4",
                 "PropertyMaps" : [ {
                   "SourceProperty" : "Entity",
@@ -610,22 +489,6 @@
                 "SourceSection" : "",
                 "TargetArea" : "UI",
                 "TargetId" : "navigation-49",
-                "TargetSection" : ""
-              }, {
-                "Id" : "366a328f-5a04-41b4-9cab-f3356f026e73",
-                "PropertyMaps" : [ {
-                  "SourceProperty" : "Output",
-                  "SourcePropertyBaseType" : "BOOLEAN",
-                  "SourcePropertyType" : "Property",
-                  "TargetProperty" : "Visible",
-                  "TargetPropertyBaseType" : "BOOLEAN",
-                  "TargetPropertyType" : "property"
-                } ],
-                "SourceArea" : "UI",
-                "SourceId" : "expression-52",
-                "SourceSection" : "",
-                "TargetArea" : "UI",
-                "TargetId" : "button-20",
                 "TargetSection" : ""
               }, {
                 "Id" : "64aa625d-a786-40b2-9765-298f90e0546b",
@@ -755,6 +618,38 @@
                 "TargetArea" : "Data",
                 "TargetId" : "ExportLocalizationToken",
                 "TargetSection" : "DynamicThingShapes_Git.Utility.ThingShape"
+              }, {
+                "Id" : "a27ee01f-4869-4891-bbda-5018ce49cd23",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "GitThingName",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "GitThing",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "navigation-49",
+                "TargetSection" : ""
+              }, {
+                "Id" : "7112db15-bf5c-4b48-8141-e90541c4b189",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "State",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "ExportDependents",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "checkbox-15",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "navigation-49",
+                "TargetSection" : ""
               } ],
               "DesignTimePermissions" : {
                 "Create" : [ ],
@@ -817,15 +712,6 @@
                 "EventTriggerId" : "Pause",
                 "EventTriggerSection" : "Things_GIT.Utility.Thing",
                 "Id" : "2ac0ef45-e8ce-4646-a770-464de6435366"
-              }, {
-                "EventHandlerArea" : "UI",
-                "EventHandlerId" : "expression-39",
-                "EventHandlerService" : "Evaluate",
-                "EventTriggerArea" : "UI",
-                "EventTriggerEvent" : "Clicked",
-                "EventTriggerId" : "button-20",
-                "EventTriggerSection" : "",
-                "Id" : "080d4c05-42b5-4146-8775-a5c8ff8a6093"
               }, {
                 "EventHandlerArea" : "UI",
                 "EventHandlerId" : "expression-38",
@@ -898,33 +784,6 @@
                 "EventTriggerId" : "mashup-root",
                 "EventTriggerSection" : "",
                 "Id" : "4e402333-9551-44db-bcd4-df58fdb3b940"
-              }, {
-                "EventHandlerArea" : "Data",
-                "EventHandlerId" : "DynamicThingShapes_Git.Utility.ThingShape",
-                "EventHandlerService" : "ExportProjectEntities",
-                "EventTriggerArea" : "UI",
-                "EventTriggerEvent" : "Clicked",
-                "EventTriggerId" : "button-20",
-                "EventTriggerSection" : "",
-                "Id" : "33f86539-4b4c-4384-9dba-feb49a7f7225"
-              }, {
-                "EventHandlerArea" : "UI",
-                "EventHandlerId" : "expression-41",
-                "EventHandlerService" : "Evaluate",
-                "EventTriggerArea" : "Data",
-                "EventTriggerEvent" : "ServiceInvokeCompleted",
-                "EventTriggerId" : "ExportProjectEntities",
-                "EventTriggerSection" : "DynamicThingShapes_Git.Utility.ThingShape",
-                "Id" : "786fb948-9c29-4b0d-8e57-90594a97842e"
-              }, {
-                "EventHandlerArea" : "Data",
-                "EventHandlerId" : "Things_GIT.Utility.Thing",
-                "EventHandlerService" : "Pause1",
-                "EventTriggerArea" : "Data",
-                "EventTriggerEvent" : "ServiceInvokeCompleted",
-                "EventTriggerId" : "ExportProjectEntities",
-                "EventTriggerSection" : "DynamicThingShapes_Git.Utility.ThingShape",
-                "Id" : "b601f26d-76c3-4b4b-8fee-9221d66eb657"
               }, {
                 "EventHandlerArea" : "Data",
                 "EventHandlerId" : "DynamicThingShapes_Git.Utility.ThingShape",
@@ -1302,7 +1161,7 @@
                           "Area" : "UI",
                           "CustomClass" : "checkbox-default",
                           "Disabled" : false,
-                          "DisplayName" : "checkbox-15",
+                          "DisplayName" : "cb_IncludeDependents",
                           "FocusStyle" : "DefaultFocusStyle",
                           "Height" : 20,
                           "Id" : "checkbox-15",
@@ -1388,48 +1247,6 @@
                           "Width" : 240,
                           "Z-index" : 10,
                           "__TypeDisplayName" : "Label",
-                          "__supportsTooltip" : true
-                        },
-                        "Widgets" : [ ]
-                      }, {
-                        "Properties" : {
-                          "ActiveStyle" : "DefaultButtonActiveStyle",
-                          "Area" : "UI",
-                          "CancelConfirmationButton" : "button2",
-                          "ConfirmationButton1Label" : "Yes",
-                          "ConfirmationButton2Label" : "No",
-                          "ConfirmationPrompt" : "Do Action?",
-                          "ConfirmationRequired" : false,
-                          "ConfirmationTitle" : "Confirm Action",
-                          "ContextId" : "",
-                          "CustomClass" : "blue-btn",
-                          "DefaultConfirmationButton" : "button1",
-                          "Description" : "",
-                          "Disabled" : false,
-                          "DisabledStyle" : "DefaultButtonDisabledStyle",
-                          "DisplayName" : "btn_ExportEntities",
-                          "FocusStyle" : "DefaultButtonFocusStyle",
-                          "Height" : 38,
-                          "HoverStyle" : "DefaultButtonHoverStyle",
-                          "IconAlignment" : "left",
-                          "Id" : "button-20",
-                          "Label" : "Export entities",
-                          "LastContainer" : false,
-                          "Left" : 628,
-                          "ResponsiveLayout" : false,
-                          "RoundedCorners" : true,
-                          "ShowDataLoading" : true,
-                          "SingleClickSelectOnTablets" : true,
-                          "Style" : "DefaultButtonStyle",
-                          "TabSequence" : 2,
-                          "ToolTipField" : "",
-                          "ToolTipStyle" : "DefaultTooltipStyle",
-                          "Top" : 45,
-                          "Type" : "button",
-                          "Visible" : true,
-                          "Width" : 125,
-                          "Z-index" : 10,
-                          "__TypeDisplayName" : "Button",
                           "__supportsTooltip" : true
                         },
                         "Widgets" : [ ]
@@ -1553,7 +1370,7 @@
                           "Area" : "UI",
                           "ClickOutsideToClose" : false,
                           "CustomClass" : "blue-btn",
-                          "DisplayName" : "navigation-49",
+                          "DisplayName" : "nav_Export",
                           "FixedPopupHeight" : 500,
                           "FixedPopupWidth" : 1000,
                           "Height" : 38,
@@ -1561,7 +1378,7 @@
                           "IconAlignment" : "left",
                           "Id" : "navigation-49",
                           "LastContainer" : false,
-                          "Left" : 498,
+                          "Left" : 628,
                           "MashupName" : "GitBackup.EntityPicker.Mashup",
                           "MashupParameters" : [ {
                             "BaseType" : "STRING",
@@ -1576,6 +1393,36 @@
                               "baseType" : "STRING",
                               "description" : "",
                               "name" : "Project",
+                              "ordinal" : 0
+                            }
+                          }, {
+                            "BaseType" : "BOOLEAN",
+                            "Description" : "",
+                            "ParameterName" : "ExportDependents",
+                            "ParmDef" : {
+                              "aspects" : {
+                                "bindingDirection" : "IN",
+                                "isMandatory" : "false",
+                                "ordinal" : "3"
+                              },
+                              "baseType" : "BOOLEAN",
+                              "description" : "",
+                              "name" : "ExportDependents",
+                              "ordinal" : 0
+                            }
+                          }, {
+                            "BaseType" : "STRING",
+                            "Description" : "",
+                            "ParameterName" : "GitThing",
+                            "ParmDef" : {
+                              "aspects" : {
+                                "bindingDirection" : "IN",
+                                "isMandatory" : "false",
+                                "ordinal" : "2"
+                              },
+                              "baseType" : "STRING",
+                              "description" : "",
+                              "name" : "GitThing",
                               "ordinal" : 0
                             }
                           }, {
@@ -1611,7 +1458,7 @@
                             "lineStyle" : "solid",
                             "lineThickness" : 1,
                             "secondaryBackgroundColor" : "",
-                            "textSize" : "normal"
+                            "textSize" : "large"
                           },
                           "PopupScrolling" : "auto",
                           "PopupTitle" : "",
@@ -1635,43 +1482,21 @@
                             "lineStyle" : "solid",
                             "lineThickness" : 1,
                             "secondaryBackgroundColor" : "",
-                            "textSize" : "normal"
+                            "textSize" : "large"
                           },
                           "TabSequence" : 0,
                           "TargetWindow" : "popup",
-                          "Text" : "",
+                          "Text" : "Export Entities",
                           "ToolTipField" : "",
                           "ToolTipStyle" : "DefaultTooltipStyle",
                           "Top" : 45,
                           "Transparent" : false,
                           "Type" : "navigation",
                           "Visible" : true,
-                          "Width" : 125,
+                          "Width" : 135,
                           "Z-index" : 10,
                           "__TypeDisplayName" : "Navigation",
                           "__supportsTooltip" : true
-                        },
-                        "Widgets" : [ ]
-                      }, {
-                        "Properties" : {
-                          "AnyRowsSelected" : false,
-                          "Area" : "UI",
-                          "DisplayName" : "infotableselector-50",
-                          "HasRows" : false,
-                          "Height" : 28,
-                          "Id" : "infotableselector-50",
-                          "LastContainer" : false,
-                          "Left" : 432,
-                          "NoRows" : false,
-                          "NoRowsSelected" : false,
-                          "ResponsiveLayout" : false,
-                          "ShowDataLoading" : true,
-                          "Top" : 84,
-                          "Type" : "gitinfotableselector",
-                          "Visible" : false,
-                          "Width" : 60,
-                          "Z-index" : 10,
-                          "__TypeDisplayName" : "Infotable Selector"
                         },
                         "Widgets" : [ ]
                       } ]
@@ -2463,39 +2288,6 @@
                       } ]
                     } ]
                   } ]
-                }, {
-                  "Properties" : {
-                    "Area" : "UI",
-                    "AutoEvaluate" : true,
-                    "DataChangeType" : "VALUE",
-                    "DisplayName" : "showNumberOfEntities",
-                    "Expression" : "if (rowCount==undefined||rowCount==0)\n\"Optional: Select Entities to export\";\nelse if (rowCount==1)\n    \"1 Entity selected to Export\"\nelse\n    rowCount+ \" Entities selected to Export\"",
-                    "FireOnFirstValue" : false,
-                    "Height" : 28,
-                    "Id" : "expression-51",
-                    "LastContainer" : false,
-                    "Left" : 0,
-                    "OutputBaseType" : "STRING",
-                    "ShowDataLoading" : true,
-                    "Top" : 0,
-                    "Type" : "expression",
-                    "Visible" : true,
-                    "Width" : 200,
-                    "Z-index" : 10,
-                    "__TypeDisplayName" : "Expression",
-                    "_currentParameterDefs" : [ {
-                      "BaseType" : "NUMBER",
-                      "Description" : "",
-                      "ParameterName" : "rowCount",
-                      "bindingDirection" : "Target",
-                      "bindingStatus" : true,
-                      "bindingType" : "Property",
-                      "isBindingSource" : false,
-                      "isBindingTarget" : true,
-                      "name" : "rowCount"
-                    } ]
-                  },
-                  "Widgets" : [ ]
                 }, {
                   "Properties" : {
                     "Area" : "UI",

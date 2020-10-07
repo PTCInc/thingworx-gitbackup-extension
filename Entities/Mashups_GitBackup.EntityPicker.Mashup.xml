@@ -17,7 +17,7 @@
          description="Allows you to pick the Entities you want to export"
          documentationContent=""
          homeMashup=""
-         lastModifiedDate="2020-08-28T08:26:54.677-07:00"
+         lastModifiedDate="2020-09-17T12:43:00.680-07:00"
          name="GitBackup.EntityPicker.Mashup"
          projectName="GitBackup"
          rows="0.0"
@@ -49,6 +49,22 @@
                 <FieldDefinition
                  aspect.bindingDirection="IN"
                  aspect.isMandatory="false"
+                 aspect.ordinal="3"
+                 baseType="BOOLEAN"
+                 description=""
+                 name="ExportDependents"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.bindingDirection="IN"
+                 aspect.isMandatory="false"
+                 aspect.ordinal="2"
+                 baseType="STRING"
+                 description=""
+                 name="GitThing"
+                 ordinal="0"></FieldDefinition>
+                <FieldDefinition
+                 aspect.bindingDirection="IN"
+                 aspect.isMandatory="false"
                  aspect.ordinal="1"
                  baseType="STRING"
                  description=""
@@ -58,13 +74,34 @@
             <Things>
                 <Thing>GIT.Utility.Thing</Thing>
             </Things>
-            <ThingShapes></ThingShapes>
+            <ThingShapes>
+                <ThingShape>Git.Utility.ThingShape</ThingShape>
+            </ThingShapes>
             <ThingTemplates></ThingTemplates>
             <mashupContent>
             <![CDATA[
             {
               "CustomMashupCss" : "",
               "Data" : {
+                "DynamicThingShapes_Git.Utility.ThingShape" : {
+                  "DataName" : "DynamicThingShapes_Git.Utility.ThingShape",
+                  "EntityName" : "Git.Utility.ThingShape",
+                  "EntityType" : "DynamicThingShapes",
+                  "Id" : "fdbbc3c8-b28a-498b-b2d9-e3005f42c2b0",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "cc1be063-00ec-4811-8426-47048c1188fe",
+                    "Name" : "ExportProjectEntities",
+                    "Parameters" : { },
+                    "Properties" : {
+                      "CustomSuccessMessage" : "Successfully exported entities!",
+                      "ShowSuccessMessage" : true
+                    },
+                    "RefreshInterval" : 0,
+                    "Target" : "ExportProjectEntities"
+                  } ]
+                },
                 "Session" : {
                   "DataName" : "Session",
                   "EntityName" : "",
@@ -109,6 +146,22 @@
                     "Parameters" : { },
                     "RefreshInterval" : 0,
                     "Target" : "RemoveEntitiesFromExportList"
+                  }, {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "73af28af-7cf2-4344-a938-2815e10ef83e",
+                    "Name" : "GetProjectEntities1",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetProjectEntities"
+                  }, {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "d28e18e2-094a-4cd6-8519-787124bd619a",
+                    "Name" : "GetEmptyInfotable",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetEmptyInfotable"
                   } ]
                 },
                 "UserExtensions" : {
@@ -128,23 +181,6 @@
                 }
               },
               "DataBindings" : [ {
-                "Id" : "5fb42433-237e-480f-a766-f74e8a7feaed",
-                "PropertyMaps" : [ {
-                  "SourceProperty" : "",
-                  "SourcePropertyBaseType" : "INFOTABLE",
-                  "SourcePropertyType" : "InfoTable",
-                  "TargetProperty" : "Data",
-                  "TargetPropertyBaseType" : "INFOTABLE",
-                  "TargetPropertyType" : "property"
-                } ],
-                "SourceArea" : "Data",
-                "SourceDetails" : "AllData",
-                "SourceId" : "GetProjectEntities",
-                "SourceSection" : "Things_GIT.Utility.Thing",
-                "TargetArea" : "UI",
-                "TargetId" : "dhxgrid-6",
-                "TargetSection" : ""
-              }, {
                 "Id" : "fbd1f304-d6b3-409b-ae3a-1d6e29b524e4",
                 "PropertyMaps" : [ {
                   "SourceProperty" : "Project",
@@ -316,6 +352,148 @@
                 "TargetArea" : "Data",
                 "TargetId" : "RemoveEntitiesFromExportList",
                 "TargetSection" : "Things_GIT.Utility.Thing"
+              }, {
+                "Id" : "1f353740-8778-4368-986a-3d19700cb5f6",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "SourcePropertyType" : "InfoTable",
+                  "TargetProperty" : "Data",
+                  "TargetPropertyBaseType" : "INFOTABLE",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetProjectEntities",
+                "SourceSection" : "Things_GIT.Utility.Thing",
+                "TargetArea" : "UI",
+                "TargetId" : "gridadvanced-22",
+                "TargetSection" : ""
+              }, {
+                "Id" : "087555db-c9fa-49fd-9f08-a1c00f34295b",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Project",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "project",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetProjectEntities1",
+                "TargetSection" : "Things_GIT.Utility.Thing"
+              }, {
+                "Id" : "a334e035-2fee-4d6e-b86b-141c2fe6f58d",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "SourcePropertyType" : "InfoTable",
+                  "TargetProperty" : "Input1",
+                  "TargetPropertyBaseType" : "INFOTABLE",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetProjectEntities1",
+                "SourceSection" : "Things_GIT.Utility.Thing",
+                "TargetArea" : "UI",
+                "TargetId" : "eventsrouter-23",
+                "TargetSection" : ""
+              }, {
+                "Id" : "ea6e3ae3-fe61-4e62-a24f-3e2d231be484",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Output",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "SelectedRows",
+                  "TargetPropertyBaseType" : "INFOTABLE",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "eventsrouter-23",
+                "SourceSection" : "",
+                "TargetArea" : "UI",
+                "TargetId" : "gridadvanced-22",
+                "TargetSection" : ""
+              }, {
+                "Id" : "10a1ef49-2592-4ecb-9de0-d7ad0c453911",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "SourcePropertyType" : "InfoTable",
+                  "TargetProperty" : "Input2",
+                  "TargetPropertyBaseType" : "INFOTABLE",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "GetEmptyInfotable",
+                "SourceSection" : "Things_GIT.Utility.Thing",
+                "TargetArea" : "UI",
+                "TargetId" : "eventsrouter-23",
+                "TargetSection" : ""
+              }, {
+                "Id" : "5178151c-0c56-4e73-bbf5-c1af6904e743",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "GitThing",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "value",
+                  "TargetPropertyBaseType" : "THINGNAME",
+                  "TargetPropertyType" : "Entity"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "EntityName",
+                "TargetSection" : "DynamicThingShapes_Git.Utility.ThingShape"
+              }, {
+                "Id" : "3ed0f3d6-d2e4-4660-830c-58367a85ae1b",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "EntitiesToExport",
+                  "SourcePropertyBaseType" : "INFOTABLE",
+                  "TargetProperty" : "EntitiesToExport",
+                  "TargetPropertyBaseType" : "INFOTABLE",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "ExportProjectEntities",
+                "TargetSection" : "DynamicThingShapes_Git.Utility.ThingShape"
+              }, {
+                "Id" : "46bb06bc-9926-4aca-8606-d08f46deec27",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Project",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "ProjectName",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "ExportProjectEntities",
+                "TargetSection" : "DynamicThingShapes_Git.Utility.ThingShape"
+              }, {
+                "Id" : "5d2f46e3-5cec-4aa3-8c51-88623ed94274",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "ExportDependents",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "TargetProperty" : "includeDependents",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "ExportProjectEntities",
+                "TargetSection" : "DynamicThingShapes_Git.Utility.ThingShape"
               } ],
               "DesignTimePermissions" : {
                 "Create" : [ ],
@@ -378,6 +556,42 @@
                 "EventTriggerId" : "button-9",
                 "EventTriggerSection" : "",
                 "Id" : "60950fd7-2c94-46fa-9df5-784a85bb0928"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_GIT.Utility.Thing",
+                "EventHandlerService" : "GetProjectEntities1",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "button-24",
+                "EventTriggerSection" : "",
+                "Id" : "0b904c19-155a-4891-9ff7-6e91fc062692"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_GIT.Utility.Thing",
+                "EventHandlerService" : "GetEmptyInfotable",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "button-25",
+                "EventTriggerSection" : "",
+                "Id" : "7127ee78-750f-4fd9-89e9-fc70cea9672b"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "DynamicThingShapes_Git.Utility.ThingShape",
+                "EventHandlerService" : "ExportProjectEntities",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "button-28",
+                "EventTriggerSection" : "",
+                "Id" : "46b177a0-b686-4388-8f25-b749bcfa52b5"
+              }, {
+                "EventHandlerArea" : "Mashup",
+                "EventHandlerId" : "mashup-root",
+                "EventHandlerService" : "CloseIfPopup",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "ExportProjectEntities",
+                "EventTriggerSection" : "DynamicThingShapes_Git.Utility.ThingShape",
+                "Id" : "445b1a53-e523-49fc-8f04-b40edb96d103"
               } ],
               "RunTimePermissions" : {
                 "permissions" : [ ]
@@ -395,6 +609,7 @@
                   "ConfigureGadgetButtonStyle" : "DefaultConfigureGadgetButtonStyle",
                   "DisplayName" : "Mashup",
                   "EnableParameterEditing" : false,
+                  "ExportDependents" : false,
                   "Height" : 618,
                   "Id" : "mashup-root",
                   "IgnoreWarningsInViewMashup" : false,
@@ -438,8 +653,25 @@
                     "BaseType" : "STRING",
                     "Description" : "",
                     "ParameterName" : "Project"
+                  }, {
+                    "Aspects" : {
+                      "bindingDirection" : "IN",
+                      "isMandatory" : false
+                    },
+                    "BaseType" : "STRING",
+                    "Description" : "",
+                    "ParameterName" : "GitThing"
+                  }, {
+                    "Aspects" : {
+                      "bindingDirection" : "IN",
+                      "isMandatory" : false
+                    },
+                    "BaseType" : "BOOLEAN",
+                    "DefaultValue" : false,
+                    "Description" : "",
+                    "ParameterName" : "ExportDependents"
                   } ],
-                  "id_index" : 20,
+                  "id_index" : 28,
                   "supportsAutoResize" : true
                 },
                 "Widgets" : [ {
@@ -665,7 +897,7 @@
                               "Alignment" : "left",
                               "AllowEllipsis" : false,
                               "Area" : "UI",
-                              "DisplayName" : "label-16",
+                              "DisplayName" : "lb_ProjectName",
                               "Height" : 22,
                               "Id" : "label-16",
                               "LastContainer" : false,
@@ -691,7 +923,7 @@
                               "CursorPosition" : 0,
                               "CustomClass" : "has-text textbox-shadow",
                               "DefaultTextboxFocusStyle" : "DefaultFocusStyle",
-                              "DisplayName" : "textbox-17",
+                              "DisplayName" : "tb_SearchEntity",
                               "Height" : 23,
                               "Id" : "textbox-17",
                               "InnerShadow" : true,
@@ -749,7 +981,7 @@
                               "DefaultConfirmationButton" : "button1",
                               "Disabled" : false,
                               "DisabledStyle" : "DefaultButtonDisabledStyle",
-                              "DisplayName" : "button-18",
+                              "DisplayName" : "btn_Reset",
                               "FocusStyle" : {
                                 "backgroundColor" : "#808080",
                                 "displayString" : "",
@@ -814,6 +1046,86 @@
                               "__supportsTooltip" : true
                             },
                             "Widgets" : [ ]
+                          }, {
+                            "Properties" : {
+                              "ActiveStyle" : "DefaultButtonActiveStyle",
+                              "Area" : "UI",
+                              "CancelConfirmationButton" : "button2",
+                              "ConfirmationButton1Label" : "Yes",
+                              "ConfirmationButton2Label" : "No",
+                              "ConfirmationPrompt" : "Do Action?",
+                              "ConfirmationRequired" : false,
+                              "ConfirmationTitle" : "Confirm Action",
+                              "ContextId" : "",
+                              "DefaultConfirmationButton" : "button1",
+                              "Disabled" : false,
+                              "DisabledStyle" : "DefaultButtonDisabledStyle",
+                              "DisplayName" : "btn_SelectAll",
+                              "FocusStyle" : "DefaultButtonFocusStyle",
+                              "Height" : 30,
+                              "HoverStyle" : "DefaultButtonHoverStyle",
+                              "IconAlignment" : "left",
+                              "Id" : "button-24",
+                              "Label" : "All",
+                              "LastContainer" : false,
+                              "Left" : 255,
+                              "ResponsiveLayout" : false,
+                              "RoundedCorners" : true,
+                              "ShowDataLoading" : true,
+                              "SingleClickSelectOnTablets" : true,
+                              "Style" : "DefaultButtonStyle",
+                              "TabSequence" : 0,
+                              "ToolTipField" : "",
+                              "ToolTipStyle" : "DefaultTooltipStyle",
+                              "Top" : 15,
+                              "Type" : "button",
+                              "Visible" : true,
+                              "Width" : 55,
+                              "Z-index" : 10,
+                              "__TypeDisplayName" : "Button",
+                              "__supportsTooltip" : true
+                            },
+                            "Widgets" : [ ]
+                          }, {
+                            "Properties" : {
+                              "ActiveStyle" : "DefaultButtonActiveStyle",
+                              "Area" : "UI",
+                              "CancelConfirmationButton" : "button2",
+                              "ConfirmationButton1Label" : "Yes",
+                              "ConfirmationButton2Label" : "No",
+                              "ConfirmationPrompt" : "Do Action?",
+                              "ConfirmationRequired" : false,
+                              "ConfirmationTitle" : "Confirm Action",
+                              "ContextId" : "",
+                              "DefaultConfirmationButton" : "button1",
+                              "Disabled" : false,
+                              "DisabledStyle" : "DefaultButtonDisabledStyle",
+                              "DisplayName" : "btn_SelectNone",
+                              "FocusStyle" : "DefaultButtonFocusStyle",
+                              "Height" : 30,
+                              "HoverStyle" : "DefaultButtonHoverStyle",
+                              "IconAlignment" : "left",
+                              "Id" : "button-25",
+                              "Label" : "None",
+                              "LastContainer" : false,
+                              "Left" : 319,
+                              "ResponsiveLayout" : false,
+                              "RoundedCorners" : true,
+                              "ShowDataLoading" : true,
+                              "SingleClickSelectOnTablets" : true,
+                              "Style" : "DefaultButtonStyle",
+                              "TabSequence" : 0,
+                              "ToolTipField" : "",
+                              "ToolTipStyle" : "DefaultTooltipStyle",
+                              "Top" : 15,
+                              "Type" : "button",
+                              "Visible" : true,
+                              "Width" : 55,
+                              "Z-index" : 10,
+                              "__TypeDisplayName" : "Button",
+                              "__supportsTooltip" : true
+                            },
+                            "Widgets" : [ ]
                           } ]
                         } ]
                       }, {
@@ -849,10 +1161,11 @@
                         },
                         "Widgets" : [ {
                           "Properties" : {
-                            "AlignHeader" : false,
                             "Area" : "UI",
-                            "AutoSelectFirstRow" : true,
-                            "CellTextWrapping" : false,
+                            "AutoScroll" : true,
+                            "CellBorderStyle" : "DefaultGridAdvancedCellBorderStyle",
+                            "CellValidationErrorStyle" : "DefaultGridAdvancedCellValidationErrorStyle",
+                            "CellValidationErrorTooltipStyle" : "DefaultGridAdvancedCellValidationErrorTooltipStyle",
                             "ColumnFormat" : {
                               "formatInfo" : [ {
                                 "Align" : "left",
@@ -873,9 +1186,10 @@
                                   "roundingEnabled" : true
                                 },
                                 "Title" : "Name",
-                                "ValidationExpression" : "",
-                                "ValidationMessage" : "",
-                                "Width" : "120"
+                                "Width" : "120px",
+                                "headerTextAlignment" : "center",
+                                "hidden" : false,
+                                "inLayout" : true
                               }, {
                                 "Align" : "left",
                                 "AllowEdit" : false,
@@ -895,9 +1209,33 @@
                                   "roundingEnabled" : true
                                 },
                                 "Title" : "Type",
-                                "ValidationExpression" : "",
-                                "ValidationMessage" : "",
-                                "Width" : "auto"
+                                "Width" : "auto",
+                                "headerTextAlignment" : "center",
+                                "hidden" : false,
+                                "inLayout" : true
+                              }, {
+                                "Align" : "left",
+                                "AllowEdit" : false,
+                                "FieldName" : "read",
+                                "FormatOptions" : {
+                                  "FormatString" : "checkbox",
+                                  "formatInfo" : {
+                                    "FieldName" : "",
+                                    "StateDefinition" : "",
+                                    "StateDefinitionType" : "fixed",
+                                    "StateFormats" : [ {
+                                      "state" : "",
+                                      "stateName" : "fixed"
+                                    } ]
+                                  },
+                                  "renderer" : "BOOLEAN",
+                                  "roundingEnabled" : true
+                                },
+                                "Title" : "read",
+                                "Width" : "auto",
+                                "headerTextAlignment" : "left",
+                                "hidden" : true,
+                                "inLayout" : true
                               }, {
                                 "Align" : "left",
                                 "AllowEdit" : false,
@@ -916,44 +1254,269 @@
                                   "renderer" : "DATETIME",
                                   "roundingEnabled" : true
                                 },
-                                "Title" : "Last Modified Date",
+                                "Title" : "lastModifiedDate",
+                                "Width" : "auto",
+                                "headerTextAlignment" : "center",
+                                "hidden" : false,
+                                "inLayout" : true
+                              }, {
+                                "Align" : "left",
+                                "AllowEdit" : false,
+                                "EditorOptions" : {
+                                  "Type" : "string",
+                                  "Validators" : [ "None", "NotEmpty", "Empty", "Custom", "ValidAlphaNumeric", "ValidEmail", "ValidIPv4", "ValidSIN", "ValidSSN" ]
+                                },
+                                "FieldName" : "description",
+                                "FormatOptions" : {
+                                  "FormatString" : "full",
+                                  "renderer" : "STRING"
+                                },
+                                "Title" : "description",
                                 "ValidationExpression" : "",
                                 "ValidationMessage" : "",
-                                "Width" : "auto"
+                                "Width" : "auto",
+                                "hidden" : true,
+                                "inLayout" : true
+                              }, {
+                                "Align" : "left",
+                                "AllowEdit" : false,
+                                "EditorOptions" : {
+                                  "Type" : "checkbox",
+                                  "Validators" : [ "None", "NotEmpty", "Empty", "Checkbox", "Custom" ]
+                                },
+                                "FieldName" : "update",
+                                "FormatOptions" : {
+                                  "FormatString" : "checkbox",
+                                  "renderer" : "BOOLEAN"
+                                },
+                                "Title" : "update",
+                                "ValidationExpression" : "",
+                                "ValidationMessage" : "",
+                                "Width" : "auto",
+                                "hidden" : true,
+                                "inLayout" : true
+                              }, {
+                                "Align" : "left",
+                                "AllowEdit" : false,
+                                "EditorOptions" : {
+                                  "Type" : "checkbox",
+                                  "Validators" : [ "None", "NotEmpty", "Empty", "Checkbox", "Custom" ]
+                                },
+                                "FieldName" : "delete",
+                                "FormatOptions" : {
+                                  "FormatString" : "checkbox",
+                                  "renderer" : "BOOLEAN"
+                                },
+                                "Title" : "delete",
+                                "ValidationExpression" : "",
+                                "ValidationMessage" : "",
+                                "Width" : "auto",
+                                "hidden" : true,
+                                "inLayout" : true
+                              }, {
+                                "Align" : "left",
+                                "AllowEdit" : false,
+                                "EditorOptions" : {
+                                  "Type" : "string",
+                                  "Validators" : [ "None", "NotEmpty", "Empty", "Custom", "ValidAlphaNumeric", "ValidEmail", "ValidIPv4", "ValidSIN", "ValidSSN" ]
+                                },
+                                "FieldName" : "parentType",
+                                "FormatOptions" : {
+                                  "FormatString" : "full",
+                                  "renderer" : "STRING"
+                                },
+                                "Title" : "parentType",
+                                "ValidationExpression" : "",
+                                "ValidationMessage" : "",
+                                "Width" : "auto",
+                                "hidden" : true,
+                                "inLayout" : true
+                              }, {
+                                "Align" : "left",
+                                "AllowEdit" : false,
+                                "EditorOptions" : {
+                                  "Type" : "checkbox",
+                                  "Validators" : [ "None", "NotEmpty", "Empty", "Checkbox", "Custom" ]
+                                },
+                                "FieldName" : "isExtension",
+                                "FormatOptions" : {
+                                  "FormatString" : "checkbox",
+                                  "renderer" : "BOOLEAN"
+                                },
+                                "Title" : "isExtension",
+                                "ValidationExpression" : "",
+                                "ValidationMessage" : "",
+                                "Width" : "auto",
+                                "hidden" : true,
+                                "inLayout" : true
+                              }, {
+                                "Align" : "left",
+                                "AllowEdit" : false,
+                                "EditorOptions" : {
+                                  "Type" : "checkbox",
+                                  "Validators" : [ "None", "NotEmpty", "Empty", "Checkbox", "Custom" ]
+                                },
+                                "FieldName" : "isSystemObject",
+                                "FormatOptions" : {
+                                  "FormatString" : "checkbox",
+                                  "renderer" : "BOOLEAN"
+                                },
+                                "Title" : "isSystemObject",
+                                "ValidationExpression" : "",
+                                "ValidationMessage" : "",
+                                "Width" : "auto",
+                                "hidden" : true,
+                                "inLayout" : true
+                              }, {
+                                "Align" : "left",
+                                "AllowEdit" : false,
+                                "EditorOptions" : {
+                                  "Type" : "string",
+                                  "Validators" : [ "None", "NotEmpty", "Empty", "Custom", "ValidAlphaNumeric", "ValidEmail", "ValidIPv4", "ValidSIN", "ValidSSN" ]
+                                },
+                                "FieldName" : "parentName",
+                                "FormatOptions" : {
+                                  "FormatString" : "full",
+                                  "renderer" : "STRING"
+                                },
+                                "Title" : "parentName",
+                                "ValidationExpression" : "",
+                                "ValidationMessage" : "",
+                                "Width" : "auto",
+                                "hidden" : true,
+                                "inLayout" : true
+                              }, {
+                                "Align" : "left",
+                                "AllowEdit" : false,
+                                "EditorOptions" : {
+                                  "Type" : "checkbox",
+                                  "Validators" : [ "None", "NotEmpty", "Empty", "Checkbox", "Custom" ]
+                                },
+                                "FieldName" : "isEditable",
+                                "FormatOptions" : {
+                                  "FormatString" : "checkbox",
+                                  "renderer" : "BOOLEAN"
+                                },
+                                "Title" : "isEditable",
+                                "ValidationExpression" : "",
+                                "ValidationMessage" : "",
+                                "Width" : "auto",
+                                "hidden" : true,
+                                "inLayout" : true
+                              }, {
+                                "Align" : "left",
+                                "AllowEdit" : false,
+                                "EditorOptions" : {
+                                  "Type" : "checkbox",
+                                  "Validators" : [ "None", "NotEmpty", "Empty", "Checkbox", "Custom" ]
+                                },
+                                "FieldName" : "isEditableExtensionObject",
+                                "FormatOptions" : {
+                                  "FormatString" : "checkbox",
+                                  "renderer" : "BOOLEAN"
+                                },
+                                "Title" : "isEditableExtensionObject",
+                                "ValidationExpression" : "",
+                                "ValidationMessage" : "",
+                                "Width" : "auto",
+                                "hidden" : true,
+                                "inLayout" : true
+                              }, {
+                                "Align" : "left",
+                                "AllowEdit" : false,
+                                "EditorOptions" : {
+                                  "Type" : "checkbox",
+                                  "Validators" : [ "None", "NotEmpty", "Empty", "Checkbox", "Custom" ]
+                                },
+                                "FieldName" : "isEditableSystemObject",
+                                "FormatOptions" : {
+                                  "FormatString" : "checkbox",
+                                  "renderer" : "BOOLEAN"
+                                },
+                                "Title" : "isEditableSystemObject",
+                                "ValidationExpression" : "",
+                                "ValidationMessage" : "",
+                                "Width" : "auto",
+                                "hidden" : true,
+                                "inLayout" : true
+                              }, {
+                                "Align" : "left",
+                                "AllowEdit" : false,
+                                "EditorOptions" : {
+                                  "Type" : "string",
+                                  "Validators" : [ "None", "NotEmpty", "Empty", "Custom", "ValidAlphaNumeric", "ValidEmail", "ValidIPv4", "ValidSIN", "ValidSSN" ]
+                                },
+                                "FieldName" : "id",
+                                "FormatOptions" : {
+                                  "FormatString" : "full",
+                                  "renderer" : "STRING"
+                                },
+                                "Title" : "id",
+                                "ValidationExpression" : "",
+                                "ValidationMessage" : "",
+                                "Width" : "auto",
+                                "hidden" : true,
+                                "inLayout" : true
                               } ]
                             },
-                            "CurrentScrollTop" : 0,
-                            "DisplayName" : "dhxgrid-6",
+                            "Configuration" : "",
+                            "ConfigurationId" : 3,
+                            "CookiePersistence" : true,
+                            "DataOverflow" : "clipped",
+                            "DataServiceBindingDef" : {
+                              "entityName" : "GIT.Utility.Thing",
+                              "entityType" : "Things",
+                              "target" : "GetProjectEntities"
+                            },
+                            "DefaultSelectedRows" : "",
+                            "DisplayName" : "grid_Main",
+                            "DisplayOnlyMode" : false,
+                            "EditButtonsLocation" : "top-right",
+                            "EnableAddDeleteButtons" : false,
+                            "EnableContextMenu" : true,
+                            "EnableEditButtons" : false,
+                            "EnableFilterEventOnConfigChange" : true,
+                            "EnableFooter" : false,
+                            "EnableGridReset" : false,
+                            "EnableGridSearch" : false,
+                            "EnableKeyboardNavigation" : true,
+                            "EnableSorting" : false,
                             "FocusStyle" : "DefaultFocusStyle",
-                            "GridBackgroundStyle" : "DefaultGridBackgroundStyle",
-                            "GridEditableFieldStyle" : "DefaultGridEditableFieldStyle",
-                            "GridHeaderStyle" : "DefaultGridHeaderStyle",
-                            "GridHeaderTextCase" : "capitalize",
-                            "GridInvalidFieldStyle" : "DefaultGridInvalidFieldStyle",
+                            "GridResetButtonLocation" : "top-right",
+                            "GridSearchLocation" : "top-left",
+                            "HeaderOverflow" : "tooltip",
                             "Height" : 200,
-                            "Id" : "dhxgrid-6",
+                            "IDFieldName" : "id",
+                            "Id" : "gridadvanced-22",
                             "IsEditable" : false,
-                            "IsPrintLayout" : false,
                             "LastContainer" : false,
-                            "Left" : 90,
-                            "MultiSelect" : true,
+                            "Left" : 145,
+                            "MaxHeaderHeight" : 100,
+                            "MinRowHeight" : 30,
                             "ResponsiveLayout" : true,
-                            "RowAlternateBackgroundStyle" : "DefaultRowAlternateBackgroundStyle",
-                            "RowBackgroundStyle" : "DefaultRowBackgroundStyle",
+                            "RowAlternateBackgroundStyle" : "DefaultGridAdvancedRowAlternateBackgroundStyle",
+                            "RowBackgroundStyle" : "DefaultGridAdvancedRowBackgroundStyle",
+                            "RowBorderStyle" : "DefaultGridAdvancedRowBorderStyle",
                             "RowFormat_StateParameters" : [ ],
-                            "RowHeight" : 30,
-                            "RowHoverStyle" : "DefaultRowHoverStyle",
-                            "RowSelectedStyle" : "DefaultRowSelectedStyle",
-                            "ScrollTop" : 0,
-                            "ShowAllColumns" : false,
+                            "RowHoverStyle" : "DefaultGridAdvancedRowHoverStyle",
+                            "RowSelectedStyle" : "DefaultGridAdvancedRowSelectedStyle",
+                            "RowSelection" : "multi",
+                            "SelectedRows" : "",
                             "ShowDataLoading" : true,
-                            "TabSequence" : 0,
-                            "Top" : 55,
-                            "Type" : "dhxgrid",
+                            "SortAscendingStyle" : "DefaultSortAscendingStyle",
+                            "SortDescendingStyle" : "DefaultSortDescendingStyle",
+                            "TableFooterStyle" : "DefaultGridAdvancedFooterStyle",
+                            "TableHeaderStyle" : "DefaultGridAdvancedHeaderStyle",
+                            "TableWrapperStyle" : "DefaultGridAdvancedWrapperStyle",
+                            "ToolbarStyle" : "DefaultToolbarStyle",
+                            "TooltipStyle" : "DefaultTooltipStyle",
+                            "Top" : 50,
+                            "Type" : "gridadvanced",
+                            "UseTheme" : false,
                             "Visible" : true,
                             "Width" : 400,
                             "Z-index" : 10,
-                            "__TypeDisplayName" : "Grid"
+                            "__TypeDisplayName" : "Grid Advanced"
                           },
                           "Widgets" : [ ]
                         } ]
@@ -1036,10 +1599,11 @@
                           "ConfirmationRequired" : false,
                           "ConfirmationTitle" : "Confirm Action",
                           "ContextId" : "",
+                          "CustomClass" : "btn_blue",
                           "DefaultConfirmationButton" : "button1",
                           "Disabled" : false,
                           "DisabledStyle" : "DefaultButtonDisabledStyle",
-                          "DisplayName" : "button-8",
+                          "DisplayName" : "btn_Add",
                           "FocusStyle" : "DefaultButtonFocusStyle",
                           "Height" : 30,
                           "HoverStyle" : "DefaultButtonHoverStyle",
@@ -1056,7 +1620,7 @@
                           "TabSequence" : 0,
                           "ToolTipField" : "",
                           "ToolTipStyle" : "DefaultTooltipStyle",
-                          "Top" : 93,
+                          "Top" : 116,
                           "Type" : "button",
                           "Visible" : true,
                           "Width" : 75,
@@ -1076,10 +1640,11 @@
                           "ConfirmationRequired" : false,
                           "ConfirmationTitle" : "Confirm Action",
                           "ContextId" : "",
+                          "CustomClass" : "btn_blue",
                           "DefaultConfirmationButton" : "button1",
                           "Disabled" : false,
                           "DisabledStyle" : "DefaultButtonDisabledStyle",
-                          "DisplayName" : "button-9",
+                          "DisplayName" : "btn_Remove",
                           "FocusStyle" : "DefaultButtonFocusStyle",
                           "Height" : 30,
                           "HoverStyle" : "DefaultButtonHoverStyle",
@@ -1096,7 +1661,67 @@
                           "TabSequence" : 0,
                           "ToolTipField" : "",
                           "ToolTipStyle" : "DefaultTooltipStyle",
-                          "Top" : 184,
+                          "Top" : 176,
+                          "Type" : "button",
+                          "Visible" : true,
+                          "Width" : 75,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "Button",
+                          "__supportsTooltip" : true
+                        },
+                        "Widgets" : [ ]
+                      }, {
+                        "Properties" : {
+                          "Area" : "UI",
+                          "DisplayName" : "divider-27",
+                          "Height" : 5,
+                          "Id" : "divider-27",
+                          "LastContainer" : false,
+                          "Left" : 4,
+                          "ResponsiveLayout" : false,
+                          "ShowDataLoading" : true,
+                          "Style" : "DefaultDividerStyle",
+                          "Top" : 322,
+                          "Type" : "divider",
+                          "Visible" : true,
+                          "Width" : 75,
+                          "Z-index" : 10,
+                          "__TypeDisplayName" : "Divider"
+                        },
+                        "Widgets" : [ ]
+                      }, {
+                        "Properties" : {
+                          "ActiveStyle" : "DefaultButtonActiveStyle",
+                          "Area" : "UI",
+                          "CancelConfirmationButton" : "button2",
+                          "ConfirmationButton1Label" : "Yes",
+                          "ConfirmationButton2Label" : "No",
+                          "ConfirmationPrompt" : "Do Action?",
+                          "ConfirmationRequired" : false,
+                          "ConfirmationTitle" : "Confirm Action",
+                          "ContextId" : "",
+                          "CustomClass" : "btn_blue",
+                          "DefaultConfirmationButton" : "button1",
+                          "Disabled" : false,
+                          "DisabledStyle" : "DefaultButtonDisabledStyle",
+                          "DisplayName" : "btn_Export",
+                          "FocusStyle" : "DefaultButtonFocusStyle",
+                          "Height" : 30,
+                          "HoverStyle" : "DefaultButtonHoverStyle",
+                          "IconAlignment" : "left",
+                          "Id" : "button-28",
+                          "Label" : "Export",
+                          "LastContainer" : false,
+                          "Left" : 4,
+                          "ResponsiveLayout" : false,
+                          "RoundedCorners" : true,
+                          "ShowDataLoading" : true,
+                          "SingleClickSelectOnTablets" : true,
+                          "Style" : "DefaultButtonStyle",
+                          "TabSequence" : 0,
+                          "ToolTipField" : "",
+                          "ToolTipStyle" : "DefaultTooltipStyle",
+                          "Top" : 366,
                           "Type" : "button",
                           "Visible" : true,
                           "Width" : 75,
@@ -1166,7 +1791,7 @@
                             "Title" : "name",
                             "ValidationExpression" : "",
                             "ValidationMessage" : "",
-                            "Width" : "auto"
+                            "Width" : "120"
                           }, {
                             "Align" : "left",
                             "AllowEdit" : false,
@@ -1257,8 +1882,28 @@
                     "DisplayName" : "EntitiesToExport",
                     "Id" : "eventsrouter-20",
                     "LastContainer" : false,
+                    "Left" : 0,
                     "NumberOfInputs" : "2",
                     "ShowDataLoading" : true,
+                    "Top" : 0,
+                    "Type" : "eventsrouter",
+                    "Visible" : true,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Events Router"
+                  },
+                  "Widgets" : [ ]
+                }, {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "DataShape" : "",
+                    "DataType" : "INFOTABLE",
+                    "DisplayName" : "SelectOrDeselectRows",
+                    "Id" : "eventsrouter-23",
+                    "LastContainer" : false,
+                    "Left" : 0,
+                    "NumberOfInputs" : "2",
+                    "ShowDataLoading" : true,
+                    "Top" : 0,
                     "Type" : "eventsrouter",
                     "Visible" : true,
                     "Z-index" : 10,

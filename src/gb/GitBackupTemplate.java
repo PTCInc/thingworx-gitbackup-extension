@@ -12,12 +12,14 @@ import java.net.ProxySelector;
 import java.net.SocketAddress;
 import java.net.URI;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.jgit.api.CreateBranchCommand.SetupUpstreamMode;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.ListBranchCommand.ListMode;
+import org.eclipse.jgit.api.PullResult;
 import org.eclipse.jgit.api.ResetCommand.ResetType;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.api.errors.RefNotFoundException;
@@ -34,6 +36,7 @@ import org.eclipse.jgit.revwalk.RevTree;
 import org.eclipse.jgit.revwalk.RevWalk;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
 import org.eclipse.jgit.transport.CredentialsProvider;
+import org.eclipse.jgit.transport.PushResult;
 import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
 import org.eclipse.jgit.treewalk.AbstractTreeIterator;
 import org.eclipse.jgit.treewalk.CanonicalTreeParser;
@@ -58,7 +61,9 @@ import com.thingworx.metadata.annotations.ThingworxServiceDefinition;
 import com.thingworx.metadata.annotations.ThingworxServiceParameter;
 import com.thingworx.metadata.annotations.ThingworxServiceResult;
 import com.thingworx.relationships.RelationshipTypes.ThingworxRelationshipTypes;
+import com.thingworx.resources.Resource;
 import com.thingworx.resources.entities.EntityServices;
+import com.thingworx.security.context.SecurityContext;
 import com.thingworx.security.users.User;
 import com.thingworx.system.ContextType;
 import com.thingworx.things.Thing;
@@ -70,6 +75,7 @@ import com.thingworx.types.primitives.BooleanPrimitive;
 import com.thingworx.types.primitives.DatetimePrimitive;
 import com.thingworx.types.primitives.InfoTablePrimitive;
 import com.thingworx.types.primitives.StringPrimitive;
+import com.thingworx.webservices.context.ThreadLocalContext;
 
 @ThingworxBaseTemplateDefinition(name = "GenericThing")
 
@@ -117,6 +123,7 @@ public class GitBackupTemplate extends Thing {
 	 * 
 	 */
 	private static final long serialVersionUID = -6500080561143490845L;
+	
 
 	// Complete git path will be calculated by concatenating the SCR absolute
 	// path and the relative path
@@ -205,6 +212,7 @@ public class GitBackupTemplate extends Thing {
 			@ThingworxServiceParameter(name = "Message", description = "A message that will appear in the git for this commit", baseType = "STRING") String Message)
 			throws Exception, GitAPIException {
 		_logger.trace("Entering Service: Push");
+		String str_CurrentMethodName = "Push";
 		try {
 			//1. Retrieve the GitRepository as a Git object that is needed for the next operations
 			Git myGitFolder = GetRepository();
@@ -233,36 +241,30 @@ public class GitBackupTemplate extends Thing {
 			//3.1. Create the credentials that are needed to authenticate to the online Git repository provider 
 			CredentialsProvider credentialsProvider = new UsernamePasswordCredentialsProvider(str_User, str_Password);
 			//3.2. Push the changes to the online Git repository
-			myGitFolder.push().setRemote("origin").setCredentialsProvider(credentialsProvider).call();
+			Iterable<PushResult> prList = myGitFolder.push().setRemote("origin").setCredentialsProvider(credentialsProvider).call();
 			
 			//4. Various close operations to make sure there is no file lock left active on disk. Needs improvement.
 			myGitFolder.getRepository().close();
 			myGitFolder.close();
 			_logger.trace("Exiting Service: Push");
-			return "Push successful!";
+			String str_LogResult="";
+			for  (PushResult  pr : prList)
+			{
+				str_LogResult += pr.getRemoteUpdates().toString();
+			}
+			LogOperationResult(str_LogResult, str_CurrentMethodName);
+			return str_LogResult;
 		} catch (Exception e) {
 			StringWriter errors = new StringWriter();
 			e.printStackTrace(new PrintWriter(errors));
 			_logger.error(errors.toString());
+			LogOperationResult(errors.toString(), str_CurrentMethodName);
 			return "Push Error: " + errors.toString();
 		}
 
 	}
 
-	private Git openOrCreate(File gitDirectory) throws IOException, GitAPIException {
-		Git git;
-		FileRepositoryBuilder repositoryBuilder = new FileRepositoryBuilder();
-		repositoryBuilder.addCeilingDirectory(gitDirectory);
-		repositoryBuilder.findGitDir(gitDirectory);
-		if (repositoryBuilder.getGitDir() == null) {
-			git = Git.init().setDirectory(gitDirectory).call();
-		} else {
-			git = new Git(repositoryBuilder.build());
-		}
-		//added to make sure the lock on some of the git folder files is released.
-		
-		return git;
-	}
+	
 
 	@ThingworxServiceDefinition(name = "Pull", description = "Pulls the last commit to the File Repository path", category = "", isAllowOverride = false, aspects = {
 			"isAsync:false" })
@@ -271,29 +273,35 @@ public class GitBackupTemplate extends Thing {
 			@ThingworxServiceParameter(name = "Force", description = "Forces a hard reset instead of a normal pull", baseType = "BOOLEAN") Boolean Force)
 			throws IOException, GitAPIException {
 		_logger.trace("Entering Service: Pull");
+		String str_CurrentMethodName = "Pull";
 		try {
 			
 			Git myGitFolder = GetRepository();
-			//_logger.warn("During put the config setup is "+myGitFolder.getRepository().getConfig().toText());
-			
-			
+						
 			CredentialsProvider credentialsProvider = new UsernamePasswordCredentialsProvider(str_User, str_Password);
 			if (Force != null && Force == true) {
 				myGitFolder.reset().setMode(ResetType.HARD).call();
 			}
-			myGitFolder.pull().setCredentialsProvider(credentialsProvider).call();
-
+			PullResult pr = myGitFolder.pull().setCredentialsProvider(credentialsProvider).call();
 			myGitFolder.getRepository().close();
 			myGitFolder.close();
 
 			_logger.trace("Exiting Service: Pull");
-			return "Pull successful!";
+			String str_LogResult = (pr.isSuccessful()==true?"Successful. ":"Unsuccessful.")+ pr.toString();
+			LogOperationResult(str_LogResult, str_CurrentMethodName);
+			return str_LogResult;
 		} catch (Exception e)
 
 		{
 			StringWriter errors = new StringWriter();
 			e.printStackTrace(new PrintWriter(errors));
 			_logger.error(errors.toString());
+			try {
+				LogOperationResult(errors.toString(), str_CurrentMethodName);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			return "Pull Error: " + errors.toString();
 
 		}
@@ -316,20 +324,8 @@ public class GitBackupTemplate extends Thing {
 
 		_logger.trace("Exiting Service: ResetLocalRepo");
 	}
-
-	private boolean deleteDirectory(File path) {
-		if (path.exists()) {
-			File[] files = path.listFiles();
-			for (int i = 0; i < files.length; i++) {
-				if (files[i].isDirectory()) {
-					deleteDirectory(files[i]);
-				} else {
-					files[i].delete();
-				}
-			}
-		}
-		return (path.delete());
-	}
+	
+	
 
 	@ThingworxServiceDefinition(name = "Checkout", description = "", category = "", isAllowOverride = false, aspects = {
 			"isAsync:false" })
@@ -339,44 +335,28 @@ public class GitBackupTemplate extends Thing {
 					"defaultValue:master" }) String BranchNameOrCommit)
 			throws Throwable, GitAPIException {
 		_logger.trace("Entering Service: Checkout");
-
+		String str_CurrentMethodName = "Checkout";
 		Git myGitFolder = GetRepository();
-
+		Ref ref;
 		try {
-			myGitFolder.checkout().setName(BranchNameOrCommit).call();
+			ref = myGitFolder.checkout().setName(BranchNameOrCommit).call();
 		} catch (RefNotFoundException ex) {
 			_logger.warn(
 					"Branch not found; Assuming there is no local branch tracking the remote; Creating a new local tracking branch for "
 							+ BranchNameOrCommit+"; This is a normal operation message.");
-			myGitFolder.checkout().setCreateBranch(true).setName(BranchNameOrCommit)
+			ref = myGitFolder.checkout().setCreateBranch(true).setName(BranchNameOrCommit)
 					.setUpstreamMode(SetupUpstreamMode.TRACK).setStartPoint("origin/" + BranchNameOrCommit).call();
 		}
 		myGitFolder.getRepository().close();
 		myGitFolder.close();
 		bool_isDetachedHead = GetRepository().getRepository().getFullBranch().indexOf("refs/heads") != -1 ? false : true;
 		str_CurrentBranchOrCommit = BranchNameOrCommit;
+		String str_LogResult = (ref!=null) ? ref.toString():"No message.";
+		LogOperationResult(str_LogResult,str_CurrentMethodName);
 		_logger.trace("Exiting Service: Checkout");
 	}
 
-	private Git GetRepository() throws IOException, GitAPIException {
-		FileRepositoryThing srcRepo = (FileRepositoryThing) EntityUtilities.findEntity(str_FileRepository,
-				ThingworxRelationshipTypes.Thing);
-		String str_FolderPath = srcRepo.getRootPath();
-		str_FolderPath += str_FileRepoPath;
-		Git myGitFolder = openOrCreate(new File(str_FolderPath));
-		StoredConfig config = myGitFolder.getRepository().getConfig();
-		config.setString("remote", "origin", "url", str_GitRepoURL);
-		config.setString("remote", "origin", "fetch", "+refs/heads/*:refs/remotes/origin/*");
-		config.setString("user", null, "name", str_GlobalGitCommitName);
-		config.setString("core", null, "autocrlf", "input");
-		config.setString("user", null, "email", str_GlobalGitCommitEmail);
-		
-		config.save();
-		
-		
-		return myGitFolder;
-	}
-
+	
 	@ThingworxServiceDefinition(name = "GetCurrentBranch", description = "", category = "", isAllowOverride = false, aspects = {
 			"isAsync:false" })
 	@ThingworxServiceResult(name = "Result", description = "", baseType = "INFOTABLE", aspects = {
@@ -429,24 +409,40 @@ public class GitBackupTemplate extends Thing {
 			"isAsync:false" })
 	@ThingworxServiceResult(name = "Result", description = "", baseType = "STRING", aspects = {})
 	public String DeleteLocalBranch(
-			@ThingworxServiceParameter(name = "BranchName", description = "Deletes a local branch", baseType = "STRING") String BranchName)
+			@ThingworxServiceParameter(name = "BranchName", description = "Branch name to be deleted, without the refs/heads/ part", baseType = "STRING") String BranchName)
 			throws IOException, GitAPIException {
 		_logger.trace("Entering Service: DeleteLocalBranch");
+		String str_CurrentMethodName = "DeleteLocalBranch";
 		try {
 			Git myGitFolder = GetRepository();
-			myGitFolder.branchDelete().setBranchNames("refs/heads/" + BranchName).call();
+			
+			List<String> lstr= myGitFolder.branchDelete().setForce(true).setBranchNames("refs/heads/" + BranchName).call();
 			myGitFolder.getRepository().close();
 			myGitFolder.close();
-
+			String str_LogResult ="";
+			if (lstr.size()==0)
+			{
+				str_LogResult+=" Branch "+BranchName+" was ignored or invalid.";
+			}
+			for  (String  str : lstr)
+			{
+				str_LogResult += str;
+			}
+			
+			LogOperationResult(str_LogResult,str_CurrentMethodName);
+			return str_LogResult;
 		} catch (Exception e) {
 			StringWriter errors = new StringWriter();
 			e.printStackTrace(new PrintWriter(errors));
 			_logger.error(errors.toString());
+			try {
+				LogOperationResult(errors.toString(),str_CurrentMethodName);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			return "DeleteLocalBranch Error: " + errors.toString();
 		}
-		
-		_logger.trace("Exiting Service: DeleteLocalBranch");
-		return "Local Branch " + BranchName + " was deleted successfully!";
 	}
 
 	@ThingworxServiceDefinition(name = "GetCommitList", description = "Get a list of the commits for the current branch; if the current index is pointing to a commit, then it will return the commit list for the Initial branch configured in the Config section", category = "", isAllowOverride = false, aspects = {
@@ -630,21 +626,7 @@ public class GitBackupTemplate extends Thing {
 		} else
 			return "";
 	}
-	 private static AbstractTreeIterator prepareTreeParser(Repository repository, String objectId) throws IOException {
-	        try (RevWalk walk = new RevWalk(repository)) {
-	            RevCommit commit = walk.parseCommit(ObjectId.fromString(objectId));
-	            RevTree tree = walk.parseTree(commit.getTree().getId());
-
-	            CanonicalTreeParser treeParser = new CanonicalTreeParser();
-	            try (ObjectReader reader = repository.newObjectReader()) {
-	                treeParser.reset(reader, tree.getId());
-	            }
-
-	            walk.dispose();
-
-	            return treeParser;
-	        }
-	 }
+	
 	 
 	@ThingworxServiceDefinition(name = "GetCommitInfo", description = "This service gets a commit information based on the Commit ID", category = "", isAllowOverride = false, aspects = {
 			"isAsync:false" })
@@ -755,57 +737,90 @@ public class GitBackupTemplate extends Thing {
 		}
 		return str_Parents;
 	}
-	// @ThingworxServiceDefinition(name = "ExportSourceControEntities",
-	// description = "", category = "", isAllowOverride = false, aspects = {
-	// "isAsync:false" })
-	// @ThingworxServiceResult(name = "Result", description = "", baseType =
-	// "NOTHING", aspects = {})
-	//
-	// public void ExportSourceControEntities(@ThingworxServiceParameter(name =
-	// "repositoryName", description = "File repository to which to export the
-	// content", baseType = "THINGNAME", aspects = {
-	// "thingTemplate:'FileRepository, SourceControlRepository'" }) final String
-	// repositoryName, @ThingworxServiceParameter(name = "path", description =
-	// "Path to which to write the content", baseType = "STRING") String path,
-	// @ThingworxServiceParameter(name = "collection", description = "Collection
-	// name you wish to export (optional)", baseType = "STRING") final String
-	// collection, @ThingworxServiceParameter(name = "tags", description = "Tags
-	// (optional)", baseType = "TAGS", aspects = { "tagType:ModelTags" }) final
-	// TagCollection tags, @ThingworxServiceParameter(name = "startDate",
-	// description = "Date and time from which to export entities by their last
-	// modified date (optional)", baseType = "DATETIME") final DateTime
-	// startDate, @ThingworxServiceParameter(name = "endDate", description =
-	// "Date and time to which to export entities by their last modified date
-	// (optional)", baseType = "DATETIME") final DateTime endDate,
-	// @ThingworxServiceParameter(name = "projectName", description = "Project
-	// name (optional)", baseType = "PROJECTNAME") final String projectName,
-	// @ThingworxServiceParameter(name = "includeDependents", description =
-	// "Include dependent projects (optional)", baseType = "BOOLEAN", aspects =
-	// { "defaultValue:false" }) final Boolean includeDependents) throws
-	// Exception {
-	// _logger.trace("Entering Service: ExportSourceControEntities");
-	// Resource rsc = (Resource)
-	// EntityUtilities.findEntity("SourceControlFunctions",
-	// ThingworxRelationshipTypes.Resource);
-	// ValueCollection vc = new ValueCollection();
-	// vc.put("repositoryName", new StringPrimitive(repositoryName));
-	// vc.put("path", new StringPrimitive(path));
-	// vc.put("collection", new StringPrimitive(collection));
-	// vc.put("tags", new TagCollectionPrimitive(tags));
-	// vc.put("startDate", new DatetimePrimitive(startDate));
-	// vc.put("endDate", new DatetimePrimitive(endDate));
-	// vc.put("projectName", new StringPrimitive(projectName));
-	//
-	// vc.put("includeDependents", new BooleanPrimitive(includeDependents));
-	//
-	// rsc.processServiceRequest("ExportSourceControlledEntities", vc);
-	//
-	//
-	//
-	//
-	//
-	// _logger.trace("Exiting Service: ExportSourceControEntities");
-	// }
-	//
+	
+	private void LogOperationResult(String str_OperationResult, String str_ServiceName) throws Exception
+	{
+		Thing rsc = (Thing) EntityUtilities.findEntity(Const.str_UtilityThingName,
+				ThingworxRelationshipTypes.Thing);
+		ValueCollection vc = new ValueCollection();
+		vc.put("timestamp", new DatetimePrimitive(new DateTime(System.currentTimeMillis())));
+		vc.put("User", new StringPrimitive(GetCurrentUser()));
+		vc.put("ServiceName", new StringPrimitive(str_ServiceName));
+		vc.put("Content", new StringPrimitive(str_OperationResult));
+		vc.put("Source",new StringPrimitive(this.getName()));
+		rsc.processServiceRequest("AddLogEntry",vc);
+		
+	}
+	
+	private String GetCurrentUser()
+	{
+		return ThreadLocalContext.getSecurityContext().getName();
+	}
+	
+	
+
+	private boolean deleteDirectory(File path) {
+		if (path.exists()) {
+			File[] files = path.listFiles();
+			for (int i = 0; i < files.length; i++) {
+				if (files[i].isDirectory()) {
+					deleteDirectory(files[i]);
+				} else {
+					files[i].delete();
+				}
+			}
+		}
+		return (path.delete());
+	}
+	
+	private Git openOrCreate(File gitDirectory) throws IOException, GitAPIException {
+		Git git;
+		FileRepositoryBuilder repositoryBuilder = new FileRepositoryBuilder();
+		repositoryBuilder.addCeilingDirectory(gitDirectory);
+		repositoryBuilder.findGitDir(gitDirectory);
+		if (repositoryBuilder.getGitDir() == null) {
+			git = Git.init().setDirectory(gitDirectory).call();
+		} else {
+			git = new Git(repositoryBuilder.build());
+		}
+		//added to make sure the lock on some of the git folder files is released.
+		
+		return git;
+	}
+	
+	private Git GetRepository() throws IOException, GitAPIException {
+		FileRepositoryThing srcRepo = (FileRepositoryThing) EntityUtilities.findEntity(str_FileRepository,
+				ThingworxRelationshipTypes.Thing);
+		String str_FolderPath = srcRepo.getRootPath();
+		str_FolderPath += str_FileRepoPath;
+		Git myGitFolder = openOrCreate(new File(str_FolderPath));
+		StoredConfig config = myGitFolder.getRepository().getConfig();
+		config.setString("remote", "origin", "url", str_GitRepoURL);
+		config.setString("remote", "origin", "fetch", "+refs/heads/*:refs/remotes/origin/*");
+		config.setString("remote", "origin", "prune", "true");
+		config.setString("user", null, "name", str_GlobalGitCommitName);
+		config.setString("core", null, "autocrlf", "input");
+		config.setString("user", null, "email", str_GlobalGitCommitEmail);
+		config.save();
+		
+		
+		return myGitFolder;
+	}
+	
+	 private static AbstractTreeIterator prepareTreeParser(Repository repository, String objectId) throws IOException {
+	        try (RevWalk walk = new RevWalk(repository)) {
+	            RevCommit commit = walk.parseCommit(ObjectId.fromString(objectId));
+	            RevTree tree = walk.parseTree(commit.getTree().getId());
+
+	            CanonicalTreeParser treeParser = new CanonicalTreeParser();
+	            try (ObjectReader reader = repository.newObjectReader()) {
+	                treeParser.reset(reader, tree.getId());
+	            }
+
+	            walk.dispose();
+
+	            return treeParser;
+	        }
+	 }
 
 }

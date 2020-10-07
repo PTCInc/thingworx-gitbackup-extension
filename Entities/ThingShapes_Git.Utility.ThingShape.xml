@@ -15,7 +15,7 @@
          description="This Utility shape is used to add useful javascript functionality to the GitBackup Things, which are built in Java."
          documentationContent=""
          homeMashup=""
-         lastModifiedDate="2020-08-31T04:57:13.486-07:00"
+         lastModifiedDate="2020-09-17T03:34:46.255-07:00"
          name="Git.Utility.ThingShape"
          projectName="GitBackup"
          tags="">
@@ -154,6 +154,23 @@
                  name="GetFilteredDirectoryListing">
                     <ResultType
                      aspect.dataShape="FileSystemDirectory"
+                     baseType="INFOTABLE"
+                     description=""
+                     name="result"
+                     ordinal="0"></ResultType>
+                    <ParameterDefinitions></ParameterDefinitions>
+                </ServiceDefinition>
+                <ServiceDefinition
+                 aspect.isAsync="false"
+                 category=""
+                 description="overload of GetBranchList"
+                 isAllowOverride="false"
+                 isLocalOnly="false"
+                 isOpen="false"
+                 isPrivate="false"
+                 name="GetLocalBranches">
+                    <ResultType
+                     aspect.dataShape="Git.BranchList.DataShape"
                      baseType="INFOTABLE"
                      description=""
                      name="result"
@@ -876,6 +893,46 @@
                                     newEntry.parentPath = "/"; // STRING
                                     newEntry.name = str_RepoPath.replace("/",""); // STRING
                                     result.AddRow(newEntry);
+                                    ]]>
+                                    </code>
+                                </Row>
+                            </Rows>
+                        </ConfigurationTable>
+                    </ConfigurationTables>
+                </ServiceImplementation>
+                <ServiceImplementation
+                 description=""
+                 handlerName="Script"
+                 name="GetLocalBranches">
+                    <ConfigurationTables>
+                        <ConfigurationTable
+                         description=""
+                         isMultiRow="false"
+                         name="Script"
+                         ordinal="0">
+                            <DataShape>
+                                <FieldDefinitions>
+                                    <FieldDefinition
+                                     baseType="STRING"
+                                     description="code"
+                                     name="code"
+                                     ordinal="0"></FieldDefinition>
+                                </FieldDefinitions>
+                            </DataShape>
+                            <Rows>
+                                <Row>
+                                    <code>
+                                    <![CDATA[
+                                    result = Resources["InfoTableFunctions"].Query({
+                                    	t: me.GetBranchList() /* INFOTABLE */ ,
+                                    	query: {
+                                    		"filters": {
+                                    			"type": "EQ",
+                                    			"fieldName": "BranchType",
+                                    			"value": "LOCAL"
+                                    		}
+                                    	}
+                                    });
                                     ]]>
                                     </code>
                                 </Row>
