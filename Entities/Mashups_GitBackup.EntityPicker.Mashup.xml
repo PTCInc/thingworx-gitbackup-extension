@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Entities
- build="b103"
- majorVersion="8"
- minorVersion="5"
- modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
- revision="5"
- schemaVersion="1054"
+ majorVersion="9"
+ minorVersion="2"
  universal="password">
     <Mashups>
         <Mashup
@@ -17,11 +13,10 @@
          description="Allows you to pick the Entities you want to export"
          documentationContent=""
          homeMashup=""
-         lastModifiedDate="2020-09-17T12:43:00.680-07:00"
          name="GitBackup.EntityPicker.Mashup"
          projectName="GitBackup"
          rows="0.0"
-         tags="">
+         tags="Applications:GitBackupTagAddition">
             <avatar></avatar>
             <DesignTimePermissions>
                 <Create></Create>
@@ -35,13 +30,126 @@
                 <Visibility></Visibility>
             </VisibilityPermissions>
             <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
-            <ConfigurationTables></ConfigurationTables>
+            <ConfigurationTables>
+                <ConfigurationTable
+                 dataShapeName=""
+                 description="Mashup Mobile Settings"
+                 isHidden="true"
+                 isMultiRow="false"
+                 name="MobileSettings"
+                 ordinal="0">
+                    <DataShape>
+                        <FieldDefinitions>
+                            <FieldDefinition
+                             aspect.defaultValue="false"
+                             aspect.friendlyName="Disable Zoom"
+                             baseType="BOOLEAN"
+                             description="Disables zooming in and out within the mashup"
+                             name="disableZoom"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="true"
+                             aspect.friendlyName="Full Screen Mode"
+                             baseType="BOOLEAN"
+                             description="Open the mashup in full screen mode"
+                             name="fullScreenMode"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.friendlyName="Height"
+                             baseType="STRING"
+                             description="The height of the mashup page"
+                             name="height"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="device-height"
+                             aspect.friendlyName="Height Type"
+                             baseType="STRING"
+                             description="Use the height of the device display, or a custom height (in px)"
+                             name="heightType"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="1.0"
+                             aspect.friendlyName="Initial Scale"
+                             baseType="NUMBER"
+                             description="The initial zoom scale when the mashup is loaded for the first time"
+                             name="initialScale"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.friendlyName="Shortcut Icon Title"
+                             baseType="STRING"
+                             description="A title for the mashup shortcut on the iOS home screen"
+                             name="iosShortcutIconTitle"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="black-translucent"
+                             aspect.friendlyName="Status Bar Appearance"
+                             baseType="STRING"
+                             description="The style of the iOS status bar"
+                             name="iosStatusBarAppearance"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="10.0"
+                             aspect.friendlyName="Maximum Scale"
+                             baseType="NUMBER"
+                             description="The maximum scale that users can zoom out to"
+                             name="maximumScale"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="0.1"
+                             aspect.friendlyName="Minimum Scale"
+                             baseType="NUMBER"
+                             description="The minimum scale that users can zoom out to"
+                             name="minimumScale"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.friendlyName="Width"
+                             baseType="STRING"
+                             description="The width of the mashup page"
+                             name="width"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="device-width"
+                             aspect.friendlyName="Width Type"
+                             baseType="STRING"
+                             description="Use the width of the device display, or a custom width (in px)"
+                             name="widthType"
+                             ordinal="0"></FieldDefinition>
+                        </FieldDefinitions>
+                    </DataShape>
+                    <Rows>
+                        <Row>
+                            <disableZoom>false</disableZoom>
+                            <fullScreenMode>true</fullScreenMode>
+                            <height></height>
+                            <heightType>
+                            <![CDATA[
+                            device-height
+                            ]]>
+                            </heightType>
+                            <initialScale>1.0</initialScale>
+                            <iosShortcutIconTitle></iosShortcutIconTitle>
+                            <iosStatusBarAppearance>
+                            <![CDATA[
+                            black-translucent
+                            ]]>
+                            </iosStatusBarAppearance>
+                            <maximumScale>10.0</maximumScale>
+                            <minimumScale>0.1</minimumScale>
+                            <width></width>
+                            <widthType>
+                            <![CDATA[
+                            device-width
+                            ]]>
+                            </widthType>
+                        </Row>
+                    </Rows>
+                </ConfigurationTable>
+            </ConfigurationTables>
             <ParameterDefinitions>
                 <FieldDefinition
                  aspect.bindingDirection="BOTH"
                  aspect.dataShape="SpotlightSearch"
                  aspect.isMandatory="false"
-                 aspect.ordinal="0"
                  baseType="INFOTABLE"
                  description=""
                  name="EntitiesToExport"
@@ -49,7 +157,6 @@
                 <FieldDefinition
                  aspect.bindingDirection="IN"
                  aspect.isMandatory="false"
-                 aspect.ordinal="3"
                  baseType="BOOLEAN"
                  description=""
                  name="ExportDependents"
@@ -57,7 +164,6 @@
                 <FieldDefinition
                  aspect.bindingDirection="IN"
                  aspect.isMandatory="false"
-                 aspect.ordinal="2"
                  baseType="STRING"
                  description=""
                  name="GitThing"
@@ -65,18 +171,13 @@
                 <FieldDefinition
                  aspect.bindingDirection="IN"
                  aspect.isMandatory="false"
-                 aspect.ordinal="1"
                  baseType="STRING"
                  description=""
                  name="Project"
                  ordinal="0"></FieldDefinition>
             </ParameterDefinitions>
-            <Things>
-                <Thing>GIT.Utility.Thing</Thing>
-            </Things>
-            <ThingShapes>
-                <ThingShape>Git.Utility.ThingShape</ThingShape>
-            </ThingShapes>
+            <Things></Things>
+            <ThingShapes></ThingShapes>
             <ThingTemplates></ThingTemplates>
             <mashupContent>
             <![CDATA[
@@ -494,6 +595,22 @@
                 "TargetArea" : "Data",
                 "TargetId" : "ExportProjectEntities",
                 "TargetSection" : "DynamicThingShapes_Git.Utility.ThingShape"
+              }, {
+                "Id" : "d351c826-4e78-4244-9ad6-96caae62ce45",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Tags",
+                  "SourcePropertyBaseType" : "TAGS",
+                  "SourcePropertyType" : "property",
+                  "TargetProperty" : "tags",
+                  "TargetPropertyBaseType" : "TAGS",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "tagpicker-29",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetProjectEntities",
+                "TargetSection" : "Things_GIT.Utility.Thing"
               } ],
               "DesignTimePermissions" : {
                 "Create" : [ ],
@@ -592,6 +709,15 @@
                 "EventTriggerId" : "ExportProjectEntities",
                 "EventTriggerSection" : "DynamicThingShapes_Git.Utility.ThingShape",
                 "Id" : "445b1a53-e523-49fc-8f04-b40edb96d103"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_GIT.Utility.Thing",
+                "EventHandlerService" : "GetProjectEntities",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Changed",
+                "EventTriggerId" : "tagpicker-29",
+                "EventTriggerSection" : "",
+                "Id" : "c53c2c7a-23dc-47d1-8052-a770a4e24866"
               } ],
               "RunTimePermissions" : {
                 "permissions" : [ ]
@@ -671,7 +797,7 @@
                     "Description" : "",
                     "ParameterName" : "ExportDependents"
                   } ],
-                  "id_index" : 28,
+                  "id_index" : 29,
                   "supportsAutoResize" : true
                 },
                 "Widgets" : [ {
@@ -901,14 +1027,14 @@
                               "Height" : 22,
                               "Id" : "label-16",
                               "LastContainer" : false,
-                              "Left" : 146,
+                              "Left" : 130,
                               "ResponsiveLayout" : false,
                               "ShowDataLoading" : true,
                               "Style" : "DefaultLabelStyle",
                               "Text" : "",
                               "ToolTipField" : "",
                               "ToolTipStyle" : "DefaultTooltipStyle",
-                              "Top" : 1,
+                              "Top" : 0,
                               "Type" : "label",
                               "Visible" : true,
                               "Width" : 125,
@@ -946,7 +1072,7 @@
                               "Top" : 23,
                               "Type" : "textbox",
                               "Visible" : true,
-                              "Width" : 200,
+                              "Width" : 195,
                               "Z-index" : 10,
                               "__TypeDisplayName" : "TextBox",
                               "__supportsLabel" : true,
@@ -1015,7 +1141,7 @@
                               "Id" : "button-18",
                               "Label" : "",
                               "LastContainer" : false,
-                              "Left" : 217,
+                              "Left" : 254,
                               "ResponsiveLayout" : false,
                               "RoundedCorners" : true,
                               "ShowDataLoading" : true,
@@ -1037,7 +1163,7 @@
                               "TabSequence" : 0,
                               "ToolTipField" : "",
                               "ToolTipStyle" : "DefaultTooltipStyle",
-                              "Top" : 23,
+                              "Top" : 21,
                               "Type" : "button",
                               "Visible" : true,
                               "Width" : 28,
@@ -1062,13 +1188,13 @@
                               "DisabledStyle" : "DefaultButtonDisabledStyle",
                               "DisplayName" : "btn_SelectAll",
                               "FocusStyle" : "DefaultButtonFocusStyle",
-                              "Height" : 30,
+                              "Height" : 25,
                               "HoverStyle" : "DefaultButtonHoverStyle",
                               "IconAlignment" : "left",
                               "Id" : "button-24",
                               "Label" : "All",
                               "LastContainer" : false,
-                              "Left" : 255,
+                              "Left" : 286,
                               "ResponsiveLayout" : false,
                               "RoundedCorners" : true,
                               "ShowDataLoading" : true,
@@ -1077,7 +1203,7 @@
                               "TabSequence" : 0,
                               "ToolTipField" : "",
                               "ToolTipStyle" : "DefaultTooltipStyle",
-                              "Top" : 15,
+                              "Top" : 21,
                               "Type" : "button",
                               "Visible" : true,
                               "Width" : 55,
@@ -1102,13 +1228,13 @@
                               "DisabledStyle" : "DefaultButtonDisabledStyle",
                               "DisplayName" : "btn_SelectNone",
                               "FocusStyle" : "DefaultButtonFocusStyle",
-                              "Height" : 30,
+                              "Height" : 25,
                               "HoverStyle" : "DefaultButtonHoverStyle",
                               "IconAlignment" : "left",
                               "Id" : "button-25",
                               "Label" : "None",
                               "LastContainer" : false,
-                              "Left" : 319,
+                              "Left" : 344,
                               "ResponsiveLayout" : false,
                               "RoundedCorners" : true,
                               "ShowDataLoading" : true,
@@ -1117,13 +1243,34 @@
                               "TabSequence" : 0,
                               "ToolTipField" : "",
                               "ToolTipStyle" : "DefaultTooltipStyle",
-                              "Top" : 15,
+                              "Top" : 21,
                               "Type" : "button",
                               "Visible" : true,
                               "Width" : 55,
                               "Z-index" : 10,
                               "__TypeDisplayName" : "Button",
                               "__supportsTooltip" : true
+                            },
+                            "Widgets" : [ ]
+                          }, {
+                            "Properties" : {
+                              "Area" : "UI",
+                              "DisplayName" : "tagpicker-29",
+                              "Height" : 18,
+                              "Id" : "tagpicker-29",
+                              "LastContainer" : false,
+                              "Left" : 205,
+                              "MultiSelect" : true,
+                              "ResponsiveLayout" : false,
+                              "ShowDataLoading" : true,
+                              "TagType" : "ModelTags",
+                              "Top" : 22.5,
+                              "Type" : "tagpicker",
+                              "Visible" : true,
+                              "VocabularyRestriction" : "",
+                              "Width" : 35,
+                              "Z-index" : 10,
+                              "__TypeDisplayName" : "Tag Picker"
                             },
                             "Widgets" : [ ]
                           } ]
@@ -1464,15 +1611,19 @@
                             "CookiePersistence" : true,
                             "DataOverflow" : "clipped",
                             "DataServiceBindingDef" : {
+                              "dataName" : "Things_GIT.Utility.Thing",
                               "entityName" : "GIT.Utility.Thing",
                               "entityType" : "Things",
+                              "sourceId" : "GetProjectEntities",
                               "target" : "GetProjectEntities"
                             },
                             "DefaultSelectedRows" : "",
+                            "DisableLegacyValidation" : false,
                             "DisplayName" : "grid_Main",
                             "DisplayOnlyMode" : false,
                             "EditButtonsLocation" : "top-right",
                             "EnableAddDeleteButtons" : false,
+                            "EnableCallbackOnSelectedRowsChange" : true,
                             "EnableContextMenu" : true,
                             "EnableEditButtons" : false,
                             "EnableFilterEventOnConfigChange" : true,
@@ -1839,7 +1990,9 @@
                           } ]
                         },
                         "CurrentScrollTop" : 0,
+                        "DisableLegacyValidation" : false,
                         "DisplayName" : "dhxgrid-10",
+                        "EnableFontSizeOverride" : false,
                         "FocusStyle" : "DefaultFocusStyle",
                         "GridBackgroundStyle" : "DefaultGridBackgroundStyle",
                         "GridEditableFieldStyle" : "DefaultGridEditableFieldStyle",
@@ -1884,6 +2037,7 @@
                     "LastContainer" : false,
                     "Left" : 0,
                     "NumberOfInputs" : "2",
+                    "ResponsiveLayout" : false,
                     "ShowDataLoading" : true,
                     "Top" : 0,
                     "Type" : "eventsrouter",
@@ -1902,6 +2056,7 @@
                     "LastContainer" : false,
                     "Left" : 0,
                     "NumberOfInputs" : "2",
+                    "ResponsiveLayout" : false,
                     "ShowDataLoading" : true,
                     "Top" : 0,
                     "Type" : "eventsrouter",

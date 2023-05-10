@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Entities
- build="b103"
- majorVersion="8"
- minorVersion="5"
- modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
- revision="5"
- schemaVersion="1054"
+ majorVersion="9"
+ minorVersion="2"
  universal="password">
     <Things>
         <Thing
@@ -17,11 +13,11 @@
          enabled="true"
          homeMashup=""
          identifier=""
-         lastModifiedDate="2020-09-17T11:44:20.454-07:00"
+         inheritedValueStream=""
          name="GIT.Utility.Thing"
          projectName="GitBackup"
          published="false"
-         tags=""
+         tags="Applications:GitBackupTagAddition"
          thingTemplate="GenericThing"
          valueStream="">
             <avatar></avatar>
@@ -334,6 +330,13 @@
                              description=""
                              name="project"
                              ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue=""
+                             aspect.tagType="ModelTags"
+                             baseType="TAGS"
+                             description=""
+                             name="tags"
+                             ordinal="4"></FieldDefinition>
                         </ParameterDefinitions>
                     </ServiceDefinition>
                     <ServiceDefinition
@@ -590,6 +593,7 @@
                      name="AddEntitiesToExportList">
                         <ConfigurationTables>
                             <ConfigurationTable
+                             dataShapeName=""
                              description=""
                              isMultiRow="false"
                              name="Script"
@@ -638,6 +642,7 @@
                      name="AddLogEntry">
                         <ConfigurationTables>
                             <ConfigurationTable
+                             dataShapeName=""
                              description=""
                              isMultiRow="false"
                              name="Script"
@@ -690,6 +695,7 @@
                      name="AddNewRepo">
                         <ConfigurationTables>
                             <ConfigurationTable
+                             dataShapeName=""
                              description="Script"
                              isMultiRow="false"
                              name="Script"
@@ -762,6 +768,7 @@
                      name="DeteleGitThing">
                         <ConfigurationTables>
                             <ConfigurationTable
+                             dataShapeName=""
                              description=""
                              isMultiRow="false"
                              name="Script"
@@ -807,6 +814,7 @@
                      name="GetEmptyInfotable">
                         <ConfigurationTables>
                             <ConfigurationTable
+                             dataShapeName=""
                              description=""
                              isMultiRow="false"
                              name="Script"
@@ -838,6 +846,7 @@
                      name="GetGitExtensionVersion">
                         <ConfigurationTables>
                             <ConfigurationTable
+                             dataShapeName=""
                              description=""
                              isMultiRow="false"
                              name="Script"
@@ -1014,6 +1023,7 @@
                      name="GetGitHeaderTabs">
                         <ConfigurationTables>
                             <ConfigurationTable
+                             dataShapeName=""
                              description="Script"
                              isMultiRow="false"
                              name="Script"
@@ -1086,6 +1096,7 @@
                      name="GetGitUserExtensionsProperties">
                         <ConfigurationTables>
                             <ConfigurationTable
+                             dataShapeName=""
                              description=""
                              isMultiRow="false"
                              name="Script"
@@ -1118,6 +1129,7 @@
                      name="GetProjectEntities">
                         <ConfigurationTables>
                             <ConfigurationTable
+                             dataShapeName=""
                              description=""
                              isMultiRow="false"
                              name="Script"
@@ -1149,7 +1161,7 @@
                                         	endDate: undefined /* DATETIME */,
                                         	aspects: undefined /* JSON */,
                                         	excludedAspects: undefined /* JSON */,
-                                        	tags: undefined /* TAGS */,
+                                        	tags: tags /* TAGS */,
                                         	thingTemplates: undefined /* JSON */,
                                         	searchDescriptions: undefined /* BOOLEAN */,
                                         	thingShapes: undefined /* JSON */,
@@ -1202,6 +1214,7 @@
                      name="GetRepoConfiguration">
                         <ConfigurationTables>
                             <ConfigurationTable
+                             dataShapeName=""
                              description=""
                              isMultiRow="false"
                              name="Script"
@@ -1256,6 +1269,7 @@
                      name="ImportEntity">
                         <ConfigurationTables>
                             <ConfigurationTable
+                             dataShapeName=""
                              description=""
                              isMultiRow="false"
                              name="Script"
@@ -1312,6 +1326,7 @@
                      name="InitExtensionImportTargets">
                         <ConfigurationTables>
                             <ConfigurationTable
+                             dataShapeName=""
                              description=""
                              isMultiRow="false"
                              name="Script"
@@ -1379,6 +1394,7 @@
                      name="InitUserExtensionProperties">
                         <ConfigurationTables>
                             <ConfigurationTable
+                             dataShapeName=""
                              description=""
                              isMultiRow="false"
                              name="Script"
@@ -1478,6 +1494,7 @@
                      name="Pause">
                         <ConfigurationTables>
                             <ConfigurationTable
+                             dataShapeName=""
                              description=""
                              isMultiRow="false"
                              name="Script"
@@ -1509,6 +1526,7 @@
                      name="RemoveEntitiesFromExportList">
                         <ConfigurationTables>
                             <ConfigurationTable
+                             dataShapeName=""
                              description=""
                              isMultiRow="false"
                              name="Script"
@@ -1549,6 +1567,7 @@
                      name="SetGitUserExtensionsProperties">
                         <ConfigurationTables>
                             <ConfigurationTable
+                             dataShapeName=""
                              description=""
                              isMultiRow="false"
                              name="Script"
@@ -1587,6 +1606,7 @@
                      name="UpdateRepo">
                         <ConfigurationTables>
                             <ConfigurationTable
+                             dataShapeName=""
                              description="Script"
                              isMultiRow="false"
                              name="Script"
@@ -1678,7 +1698,7 @@
                     https://api.bitbucket.org/2.0
                     ]]>
                     </Value>
-                    <Timestamp>2018-08-24T03:22:56.276-07:00</Timestamp>
+                    <Timestamp>2018-08-24T18:22:56.276+08:00</Timestamp>
                     <Quality>GOOD</Quality>
                 </BitBucketAPIRepositoryURL>
                 <tab-menu>
@@ -1718,7 +1738,7 @@
                             </Rows>
                         </infoTable>
                     </Value>
-                    <Timestamp>2019-09-18T08:12:13.450-07:00</Timestamp>
+                    <Timestamp>2019-09-18T23:12:13.450+08:00</Timestamp>
                     <Quality>GOOD</Quality>
                 </tab-menu>
             </ThingProperties>
