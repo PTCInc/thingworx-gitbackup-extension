@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Entities
- build="b2319"
- majorVersion="8"
- minorVersion="4"
- modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
- revision="4"
- schemaVersion="1041"
+ majorVersion="9"
+ minorVersion="3"
  universal="password">
     <Mashups>
         <Mashup
          aspect.isEditableExtensionObject="true"
          aspect.isExtension="true"
+         aspect.isFlex="true"
          aspect.isResponsive="true"
          aspect.mashupType="target"
          columns="0.0"
          description=""
          documentationContent=""
          homeMashup=""
-         lastModifiedDate="2019-09-18T14:04:04.224+03:00"
          name="GitBackup.Master"
          projectName="GitBackup"
          rows="0.0"
@@ -35,7 +31,121 @@
                 <Visibility></Visibility>
             </VisibilityPermissions>
             <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
-            <ConfigurationTables></ConfigurationTables>
+            <ConfigurationTables>
+                <ConfigurationTable
+                 dataShapeName=""
+                 description="Mashup Mobile Settings"
+                 isHidden="true"
+                 isMultiRow="false"
+                 name="MobileSettings"
+                 ordinal="0">
+                    <DataShape>
+                        <FieldDefinitions>
+                            <FieldDefinition
+                             aspect.defaultValue="false"
+                             aspect.friendlyName="Disable Zoom"
+                             baseType="BOOLEAN"
+                             description="Disables zooming in and out within the mashup"
+                             name="disableZoom"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="true"
+                             aspect.friendlyName="Full Screen Mode"
+                             baseType="BOOLEAN"
+                             description="Open the mashup in full screen mode"
+                             name="fullScreenMode"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.friendlyName="Height"
+                             baseType="STRING"
+                             description="The height of the mashup page"
+                             name="height"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="device-height"
+                             aspect.friendlyName="Height Type"
+                             baseType="STRING"
+                             description="Use the height of the device display, or a custom height (in px)"
+                             name="heightType"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="1.0"
+                             aspect.friendlyName="Initial Scale"
+                             baseType="NUMBER"
+                             description="The initial zoom scale when the mashup is loaded for the first time"
+                             name="initialScale"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.friendlyName="Shortcut Icon Title"
+                             baseType="STRING"
+                             description="A title for the mashup shortcut on the iOS home screen"
+                             name="iosShortcutIconTitle"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="black-translucent"
+                             aspect.friendlyName="Status Bar Appearance"
+                             baseType="STRING"
+                             description="The style of the iOS status bar"
+                             name="iosStatusBarAppearance"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="10.0"
+                             aspect.friendlyName="Maximum Scale"
+                             baseType="NUMBER"
+                             description="The maximum scale that users can zoom out to"
+                             name="maximumScale"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="0.1"
+                             aspect.friendlyName="Minimum Scale"
+                             baseType="NUMBER"
+                             description="The minimum scale that users can zoom out to"
+                             name="minimumScale"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.friendlyName="Width"
+                             baseType="STRING"
+                             description="The width of the mashup page"
+                             name="width"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="device-width"
+                             aspect.friendlyName="Width Type"
+                             baseType="STRING"
+                             description="Use the width of the device display, or a custom width (in px)"
+                             name="widthType"
+                             ordinal="0"></FieldDefinition>
+                        </FieldDefinitions>
+                    </DataShape>
+                    <Rows>
+                        <Row>
+                            <disableZoom>false</disableZoom>
+                            <fullScreenMode>true</fullScreenMode>
+                            <height></height>
+                            <heightType>
+                            <![CDATA[
+                            device-height
+                            ]]>
+                            </heightType>
+                            <initialScale>1.0</initialScale>
+                            <iosShortcutIconTitle></iosShortcutIconTitle>
+                            <iosStatusBarAppearance>
+                            <![CDATA[
+                            black-translucent
+                            ]]>
+                            </iosStatusBarAppearance>
+                            <maximumScale>10.0</maximumScale>
+                            <minimumScale>0.1</minimumScale>
+                            <width></width>
+                            <widthType>
+                            <![CDATA[
+                            device-width
+                            ]]>
+                            </widthType>
+                        </Row>
+                    </Rows>
+                </ConfigurationTable>
+            </ConfigurationTables>
             <ParameterDefinitions></ParameterDefinitions>
             <Things></Things>
             <ThingShapes></ThingShapes>
@@ -86,6 +196,7 @@
                 "Update" : [ ]
               },
               "Events" : [ ],
+              "Reminders" : [ ],
               "RunTimePermissions" : {
                 "permissions" : [ ]
               },
@@ -100,13 +211,43 @@
                   "Height" : 768,
                   "Id" : "mashup-root",
                   "Left" : 0,
+                  "Margin" : "5",
                   "MaxWidth" : 0,
+                  "MigratedOn" : "2023-05-09T09:10:47.000Z",
                   "MinHeight" : 0,
                   "MinWidth" : 0,
                   "ResponsiveLayout" : true,
                   "ShowDataLoading" : true,
                   "Style" : "DefaultContainerStyle",
-                  "StyleTheme" : "Base Theme",
+                  "StyleProperties" : {
+                    "data" : {
+                      "flexcontainer-1" : {
+                        "parts" : {
+                          "$" : {
+                            "$" : {
+                              "background" : "transparent"
+                            }
+                          }
+                        },
+                        "widget" : "flex-container"
+                      },
+                      "flexcontainer-4" : {
+                        "parts" : {
+                          "$" : {
+                            "$" : {
+                              "background" : "transparent"
+                            }
+                          }
+                        },
+                        "widget" : "flex-container"
+                      }
+                    },
+                    "meta" : {
+                      "type" : "WidgetStyler",
+                      "version" : "1.0"
+                    }
+                  },
+                  "StyleTheme" : "GitBackup.StyleTheme",
                   "Title" : "",
                   "Top" : 0,
                   "Type" : "targetmashup",
@@ -122,226 +263,69 @@
                 "Widgets" : [ {
                   "Properties" : {
                     "Area" : "UI",
-                    "Columns" : 0,
-                    "DisplayName" : "Master Layout",
-                    "Footer" : false,
-                    "FooterHeight" : 0,
-                    "Header" : true,
-                    "HeaderHeight" : 50,
-                    "Id" : "layout-1",
-                    "IncludeSpacingInFixedAreas" : false,
-                    "IsPrintLayout" : false,
-                    "LeftSidebar" : false,
-                    "LeftSidebarWidth" : 0,
-                    "Orientation" : "vertical",
-                    "PctColumn1" : 50,
-                    "PctColumn2" : 50,
-                    "PctColumn3" : 1,
-                    "PctColumn4" : 1,
-                    "PctColumn5" : 1,
-                    "PctColumn6" : 1,
-                    "PctColumn7" : 1,
-                    "PctColumn8" : 1,
-                    "PctRow1" : 100,
-                    "PctRow2" : 50,
-                    "PctRow3" : 0,
-                    "PctRow4" : 0,
-                    "PctRow5" : 0,
-                    "PctRow6" : 0,
-                    "PctRow7" : 0,
-                    "PctRow8" : 0,
-                    "PrintMarginLeftRight" : 0.5,
-                    "PrintMarginTopBottom" : 0.5,
-                    "PrintWidth" : 650,
+                    "CollapseTabIcon" : "",
+                    "DisplayName" : "master container",
+                    "EnableContainerUnload" : false,
+                    "EnableExpandCollapse" : false,
+                    "ExpandCollapseTabLocation" : "inside",
+                    "ExpandTabIcon" : "",
+                    "Expanded" : true,
+                    "Id" : "flexcontainer-1",
+                    "LastContainer" : true,
+                    "LazyLoading" : false,
+                    "Left" : 0,
+                    "Margin" : "",
+                    "Overlay" : false,
                     "ResponsiveLayout" : true,
-                    "RightSidebar" : false,
-                    "RightSidebarWidth" : 0,
-                    "Rows" : 1,
                     "ShowDataLoading" : true,
-                    "Spacing" : 0,
-                    "Type" : "layout",
+                    "ShowExpandCollapseTab" : false,
+                    "SourceURL" : "",
+                    "Style" : "DefaultContainerStyle",
+                    "StyleProperties" : { },
+                    "Top" : 0,
+                    "Type" : "flexcontainer",
+                    "UseTheme" : true,
                     "Visible" : true,
                     "Z-index" : 10,
-                    "__TypeDisplayName" : "Layout"
+                    "__TypeDisplayName" : "Flex Container",
+                    "align-content" : "flex-start",
+                    "align-items" : "flex-start",
+                    "flex-basis" : "auto",
+                    "flex-direction" : "row",
+                    "flex-grow" : 1,
+                    "flex-max-height" : "",
+                    "flex-max-width" : "",
+                    "flex-min-height" : "",
+                    "flex-min-width" : "",
+                    "flex-shrink" : "0",
+                    "flex-size" : "default",
+                    "flex-wrap" : "nowrap",
+                    "iconClass" : "widgets-flexcontainer",
+                    "isLocked" : true,
+                    "justify-content" : "flex-start",
+                    "positioning" : "responsive",
+                    "userCannotRemove" : true
                   },
                   "Widgets" : [ {
                     "Properties" : {
-                      "AnimateExpandCollapse" : true,
                       "Area" : "UI",
-                      "BGImageRepeat" : "no-repeat",
-                      "BGImageSize" : "auto",
-                      "DisplayName" : "Header",
-                      "ExpandCollapseTabLocation" : "outside",
-                      "Expanded" : true,
-                      "Id" : "container-2",
-                      "MinHeight" : 0,
-                      "MinWidth" : 0,
-                      "Overlay" : true,
-                      "OverlayIsTransparent" : true,
+                      "DisplayName" : "Page Mashup",
+                      "Height" : 300,
+                      "Id" : "pagemashupcontainer-6",
+                      "LastContainer" : false,
+                      "Left" : 0,
+                      "Margin" : "5",
+                      "Name" : "",
                       "ResponsiveLayout" : true,
                       "ShowDataLoading" : true,
-                      "ShowExpandCollapseTab" : false,
-                      "Style" : "DefaultContainerStyle",
-                      "TabCollapseStyle" : "DefaultTabCollapseStyle",
-                      "TabExpandStyle" : "DefaultTabExpandStyle",
-                      "TabHeight" : 36,
-                      "TabLocation" : "center",
-                      "TabOffset" : 0,
-                      "TabWidth" : 36,
-                      "Type" : "container",
+                      "Top" : 0,
+                      "Type" : "pagemashupcontainer",
                       "Visible" : true,
+                      "Width" : 400,
                       "Z-index" : 10,
-                      "__TypeDisplayName" : "Container",
-                      "userCannotRemove" : true
+                      "__TypeDisplayName" : "Page Mashup Container"
                     },
-                    "Widgets" : [ {
-                      "Properties" : {
-                        "Area" : "UI",
-                        "DisplayName" : "panel-7",
-                        "Height" : 200,
-                        "HideScrollbars" : false,
-                        "HorizontalAnchor" : "left",
-                        "Id" : "panel-7",
-                        "Left" : 110,
-                        "ResponsiveLayout" : true,
-                        "ShowDataLoading" : true,
-                        "Style" : "DefaultContainerStyle",
-                        "Top" : 20,
-                        "Type" : "panel",
-                        "VerticalAnchor" : "top",
-                        "Visible" : true,
-                        "Width" : 300,
-                        "Z-index" : 10,
-                        "__TypeDisplayName" : "Panel"
-                      },
-                      "Widgets" : [ ]
-                    } ]
-                  }, {
-                    "Properties" : {
-                      "AnimateExpandCollapse" : true,
-                      "Area" : "UI",
-                      "BGImageRepeat" : "no-repeat",
-                      "BGImageSize" : "auto",
-                      "DisplayName" : "Content",
-                      "ExpandCollapseTabLocation" : "outside",
-                      "Expanded" : true,
-                      "Id" : "container-3",
-                      "MinHeight" : 0,
-                      "MinWidth" : 0,
-                      "Overlay" : false,
-                      "OverlayIsTransparent" : false,
-                      "ResponsiveLayout" : true,
-                      "ShowDataLoading" : true,
-                      "ShowExpandCollapseTab" : false,
-                      "Style" : "DefaultContainerStyle",
-                      "TabCollapseStyle" : "DefaultTabCollapseStyle",
-                      "TabExpandStyle" : "DefaultTabExpandStyle",
-                      "TabHeight" : 36,
-                      "TabLocation" : "center",
-                      "TabOffset" : 0,
-                      "TabWidth" : 36,
-                      "Type" : "container",
-                      "Visible" : true,
-                      "Z-index" : 10,
-                      "__TypeDisplayName" : "Container",
-                      "userCannotRemove" : true
-                    },
-                    "Widgets" : [ {
-                      "Properties" : {
-                        "Area" : "UI",
-                        "Columns" : 1,
-                        "DisplayName" : "Content Layout",
-                        "Footer" : false,
-                        "FooterHeight" : 0,
-                        "Header" : false,
-                        "HeaderHeight" : 0,
-                        "Id" : "layout-4",
-                        "IncludeSpacingInFixedAreas" : false,
-                        "IsPrintLayout" : false,
-                        "LeftSidebar" : false,
-                        "LeftSidebarWidth" : 0,
-                        "Orientation" : "horizontal",
-                        "PctColumn1" : 100,
-                        "PctColumn2" : 50,
-                        "PctColumn3" : 1,
-                        "PctColumn4" : 1,
-                        "PctColumn5" : 1,
-                        "PctColumn6" : 1,
-                        "PctColumn7" : 1,
-                        "PctColumn8" : 1,
-                        "PctRow1" : 50,
-                        "PctRow2" : 50,
-                        "PctRow3" : 0,
-                        "PctRow4" : 0,
-                        "PctRow5" : 0,
-                        "PctRow6" : 0,
-                        "PctRow7" : 0,
-                        "PctRow8" : 0,
-                        "PrintMarginLeftRight" : 0.5,
-                        "PrintMarginTopBottom" : 0.5,
-                        "PrintWidth" : 650,
-                        "ResponsiveLayout" : true,
-                        "RightSidebar" : false,
-                        "RightSidebarWidth" : 0,
-                        "Rows" : 0,
-                        "ShowDataLoading" : true,
-                        "Spacing" : 2,
-                        "Type" : "layout",
-                        "Visible" : true,
-                        "Z-index" : 10,
-                        "__TypeDisplayName" : "Layout"
-                      },
-                      "Widgets" : [ {
-                        "Properties" : {
-                          "AnimateExpandCollapse" : true,
-                          "Area" : "UI",
-                          "BGImageRepeat" : "no-repeat",
-                          "BGImageSize" : "auto",
-                          "DisplayName" : "Page Mashup Container",
-                          "ExpandCollapseTabLocation" : "outside",
-                          "Expanded" : true,
-                          "Id" : "container-5",
-                          "MinHeight" : 0,
-                          "MinWidth" : 0,
-                          "Overlay" : false,
-                          "OverlayIsTransparent" : false,
-                          "ResponsiveLayout" : true,
-                          "ShowDataLoading" : true,
-                          "ShowExpandCollapseTab" : false,
-                          "Style" : "DefaultContainerStyle",
-                          "TabCollapseStyle" : "DefaultTabCollapseStyle",
-                          "TabExpandStyle" : "DefaultTabExpandStyle",
-                          "TabHeight" : 36,
-                          "TabLocation" : "center",
-                          "TabOffset" : 0,
-                          "TabWidth" : 36,
-                          "Type" : "container",
-                          "Visible" : true,
-                          "Z-index" : 10,
-                          "__TypeDisplayName" : "Container",
-                          "userCannotRemove" : true
-                        },
-                        "Widgets" : [ {
-                          "Properties" : {
-                            "Area" : "UI",
-                            "DisplayName" : "Page Mashup",
-                            "Height" : 300,
-                            "Id" : "pagemashupcontainer-6",
-                            "Left" : 0,
-                            "Name" : "",
-                            "ResponsiveLayout" : true,
-                            "ShowDataLoading" : true,
-                            "Top" : 0,
-                            "Type" : "pagemashupcontainer",
-                            "Visible" : true,
-                            "Width" : 400,
-                            "Z-index" : 10,
-                            "__TypeDisplayName" : "Page Mashup Container"
-                          },
-                          "Widgets" : [ ]
-                        } ]
-                      } ]
-                    } ]
+                    "Widgets" : [ ]
                   } ]
                 } ]
               },
@@ -349,7 +333,7 @@
             }
             ]]>
             </mashupContent>
-            
+            <preview></preview>
         </Mashup>
     </Mashups>
 </Entities>

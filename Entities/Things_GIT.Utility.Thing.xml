@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Entities
- build="b103"
- majorVersion="8"
- minorVersion="5"
- modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
- revision="5"
- schemaVersion="1054"
+ majorVersion="9"
+ minorVersion="3"
  universal="password">
     <Things>
         <Thing
@@ -17,7 +13,7 @@
          enabled="true"
          homeMashup=""
          identifier=""
-         lastModifiedDate="2020-09-17T11:44:20.454-07:00"
+         inheritedValueStream=""
          name="GIT.Utility.Thing"
          projectName="GitBackup"
          published="false"
@@ -334,6 +330,13 @@
                              description=""
                              name="project"
                              ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue=""
+                             aspect.tagType="ModelTags"
+                             baseType="TAGS"
+                             description=""
+                             name="tags"
+                             ordinal="4"></FieldDefinition>
                         </ParameterDefinitions>
                     </ServiceDefinition>
                     <ServiceDefinition
@@ -484,38 +487,6 @@
                      isLocalOnly="false"
                      isOpen="false"
                      isPrivate="false"
-                     name="SetGitUserExtensionsProperties">
-                        <ResultType
-                         baseType="NOTHING"
-                         description=""
-                         name="result"
-                         ordinal="0"></ResultType>
-                        <ParameterDefinitions>
-                            <FieldDefinition
-                             baseType="STRING"
-                             description=""
-                             name="CommitterEmail"
-                             ordinal="2"></FieldDefinition>
-                            <FieldDefinition
-                             baseType="STRING"
-                             description=""
-                             name="CommitterName"
-                             ordinal="1"></FieldDefinition>
-                            <FieldDefinition
-                             baseType="BOOLEAN"
-                             description=""
-                             name="UseGitCommitUserValues"
-                             ordinal="3"></FieldDefinition>
-                        </ParameterDefinitions>
-                    </ServiceDefinition>
-                    <ServiceDefinition
-                     aspect.isAsync="false"
-                     category=""
-                     description=""
-                     isAllowOverride="false"
-                     isLocalOnly="false"
-                     isOpen="false"
-                     isPrivate="false"
                      name="UpdateRepo">
                         <ResultType
                          baseType="NOTHING"
@@ -580,6 +551,28 @@
                              ordinal="5"></FieldDefinition>
                         </ParameterDefinitions>
                     </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="validates the Git Thing name"
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="ValidateGitThingName">
+                        <ResultType
+                         baseType="STRING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description=""
+                             name="GitThingName"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
                 </ServiceDefinitions>
                 <EventDefinitions></EventDefinitions>
                 <ServiceMappings></ServiceMappings>
@@ -590,6 +583,7 @@
                      name="AddEntitiesToExportList">
                         <ConfigurationTables>
                             <ConfigurationTable
+                             dataShapeName=""
                              description=""
                              isMultiRow="false"
                              name="Script"
@@ -638,6 +632,7 @@
                      name="AddLogEntry">
                         <ConfigurationTables>
                             <ConfigurationTable
+                             dataShapeName=""
                              description=""
                              isMultiRow="false"
                              name="Script"
@@ -690,6 +685,7 @@
                      name="AddNewRepo">
                         <ConfigurationTables>
                             <ConfigurationTable
+                             dataShapeName=""
                              description="Script"
                              isMultiRow="false"
                              name="Script"
@@ -707,11 +703,17 @@
                                     <Row>
                                         <code>
                                         <![CDATA[
+                                        /**
+                                         * @author Vladimir Rosu
+                                         * @version 5.0.0
+                                         * @changelog: removed the user credentials from the GitConfiguration datashape; added new set credentials function
+                                         */
+                                        
                                         if (RepoName != null && GitRepoURL != null) {
                                         	// no return
                                         	Resources["EntityServices"].CreateThing({
                                         		name: RepoName /* STRING */ ,
-                                        		description: "Git Repository created by user "+Resources["CurrentSessionInfo"].GetCurrentUser()+" at " + new Date() /* STRING */ ,
+                                        		description: "Git Repository created by user " + Resources["CurrentSessionInfo"].GetCurrentUser() + " at " + new Date() /* STRING */ ,
                                         		thingTemplateName: "GitBackupTemplate" /* THINGTEMPLATENAME */ ,
                                         		tags: undefined /* TAGS */
                                         	});
@@ -727,13 +729,9 @@
                                         	// GitBackup.ConfigurationSetting.DataShape entry object
                                         	var row_Config = new Object();
                                         	row_Config.FileRepository = FileRepo; // THINGNAME
-                                        	row_Config.CommitName = CommitUser; // STRING
-                                        	row_Config.User = User; // STRING
-                                        	row_Config.CommitEmail = CommitEmail; // STRING
                                         	row_Config.GitRepoURL = GitRepoURL; // STRING
                                         	row_Config.RepoPathName = RepoPath; // STRING
                                         	row_Config.BranchName = InitialBranch; // STRING
-                                        	row_Config.Password = encryptPropertyValue(Password); // PASSWORD
                                         	row_Config.UseProxy = UseProxy;
                                         	row_Config.ProxyURL = ProxyURL;
                                         	row_Config.ProxyPort = ProxyPort;
@@ -748,6 +746,26 @@
                                         		tableName: "Configuration" /* STRING */
                                         	});
                                         	Things[RepoName].RestartThing();
+                                            //only after the Thing was created we add the credentials to the user's GitCredentials store
+                                            setCredentials(User,Password,CommitEmail,CommitUser,RepoName);
+                                        }
+                                        
+                                        function setCredentials(GitCommitterUser, GitCommitterPassword, GitCommitterEmail, GitCommitterFullName, GitThing) {
+                                        	var str_CurrentUser = Resources["CurrentSessionInfo"].GetCurrentUser();
+                                        	if (Users[str_CurrentUser] && Users[str_CurrentUser].GitCredentials !== undefined) {
+                                        		//deletes any existing Git Credential entry for this repository if it already exists
+                                                //the key reason to do this is because the authentication system assumes there's only one credential / user / repository
+                                                Users[str_CurrentUser].GitCredentials.Delete({GitThing: GitThing});
+                                                // GitBackup.GitCredentials.DataShape entry object
+                                        		let credential = {
+                                        			GitCommitterUser: GitCommitterUser, // STRING
+                                        			GitCommitterPassword:  encryptPropertyValue(GitCommitterPassword), // PASSWORD
+                                        			GitCommitterEmail: GitCommitterEmail, // STRING
+                                        			GitCommitterFullName: GitCommitterFullName, // STRING
+                                        			GitThing: GitThing // THINGNAME
+                                        		};
+                                        		Users[str_CurrentUser].GitCredentials.AddRow(credential);
+                                        	}
                                         }
                                         ]]>
                                         </code>
@@ -762,6 +780,7 @@
                      name="DeteleGitThing">
                         <ConfigurationTables>
                             <ConfigurationTable
+                             dataShapeName=""
                              description=""
                              isMultiRow="false"
                              name="Script"
@@ -779,10 +798,8 @@
                                     <Row>
                                         <code>
                                         <![CDATA[
-                                        var str_RepositoryName=Things[RepoName].GetConfiguration().FileRepository;
+                                        var str_RepositoryName = Things[RepoName].GetConfiguration().FileRepository;
                                         var str_RepositoryPathName = Things[RepoName].GetConfiguration().FileRepoPath;
-                                        logger.warn("RepoPathName is "+str_RepositoryPathName+"; RepoName is "+str_RepositoryName);
-                                        
                                         
                                         var params = {
                                         	name: RepoName /* THINGNAME */
@@ -793,7 +810,15 @@
                                         Things[str_RepositoryName].DeleteFolder({
                                         	path: str_RepositoryPathName /* STRING */
                                         });
-                                        logger.warn("GitBackup Thing "+RepoName+" was deleted successfully");
+                                        
+                                        
+                                        var str_CurrentUser = Resources["CurrentSessionInfo"].GetCurrentUser();
+                                        if (Users[str_CurrentUser] && Users[str_CurrentUser].GitCredentials !== undefined)
+                                        	//deletes any existing Git Credential entry for this repository
+                                        	Users[str_CurrentUser].GitCredentials.Delete({
+                                        		GitThing: RepoName
+                                        	});
+                                        logger.warn("GitBackup Thing " + RepoName + " stored in File Repository: " + str_RepositoryName + " was deleted successfully. Its credentials were removed for the current user. Other users might need to remove the credentials manually.");
                                         ]]>
                                         </code>
                                     </Row>
@@ -807,6 +832,7 @@
                      name="GetEmptyInfotable">
                         <ConfigurationTables>
                             <ConfigurationTable
+                             dataShapeName=""
                              description=""
                              isMultiRow="false"
                              name="Script"
@@ -838,6 +864,7 @@
                      name="GetGitExtensionVersion">
                         <ConfigurationTables>
                             <ConfigurationTable
+                             dataShapeName=""
                              description=""
                              isMultiRow="false"
                              name="Script"
@@ -1014,6 +1041,7 @@
                      name="GetGitHeaderTabs">
                         <ConfigurationTables>
                             <ConfigurationTable
+                             dataShapeName=""
                              description="Script"
                              isMultiRow="false"
                              name="Script"
@@ -1086,6 +1114,7 @@
                      name="GetGitUserExtensionsProperties">
                         <ConfigurationTables>
                             <ConfigurationTable
+                             dataShapeName=""
                              description=""
                              isMultiRow="false"
                              name="Script"
@@ -1118,6 +1147,7 @@
                      name="GetProjectEntities">
                         <ConfigurationTables>
                             <ConfigurationTable
+                             dataShapeName=""
                              description=""
                              isMultiRow="false"
                              name="Script"
@@ -1149,7 +1179,7 @@
                                         	endDate: undefined /* DATETIME */,
                                         	aspects: undefined /* JSON */,
                                         	excludedAspects: undefined /* JSON */,
-                                        	tags: undefined /* TAGS */,
+                                        	tags: tags /* TAGS */,
                                         	thingTemplates: undefined /* JSON */,
                                         	searchDescriptions: undefined /* BOOLEAN */,
                                         	thingShapes: undefined /* JSON */,
@@ -1202,6 +1232,7 @@
                      name="GetRepoConfiguration">
                         <ConfigurationTables>
                             <ConfigurationTable
+                             dataShapeName=""
                              description=""
                              isMultiRow="false"
                              name="Script"
@@ -1227,20 +1258,23 @@
                                         // CreateInfoTableFromDataShape(infoTableName:STRING("InfoTable"), dataShapeName:STRING):INFOTABLE(GitBackup.Configuration.DataShape)
                                         var result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape(params);
                                         
+                                        let str_CurrentUser = Resources["CurrentSessionInfo"].GetCurrentUser();
+                                        let iftblRow_Credential = Users[str_CurrentUser].GitCredentials.Find({GitThing: GitThingName});
+                                        
                                         var iftbl_Cfg = Things[GitThingName].GetConfigurationTable({tableName:"Configuration"});
                                         // GitBackup.Configuration.DataShape entry object
                                         var newEntry = new Object();
                                         newEntry.FileRepoPath = iftbl_Cfg.getRow(0).RepoPathName; // STRING
-                                        newEntry.CommitUser = iftbl_Cfg.getRow(0).CommitName; // STRING
-                                        newEntry.CommitEmail = iftbl_Cfg.getRow(0).CommitEmail; // STRING
-                                        newEntry.User = iftbl_Cfg.getRow(0).User; // STRING
+                                        newEntry.CommitUser = iftblRow_Credential.GitCommitterFullName; // STRING
+                                        newEntry.CommitEmail = iftblRow_Credential.GitCommitterEmail; // STRING
+                                        newEntry.User = iftblRow_Credential.GitCommitterUser; // STRING
                                         newEntry.FileRepository = iftbl_Cfg.getRow(0).FileRepository; // STRING
                                         newEntry.GitRepoURL = iftbl_Cfg.getRow(0).GitRepoURL; // STRING
                                         newEntry.InitialBranch = iftbl_Cfg.getRow(0).BranchName; // STRING
                                         newEntry.UseProxy = iftbl_Cfg.getRow(0).UseProxy;
                                         newEntry.ProxyURL = iftbl_Cfg.getRow(0).ProxyURL;
                                         newEntry.ProxyPort = iftbl_Cfg.getRow(0).ProxyPort;
-                                        newEntry.Password = iftbl_Cfg.getRow(0).Password; // PASSWORD
+                                        newEntry.Password = iftblRow_Credential.GitCommitterPassword; // PASSWORD
                                         newEntry.LocalizationTokensPrefix = iftbl_Cfg.getRow(0).LocalizationTokensPrefix;
                                         result.AddRow(newEntry);
                                         ]]>
@@ -1256,6 +1290,7 @@
                      name="ImportEntity">
                         <ConfigurationTables>
                             <ConfigurationTable
+                             dataShapeName=""
                              description=""
                              isMultiRow="false"
                              name="Script"
@@ -1312,6 +1347,7 @@
                      name="InitExtensionImportTargets">
                         <ConfigurationTables>
                             <ConfigurationTable
+                             dataShapeName=""
                              description=""
                              isMultiRow="false"
                              name="Script"
@@ -1379,6 +1415,7 @@
                      name="InitUserExtensionProperties">
                         <ConfigurationTables>
                             <ConfigurationTable
+                             dataShapeName=""
                              description=""
                              isMultiRow="false"
                              name="Script"
@@ -1398,72 +1435,73 @@
                                         <![CDATA[
                                         var str_CurrentUser = Resources["CurrentSessionInfo"].GetCurrentUser();
                                         
-                                        if (str_CurrentUser!==undefined&&Users[str_CurrentUser]["UseGitCommitUserValues"]===undefined)
-                                        {
-                                             ThingShapes["UserExtensions"].AddPropertyDefinition({
-                                        	defaultValue: false /* STRING */,
-                                        	remoteBindingAspects: undefined /* JSON */,
-                                        	description: "This property is used to decide of the Push will use the GitBackup Thing committer name and email, or the user specific values" /* STRING */,
-                                        	readOnly: false /* BOOLEAN */,
-                                        	type: "BOOLEAN" /* BASETYPENAME */,
-                                        	remote: false /* BOOLEAN */,
-                                        	remotePropertyName: undefined /* STRING */,
-                                        	timeout: undefined /* INTEGER */,
-                                        	pushType: undefined /* STRING */,
-                                        	dataChangeThreshold: undefined /* NUMBER */,
-                                        	logged: false /* BOOLEAN */,
-                                        	name: "UseGitCommitUserValues" /* STRING */,
-                                        	pushThreshold: undefined /* NUMBER */,
-                                        	dataChangeType: undefined /* STRING */,
-                                        	category: undefined /* STRING */,
-                                        	persistent: true /* BOOLEAN */,
-                                        	dataShape: undefined /* DATASHAPENAME */
-                                        });	
-                                             ThingShapes["UserExtensions"].AddPropertyDefinition({
-                                        	defaultValue: "User name" /* STRING */,
-                                        	remoteBindingAspects: undefined /* JSON */,
-                                        	description: "User-specific GitBackup Committer Name. Will be used instead the committer name specified at the Thing level, if UseGitCommitUserValues is set to true." /* STRING */,
-                                        	readOnly: false /* BOOLEAN */,
-                                        	type: "STRING" /* BASETYPENAME */,
-                                        	remote: false /* BOOLEAN */,
-                                        	remotePropertyName: undefined /* STRING */,
-                                        	timeout: undefined /* INTEGER */,
-                                        	pushType: undefined /* STRING */,
-                                        	dataChangeThreshold: undefined /* NUMBER */,
-                                        	logged: false /* BOOLEAN */,
-                                        	name: "GitCommitterName" /* STRING */,
-                                        	pushThreshold: undefined /* NUMBER */,
-                                        	dataChangeType: undefined /* STRING */,
-                                        	category: undefined /* STRING */,
-                                        	persistent: true /* BOOLEAN */,
-                                        	dataShape: undefined /* DATASHAPENAME */
-                                        });
-                                            ThingShapes["UserExtensions"].AddPropertyDefinition({
-                                        	defaultValue: "user@email.com" /* STRING */,
-                                        	remoteBindingAspects: undefined /* JSON */,
-                                        	description: "User-specific GitBackup Committer Email. Will be used instead the committer email specified at the Thing level, if UseGitCommitUserValues is set to true." /* STRING */,
-                                        	readOnly: false /* BOOLEAN */,
-                                        	type: "STRING" /* BASETYPENAME */,
-                                        	remote: false /* BOOLEAN */,
-                                        	remotePropertyName: undefined /* STRING */,
-                                        	timeout: undefined /* INTEGER */,
-                                        	pushType: undefined /* STRING */,
-                                        	dataChangeThreshold: undefined /* NUMBER */,
-                                        	logged: false /* BOOLEAN */,
-                                        	name: "GitCommitterEmail" /* STRING */,
-                                        	pushThreshold: undefined /* NUMBER */,
-                                        	dataChangeType: undefined /* STRING */,
-                                        	category: undefined /* STRING */,
-                                        	persistent: true /* BOOLEAN */,
-                                        	dataShape: undefined /* DATASHAPENAME */
-                                        });
-                                            
-                                        Resources["EntityServices"].RestartDependenciesForThingShape( {
-                                        	name: "UserExtensions" /* THINGSHAPENAME */
-                                        });
+                                        if (str_CurrentUser !== undefined && Users[str_CurrentUser]["GitCredentials"] === undefined) {
+                                        	ThingShapes["UserExtensions"].AddPropertyDefinition({
+                                        		defaultValue: undefined /* STRING */ ,
+                                        		remoteBindingAspects: undefined /* JSON */ ,
+                                        		description: "User-specific Git credentials store." /* STRING */ ,
+                                        		readOnly: false /* BOOLEAN */ ,
+                                        		type: "INFOTABLE" /* BASETYPENAME */ ,
+                                        		remote: false /* BOOLEAN */ ,
+                                        		remotePropertyName: undefined /* STRING */ ,
+                                        		timeout: undefined /* INTEGER */ ,
+                                        		pushType: undefined /* STRING */ ,
+                                        		dataChangeThreshold: undefined /* NUMBER */ ,
+                                        		logged: false /* BOOLEAN */ ,
+                                        		name: "GitCredentials" /* STRING */ ,
+                                        		pushThreshold: undefined /* NUMBER */ ,
+                                        		dataChangeType: undefined /* STRING */ ,
+                                        		category: undefined /* STRING */ ,
+                                        		persistent: true /* BOOLEAN */ ,
+                                        		dataShape: "GitBackup.GitCredentials.DataShape" /* DATASHAPENAME */
+                                        	});
                                         
-                                        
-                                            
+                                        	Resources["EntityServices"].RestartDependenciesForThingShape({
+                                        		name: "UserExtensions" /* THINGSHAPENAME */
+                                        	});
+                                        }
+                                        //upgrade path for version 5.0
+                                        //removes the UseGitCommitUserValues, GitCommitterEmail, GitCommitterPassword and GitCommitterName since they are no longer needed
+                                        //in V5.0 we use GitCredentials infotable which is a store for all credentials for all Git Things in the system.
+                                        if (Users[str_CurrentUser]["UseGitCommitUserValues"] !== undefined) {
+                                        	{
+                                        		ThingShapes["UserExtensions"].RemovePropertyDefinition({
+                                        			name: "UseGitCommitUserValues"
+                                        		});
+                                        	}
+                                        	Resources["EntityServices"].RestartDependenciesForThingShape({
+                                        		name: "UserExtensions" /* THINGSHAPENAME */
+                                        	});
+                                        }
+                                        if (Users[str_CurrentUser]["GitCommitterEmail"] !== undefined) {
+                                        	{
+                                        		ThingShapes["UserExtensions"].RemovePropertyDefinition({
+                                        			name: "GitCommitterEmail"
+                                        		});
+                                        	}
+                                        	Resources["EntityServices"].RestartDependenciesForThingShape({
+                                        		name: "UserExtensions" /* THINGSHAPENAME */
+                                        	});
+                                        }
+                                        if (Users[str_CurrentUser]["GitCommitterPassword"] !== undefined) {
+                                        	{
+                                        		ThingShapes["UserExtensions"].RemovePropertyDefinition({
+                                        			name: "GitCommitterPassword"
+                                        		});
+                                        	}
+                                        	Resources["EntityServices"].RestartDependenciesForThingShape({
+                                        		name: "UserExtensions" /* THINGSHAPENAME */
+                                        	});
+                                        }
+                                        if (Users[str_CurrentUser]["GitCommitterName"] !== undefined) {
+                                        	{
+                                        		ThingShapes["UserExtensions"].RemovePropertyDefinition({
+                                        			name: "GitCommitterName"
+                                        		});
+                                        	}
+                                        	Resources["EntityServices"].RestartDependenciesForThingShape({
+                                        		name: "UserExtensions" /* THINGSHAPENAME */
+                                        	});
                                         }
                                         ]]>
                                         </code>
@@ -1478,6 +1516,7 @@
                      name="Pause">
                         <ConfigurationTables>
                             <ConfigurationTable
+                             dataShapeName=""
                              description=""
                              isMultiRow="false"
                              name="Script"
@@ -1509,6 +1548,7 @@
                      name="RemoveEntitiesFromExportList">
                         <ConfigurationTables>
                             <ConfigurationTable
+                             dataShapeName=""
                              description=""
                              isMultiRow="false"
                              name="Script"
@@ -1546,47 +1586,10 @@
                     <ServiceImplementation
                      description=""
                      handlerName="Script"
-                     name="SetGitUserExtensionsProperties">
-                        <ConfigurationTables>
-                            <ConfigurationTable
-                             description=""
-                             isMultiRow="false"
-                             name="Script"
-                             ordinal="0">
-                                <DataShape>
-                                    <FieldDefinitions>
-                                        <FieldDefinition
-                                         baseType="STRING"
-                                         description="code"
-                                         name="code"
-                                         ordinal="0"></FieldDefinition>
-                                    </FieldDefinitions>
-                                </DataShape>
-                                <Rows>
-                                    <Row>
-                                        <code>
-                                        <![CDATA[
-                                        var str_CurrentUser = Resources["CurrentSessionInfo"].GetCurrentUser();
-                                        
-                                        if (str_CurrentUser!==undefined)
-                                        {
-                                            Users[str_CurrentUser]["UseGitCommitUserValues"]=UseGitCommitUserValues;
-                                            Users[str_CurrentUser]["GitCommitterName"]=CommitterName;
-                                            Users[str_CurrentUser]["GitCommitterEmail"]=CommitterEmail;
-                                        }
-                                        ]]>
-                                        </code>
-                                    </Row>
-                                </Rows>
-                            </ConfigurationTable>
-                        </ConfigurationTables>
-                    </ServiceImplementation>
-                    <ServiceImplementation
-                     description=""
-                     handlerName="Script"
                      name="UpdateRepo">
                         <ConfigurationTables>
                             <ConfigurationTable
+                             dataShapeName=""
                              description="Script"
                              isMultiRow="false"
                              name="Script"
@@ -1605,39 +1608,29 @@
                                         <code>
                                         <![CDATA[
                                         if (RepoName !== null && GitRepoURL !== null) {
-                                        
                                         	// table: INFOTABLE dataShape: ""
                                         	var iftbl_Configuration = Things[RepoName].GetConfigurationTable({
                                         		tableName: "Configuration" /* STRING */
                                         	});
-                                        
                                         	// CreateInfoTableFromDataShape(infoTableName:STRING("InfoTable"), dataShapeName:STRING):INFOTABLE(GitBackup.ConfigurationSetting.DataShape)
                                         	var iftbl_ConfigurationNew = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
                                         		infoTableName: "InfoTable",
                                         		dataShapeName: "GitBackup.ConfigurationSetting.DataShape"
                                         	});
-                                        
                                         	var row_Config = iftbl_Configuration.getRow(0);
                                         	//We do not allow the user to change the File Repository as the Extension does not handle this usecase
-                                        	row_Config.FileRepository = row_Config.FileRepository; // THINGNAME
-                                        
-                                        	row_Config.CommitName = CommitUser; // STRING
-                                        	row_Config.User = User; // STRING
-                                        	row_Config.CommitEmail = CommitEmail; // STRING
+                                        	//row_Config.FileRepository = row_Config.FileRepository; // THINGNAME
                                         	//We do not allow the user to change the GitRepository URL as the Extension does not handle this usecase
-                                        	row_Config.GitRepoURL = row_Config.GitRepoURL; // STRING
+                                        	//row_Config.GitRepoURL = row_Config.GitRepoURL; // STRING
                                         	//We do not allow the user to change the File Repository Path as the Extension does not handle this usecase
                                         	//row_Config.RepoPathName = row_Config.RepoPathName; // STRING
                                         	row_Config.BranchName = InitialBranch; // STRING
-                                        	row_Config.Password = encryptPropertyValue(Password); // PASSWORD
                                         	row_Config.UseProxy = UseProxy;
                                         	row_Config.ProxyURL = ProxyURL;
                                         	row_Config.ProxyPort = ProxyPort;
                                             row_Config.LocalizationTokensPrefix=LocalizationTokensPrefix;
-                                        
                                         	iftbl_ConfigurationNew.AddRow(row_Config);
-                                        
-                                        
+                                            
                                         	Things[RepoName].SetConfigurationTable({
                                         		configurationTable: iftbl_ConfigurationNew /* INFOTABLE */ ,
                                         		persistent: false /* BOOLEAN */ ,
@@ -1646,8 +1639,104 @@
                                         	Things[RepoName].SaveConfigurationTables();
                                         	//restart to reinitialize the proxy
                                         	Things[RepoName].RestartThing();
+                                            setCredentials(User,Password,CommitEmail,CommitUser,RepoName);
                                         	logger.warn("Git Thing configuration was updated successfully.");
                                         } else logger.error("Could not update GitThing. Either RepoName or GitRepoURL did not contain data.");
+                                        
+                                        function setCredentials(GitCommitterUser, GitCommitterPassword, GitCommitterEmail, GitCommitterFullName, GitThing) {
+                                        	var str_CurrentUser = Resources["CurrentSessionInfo"].GetCurrentUser();
+                                        	if (Users[str_CurrentUser] && Users[str_CurrentUser].GitCredentials !== undefined) {
+                                        		//deletes any existing Git Credential entry for this repository if it already exists
+                                                //the key reason to do this is because the authentication system assumes there's only one credential / user / repository
+                                                Users[str_CurrentUser].GitCredentials.Delete({GitThing: GitThing});
+                                                // GitBackup.GitCredentials.DataShape entry object
+                                        		let credential = {
+                                        			GitCommitterUser: GitCommitterUser, // STRING
+                                        			GitCommitterPassword:  encryptPropertyValue(GitCommitterPassword), // PASSWORD
+                                        			GitCommitterEmail: GitCommitterEmail, // STRING
+                                        			GitCommitterFullName: GitCommitterFullName, // STRING
+                                        			GitThing: GitThing // THINGNAME
+                                        		};
+                                        		Users[str_CurrentUser].GitCredentials.AddRow(credential);
+                                        	}
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="ValidateGitThingName">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             dataShapeName=""
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        // result: INFOTABLE dataShape: SpotlightSearch
+                                        let iftbl_Things = Resources["SearchFunctions"].SpotlightSearch({
+                                        	maxItems: 10000000 /* NUMBER {"defaultValue":500} */ ,
+                                        	searchExpression: "*" /* STRING */ ,
+                                        	types: {
+                                                "items": [
+                                                    "Thing"
+                                                ]
+                                            } /* JSON */ ,
+                                        	withPermissions: true /* BOOLEAN {"defaultValue":false} */ ,
+                                        	endDate: undefined /* DATETIME */ ,
+                                        	aspects: {
+                                                "isSystemObject": false
+                                            }  ,
+                                        	excludedAspects: undefined /* JSON */ ,
+                                        	tags: undefined /* TAGS */ ,
+                                        	thingTemplates: {
+                                                "excludedItems": [
+                                                    "Timer",
+                                                    "Scheduler",
+                                                    "GenericConnector",
+                                                    "IndustrialGateway"
+                                                ]
+                                            } /* JSON */ ,
+                                        	searchDescriptions: undefined /* BOOLEAN {"defaultValue":true} */ ,
+                                        	thingShapes: {
+                                        		"excludedItems": [
+                                        			"Blog",
+                                        			"DataTable",
+                                        			"Stream",
+                                        			"ValueStream",
+                                        			"Wiki"
+                                        		]
+                                        	} /* JSON */ ,
+                                        	sortBy: "lastModifiedDate" /* STRING {"defaultValue":"name"} */ ,
+                                        	isAscending: false /* BOOLEAN {"defaultValue":true} */ ,
+                                        	projectName: undefined /* PROJECTNAME */ ,
+                                        	maxSearchItems: undefined /* NUMBER {"defaultValue":100000} */ ,
+                                        	startDate: undefined /* DATETIME */
+                                        });
+                                        let bool_ThingFound=false;
+                                        iftbl_Things.rows.toArray().forEach(row=>{if (row.name.toLowerCase()==GitThingName.toLowerCase()) bool_ThingFound=true;});
+                                        
+                                        
+                                        if (bool_ThingFound==true) result = "Thing " + GitThingName + " already exists in the platform. Please provide another Thing name.";
+                                        else result = "Success. The provided thing name is valid.";
                                         ]]>
                                         </code>
                                     </Row>
@@ -1666,21 +1755,8 @@
                 <AlertDefinitions
                  name="tab-menu"></AlertDefinitions>
             </AlertConfigurations>
-            <ImplementedShapes>
-                <ImplementedShape
-                 name="GitBackup.Bitbucket.ThingShape"
-                 type="ThingShape"></ImplementedShape>
-            </ImplementedShapes>
+            <ImplementedShapes></ImplementedShapes>
             <ThingProperties>
-                <BitBucketAPIRepositoryURL>
-                    <Value>
-                    <![CDATA[
-                    https://api.bitbucket.org/2.0
-                    ]]>
-                    </Value>
-                    <Timestamp>2018-08-24T03:22:56.276-07:00</Timestamp>
-                    <Quality>GOOD</Quality>
-                </BitBucketAPIRepositoryURL>
                 <tab-menu>
                     <Value>
                         <infoTable>
@@ -1690,12 +1766,12 @@
                                      baseType="STRING"
                                      description=""
                                      name="File"
-                                     ordinal="1"></FieldDefinition>
+                                     ordinal="0"></FieldDefinition>
                                     <FieldDefinition
                                      baseType="STRING"
                                      description=""
                                      name="Status"
-                                     ordinal="2"></FieldDefinition>
+                                     ordinal="0"></FieldDefinition>
                                 </FieldDefinitions>
                             </DataShape>
                             <Rows>
@@ -1718,7 +1794,7 @@
                             </Rows>
                         </infoTable>
                     </Value>
-                    <Timestamp>2019-09-18T08:12:13.450-07:00</Timestamp>
+                    <Timestamp>2019-09-18T15:12:13.450Z</Timestamp>
                     <Quality>GOOD</Quality>
                 </tab-menu>
             </ThingProperties>

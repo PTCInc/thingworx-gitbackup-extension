@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Entities
- build="b103"
- majorVersion="8"
- minorVersion="5"
- modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
- revision="5"
- schemaVersion="1054"
+ majorVersion="9"
+ minorVersion="3"
  universal="password">
     <Mashups>
         <Mashup
@@ -17,7 +13,6 @@
          description="Allows you to pick the Entities you want to export"
          documentationContent=""
          homeMashup=""
-         lastModifiedDate="2020-09-17T12:43:00.680-07:00"
          name="GitBackup.EntityPicker.Mashup"
          projectName="GitBackup"
          rows="0.0"
@@ -35,13 +30,126 @@
                 <Visibility></Visibility>
             </VisibilityPermissions>
             <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
-            <ConfigurationTables></ConfigurationTables>
+            <ConfigurationTables>
+                <ConfigurationTable
+                 dataShapeName=""
+                 description="Mashup Mobile Settings"
+                 isHidden="true"
+                 isMultiRow="false"
+                 name="MobileSettings"
+                 ordinal="0">
+                    <DataShape>
+                        <FieldDefinitions>
+                            <FieldDefinition
+                             aspect.defaultValue="false"
+                             aspect.friendlyName="Disable Zoom"
+                             baseType="BOOLEAN"
+                             description="Disables zooming in and out within the mashup"
+                             name="disableZoom"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="true"
+                             aspect.friendlyName="Full Screen Mode"
+                             baseType="BOOLEAN"
+                             description="Open the mashup in full screen mode"
+                             name="fullScreenMode"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.friendlyName="Height"
+                             baseType="STRING"
+                             description="The height of the mashup page"
+                             name="height"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="device-height"
+                             aspect.friendlyName="Height Type"
+                             baseType="STRING"
+                             description="Use the height of the device display, or a custom height (in px)"
+                             name="heightType"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="1.0"
+                             aspect.friendlyName="Initial Scale"
+                             baseType="NUMBER"
+                             description="The initial zoom scale when the mashup is loaded for the first time"
+                             name="initialScale"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.friendlyName="Shortcut Icon Title"
+                             baseType="STRING"
+                             description="A title for the mashup shortcut on the iOS home screen"
+                             name="iosShortcutIconTitle"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="black-translucent"
+                             aspect.friendlyName="Status Bar Appearance"
+                             baseType="STRING"
+                             description="The style of the iOS status bar"
+                             name="iosStatusBarAppearance"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="10.0"
+                             aspect.friendlyName="Maximum Scale"
+                             baseType="NUMBER"
+                             description="The maximum scale that users can zoom out to"
+                             name="maximumScale"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="0.1"
+                             aspect.friendlyName="Minimum Scale"
+                             baseType="NUMBER"
+                             description="The minimum scale that users can zoom out to"
+                             name="minimumScale"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.friendlyName="Width"
+                             baseType="STRING"
+                             description="The width of the mashup page"
+                             name="width"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="device-width"
+                             aspect.friendlyName="Width Type"
+                             baseType="STRING"
+                             description="Use the width of the device display, or a custom width (in px)"
+                             name="widthType"
+                             ordinal="0"></FieldDefinition>
+                        </FieldDefinitions>
+                    </DataShape>
+                    <Rows>
+                        <Row>
+                            <disableZoom>false</disableZoom>
+                            <fullScreenMode>true</fullScreenMode>
+                            <height></height>
+                            <heightType>
+                            <![CDATA[
+                            device-height
+                            ]]>
+                            </heightType>
+                            <initialScale>1.0</initialScale>
+                            <iosShortcutIconTitle></iosShortcutIconTitle>
+                            <iosStatusBarAppearance>
+                            <![CDATA[
+                            black-translucent
+                            ]]>
+                            </iosStatusBarAppearance>
+                            <maximumScale>10.0</maximumScale>
+                            <minimumScale>0.1</minimumScale>
+                            <width></width>
+                            <widthType>
+                            <![CDATA[
+                            device-width
+                            ]]>
+                            </widthType>
+                        </Row>
+                    </Rows>
+                </ConfigurationTable>
+            </ConfigurationTables>
             <ParameterDefinitions>
                 <FieldDefinition
                  aspect.bindingDirection="BOTH"
                  aspect.dataShape="SpotlightSearch"
                  aspect.isMandatory="false"
-                 aspect.ordinal="0"
                  baseType="INFOTABLE"
                  description=""
                  name="EntitiesToExport"
@@ -49,7 +157,6 @@
                 <FieldDefinition
                  aspect.bindingDirection="IN"
                  aspect.isMandatory="false"
-                 aspect.ordinal="3"
                  baseType="BOOLEAN"
                  description=""
                  name="ExportDependents"
@@ -57,7 +164,6 @@
                 <FieldDefinition
                  aspect.bindingDirection="IN"
                  aspect.isMandatory="false"
-                 aspect.ordinal="2"
                  baseType="STRING"
                  description=""
                  name="GitThing"
@@ -65,18 +171,13 @@
                 <FieldDefinition
                  aspect.bindingDirection="IN"
                  aspect.isMandatory="false"
-                 aspect.ordinal="1"
                  baseType="STRING"
                  description=""
                  name="Project"
                  ordinal="0"></FieldDefinition>
             </ParameterDefinitions>
-            <Things>
-                <Thing>GIT.Utility.Thing</Thing>
-            </Things>
-            <ThingShapes>
-                <ThingShape>Git.Utility.ThingShape</ThingShape>
-            </ThingShapes>
+            <Things></Things>
+            <ThingShapes></ThingShapes>
             <ThingTemplates></ThingTemplates>
             <mashupContent>
             <![CDATA[
@@ -494,6 +595,40 @@
                 "TargetArea" : "Data",
                 "TargetId" : "ExportProjectEntities",
                 "TargetSection" : "DynamicThingShapes_Git.Utility.ThingShape"
+              }, {
+                "Id" : "3e2d5b2e-6157-4df8-bdbf-5172521b2ee0",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Tags",
+                  "SourcePropertyBaseType" : "TAGS",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "tags",
+                  "TargetPropertyBaseType" : "TAGS",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceDetails" : "",
+                "SourceId" : "tagpicker-29",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetProjectEntities",
+                "TargetSection" : "Things_GIT.Utility.Thing"
+              }, {
+                "Id" : "f19c64eb-bf32-44ff-8fef-00b55537fcd0",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Tags",
+                  "SourcePropertyBaseType" : "TAGS",
+                  "SourcePropertyType" : "Property",
+                  "TargetProperty" : "tags",
+                  "TargetPropertyBaseType" : "TAGS",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceDetails" : "",
+                "SourceId" : "tagpicker-29",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "GetProjectEntities1",
+                "TargetSection" : "Things_GIT.Utility.Thing"
               } ],
               "DesignTimePermissions" : {
                 "Create" : [ ],
@@ -592,7 +727,17 @@
                 "EventTriggerId" : "ExportProjectEntities",
                 "EventTriggerSection" : "DynamicThingShapes_Git.Utility.ThingShape",
                 "Id" : "445b1a53-e523-49fc-8f04-b40edb96d103"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_GIT.Utility.Thing",
+                "EventHandlerService" : "GetProjectEntities",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Changed",
+                "EventTriggerId" : "tagpicker-29",
+                "EventTriggerSection" : "",
+                "Id" : "35887b1f-2ee3-4222-9797-1b5bde9499f6"
               } ],
+              "Reminders" : [ ],
               "RunTimePermissions" : {
                 "permissions" : [ ]
               },
@@ -615,6 +760,7 @@
                   "IgnoreWarningsInViewMashup" : false,
                   "IsPrintLayout" : false,
                   "Left" : 0,
+                  "Margin" : "5",
                   "MashupToEditGadget" : "DefaultMashupToEditGadget",
                   "MinHeight" : 0,
                   "MinWidth" : 0,
@@ -671,7 +817,7 @@
                     "Description" : "",
                     "ParameterName" : "ExportDependents"
                   } ],
-                  "id_index" : 28,
+                  "id_index" : 29,
                   "supportsAutoResize" : true
                 },
                 "Widgets" : [ {
@@ -690,6 +836,7 @@
                     "Left" : 240,
                     "LeftSidebar" : false,
                     "LeftSidebarWidth" : 0,
+                    "Margin" : "5",
                     "Orientation" : "horizontal",
                     "PctColumn1" : 45,
                     "PctColumn2" : 10,
@@ -733,6 +880,7 @@
                       "Expanded" : true,
                       "Id" : "container-3",
                       "LastContainer" : false,
+                      "Margin" : "5",
                       "MinHeight" : 0,
                       "MinWidth" : 0,
                       "Overlay" : false,
@@ -769,6 +917,7 @@
                         "Left" : 165,
                         "LeftSidebar" : false,
                         "LeftSidebarWidth" : 0,
+                        "Margin" : "5",
                         "Orientation" : "vertical",
                         "PctColumn1" : 50,
                         "PctColumn2" : 50,
@@ -812,6 +961,7 @@
                           "Expanded" : true,
                           "Id" : "container-12",
                           "LastContainer" : false,
+                          "Margin" : "5",
                           "MinHeight" : 0,
                           "MinWidth" : 0,
                           "Overlay" : false,
@@ -843,6 +993,7 @@
                             "Id" : "panel-14",
                             "LastContainer" : false,
                             "Left" : 40,
+                            "Margin" : "5",
                             "ResponsiveLayout" : true,
                             "ShowDataLoading" : true,
                             "Style" : {
@@ -877,6 +1028,7 @@
                               "Id" : "label-15",
                               "LastContainer" : false,
                               "Left" : 6,
+                              "Margin" : "5",
                               "ResponsiveLayout" : false,
                               "ShowDataLoading" : true,
                               "Style" : "DefaultLabelStyle",
@@ -902,6 +1054,7 @@
                               "Id" : "label-16",
                               "LastContainer" : false,
                               "Left" : 146,
+                              "Margin" : "5",
                               "ResponsiveLayout" : false,
                               "ShowDataLoading" : true,
                               "Style" : "DefaultLabelStyle",
@@ -931,6 +1084,7 @@
                               "LabelAlignment" : "left",
                               "LastContainer" : false,
                               "Left" : 6,
+                              "Margin" : "5",
                               "MaskInputCharacters" : false,
                               "PlaceholderText" : "Search file",
                               "ReadOnly" : false,
@@ -946,7 +1100,7 @@
                               "Top" : 23,
                               "Type" : "textbox",
                               "Visible" : true,
-                              "Width" : 200,
+                              "Width" : 150,
                               "Z-index" : 10,
                               "__TypeDisplayName" : "TextBox",
                               "__supportsLabel" : true,
@@ -1015,7 +1169,8 @@
                               "Id" : "button-18",
                               "Label" : "",
                               "LastContainer" : false,
-                              "Left" : 217,
+                              "Left" : 166,
+                              "Margin" : "5",
                               "ResponsiveLayout" : false,
                               "RoundedCorners" : true,
                               "ShowDataLoading" : true,
@@ -1037,7 +1192,7 @@
                               "TabSequence" : 0,
                               "ToolTipField" : "",
                               "ToolTipStyle" : "DefaultTooltipStyle",
-                              "Top" : 23,
+                              "Top" : 20,
                               "Type" : "button",
                               "Visible" : true,
                               "Width" : 28,
@@ -1069,6 +1224,7 @@
                               "Label" : "All",
                               "LastContainer" : false,
                               "Left" : 255,
+                              "Margin" : "5",
                               "ResponsiveLayout" : false,
                               "RoundedCorners" : true,
                               "ShowDataLoading" : true,
@@ -1109,6 +1265,7 @@
                               "Label" : "None",
                               "LastContainer" : false,
                               "Left" : 319,
+                              "Margin" : "5",
                               "ResponsiveLayout" : false,
                               "RoundedCorners" : true,
                               "ShowDataLoading" : true,
@@ -1126,6 +1283,28 @@
                               "__supportsTooltip" : true
                             },
                             "Widgets" : [ ]
+                          }, {
+                            "Properties" : {
+                              "Area" : "UI",
+                              "DisplayName" : "tagpicker-29",
+                              "Height" : 18,
+                              "Id" : "tagpicker-29",
+                              "LastContainer" : false,
+                              "Left" : 207,
+                              "Margin" : "5",
+                              "MultiSelect" : true,
+                              "ResponsiveLayout" : false,
+                              "ShowDataLoading" : true,
+                              "TagType" : "ModelTags",
+                              "Top" : 20,
+                              "Type" : "tagpicker",
+                              "Visible" : true,
+                              "VocabularyRestriction" : "",
+                              "Width" : 35,
+                              "Z-index" : 10,
+                              "__TypeDisplayName" : "Tag Picker"
+                            },
+                            "Widgets" : [ ]
                           } ]
                         } ]
                       }, {
@@ -1139,6 +1318,7 @@
                           "Expanded" : true,
                           "Id" : "container-13",
                           "LastContainer" : false,
+                          "Margin" : "5",
                           "MinHeight" : 0,
                           "MinWidth" : 0,
                           "Overlay" : false,
@@ -1464,15 +1644,20 @@
                             "CookiePersistence" : true,
                             "DataOverflow" : "clipped",
                             "DataServiceBindingDef" : {
+                              "dataName" : "Things_GIT.Utility.Thing",
                               "entityName" : "GIT.Utility.Thing",
                               "entityType" : "Things",
+                              "sourceId" : "GetProjectEntities",
                               "target" : "GetProjectEntities"
                             },
                             "DefaultSelectedRows" : "",
+                            "DisableLegacyValidation" : false,
                             "DisplayName" : "grid_Main",
                             "DisplayOnlyMode" : false,
                             "EditButtonsLocation" : "top-right",
                             "EnableAddDeleteButtons" : false,
+                            "EnableCallbackOnSelectedRowsChange" : true,
+                            "EnableContainerScroll" : false,
                             "EnableContextMenu" : true,
                             "EnableEditButtons" : false,
                             "EnableFilterEventOnConfigChange" : true,
@@ -1491,6 +1676,7 @@
                             "IsEditable" : false,
                             "LastContainer" : false,
                             "Left" : 145,
+                            "Margin" : "5",
                             "MaxHeaderHeight" : 100,
                             "MinRowHeight" : 30,
                             "ResponsiveLayout" : true,
@@ -1533,6 +1719,7 @@
                       "Expanded" : true,
                       "Id" : "container-5",
                       "LastContainer" : false,
+                      "Margin" : "5",
                       "MinHeight" : 0,
                       "MinWidth" : 0,
                       "Overlay" : false,
@@ -1564,6 +1751,7 @@
                         "Id" : "panel-7",
                         "LastContainer" : false,
                         "Left" : 45,
+                        "Margin" : "5",
                         "ResponsiveLayout" : true,
                         "ShowDataLoading" : true,
                         "Style" : {
@@ -1612,6 +1800,7 @@
                           "Label" : "Add",
                           "LastContainer" : false,
                           "Left" : 4,
+                          "Margin" : "5",
                           "ResponsiveLayout" : false,
                           "RoundedCorners" : true,
                           "ShowDataLoading" : true,
@@ -1653,6 +1842,7 @@
                           "Label" : "Remove",
                           "LastContainer" : false,
                           "Left" : 4,
+                          "Margin" : "5",
                           "ResponsiveLayout" : false,
                           "RoundedCorners" : true,
                           "ShowDataLoading" : true,
@@ -1678,6 +1868,7 @@
                           "Id" : "divider-27",
                           "LastContainer" : false,
                           "Left" : 4,
+                          "Margin" : "5",
                           "ResponsiveLayout" : false,
                           "ShowDataLoading" : true,
                           "Style" : "DefaultDividerStyle",
@@ -1713,6 +1904,7 @@
                           "Label" : "Export",
                           "LastContainer" : false,
                           "Left" : 4,
+                          "Margin" : "5",
                           "ResponsiveLayout" : false,
                           "RoundedCorners" : true,
                           "ShowDataLoading" : true,
@@ -1743,6 +1935,7 @@
                       "Expanded" : true,
                       "Id" : "container-4",
                       "LastContainer" : false,
+                      "Margin" : "5",
                       "MinHeight" : 0,
                       "MinWidth" : 0,
                       "Overlay" : false,
@@ -1839,7 +2032,9 @@
                           } ]
                         },
                         "CurrentScrollTop" : 0,
+                        "DisableLegacyValidation" : false,
                         "DisplayName" : "dhxgrid-10",
+                        "EnableFontSizeOverride" : false,
                         "FocusStyle" : "DefaultFocusStyle",
                         "GridBackgroundStyle" : "DefaultGridBackgroundStyle",
                         "GridEditableFieldStyle" : "DefaultGridEditableFieldStyle",
@@ -1852,6 +2047,7 @@
                         "IsPrintLayout" : false,
                         "LastContainer" : false,
                         "Left" : 0,
+                        "Margin" : "5",
                         "MultiSelect" : false,
                         "ResponsiveLayout" : true,
                         "RowAlternateBackgroundStyle" : "DefaultRowAlternateBackgroundStyle",
@@ -1883,7 +2079,9 @@
                     "Id" : "eventsrouter-20",
                     "LastContainer" : false,
                     "Left" : 0,
+                    "Margin" : "5",
                     "NumberOfInputs" : "2",
+                    "ResponsiveLayout" : false,
                     "ShowDataLoading" : true,
                     "Top" : 0,
                     "Type" : "eventsrouter",
@@ -1901,7 +2099,9 @@
                     "Id" : "eventsrouter-23",
                     "LastContainer" : false,
                     "Left" : 0,
+                    "Margin" : "5",
                     "NumberOfInputs" : "2",
+                    "ResponsiveLayout" : false,
                     "ShowDataLoading" : true,
                     "Top" : 0,
                     "Type" : "eventsrouter",

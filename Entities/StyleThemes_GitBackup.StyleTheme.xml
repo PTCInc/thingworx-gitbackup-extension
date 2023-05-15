@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ majorVersion="9"
+ minorVersion="3"
+ universal="password">
+    <StyleThemes>
+        <StyleTheme
+         aspect.isEditableExtensionObject="true"
+         aspect.isExtension="true"
+         description=""
+         documentationContent=""
+         homeMashup=""
+         name="GitBackup.StyleTheme"
+         projectName="GitBackup"
+         tags="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <content>
+            <![CDATA[
+            {
+              "props" : [ {
+                "name" : "e-button-secondary-backgroundcolor",
+                "value" : "#2ba7f7"
+              }, {
+                "name" : "e-button-secondary-hover-backgroundcolor",
+                "value" : "#32abfc"
+              }, {
+                "name" : "e-button-secondary-pressed-backgroundcolor",
+                "value" : "#4290e9"
+              }, {
+                "name" : "e-button-secondary-bordercolor",
+                "value" : "#2296e4"
+              }, {
+                "name" : "e-button-secondary-fontsize",
+                "value" : "14px"
+              }, {
+                "name" : "e-button-secondary-radius",
+                "value" : "3px"
+              }, {
+                "name" : "e-button-common-padding-left",
+                "value" : "0px"
+              }, {
+                "name" : "e-button-common-padding-right",
+                "value" : "0px"
+              }, {
+                "name" : "e-button-common-padding-top",
+                "value" : "0px"
+              }, {
+                "name" : "e-button-common-padding-bottom",
+                "value" : "0px"
+              } ],
+              "version" : "0.1"
+            }
+            ]]>
+            </content>
+            <preview></preview>
+        </StyleTheme>
+    </StyleThemes>
+</Entities>

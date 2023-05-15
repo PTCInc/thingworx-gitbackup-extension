@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Entities
- build="b103"
- majorVersion="8"
- minorVersion="5"
- modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
- revision="5"
- schemaVersion="1054"
+ majorVersion="9"
+ minorVersion="3"
  universal="password">
     <DataShapes>
         <DataShape
@@ -15,7 +11,6 @@
          description=""
          documentationContent=""
          homeMashup=""
-         lastModifiedDate="2020-08-28T06:20:20.701-07:00"
          name="GitBackup.ConfigurationSetting.DataShape"
          projectName="GitBackup"
          tags="">
@@ -42,20 +37,6 @@
                  name="BranchName"
                  ordinal="7"></FieldDefinition>
                 <FieldDefinition
-                 aspect.defaultValue="jdoe@ptc.com"
-                 aspect.friendlyName="Commit Email"
-                 baseType="STRING"
-                 description=""
-                 name="CommitEmail"
-                 ordinal="3"></FieldDefinition>
-                <FieldDefinition
-                 aspect.defaultValue="John Doe"
-                 aspect.friendlyName="Commit Name"
-                 baseType="STRING"
-                 description=""
-                 name="CommitName"
-                 ordinal="2"></FieldDefinition>
-                <FieldDefinition
                  aspect.defaultValue="GitRepository"
                  aspect.friendlyName="File Repository"
                  aspect.thingTemplate="FileRepository"
@@ -76,11 +57,6 @@
                  description="prefix used for exporting Localization Tokens"
                  name="LocalizationTokensPrefix"
                  ordinal="12"></FieldDefinition>
-                <FieldDefinition
-                 baseType="PASSWORD"
-                 description=""
-                 name="Password"
-                 ordinal="1"></FieldDefinition>
                 <FieldDefinition
                  baseType="INTEGER"
                  description=""
@@ -105,11 +81,6 @@
                  description=""
                  name="UseProxy"
                  ordinal="11"></FieldDefinition>
-                <FieldDefinition
-                 baseType="STRING"
-                 description=""
-                 name="User"
-                 ordinal="0"></FieldDefinition>
             </FieldDefinitions>
         </DataShape>
     </DataShapes>

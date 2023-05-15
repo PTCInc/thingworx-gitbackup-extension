@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Entities
- build="b103"
- majorVersion="8"
- minorVersion="5"
- modelPersistenceProviderPackage="PostgresPersistenceProviderPackage"
- revision="5"
- schemaVersion="1054"
+ majorVersion="9"
+ minorVersion="3"
  universal="password">
     <Mashups>
         <Mashup
@@ -17,7 +13,6 @@
          description="Standard version of the GitBackup Main Mashup"
          documentationContent=""
          homeMashup=""
-         lastModifiedDate="2020-10-06T13:35:46.121-07:00"
          name="GitBackup.Main.Mashup"
          projectName="GitBackup"
          rows="0.0"
@@ -35,19 +30,125 @@
                 <Visibility></Visibility>
             </VisibilityPermissions>
             <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
-            <ConfigurationTables></ConfigurationTables>
+            <ConfigurationTables>
+                <ConfigurationTable
+                 dataShapeName=""
+                 description="Mashup Mobile Settings"
+                 isHidden="true"
+                 isMultiRow="false"
+                 name="MobileSettings"
+                 ordinal="0">
+                    <DataShape>
+                        <FieldDefinitions>
+                            <FieldDefinition
+                             aspect.defaultValue="false"
+                             aspect.friendlyName="Disable Zoom"
+                             baseType="BOOLEAN"
+                             description="Disables zooming in and out within the mashup"
+                             name="disableZoom"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="true"
+                             aspect.friendlyName="Full Screen Mode"
+                             baseType="BOOLEAN"
+                             description="Open the mashup in full screen mode"
+                             name="fullScreenMode"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.friendlyName="Height"
+                             baseType="STRING"
+                             description="The height of the mashup page"
+                             name="height"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="device-height"
+                             aspect.friendlyName="Height Type"
+                             baseType="STRING"
+                             description="Use the height of the device display, or a custom height (in px)"
+                             name="heightType"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="1.0"
+                             aspect.friendlyName="Initial Scale"
+                             baseType="NUMBER"
+                             description="The initial zoom scale when the mashup is loaded for the first time"
+                             name="initialScale"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.friendlyName="Shortcut Icon Title"
+                             baseType="STRING"
+                             description="A title for the mashup shortcut on the iOS home screen"
+                             name="iosShortcutIconTitle"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="black-translucent"
+                             aspect.friendlyName="Status Bar Appearance"
+                             baseType="STRING"
+                             description="The style of the iOS status bar"
+                             name="iosStatusBarAppearance"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="10.0"
+                             aspect.friendlyName="Maximum Scale"
+                             baseType="NUMBER"
+                             description="The maximum scale that users can zoom out to"
+                             name="maximumScale"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="0.1"
+                             aspect.friendlyName="Minimum Scale"
+                             baseType="NUMBER"
+                             description="The minimum scale that users can zoom out to"
+                             name="minimumScale"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.friendlyName="Width"
+                             baseType="STRING"
+                             description="The width of the mashup page"
+                             name="width"
+                             ordinal="0"></FieldDefinition>
+                            <FieldDefinition
+                             aspect.defaultValue="device-width"
+                             aspect.friendlyName="Width Type"
+                             baseType="STRING"
+                             description="Use the width of the device display, or a custom width (in px)"
+                             name="widthType"
+                             ordinal="0"></FieldDefinition>
+                        </FieldDefinitions>
+                    </DataShape>
+                    <Rows>
+                        <Row>
+                            <disableZoom>false</disableZoom>
+                            <fullScreenMode>true</fullScreenMode>
+                            <height></height>
+                            <heightType>
+                            <![CDATA[
+                            device-height
+                            ]]>
+                            </heightType>
+                            <initialScale>1.0</initialScale>
+                            <iosShortcutIconTitle></iosShortcutIconTitle>
+                            <iosStatusBarAppearance>
+                            <![CDATA[
+                            black-translucent
+                            ]]>
+                            </iosStatusBarAppearance>
+                            <maximumScale>10.0</maximumScale>
+                            <minimumScale>0.1</minimumScale>
+                            <width></width>
+                            <widthType>
+                            <![CDATA[
+                            device-width
+                            ]]>
+                            </widthType>
+                        </Row>
+                    </Rows>
+                </ConfigurationTable>
+            </ConfigurationTables>
             <ParameterDefinitions></ParameterDefinitions>
-            <Things>
-                <Thing>ExtensionImportTargets</Thing>
-                <Thing>GIT.Utility.Thing</Thing>
-            </Things>
-            <ThingShapes>
-                <ThingShape>Git.Utility.ThingShape</ThingShape>
-            </ThingShapes>
-            <ThingTemplates>
-                <ThingTemplate>FileRepository</ThingTemplate>
-                <ThingTemplate>GitBackupTemplate</ThingTemplate>
-            </ThingTemplates>
+            <Things></Things>
+            <ThingShapes></ThingShapes>
+            <ThingTemplates></ThingTemplates>
             <mashupContent>
             <![CDATA[
             {
@@ -1963,6 +2064,7 @@
                 "EventTriggerSection" : "Things_GIT.Utility.Thing",
                 "Id" : "5d8ac6af-aafe-481a-a0f5-6956ea7350b6"
               } ],
+              "Reminders" : [ ],
               "RunTimePermissions" : {
                 "permissions" : [ ]
               },
@@ -1984,6 +2086,7 @@
                   "IgnoreWarningsInViewMashup" : false,
                   "IsPrintLayout" : false,
                   "Left" : 0,
+                  "Margin" : "5",
                   "MashupResolution" : "FHD 1920x1080",
                   "MashupToEditGadget" : "DefaultMashupToEditGadget",
                   "Master" : "GitBackup.Master",
@@ -2026,6 +2129,7 @@
                     "Left" : 265,
                     "LeftSidebar" : false,
                     "LeftSidebarWidth" : 0,
+                    "Margin" : "5",
                     "Orientation" : "vertical",
                     "PctColumn1" : 50,
                     "PctColumn2" : 50,
@@ -2072,6 +2176,7 @@
                       "Expanded" : true,
                       "Id" : "container-520",
                       "LastContainer" : false,
+                      "Margin" : "5",
                       "MinHeight" : 0,
                       "MinWidth" : 0,
                       "Overlay" : false,
@@ -2121,6 +2226,7 @@
                         "Left" : 185,
                         "LeftSidebar" : true,
                         "LeftSidebarWidth" : 50,
+                        "Margin" : "5",
                         "Orientation" : "horizontal",
                         "PctColumn1" : 80,
                         "PctColumn2" : 5,
@@ -2165,6 +2271,7 @@
                           "Expanded" : true,
                           "Id" : "container-590",
                           "LastContainer" : false,
+                          "Margin" : "5",
                           "MinHeight" : 0,
                           "MinWidth" : 0,
                           "Overlay" : false,
@@ -2197,6 +2304,7 @@
                           "Expanded" : true,
                           "Id" : "container-591",
                           "LastContainer" : false,
+                          "Margin" : "5",
                           "MinHeight" : 0,
                           "MinWidth" : 0,
                           "Overlay" : false,
@@ -2233,6 +2341,7 @@
                             "Left" : 145,
                             "LeftSidebar" : true,
                             "LeftSidebarWidth" : 360,
+                            "Margin" : "5",
                             "Orientation" : "horizontal",
                             "PctColumn1" : 100,
                             "PctColumn2" : 100,
@@ -2276,6 +2385,7 @@
                               "Expanded" : true,
                               "Id" : "container-682",
                               "LastContainer" : false,
+                              "Margin" : "5",
                               "MinHeight" : 0,
                               "MinWidth" : 0,
                               "Overlay" : false,
@@ -2309,6 +2419,7 @@
                                 "Id" : "panel-680",
                                 "LastContainer" : false,
                                 "Left" : 105,
+                                "Margin" : "5",
                                 "ResponsiveLayout" : true,
                                 "ShowDataLoading" : true,
                                 "Style" : {
@@ -2379,6 +2490,7 @@
                                   "ListItemSelectedStyle" : "DefaultListItemSelectedStyle",
                                   "ListItemStyle" : "DefaultListItemStyle",
                                   "ListLabelStyle" : "DefaultWidgetLabelStyle",
+                                  "Margin" : "5",
                                   "MultiSelect" : false,
                                   "NumberOfItemsInDropdownView" : 6,
                                   "NumberOfItemsPerPage" : 500,
@@ -2418,6 +2530,7 @@
                               "Expanded" : true,
                               "Id" : "container-673",
                               "LastContainer" : false,
+                              "Margin" : "5",
                               "MinHeight" : 0,
                               "MinWidth" : 0,
                               "Overlay" : false,
@@ -2449,6 +2562,7 @@
                                 "Id" : "panel-1",
                                 "LastContainer" : false,
                                 "Left" : 15,
+                                "Margin" : "5",
                                 "ResponsiveLayout" : true,
                                 "ShowDataLoading" : true,
                                 "Style" : "DefaultContainerStyle",
@@ -2475,6 +2589,7 @@
                                   "Id" : "navigation-2",
                                   "LastContainer" : false,
                                   "Left" : 0,
+                                  "Margin" : "5",
                                   "MashupName" : "GitBackup.NewRepo.Mashup",
                                   "MashupParameters" : [ {
                                     "BaseType" : "STRING",
@@ -2578,6 +2693,7 @@
                           "Expanded" : true,
                           "Id" : "container-639",
                           "LastContainer" : false,
+                          "Margin" : "5",
                           "MinHeight" : 0,
                           "MinWidth" : 0,
                           "Overlay" : false,
@@ -2610,6 +2726,7 @@
                           "Expanded" : true,
                           "Id" : "container-640",
                           "LastContainer" : false,
+                          "Margin" : "5",
                           "MinHeight" : 0,
                           "MinWidth" : 0,
                           "Overlay" : false,
@@ -2642,6 +2759,7 @@
                           "Expanded" : true,
                           "Id" : "container-606",
                           "LastContainer" : false,
+                          "Margin" : "5",
                           "MinHeight" : 0,
                           "MinWidth" : 0,
                           "Overlay" : false,
@@ -2674,6 +2792,7 @@
                           "Expanded" : true,
                           "Id" : "container-621",
                           "LastContainer" : false,
+                          "Margin" : "5",
                           "MinHeight" : 0,
                           "MinWidth" : 0,
                           "Overlay" : false,
@@ -2718,6 +2837,7 @@
                             "Id" : "panel-689",
                             "LastContainer" : false,
                             "Left" : 15,
+                            "Margin" : "5",
                             "ResponsiveLayout" : true,
                             "ShowDataLoading" : true,
                             "Style" : "DefaultContainerStyle",
@@ -2744,6 +2864,7 @@
                               "Id" : "navigation-709",
                               "LastContainer" : false,
                               "Left" : 0,
+                              "Margin" : "5",
                               "MashupName" : "GitBackup.Log.Mashup",
                               "MashupParameters" : [ ],
                               "MessageToShow" : "Mashup must be selected",
@@ -2830,6 +2951,7 @@
                           "Expanded" : true,
                           "Id" : "container-592",
                           "LastContainer" : false,
+                          "Margin" : "5",
                           "MinHeight" : 0,
                           "MinWidth" : 0,
                           "Overlay" : false,
@@ -2861,6 +2983,7 @@
                             "Id" : "panel-610",
                             "LastContainer" : false,
                             "Left" : 65,
+                            "Margin" : "5",
                             "ResponsiveLayout" : true,
                             "ShowDataLoading" : true,
                             "Style" : "DefaultContainerStyle",
@@ -2887,6 +3010,7 @@
                               "Id" : "navigation-604",
                               "LastContainer" : false,
                               "Left" : 0,
+                              "Margin" : "5",
                               "MashupName" : "GitBackup.Version.Mashup",
                               "MashupParameters" : [ ],
                               "MessageToShow" : "Mashup must be selected",
@@ -2972,6 +3096,7 @@
                               "Id" : "expression-611",
                               "LastContainer" : false,
                               "Left" : 0,
+                              "Margin" : "5",
                               "OutputBaseType" : "STRING",
                               "ResponsiveLayout" : false,
                               "ShowDataLoading" : true,
@@ -3008,6 +3133,7 @@
                       "Expanded" : true,
                       "Id" : "container-521",
                       "LastContainer" : false,
+                      "Margin" : "5",
                       "MinHeight" : 0,
                       "MinWidth" : 0,
                       "Overlay" : false,
@@ -3038,6 +3164,7 @@
                         "Id" : "tabsv2-664",
                         "LastContainer" : false,
                         "Left" : 240,
+                        "Margin" : "5",
                         "MaxTabWidth" : 256,
                         "NumberOfTabs" : 2,
                         "ResponsiveLayout" : true,
@@ -3147,6 +3274,7 @@
                           "Expanded" : true,
                           "Id" : "container-665",
                           "LastContainer" : false,
+                          "Margin" : "5",
                           "MinHeight" : 0,
                           "MinWidth" : 0,
                           "Overlay" : false,
@@ -3183,6 +3311,7 @@
                             "Left" : 385,
                             "LeftSidebar" : false,
                             "LeftSidebarWidth" : 0,
+                            "Margin" : "5",
                             "Orientation" : "vertical",
                             "PctColumn1" : 50,
                             "PctColumn2" : 50,
@@ -3226,6 +3355,7 @@
                               "Expanded" : true,
                               "Id" : "container-595",
                               "LastContainer" : false,
+                              "Margin" : "5",
                               "MinHeight" : 0,
                               "MinWidth" : 0,
                               "Overlay" : false,
@@ -3257,6 +3387,7 @@
                                 "Id" : "panel-597",
                                 "LastContainer" : false,
                                 "Left" : 115,
+                                "Margin" : "5",
                                 "ResponsiveLayout" : true,
                                 "ShowDataLoading" : true,
                                 "Style" : "DefaultContainerStyle",
@@ -3279,6 +3410,7 @@
                                   "Id" : "label-598",
                                   "LastContainer" : false,
                                   "Left" : 30,
+                                  "Margin" : "5",
                                   "ResponsiveLayout" : false,
                                   "ShowDataLoading" : true,
                                   "Style" : {
@@ -3318,6 +3450,7 @@
                                   "Id" : "expression-599",
                                   "LastContainer" : false,
                                   "Left" : 485,
+                                  "Margin" : "5",
                                   "OutputBaseType" : "STRING",
                                   "ResponsiveLayout" : false,
                                   "ShowDataLoading" : true,
@@ -3363,6 +3496,7 @@
                                   "Label" : "Export",
                                   "LastContainer" : false,
                                   "Left" : 1165,
+                                  "Margin" : "5",
                                   "ResponsiveLayout" : false,
                                   "RoundedCorners" : false,
                                   "ShowDataLoading" : true,
@@ -3394,6 +3528,7 @@
                                   "Id" : "navigation-650",
                                   "LastContainer" : false,
                                   "Left" : 1090,
+                                  "Margin" : "5",
                                   "MashupName" : "GitBackup.Export.Mashup",
                                   "MashupParameters" : [ {
                                     "BaseType" : "STRING",
@@ -3453,6 +3588,7 @@
                                   "Id" : "expression-667",
                                   "LastContainer" : false,
                                   "Left" : 485,
+                                  "Margin" : "5",
                                   "OutputBaseType" : "STRING",
                                   "ResponsiveLayout" : false,
                                   "ShowDataLoading" : true,
@@ -3491,6 +3627,7 @@
                                   "Id" : "infotableselector-670",
                                   "LastContainer" : false,
                                   "Left" : 660,
+                                  "Margin" : "5",
                                   "NoRows" : false,
                                   "NoRowsSelected" : false,
                                   "ResponsiveLayout" : false,
@@ -3513,6 +3650,7 @@
                                   "Id" : "infotableselector-692",
                                   "LastContainer" : false,
                                   "Left" : 478.9999694824219,
+                                  "Margin" : "5",
                                   "NoRows" : false,
                                   "NoRowsSelected" : false,
                                   "ResponsiveLayout" : false,
@@ -3550,6 +3688,7 @@
                                   "Label" : "Import",
                                   "LastContainer" : false,
                                   "Left" : 886.9999694824219,
+                                  "Margin" : "5",
                                   "ResponsiveLayout" : false,
                                   "RoundedCorners" : false,
                                   "ShowDataLoading" : true,
@@ -3581,6 +3720,7 @@
                                   "Id" : "navigation-707",
                                   "LastContainer" : false,
                                   "Left" : 828,
+                                  "Margin" : "5",
                                   "MashupName" : "GitBackup.Import.Mashup",
                                   "MashupParameters" : [ {
                                     "BaseType" : "STRING",
@@ -3641,6 +3781,7 @@
                               "Expanded" : true,
                               "Id" : "container-596",
                               "LastContainer" : false,
+                              "Margin" : "5",
                               "MinHeight" : 0,
                               "MinWidth" : 0,
                               "Overlay" : false,
@@ -3664,7 +3805,7 @@
                             "Widgets" : [ {
                               "Properties" : {
                                 "Area" : "UI",
-                                "CurrentTab" : 3,
+                                "CurrentTab" : 1,
                                 "CustomClass" : "tabs-secondary",
                                 "DefaultTabAtRuntime" : 1,
                                 "DisplayName" : "tab_MainPage",
@@ -3672,6 +3813,7 @@
                                 "Id" : "tabsv2-384",
                                 "LastContainer" : false,
                                 "Left" : 125,
+                                "Margin" : "5",
                                 "MaxTabWidth" : 256,
                                 "NumberOfTabs" : 3,
                                 "ResponsiveLayout" : true,
@@ -3820,6 +3962,7 @@
                                   "Expanded" : true,
                                   "Id" : "container-385",
                                   "LastContainer" : false,
+                                  "Margin" : "5",
                                   "MinHeight" : 0,
                                   "MinWidth" : 0,
                                   "Overlay" : false,
@@ -3856,6 +3999,7 @@
                                     "Left" : 80,
                                     "LeftSidebar" : false,
                                     "LeftSidebarWidth" : 0,
+                                    "Margin" : "5",
                                     "Orientation" : "vertical",
                                     "PctColumn1" : 50,
                                     "PctColumn2" : 50,
@@ -3899,6 +4043,7 @@
                                       "Expanded" : true,
                                       "Id" : "container-535",
                                       "LastContainer" : false,
+                                      "Margin" : "5",
                                       "MinHeight" : 0,
                                       "MinWidth" : 0,
                                       "Overlay" : false,
@@ -3931,6 +4076,7 @@
                                         "Id" : "panel-537",
                                         "LastContainer" : false,
                                         "Left" : 55,
+                                        "Margin" : "5",
                                         "ResponsiveLayout" : true,
                                         "ShowDataLoading" : true,
                                         "Style" : {
@@ -4032,6 +4178,7 @@
                                           "Label" : "Pull",
                                           "LastContainer" : false,
                                           "Left" : 30,
+                                          "Margin" : "5",
                                           "ResponsiveLayout" : false,
                                           "RoundedCorners" : false,
                                           "ShowDataLoading" : true,
@@ -4138,6 +4285,7 @@
                                           "Label" : "Push",
                                           "LastContainer" : false,
                                           "Left" : 135,
+                                          "Margin" : "5",
                                           "ResponsiveLayout" : false,
                                           "RoundedCorners" : false,
                                           "ShowDataLoading" : true,
@@ -4174,7 +4322,7 @@
                                           "Area" : "UI",
                                           "ClickOutsideToClose" : false,
                                           "DisplayName" : "nav_Push",
-                                          "FixedPopupHeight" : 240,
+                                          "FixedPopupHeight" : 262,
                                           "FixedPopupWidth" : 500,
                                           "Height" : 20,
                                           "Icon" : "",
@@ -4182,15 +4330,14 @@
                                           "Id" : "navigation-336",
                                           "LastContainer" : false,
                                           "Left" : 125,
+                                          "Margin" : "5",
                                           "MashupName" : "GitBackup.Push.Mashup",
                                           "MashupParameters" : [ {
                                             "BaseType" : "THINGNAME",
                                             "Description" : "",
                                             "ParameterName" : "GitThing",
                                             "ParmDef" : {
-                                              "aspects" : {
-                                                "ordinal" : "0"
-                                              },
+                                              "aspects" : { },
                                               "baseType" : "THINGNAME",
                                               "description" : "",
                                               "name" : "GitThing",
@@ -4243,6 +4390,7 @@
                                           "Id" : "navigation-343",
                                           "LastContainer" : false,
                                           "Left" : 45,
+                                          "Margin" : "5",
                                           "MashupName" : "GitBackup.Pull.Mashup",
                                           "MashupParameters" : [ {
                                             "BaseType" : "THINGNAME",
@@ -4305,6 +4453,7 @@
                                           "IsBranch" : false,
                                           "LastContainer" : false,
                                           "Left" : 265,
+                                          "Margin" : "5",
                                           "MashupName" : "GitBackup.Checkout.Mashup",
                                           "MashupParameters" : [ {
                                             "BaseType" : "STRING",
@@ -4392,6 +4541,7 @@
                                           "Id" : "navigation-509",
                                           "LastContainer" : false,
                                           "Left" : 1080,
+                                          "Margin" : "5",
                                           "MashupName" : "GitBackup.Status.Mashup",
                                           "MashupParameters" : [ {
                                             "BaseType" : "THINGNAME",
@@ -4516,6 +4666,7 @@
                                           "Label" : "Checkout Commit",
                                           "LastContainer" : false,
                                           "Left" : 240,
+                                          "Margin" : "5",
                                           "ResponsiveLayout" : false,
                                           "RoundedCorners" : false,
                                           "ShowDataLoading" : true,
@@ -4620,6 +4771,7 @@
                                           "Label" : "Git Status",
                                           "LastContainer" : false,
                                           "Left" : 1165,
+                                          "Margin" : "5",
                                           "ResponsiveLayout" : false,
                                           "RoundedCorners" : false,
                                           "ShowDataLoading" : true,
@@ -4662,6 +4814,7 @@
                                       "Expanded" : true,
                                       "Id" : "container-536",
                                       "LastContainer" : false,
+                                      "Margin" : "5",
                                       "MinHeight" : 0,
                                       "MinWidth" : 0,
                                       "Overlay" : false,
@@ -4698,6 +4851,7 @@
                                         "Left" : 320,
                                         "LeftSidebar" : true,
                                         "LeftSidebarWidth" : 28,
+                                        "Margin" : "5",
                                         "Orientation" : "horizontal",
                                         "PctColumn1" : 100,
                                         "PctColumn2" : 0,
@@ -4741,6 +4895,7 @@
                                           "Expanded" : true,
                                           "Id" : "container-613",
                                           "LastContainer" : false,
+                                          "Margin" : "5",
                                           "MinHeight" : 0,
                                           "MinWidth" : 0,
                                           "Overlay" : false,
@@ -4774,6 +4929,7 @@
                                           "Expanded" : true,
                                           "Id" : "container-614",
                                           "LastContainer" : false,
+                                          "Margin" : "5",
                                           "MinHeight" : 0,
                                           "MinWidth" : 0,
                                           "Overlay" : false,
@@ -4810,6 +4966,7 @@
                                             "Left" : 230,
                                             "LeftSidebar" : false,
                                             "LeftSidebarWidth" : 0,
+                                            "Margin" : "5",
                                             "Orientation" : "vertical",
                                             "PctColumn1" : 50,
                                             "PctColumn2" : 50,
@@ -4853,6 +5010,7 @@
                                               "Expanded" : true,
                                               "Id" : "container-623",
                                               "LastContainer" : false,
+                                              "Margin" : "5",
                                               "MinHeight" : 0,
                                               "MinWidth" : 0,
                                               "Overlay" : false,
@@ -4889,6 +5047,7 @@
                                                 "Left" : 105,
                                                 "LeftSidebar" : true,
                                                 "LeftSidebarWidth" : 300,
+                                                "Margin" : "5",
                                                 "Orientation" : "horizontal",
                                                 "PctColumn1" : 100,
                                                 "PctColumn2" : 0,
@@ -4933,6 +5092,7 @@
                                                   "Expanded" : true,
                                                   "Id" : "container-543",
                                                   "LastContainer" : false,
+                                                  "Margin" : "5",
                                                   "MinHeight" : 0,
                                                   "MinWidth" : 0,
                                                   "Overlay" : false,
@@ -4964,6 +5124,7 @@
                                                     "Id" : "panel-454",
                                                     "LastContainer" : false,
                                                     "Left" : 110,
+                                                    "Margin" : "5",
                                                     "ResponsiveLayout" : true,
                                                     "ShowDataLoading" : true,
                                                     "Style" : "DefaultContainerStyle",
@@ -5162,6 +5323,7 @@
                                                         "textSize" : "xlarge"
                                                       },
                                                       "ListLabelStyle" : "DefaultWidgetLabelStyle",
+                                                      "Margin" : "5",
                                                       "MultiSelect" : false,
                                                       "NumberOfItemsInDropdownView" : 6,
                                                       "NumberOfItemsPerPage" : 500,
@@ -5197,6 +5359,7 @@
                                                       "Id" : "label-463",
                                                       "LastContainer" : false,
                                                       "Left" : 15,
+                                                      "Margin" : "5",
                                                       "ResponsiveLayout" : false,
                                                       "ShowDataLoading" : true,
                                                       "Style" : {
@@ -5235,6 +5398,7 @@
                                                       "Id" : "label-391",
                                                       "LastContainer" : false,
                                                       "Left" : 15,
+                                                      "Margin" : "5",
                                                       "ResponsiveLayout" : false,
                                                       "ShowDataLoading" : true,
                                                       "Style" : "DefaultLabelStyle",
@@ -5324,6 +5488,7 @@
                                                       "Label" : "Checkout branch",
                                                       "LastContainer" : false,
                                                       "Left" : 15,
+                                                      "Margin" : "5",
                                                       "ResponsiveLayout" : false,
                                                       "RoundedCorners" : false,
                                                       "ShowDataLoading" : true,
@@ -5368,6 +5533,7 @@
                                                       "IsBranch" : true,
                                                       "LastContainer" : false,
                                                       "Left" : 125,
+                                                      "Margin" : "5",
                                                       "MashupName" : "GitBackup.Checkout.Mashup",
                                                       "MashupParameters" : [ {
                                                         "BaseType" : "STRING",
@@ -5452,6 +5618,7 @@
                                                       "Id" : "checkbox-552",
                                                       "LastContainer" : false,
                                                       "Left" : 15,
+                                                      "Margin" : "5",
                                                       "Prompt" : "Head detached?",
                                                       "ResponsiveLayout" : false,
                                                       "ShowDataLoading" : true,
@@ -5481,6 +5648,7 @@
                                                       "Id" : "expression-617",
                                                       "LastContainer" : false,
                                                       "Left" : 20,
+                                                      "Margin" : "5",
                                                       "OutputBaseType" : "STRING",
                                                       "ResponsiveLayout" : false,
                                                       "ShowDataLoading" : true,
@@ -5504,6 +5672,7 @@
                                                       "Id" : "image-618",
                                                       "LastContainer" : false,
                                                       "Left" : 160,
+                                                      "Margin" : "5",
                                                       "PreventCaching" : false,
                                                       "ResponsiveLayout" : false,
                                                       "Scaling" : "none",
@@ -5551,6 +5720,7 @@
                                                       "ListItemSelectedStyle" : "DefaultListItemSelectedStyle",
                                                       "ListItemStyle" : "DefaultListItemStyle",
                                                       "ListLabelStyle" : "DefaultWidgetLabelStyle",
+                                                      "Margin" : "5",
                                                       "MultiSelect" : false,
                                                       "NumberOfItemsInDropdownView" : 6,
                                                       "NumberOfItemsPerPage" : 500,
@@ -5586,6 +5756,7 @@
                                                       "Id" : "label-643",
                                                       "LastContainer" : false,
                                                       "Left" : 15,
+                                                      "Margin" : "5",
                                                       "ResponsiveLayout" : false,
                                                       "ShowDataLoading" : true,
                                                       "Style" : {
@@ -5628,6 +5799,7 @@
                                                   "Expanded" : true,
                                                   "Id" : "container-544",
                                                   "LastContainer" : false,
+                                                  "Margin" : "5",
                                                   "MinHeight" : 0,
                                                   "MinWidth" : 0,
                                                   "Overlay" : false,
@@ -5725,7 +5897,9 @@
                                                     },
                                                     "CurrentScrollTop" : 0,
                                                     "CustomClass" : "",
+                                                    "DisableLegacyValidation" : false,
                                                     "DisplayName" : "dhxgrid-473",
+                                                    "EnableFontSizeOverride" : false,
                                                     "FocusStyle" : {
                                                       "backgroundColor" : "",
                                                       "displayString" : "",
@@ -5764,6 +5938,7 @@
                                                     "IsPrintLayout" : false,
                                                     "LastContainer" : false,
                                                     "Left" : 0,
+                                                    "Margin" : "5",
                                                     "MultiSelect" : false,
                                                     "ResponsiveLayout" : true,
                                                     "RowAlternateBackgroundStyle" : {
@@ -5872,6 +6047,7 @@
                                               "Expanded" : true,
                                               "Id" : "container-541",
                                               "LastContainer" : false,
+                                              "Margin" : "5",
                                               "MinHeight" : 0,
                                               "MinWidth" : 0,
                                               "Overlay" : false,
@@ -5908,6 +6084,7 @@
                                                 "Left" : 145,
                                                 "LeftSidebar" : true,
                                                 "LeftSidebarWidth" : 500,
+                                                "Margin" : "5",
                                                 "Orientation" : "horizontal",
                                                 "PctColumn1" : 100,
                                                 "PctColumn2" : 100,
@@ -5951,6 +6128,7 @@
                                                   "Expanded" : true,
                                                   "Id" : "container-624",
                                                   "LastContainer" : false,
+                                                  "Margin" : "5",
                                                   "MinHeight" : 0,
                                                   "MinWidth" : 0,
                                                   "Overlay" : false,
@@ -5987,6 +6165,7 @@
                                                     "Left" : 120,
                                                     "LeftSidebar" : false,
                                                     "LeftSidebarWidth" : 0,
+                                                    "Margin" : "5",
                                                     "Orientation" : "vertical",
                                                     "PctColumn1" : 50,
                                                     "PctColumn2" : 50,
@@ -6031,6 +6210,7 @@
                                                       "Expanded" : true,
                                                       "Id" : "container-625",
                                                       "LastContainer" : false,
+                                                      "Margin" : "5",
                                                       "MinHeight" : 0,
                                                       "MinWidth" : 0,
                                                       "Overlay" : false,
@@ -6062,6 +6242,7 @@
                                                         "Id" : "panel-574",
                                                         "LastContainer" : false,
                                                         "Left" : 75,
+                                                        "Margin" : "5",
                                                         "ResponsiveLayout" : true,
                                                         "ShowDataLoading" : true,
                                                         "Style" : "DefaultContainerStyle",
@@ -6083,6 +6264,7 @@
                                                           "Id" : "label-575",
                                                           "LastContainer" : false,
                                                           "Left" : 10,
+                                                          "Margin" : "5",
                                                           "ResponsiveLayout" : false,
                                                           "ShowDataLoading" : true,
                                                           "Style" : "DefaultLabelStyle",
@@ -6108,6 +6290,7 @@
                                                           "Id" : "label-576",
                                                           "LastContainer" : false,
                                                           "Left" : 63,
+                                                          "Margin" : "5",
                                                           "ResponsiveLayout" : false,
                                                           "ShowDataLoading" : true,
                                                           "Style" : {
@@ -6145,6 +6328,7 @@
                                                           "Id" : "label-578",
                                                           "LastContainer" : false,
                                                           "Left" : 61,
+                                                          "Margin" : "5",
                                                           "ResponsiveLayout" : false,
                                                           "ShowDataLoading" : true,
                                                           "Style" : {
@@ -6182,6 +6366,7 @@
                                                           "Id" : "label-579",
                                                           "LastContainer" : false,
                                                           "Left" : 10,
+                                                          "Margin" : "5",
                                                           "ResponsiveLayout" : false,
                                                           "ShowDataLoading" : true,
                                                           "Style" : "DefaultLabelStyle",
@@ -6207,6 +6392,7 @@
                                                           "Id" : "label-580",
                                                           "LastContainer" : false,
                                                           "Left" : 58,
+                                                          "Margin" : "5",
                                                           "ResponsiveLayout" : false,
                                                           "ShowDataLoading" : true,
                                                           "Style" : {
@@ -6244,6 +6430,7 @@
                                                           "Id" : "label-581",
                                                           "LastContainer" : false,
                                                           "Left" : 10,
+                                                          "Margin" : "5",
                                                           "ResponsiveLayout" : false,
                                                           "ShowDataLoading" : true,
                                                           "Style" : "DefaultLabelStyle",
@@ -6269,6 +6456,7 @@
                                                           "Id" : "label-582",
                                                           "LastContainer" : false,
                                                           "Left" : 45,
+                                                          "Margin" : "5",
                                                           "ResponsiveLayout" : false,
                                                           "ShowDataLoading" : true,
                                                           "Style" : {
@@ -6306,6 +6494,7 @@
                                                           "Id" : "label-583",
                                                           "LastContainer" : false,
                                                           "Left" : 10,
+                                                          "Margin" : "5",
                                                           "ResponsiveLayout" : false,
                                                           "ShowDataLoading" : true,
                                                           "Style" : "DefaultLabelStyle",
@@ -6331,6 +6520,7 @@
                                                           "Id" : "label-584",
                                                           "LastContainer" : false,
                                                           "Left" : 73,
+                                                          "Margin" : "5",
                                                           "ResponsiveLayout" : false,
                                                           "ShowDataLoading" : true,
                                                           "Style" : {
@@ -6368,6 +6558,7 @@
                                                           "Id" : "label-585",
                                                           "LastContainer" : false,
                                                           "Left" : 10,
+                                                          "Margin" : "5",
                                                           "ResponsiveLayout" : false,
                                                           "ShowDataLoading" : true,
                                                           "Style" : {
@@ -6405,6 +6596,7 @@
                                                           "Id" : "label-577",
                                                           "LastContainer" : false,
                                                           "Left" : 10,
+                                                          "Margin" : "5",
                                                           "ResponsiveLayout" : false,
                                                           "ShowDataLoading" : true,
                                                           "Style" : "DefaultLabelStyle",
@@ -6434,6 +6626,7 @@
                                                       "Expanded" : true,
                                                       "Id" : "container-573",
                                                       "LastContainer" : false,
+                                                      "Margin" : "5",
                                                       "MinHeight" : 0,
                                                       "MinWidth" : 0,
                                                       "Overlay" : false,
@@ -6470,6 +6663,7 @@
                                                         "Left" : 315,
                                                         "LeftSidebar" : false,
                                                         "LeftSidebarWidth" : 0,
+                                                        "Margin" : "5",
                                                         "Orientation" : "vertical",
                                                         "PctColumn1" : 50,
                                                         "PctColumn2" : 50,
@@ -6513,6 +6707,7 @@
                                                           "Expanded" : true,
                                                           "Id" : "container-645",
                                                           "LastContainer" : false,
+                                                          "Margin" : "5",
                                                           "MinHeight" : 0,
                                                           "MinWidth" : 0,
                                                           "Overlay" : true,
@@ -6544,6 +6739,7 @@
                                                             "Id" : "panel-647",
                                                             "LastContainer" : false,
                                                             "Left" : 285,
+                                                            "Margin" : "5",
                                                             "ResponsiveLayout" : true,
                                                             "ShowDataLoading" : true,
                                                             "Style" : "DefaultContainerStyle",
@@ -6569,6 +6765,7 @@
                                                               "LabelAlignment" : "left",
                                                               "LastContainer" : false,
                                                               "Left" : 270,
+                                                              "Margin" : "5",
                                                               "MaskInputCharacters" : false,
                                                               "PlaceholderText" : "Search file here",
                                                               "ReadOnly" : false,
@@ -6604,6 +6801,7 @@
                                                           "Expanded" : true,
                                                           "Id" : "container-646",
                                                           "LastContainer" : false,
+                                                          "Margin" : "5",
                                                           "MinHeight" : 0,
                                                           "MinWidth" : 0,
                                                           "Overlay" : false,
@@ -6782,7 +6980,9 @@
                                                             },
                                                             "CurrentScrollTop" : 0,
                                                             "CustomClass" : "",
+                                                            "DisableLegacyValidation" : false,
                                                             "DisplayName" : "dhxgrid-620",
+                                                            "EnableFontSizeOverride" : false,
                                                             "FocusStyle" : {
                                                               "backgroundColor" : "",
                                                               "displayString" : "",
@@ -6821,6 +7021,7 @@
                                                             "IsPrintLayout" : false,
                                                             "LastContainer" : false,
                                                             "Left" : 0,
+                                                            "Margin" : "5",
                                                             "MultiSelect" : false,
                                                             "ResponsiveLayout" : true,
                                                             "RowAlternateBackgroundStyle" : {
@@ -6932,6 +7133,7 @@
                                                   "Expanded" : true,
                                                   "Id" : "container-570",
                                                   "LastContainer" : false,
+                                                  "Margin" : "5",
                                                   "MinHeight" : 0,
                                                   "MinWidth" : 0,
                                                   "Overlay" : false,
@@ -6962,6 +7164,7 @@
                                                     "Label" : "",
                                                     "LastContainer" : false,
                                                     "Left" : 120,
+                                                    "Margin" : "5",
                                                     "ResponsiveLayout" : true,
                                                     "ShowDataLoading" : true,
                                                     "Top" : 45,
@@ -6988,6 +7191,7 @@
                                           "Expanded" : true,
                                           "Id" : "container-615",
                                           "LastContainer" : false,
+                                          "Margin" : "5",
                                           "MinHeight" : 0,
                                           "MinWidth" : 0,
                                           "Overlay" : false,
@@ -7022,6 +7226,7 @@
                                       "Expanded" : true,
                                       "Id" : "container-616",
                                       "LastContainer" : false,
+                                      "Margin" : "5",
                                       "MinHeight" : 0,
                                       "MinWidth" : 0,
                                       "Overlay" : false,
@@ -7057,6 +7262,7 @@
                                   "Expanded" : true,
                                   "Id" : "container-386",
                                   "LastContainer" : false,
+                                  "Margin" : "5",
                                   "MinHeight" : 0,
                                   "MinWidth" : 0,
                                   "Overlay" : false,
@@ -7093,6 +7299,7 @@
                                     "Left" : 280,
                                     "LeftSidebar" : false,
                                     "LeftSidebarWidth" : 0,
+                                    "Margin" : "5",
                                     "Orientation" : "vertical",
                                     "PctColumn1" : 50,
                                     "PctColumn2" : 50,
@@ -7136,6 +7343,7 @@
                                       "Expanded" : true,
                                       "Id" : "container-654",
                                       "LastContainer" : false,
+                                      "Margin" : "5",
                                       "MinHeight" : 0,
                                       "MinWidth" : 0,
                                       "Overlay" : false,
@@ -7168,6 +7376,7 @@
                                         "Id" : "panel-661",
                                         "LastContainer" : false,
                                         "Left" : 260,
+                                        "Margin" : "5",
                                         "ResponsiveLayout" : true,
                                         "ShowDataLoading" : true,
                                         "Style" : "DefaultContainerStyle",
@@ -7192,6 +7401,7 @@
                                       "Expanded" : true,
                                       "Id" : "container-655",
                                       "LastContainer" : false,
+                                      "Margin" : "5",
                                       "MinHeight" : 0,
                                       "MinWidth" : 0,
                                       "Overlay" : false,
@@ -7228,6 +7438,7 @@
                                         "Left" : 465,
                                         "LeftSidebar" : true,
                                         "LeftSidebarWidth" : 35,
+                                        "Margin" : "5",
                                         "Orientation" : "horizontal",
                                         "PctColumn1" : 100,
                                         "PctColumn2" : 0,
@@ -7271,6 +7482,7 @@
                                           "Expanded" : true,
                                           "Id" : "container-658",
                                           "LastContainer" : false,
+                                          "Margin" : "5",
                                           "MinHeight" : 0,
                                           "MinWidth" : 0,
                                           "Overlay" : false,
@@ -7303,6 +7515,7 @@
                                           "Expanded" : true,
                                           "Id" : "container-659",
                                           "LastContainer" : false,
+                                          "Margin" : "5",
                                           "MinHeight" : 0,
                                           "MinWidth" : 0,
                                           "Overlay" : false,
@@ -7339,6 +7552,7 @@
                                             "Left" : 75,
                                             "LeftSidebar" : false,
                                             "LeftSidebarWidth" : 0,
+                                            "Margin" : "5",
                                             "Orientation" : "vertical",
                                             "PctColumn1" : 50,
                                             "PctColumn2" : 50,
@@ -7382,6 +7596,7 @@
                                               "Expanded" : true,
                                               "Id" : "container-531",
                                               "LastContainer" : false,
+                                              "Margin" : "5",
                                               "MinHeight" : 0,
                                               "MinWidth" : 0,
                                               "Overlay" : false,
@@ -7418,6 +7633,7 @@
                                                 "Left" : 340,
                                                 "LeftSidebar" : true,
                                                 "LeftSidebarWidth" : 315,
+                                                "Margin" : "5",
                                                 "Orientation" : "horizontal",
                                                 "PctColumn1" : 100,
                                                 "PctColumn2" : 100,
@@ -7462,6 +7678,7 @@
                                                   "Expanded" : true,
                                                   "Id" : "container-632",
                                                   "LastContainer" : false,
+                                                  "Margin" : "5",
                                                   "MinHeight" : 0,
                                                   "MinWidth" : 0,
                                                   "Overlay" : false,
@@ -7499,6 +7716,7 @@
                                                     "Left" : 55,
                                                     "LeftSidebar" : false,
                                                     "LeftSidebarWidth" : 0,
+                                                    "Margin" : "5",
                                                     "Orientation" : "vertical",
                                                     "PctColumn1" : 50,
                                                     "PctColumn2" : 50,
@@ -7542,6 +7760,7 @@
                                                       "Expanded" : true,
                                                       "Id" : "container-447",
                                                       "LastContainer" : false,
+                                                      "Margin" : "5",
                                                       "MinHeight" : 0,
                                                       "MinWidth" : 0,
                                                       "Overlay" : false,
@@ -7574,6 +7793,7 @@
                                                         "Id" : "panel-449",
                                                         "LastContainer" : false,
                                                         "Left" : 160,
+                                                        "Margin" : "5",
                                                         "ResponsiveLayout" : true,
                                                         "ShowDataLoading" : true,
                                                         "Style" : "DefaultContainerStyle",
@@ -7648,6 +7868,7 @@
                                                           "Label" : "",
                                                           "LastContainer" : false,
                                                           "Left" : 234,
+                                                          "Margin" : "5",
                                                           "ResponsiveLayout" : false,
                                                           "RoundedCorners" : false,
                                                           "ShowDataLoading" : true,
@@ -7754,6 +7975,7 @@
                                                           "Label" : "",
                                                           "LastContainer" : false,
                                                           "Left" : 181,
+                                                          "Margin" : "5",
                                                           "ResponsiveLayout" : false,
                                                           "RoundedCorners" : false,
                                                           "ShowDataLoading" : true,
@@ -7808,6 +8030,7 @@
                                                           "Id" : "label-651",
                                                           "LastContainer" : false,
                                                           "Left" : 15,
+                                                          "Margin" : "5",
                                                           "ResponsiveLayout" : false,
                                                           "ShowDataLoading" : true,
                                                           "Style" : {
@@ -7849,6 +8072,7 @@
                                                       "Expanded" : true,
                                                       "Id" : "container-448",
                                                       "LastContainer" : false,
+                                                      "Margin" : "5",
                                                       "MinHeight" : 0,
                                                       "MinWidth" : 0,
                                                       "Overlay" : false,
@@ -7882,6 +8106,7 @@
                                                         "LabelField" : "name",
                                                         "LastContainer" : false,
                                                         "Left" : 50,
+                                                        "Margin" : "5",
                                                         "NoChildFormatter_StateParameters" : [ ],
                                                         "OpenNodeFormatter_StateParameters" : [ ],
                                                         "ParentIDField" : "parentPath",
@@ -7942,6 +8167,7 @@
                                                   "Expanded" : true,
                                                   "Id" : "container-529",
                                                   "LastContainer" : false,
+                                                  "Margin" : "5",
                                                   "MinHeight" : 0,
                                                   "MinWidth" : 0,
                                                   "Overlay" : false,
@@ -7978,6 +8204,7 @@
                                                     "Left" : 55,
                                                     "LeftSidebar" : false,
                                                     "LeftSidebarWidth" : 0,
+                                                    "Margin" : "5",
                                                     "Orientation" : "vertical",
                                                     "PctColumn1" : 50,
                                                     "PctColumn2" : 50,
@@ -8021,6 +8248,7 @@
                                                       "Expanded" : true,
                                                       "Id" : "container-150",
                                                       "LastContainer" : false,
+                                                      "Margin" : "5",
                                                       "MinHeight" : 0,
                                                       "MinWidth" : 0,
                                                       "Overlay" : false,
@@ -8057,6 +8285,7 @@
                                                         "Left" : 65,
                                                         "LeftSidebar" : false,
                                                         "LeftSidebarWidth" : 0,
+                                                        "Margin" : "5",
                                                         "Orientation" : "horizontal",
                                                         "PctColumn1" : 50,
                                                         "PctColumn2" : 50,
@@ -8100,6 +8329,7 @@
                                                           "Expanded" : true,
                                                           "Id" : "container-298",
                                                           "LastContainer" : false,
+                                                          "Margin" : "5",
                                                           "MinHeight" : 0,
                                                           "MinWidth" : 0,
                                                           "Overlay" : false,
@@ -8132,6 +8362,7 @@
                                                             "Id" : "panel-382",
                                                             "LastContainer" : false,
                                                             "Left" : 30,
+                                                            "Margin" : "5",
                                                             "ResponsiveLayout" : true,
                                                             "ShowDataLoading" : true,
                                                             "Style" : "DefaultContainerStyle",
@@ -8206,6 +8437,7 @@
                                                               "Label" : "Import entity",
                                                               "LastContainer" : false,
                                                               "Left" : 17,
+                                                              "Margin" : "5",
                                                               "ResponsiveLayout" : false,
                                                               "RoundedCorners" : false,
                                                               "ShowDataLoading" : true,
@@ -8313,6 +8545,7 @@
                                                               "Label" : "Delete",
                                                               "LastContainer" : false,
                                                               "Left" : 152,
+                                                              "Margin" : "5",
                                                               "ResponsiveLayout" : false,
                                                               "RoundedCorners" : false,
                                                               "ShowDataLoading" : true,
@@ -8417,6 +8650,7 @@
                                                               "Label" : "Import Extension",
                                                               "LastContainer" : false,
                                                               "Left" : 267,
+                                                              "Margin" : "5",
                                                               "ResponsiveLayout" : false,
                                                               "RoundedCorners" : false,
                                                               "ShowDataLoading" : true,
@@ -8459,6 +8693,7 @@
                                                               "IsDetached" : true,
                                                               "LastContainer" : false,
                                                               "Left" : 555,
+                                                              "Margin" : "5",
                                                               "OutputBaseType" : "STRING",
                                                               "ResponsiveLayout" : false,
                                                               "ShowDataLoading" : true,
@@ -8499,6 +8734,7 @@
                                                               "Id" : "expression-506",
                                                               "LastContainer" : false,
                                                               "Left" : 385,
+                                                              "Margin" : "5",
                                                               "OutputBaseType" : "STRING",
                                                               "ResponsiveLayout" : false,
                                                               "ShowDataLoading" : true,
@@ -8528,6 +8764,7 @@
                                                           "Expanded" : true,
                                                           "Id" : "container-687",
                                                           "LastContainer" : false,
+                                                          "Margin" : "5",
                                                           "MinHeight" : 0,
                                                           "MinWidth" : 0,
                                                           "Overlay" : false,
@@ -8560,6 +8797,7 @@
                                                             "Id" : "panel-688",
                                                             "LastContainer" : false,
                                                             "Left" : 60,
+                                                            "Margin" : "5",
                                                             "ResponsiveLayout" : true,
                                                             "ShowDataLoading" : true,
                                                             "Style" : {
@@ -8597,6 +8835,7 @@
                                                           "Expanded" : true,
                                                           "Id" : "container-299",
                                                           "LastContainer" : false,
+                                                          "Margin" : "5",
                                                           "MinHeight" : 0,
                                                           "MinWidth" : 0,
                                                           "Overlay" : false,
@@ -8629,6 +8868,7 @@
                                                             "Id" : "panel-457",
                                                             "LastContainer" : false,
                                                             "Left" : 50,
+                                                            "Margin" : "5",
                                                             "ResponsiveLayout" : true,
                                                             "ShowDataLoading" : true,
                                                             "Style" : "DefaultContainerStyle",
@@ -8704,6 +8944,7 @@
                                                               "Label" : "",
                                                               "LastContainer" : false,
                                                               "Left" : 5,
+                                                              "Margin" : "5",
                                                               "ResponsiveLayout" : false,
                                                               "RoundedCorners" : false,
                                                               "ShowDataLoading" : true,
@@ -8762,6 +9003,7 @@
                                                       "Expanded" : true,
                                                       "Id" : "container-151",
                                                       "LastContainer" : false,
+                                                      "Margin" : "5",
                                                       "MinHeight" : 0,
                                                       "MinWidth" : 0,
                                                       "Overlay" : false,
@@ -8874,7 +9116,9 @@
                                                         },
                                                         "CurrentScrollTop" : 0,
                                                         "CustomClass" : "file-listing-download",
+                                                        "DisableLegacyValidation" : false,
                                                         "DisplayName" : "dhxgrid-633",
+                                                        "EnableFontSizeOverride" : false,
                                                         "FocusStyle" : {
                                                           "backgroundColor" : "",
                                                           "displayString" : "",
@@ -8913,6 +9157,7 @@
                                                         "IsPrintLayout" : false,
                                                         "LastContainer" : false,
                                                         "Left" : 0,
+                                                        "Margin" : "5",
                                                         "MultiSelect" : false,
                                                         "ResponsiveLayout" : true,
                                                         "RowAlternateBackgroundStyle" : {
@@ -9019,6 +9264,7 @@
                                                       "Expanded" : true,
                                                       "Id" : "container-152",
                                                       "LastContainer" : false,
+                                                      "Margin" : "5",
                                                       "MinHeight" : 0,
                                                       "MinWidth" : 0,
                                                       "Overlay" : true,
@@ -9050,6 +9296,7 @@
                                                         "Id" : "panel-370",
                                                         "LastContainer" : false,
                                                         "Left" : 150,
+                                                        "Margin" : "5",
                                                         "ResponsiveLayout" : true,
                                                         "ShowDataLoading" : true,
                                                         "Style" : "DefaultContainerStyle",
@@ -9073,6 +9320,7 @@
                                                           "Id" : "expression-325",
                                                           "LastContainer" : false,
                                                           "Left" : 0,
+                                                          "Margin" : "5",
                                                           "OutputBaseType" : "STRING",
                                                           "ResponsiveLayout" : false,
                                                           "ShowDataLoading" : true,
@@ -9111,6 +9359,7 @@
                                                           "Id" : "expression-322",
                                                           "LastContainer" : false,
                                                           "Left" : 175,
+                                                          "Margin" : "5",
                                                           "OutputBaseType" : "STRING",
                                                           "ResponsiveLayout" : false,
                                                           "ShowDataLoading" : true,
@@ -9143,6 +9392,7 @@
                                                           "Id" : "expression-334",
                                                           "LastContainer" : false,
                                                           "Left" : 350,
+                                                          "Margin" : "5",
                                                           "Output" : false,
                                                           "OutputBaseType" : "BOOLEAN",
                                                           "ResponsiveLayout" : false,
@@ -9182,6 +9432,7 @@
                                               "Expanded" : true,
                                               "Id" : "container-532",
                                               "LastContainer" : false,
+                                              "Margin" : "5",
                                               "MinHeight" : 0,
                                               "MinWidth" : 0,
                                               "Overlay" : false,
@@ -9321,7 +9572,9 @@
                                                 },
                                                 "CurrentScrollTop" : 0,
                                                 "CustomClass" : "",
+                                                "DisableLegacyValidation" : false,
                                                 "DisplayName" : "dhxgrid-634",
+                                                "EnableFontSizeOverride" : false,
                                                 "FocusStyle" : {
                                                   "backgroundColor" : "",
                                                   "displayString" : "",
@@ -9360,6 +9613,7 @@
                                                 "IsPrintLayout" : false,
                                                 "LastContainer" : false,
                                                 "Left" : 0,
+                                                "Margin" : "5",
                                                 "MultiSelect" : false,
                                                 "ResponsiveLayout" : true,
                                                 "RowAlternateBackgroundStyle" : {
@@ -9468,6 +9722,7 @@
                                           "Expanded" : true,
                                           "Id" : "container-660",
                                           "LastContainer" : false,
+                                          "Margin" : "5",
                                           "MinHeight" : 0,
                                           "MinWidth" : 0,
                                           "Overlay" : false,
@@ -9502,6 +9757,7 @@
                                       "Expanded" : true,
                                       "Id" : "container-656",
                                       "LastContainer" : false,
+                                      "Margin" : "5",
                                       "MinHeight" : 0,
                                       "MinWidth" : 0,
                                       "Overlay" : false,
@@ -9536,6 +9792,7 @@
                                   "Expanded" : true,
                                   "Id" : "container-696",
                                   "LastContainer" : false,
+                                  "Margin" : "5",
                                   "MinHeight" : 0,
                                   "MinWidth" : 0,
                                   "Overlay" : false,
@@ -9572,6 +9829,7 @@
                                     "Left" : 175,
                                     "LeftSidebar" : false,
                                     "LeftSidebarWidth" : 0,
+                                    "Margin" : "5",
                                     "Orientation" : "vertical",
                                     "PctColumn1" : 50,
                                     "PctColumn2" : 50,
@@ -9615,6 +9873,7 @@
                                       "Expanded" : true,
                                       "Id" : "container-698",
                                       "LastContainer" : false,
+                                      "Margin" : "5",
                                       "MinHeight" : 0,
                                       "MinWidth" : 0,
                                       "Overlay" : false,
@@ -9647,6 +9906,7 @@
                                         "Id" : "panel-701",
                                         "LastContainer" : false,
                                         "Left" : 210,
+                                        "Margin" : "5",
                                         "ResponsiveLayout" : true,
                                         "ShowDataLoading" : true,
                                         "Style" : "DefaultPanelStyle",
@@ -9673,6 +9933,7 @@
                                           "Id" : "navigation-690",
                                           "LastContainer" : false,
                                           "Left" : 155,
+                                          "Margin" : "5",
                                           "MashupName" : "GitBackup.ModifyRepo.Mashup",
                                           "MashupParameters" : [ {
                                             "BaseType" : "STRING",
@@ -9798,6 +10059,7 @@
                                           "Label" : "Settings",
                                           "LastContainer" : false,
                                           "Left" : 30,
+                                          "Margin" : "5",
                                           "ResponsiveLayout" : false,
                                           "RoundedCorners" : false,
                                           "ShowDataLoading" : true,
@@ -9892,6 +10154,7 @@
                                           "Label" : "Delete GIT Thing",
                                           "LastContainer" : false,
                                           "Left" : 156,
+                                          "Margin" : "5",
                                           "ResponsiveLayout" : false,
                                           "RoundedCorners" : false,
                                           "ShowDataLoading" : true,
@@ -9955,6 +10218,7 @@
                                           "ListItemSelectedStyle" : "DefaultListItemSelectedStyle",
                                           "ListItemStyle" : "DefaultListItemStyle",
                                           "ListLabelStyle" : "DefaultWidgetLabelStyle",
+                                          "Margin" : "5",
                                           "MultiSelect" : false,
                                           "NumberOfItemsInDropdownView" : 6,
                                           "NumberOfItemsPerPage" : 500,
@@ -10055,6 +10319,7 @@
                                           "Label" : "Delete Local Branch",
                                           "LastContainer" : false,
                                           "Left" : 283.0000305175781,
+                                          "Margin" : "5",
                                           "ResponsiveLayout" : false,
                                           "RoundedCorners" : false,
                                           "ShowDataLoading" : true,
@@ -10098,6 +10363,7 @@
                                       "Expanded" : true,
                                       "Id" : "container-699",
                                       "LastContainer" : false,
+                                      "Margin" : "5",
                                       "MinHeight" : 0,
                                       "MinWidth" : 0,
                                       "Overlay" : false,
@@ -10130,6 +10396,7 @@
                                         "Id" : "panel-704",
                                         "LastContainer" : false,
                                         "Left" : 210,
+                                        "Margin" : "5",
                                         "ResponsiveLayout" : true,
                                         "ShowDataLoading" : true,
                                         "Style" : "DefaultPanelStyle",
@@ -10160,6 +10427,7 @@
                           "Expanded" : true,
                           "Id" : "container-666",
                           "LastContainer" : false,
+                          "Margin" : "5",
                           "MinHeight" : 0,
                           "MinWidth" : 0,
                           "Overlay" : false,
@@ -10191,6 +10459,7 @@
                             "Id" : "panel-668",
                             "LastContainer" : false,
                             "Left" : 100,
+                            "Margin" : "5",
                             "ResponsiveLayout" : true,
                             "ShowDataLoading" : true,
                             "Style" : "DefaultContainerStyle",
@@ -10213,6 +10482,7 @@
                               "Id" : "label-669",
                               "LastContainer" : false,
                               "Left" : 20,
+                              "Margin" : "5",
                               "ResponsiveLayout" : false,
                               "ShowDataLoading" : true,
                               "Style" : {
@@ -10257,7 +10527,9 @@
                     "Id" : "validator-712",
                     "LastContainer" : false,
                     "Left" : 0,
+                    "Margin" : "5",
                     "Output" : true,
+                    "ResponsiveLayout" : false,
                     "ShowDataLoading" : true,
                     "Top" : 0,
                     "Type" : "validator",
