@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="lib/jsch-0.1.55.jar"/>
+	<classpathentry kind="lib" path="twx-lib/jackson-core-2.10.0.jar"/>
+	<classpathentry kind="lib" path="twx-lib/thingworx-javadocs-9.0.0-b9557.jar"/>
+	<classpathentry kind="lib" path="twx-lib/thingworx-ext-sdk-9.0.0-b9557.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:platform:/resource/GitExtension/twx-lib/thingworx-javadocs-9.0.0-b9557.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="twx-lib/jackson-databind-2.10.0.jar"/>
+	<classpathentry kind="lib" path="twx-lib/logback-core-1.2.3.jar"/>
+	<classpathentry kind="lib" path="twx-lib/logback-classic-1.2.3.jar"/>
+	<classpathentry kind="lib" path="twx-lib/jackson-annotations-2.10.0.jar"/>
+	<classpathentry kind="lib" path="twx-lib/joda-time-2.10.5.jar"/>
+	<classpathentry kind="lib" path="twx-lib/rhino-1.7.11.jar"/>
+	<classpathentry kind="lib" path="twx-lib/slf4j-api-1.7.25.jar"/>
+	<classpathentry kind="lib" path="twx-lib/thingworx-communications-client-9.0.0-b9557.jar"/>
+	<classpathentry kind="lib" path="twx-lib/jackson-dataformat-smile-2.10.0.jar"/>
+	<classpathentry kind="lib" path="lib/bcpg-jdk18on-172.2.jar"/>
+	<classpathentry kind="lib" path="lib/JavaEWAH-1.2.3.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.jgit-6.5.0.202303070854-r.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
