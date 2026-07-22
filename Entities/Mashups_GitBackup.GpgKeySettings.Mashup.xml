@@ -1,0 +1,815 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ majorVersion="9"
+ minorVersion="3"
+ universal="password">
+    <Mashups>
+        <Mashup
+         aspect.isEditableExtensionObject="true"
+         aspect.isExtension="true"
+         aspect.isFlex="true"
+         aspect.isResponsive="true"
+         aspect.mashupType="mashup"
+         columns="0.0"
+         description="Settings mashup for GPG signing key management"
+         documentationContent=""
+         homeMashup=""
+         name="GitBackup.GpgKeySettings.Mashup"
+         projectName="GitBackup"
+         rows="0.0"
+         tags="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <ParameterDefinitions>
+                <FieldDefinition
+                 baseType="THINGNAME"
+                 description=""
+                 name="GitThing"
+                 ordinal="0"></FieldDefinition>
+            </ParameterDefinitions>
+            <Things>
+                <Thing>GIT.Utility.Thing</Thing>
+            </Things>
+            <ThingShapes></ThingShapes>
+            <ThingTemplates></ThingTemplates>
+            <mashupContent>
+            <![CDATA[
+            {
+              "CustomMashupCss" : "",
+              "Data" : {
+                "DynamicThingTemplates_GitBackupTemplate" : {
+                  "DataName" : "DynamicThingTemplates_GitBackupTemplate",
+                  "EntityName" : "GitBackupTemplate",
+                  "EntityType" : "DynamicThingTemplates",
+                  "Id" : "verify-gpg-key",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "verify-service",
+                    "Name" : "VerifyGpgKey",
+                    "Parameters" : {
+                      "GpgPrivateKey" : "",
+                      "GpgKeyPassphrase" : ""
+                    },
+                    "RefreshInterval" : 0,
+                    "Target" : "VerifyGpgKey"
+                  } ]
+                },
+                "Things_GIT.Utility.Thing" : {
+                  "DataName" : "Things_GIT.Utility.Thing",
+                  "EntityName" : "GIT.Utility.Thing",
+                  "EntityType" : "Things",
+                  "Id" : "gpg-utility-thing",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "get-gpg-keys",
+                    "Name" : "GetGpgKeys",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetGpgKeys"
+                  }, {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "set-gpg-key",
+                    "Name" : "SetGpgKey",
+                    "Parameters" : {
+                      "GitThing" : "",
+                      "GpgPrivateKey" : "",
+                      "GpgKeyPassphrase" : "",
+                      "SignCommits" : false,
+                      "GpgKeyFingerprint" : ""
+                    },
+                    "RefreshInterval" : 0,
+                    "Target" : "SetGpgKey"
+                  } ]
+                },
+                "Session" : {
+                  "DataName" : "Session",
+                  "EntityName" : "",
+                  "EntityType" : "Session",
+                  "Id" : "session",
+                  "Services" : [ {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "SessionInterface",
+                    "Name" : "GetGlobalSessionValues",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetGlobalSessionValues"
+                  } ]
+                }
+              },
+              "DataBindings" : [ {
+                "Id" : "binding-verify-params",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Text",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "GpgPrivateKey",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                }, {
+                  "SourceProperty" : "Text",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "GpgKeyPassphrase",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "txtarea-private-key",
+                "TargetArea" : "Data",
+                "TargetId" : "verify-service",
+                "TargetSection" : "DynamicThingTemplates_GitBackupTemplate"
+              }, {
+                "Id" : "binding-verify-to-txt",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "GpgKeyFingerprint",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "Text",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "verify-service",
+                "TargetArea" : "UI",
+                "TargetId" : "lbl-verify-result",
+                "TargetSection" : ""
+              }, {
+                "Id" : "binding-save-params",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "Text",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "GpgPrivateKey",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                }, {
+                  "SourceProperty" : "Text",
+                  "SourcePropertyBaseType" : "STRING",
+                  "TargetProperty" : "GpgKeyPassphrase",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "Parameter"
+                }, {
+                  "SourceProperty" : "State",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "TargetProperty" : "SignCommits",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "container-save-fields",
+                "TargetArea" : "Data",
+                "TargetId" : "set-gpg-key",
+                "TargetSection" : "Things_GIT.Utility.Thing"
+              }, {
+                "Id" : "binding-gitthing-to-save",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "value",
+                  "SourcePropertyBaseType" : "THINGNAME",
+                  "TargetProperty" : "GitThing",
+                  "TargetPropertyBaseType" : "THINGNAME",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "ddl-git-thing",
+                "TargetArea" : "Data",
+                "TargetId" : "set-gpg-key",
+                "TargetSection" : "Things_GIT.Utility.Thing"
+              }, {
+                "Id" : "binding-gitthing-to-param",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "value",
+                  "SourcePropertyBaseType" : "THINGNAME",
+                  "TargetProperty" : "value",
+                  "TargetPropertyBaseType" : "THINGNAME",
+                  "TargetPropertyType" : "Entity"
+                } ],
+                "SourceArea" : "Mashup",
+                "SourceId" : "mashup-root",
+                "TargetArea" : "Data",
+                "TargetId" : "EntityName",
+                "TargetSection" : "DynamicThingTemplates_GitBackupTemplate"
+              }, {
+                "Id" : "binding-gpg-data-to-ui",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "GpgKeyFingerprint",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "Text",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                }, {
+                  "SourceProperty" : "SignCommits",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "State",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "get-gpg-keys",
+                "TargetArea" : "UI",
+                "TargetId" : "container-load-fields",
+                "TargetSection" : ""
+              } ],
+              "DesignTimePermissions" : {
+                "Create" : [ ],
+                "Delete" : [ ],
+                "Metadata" : [ ],
+                "Read" : [ ],
+                "Update" : [ ]
+              },
+              "Events" : [ {
+                "EventHandlerArea" : "Mashup",
+                "EventHandlerId" : "mashup-root",
+                "EventHandlerService" : "CloseIfPopup",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "set-gpg-key",
+                "EventTriggerSection" : "Things_GIT.Utility.Thing",
+                "Id" : "event-save-complete"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_GIT.Utility.Thing",
+                "EventHandlerService" : "GetGpgKeys",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "event-load-gpg-keys"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "DynamicThingTemplates_GitBackupTemplate",
+                "EventHandlerService" : "VerifyGpgKey",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "btn-verify",
+                "EventTriggerSection" : "",
+                "Id" : "event-verify-click"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_GIT.Utility.Thing",
+                "EventHandlerService" : "SetGpgKey",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "btn-save",
+                "EventTriggerSection" : "",
+                "Id" : "event-save-click"
+              }, {
+                "EventHandlerArea" : "Mashup",
+                "EventHandlerId" : "mashup-root",
+                "EventHandlerService" : "CloseIfPopup",
+                "EventTriggerArea" : "UI",
+                "EventTriggerEvent" : "Clicked",
+                "EventTriggerId" : "btn-cancel",
+                "EventTriggerSection" : "",
+                "Id" : "event-cancel-click"
+              } ],
+              "RunTimePermissions" : {
+                "permissions" : [ ]
+              },
+              "UI" : {
+                "Properties" : {
+                  "AddToDashboardButton" : "SimplePlus",
+                  "AddToDashboardButtonStyle" : "DefaultAddToDashboardButtonStyle",
+                  "Area" : "Mashup",
+                  "BGImage" : "",
+                  "BGImageRepeat" : "no-repeat",
+                  "BGImageSize" : "auto",
+                  "Columns" : 0,
+                  "ConfigureGadgetButton" : "SimpleGear",
+                  "ConfigureGadgetButtonStyle" : "DefaultConfigureGadgetButtonStyle",
+                  "DisplayName" : "GPG Key Settings",
+                  "EnableParameterEditing" : false,
+                  "Height" : 618,
+                  "Id" : "mashup-root",
+                  "IgnoreWarningsInViewMashup" : false,
+                  "IsPrintLayout" : false,
+                  "Left" : 0,
+                  "MashupToEditGadget" : "DefaultMashupToEditGadget",
+                  "MinHeight" : 0,
+                  "MinWidth" : 0,
+                  "ResponsiveLayout" : true,
+                  "Rows" : 0,
+                  "ShowDataLoading" : true,
+                  "Style" : "DefaultMashupStyle",
+                  "StyleProperties" : { },
+                  "StyleTheme" : "GitBackup.StyleTheme",
+                  "Title" : "",
+                  "TitleBar" : false,
+                  "TitleBarStyle" : "DefaultTitleBarStyle",
+                  "TitleBarText" : "GPG Key Settings",
+                  "Top" : 0,
+                  "Type" : "mashup",
+                  "UseMasterTheme" : false,
+                  "UseTheme" : false,
+                  "UseThemeForHybrids" : false,
+                  "Visible" : true,
+                  "Width" : 600,
+                  "Z-index" : 10,
+                  "__TypeDisplayName" : "Mashup",
+                  "_currentParameterDefs" : [ {
+                    "BaseType" : "THINGNAME",
+                    "Description" : "",
+                    "ParameterName" : "GitThing"
+                  } ],
+                  "id_index" : 1,
+                  "supportsAutoResize" : true
+                },
+                "Widgets" : [ {
+                  "Properties" : {
+                    "Area" : "UI",
+                    "DisplayName" : "Main Container",
+                    "EnableExpandCollapse" : false,
+                    "Expanded" : true,
+                    "Id" : "container-main",
+                    "LastContainer" : true,
+                    "ResponsiveLayout" : true,
+                    "ShowDataLoading" : true,
+                    "ShowExpandCollapseTab" : false,
+                    "SourceURL" : "",
+                    "Style" : "DefaultContainerStyle",
+                    "Type" : "flexcontainer",
+                    "UseTheme" : true,
+                    "Visible" : true,
+                    "Z-index" : 10,
+                    "__TypeDisplayName" : "Responsive Container",
+                    "align-content" : "flex-start",
+                    "align-items" : "stretch",
+                    "flex-basis" : "auto",
+                    "flex-direction" : "column",
+                    "flex-grow" : "1",
+                    "flex-max-height" : "",
+                    "flex-max-width" : "",
+                    "flex-min-height" : "",
+                    "flex-min-width" : "",
+                    "flex-shrink" : "1",
+                    "flex-size" : "default",
+                    "flex-wrap" : "nowrap",
+                    "iconClass" : "widgets-flexcontainer",
+                    "isLocked" : true,
+                    "justify-content" : "flex-start",
+                    "positioning" : "responsive",
+                    "userCannotRemove" : true
+                  },
+                  "Widgets" : [ {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "DisplayName" : "Container Load Fields",
+                      "EnableExpandCollapse" : false,
+                      "Expanded" : true,
+                      "Id" : "container-load-fields",
+                      "LastContainer" : false,
+                      "ResponsiveLayout" : true,
+                      "ShowDataLoading" : true,
+                      "ShowExpandCollapseTab" : false,
+                      "SourceURL" : "",
+                      "Style" : "DefaultContainerStyle",
+                      "Type" : "flexcontainer",
+                      "UseTheme" : true,
+                      "Visible" : true,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Responsive Container",
+                      "align-content" : "flex-start",
+                      "align-items" : "center",
+                      "flex-basis" : "auto",
+                      "flex-direction" : "row",
+                      "flex-grow" : "1",
+                      "flex-wrap" : "nowrap",
+                      "iconClass" : "widgets-flexcontainer",
+                      "justify-content" : "center",
+                      "positioning" : "responsive"
+                    },
+                    "Widgets" : [ {
+                      "Properties" : {
+                        "Alignment" : "left",
+                        "AllowEllipsis" : false,
+                        "Area" : "UI",
+                        "DisplayName" : "lbl-git-thing",
+                        "Height" : 22,
+                        "Id" : "lbl-git-thing",
+                        "LastContainer" : false,
+                        "Margin" : "5",
+                        "ResponsiveLayout" : false,
+                        "ShowDataLoading" : true,
+                        "Style" : "DefaultLabelStyle",
+                        "Text" : "Git Repository:",
+                        "ToolTipField" : "",
+                        "ToolTipStyle" : "DefaultTooltipStyle",
+                        "Type" : "label",
+                        "Visible" : true,
+                        "Width" : 100,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Label"
+                      },
+                      "Widgets" : [ ]
+                    }, {
+                      "Properties" : {
+                        "Area" : "UI",
+                        "DisplayName" : "ddl-git-thing",
+                        "Height" : 24,
+                        "Id" : "ddl-git-thing",
+                        "LastContainer" : false,
+                        "Margin" : "5",
+                        "ResponsiveLayout" : false,
+                        "ShowDataLoading" : true,
+                        "ShowOptionLabel" : true,
+                        "Style" : "DefaultDropdownStyle",
+                        "TabSequence" : 1,
+                        "ToolTipField" : "",
+                        "ToolTipStyle" : "DefaultTooltipStyle",
+                        "Type" : "dropdown",
+                        "Visible" : true,
+                        "Width" : 300,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Dropdown"
+                      },
+                      "Widgets" : [ ]
+                    }, {
+                      "Properties" : {
+                        "Area" : "UI",
+                        "DisplayName" : "lbl-fingerprint",
+                        "Height" : 22,
+                        "Id" : "lbl-verify-result",
+                        "LastContainer" : false,
+                        "Margin" : "5",
+                        "MultiLine" : true,
+                        "ResponsiveLayout" : false,
+                        "ShowDataLoading" : true,
+                        "Style" : "DefaultLabelStyle",
+                        "Text" : "",
+                        "ToolTipField" : "",
+                        "ToolTipStyle" : "DefaultTooltipStyle",
+                        "Type" : "label",
+                        "Visible" : true,
+                        "Width" : 150,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Label"
+                      },
+                      "Widgets" : [ ]
+                    } ]
+                  }, {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "DisplayName" : "Container Private Key",
+                      "EnableExpandCollapse" : false,
+                      "Expanded" : true,
+                      "Id" : "container-pk",
+                      "LastContainer" : false,
+                      "ResponsiveLayout" : true,
+                      "ShowDataLoading" : true,
+                      "ShowExpandCollapseTab" : false,
+                      "SourceURL" : "",
+                      "Style" : "DefaultContainerStyle",
+                      "Type" : "flexcontainer",
+                      "UseTheme" : true,
+                      "Visible" : true,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Responsive Container",
+                      "align-content" : "flex-start",
+                      "align-items" : "center",
+                      "flex-basis" : "auto",
+                      "flex-direction" : "column",
+                      "flex-grow" : "1",
+                      "flex-wrap" : "nowrap",
+                      "iconClass" : "widgets-flexcontainer",
+                      "justify-content" : "flex-start",
+                      "positioning" : "responsive"
+                    },
+                    "Widgets" : [ {
+                      "Properties" : {
+                        "Alignment" : "left",
+                        "AllowEllipsis" : false,
+                        "Area" : "UI",
+                        "DisplayName" : "lbl-private-key",
+                        "Height" : 22,
+                        "Id" : "lbl-private-key",
+                        "LastContainer" : false,
+                        "Margin" : "5",
+                        "ResponsiveLayout" : false,
+                        "ShowDataLoading" : true,
+                        "Style" : "DefaultLabelStyle",
+                        "Text" : "Paste your ASCII-armored PGP Private Key below:",
+                        "ToolTipField" : "",
+                        "ToolTipStyle" : "DefaultTooltipStyle",
+                        "Type" : "label",
+                        "Visible" : true,
+                        "Width" : 580,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Label"
+                      },
+                      "Widgets" : [ ]
+                    }, {
+                      "Properties" : {
+                        "Area" : "UI",
+                        "Counter" : false,
+                        "CustomClass" : "",
+                        "Disabled" : false,
+                        "DisplayName" : "txtarea-private-key",
+                        "FillContainer" : true,
+                        "Height" : 200,
+                        "Id" : "txtarea-private-key",
+                        "Label" : "",
+                        "LabelAlignment" : "left",
+                        "LastContainer" : false,
+                        "Margin" : "5",
+                        "MaxLengthFailureMessage" : "",
+                        "MaxNumberOfCharacters" : 100000,
+                        "MinLengthFailureMessage" : "",
+                        "ReadOnly" : false,
+                        "RequiredMessage" : "",
+                        "ResponsiveLayout" : false,
+                        "ShowDataLoading" : true,
+                        "ShowValidationCriteria" : false,
+                        "ShowValidationFailure" : false,
+                        "ShowValidationSuccess" : false,
+                        "SuccessMessage" : "",
+                        "SuccessMessageDetails" : "",
+                        "TabSequence" : 2,
+                        "Text" : "",
+                        "TextAlignment" : "left",
+                        "TooltipField" : "",
+                        "Type" : "ptcstextarea",
+                        "UseTheme" : true,
+                        "ValidationCriteriaIcon" : "cds:icon_info",
+                        "ValidationFailureIcon" : "cds:icon_error",
+                        "ValidationState" : "undefined",
+                        "ValidationSuccessIcon" : "cds:icon_success",
+                        "ValueRequired" : false,
+                        "Visible" : true,
+                        "Width" : 580,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "TextArea"
+                      },
+                      "Widgets" : [ ]
+                    } ]
+                  }, {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "DisplayName" : "Container Passphrase",
+                      "EnableExpandCollapse" : false,
+                      "Expanded" : true,
+                      "Id" : "container-passphrase",
+                      "LastContainer" : false,
+                      "ResponsiveLayout" : true,
+                      "ShowDataLoading" : true,
+                      "ShowExpandCollapseTab" : false,
+                      "SourceURL" : "",
+                      "Style" : "DefaultContainerStyle",
+                      "Type" : "flexcontainer",
+                      "UseTheme" : true,
+                      "Visible" : true,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Responsive Container",
+                      "align-content" : "flex-start",
+                      "align-items" : "center",
+                      "flex-basis" : "auto",
+                      "flex-direction" : "row",
+                      "flex-grow" : "1",
+                      "flex-wrap" : "nowrap",
+                      "iconClass" : "widgets-flexcontainer",
+                      "justify-content" : "center",
+                      "positioning" : "responsive"
+                    },
+                    "Widgets" : [ {
+                      "Properties" : {
+                        "Alignment" : "left",
+                        "AllowEllipsis" : false,
+                        "Area" : "UI",
+                        "DisplayName" : "lbl-passphrase",
+                        "Height" : 22,
+                        "Id" : "lbl-passphrase",
+                        "LastContainer" : false,
+                        "Margin" : "5",
+                        "ResponsiveLayout" : false,
+                        "ShowDataLoading" : true,
+                        "Style" : "DefaultLabelStyle",
+                        "Text" : "Passphrase:",
+                        "ToolTipField" : "",
+                        "ToolTipStyle" : "DefaultTooltipStyle",
+                        "Type" : "label",
+                        "Visible" : true,
+                        "Width" : 80,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Label"
+                      },
+                      "Widgets" : [ ]
+                    }, {
+                      "Properties" : {
+                        "Area" : "UI",
+                        "CursorPosition" : 0,
+                        "DisplayName" : "txt-passphrase",
+                        "Height" : 24,
+                        "Id" : "txt-passphrase",
+                        "Label" : "",
+                        "LabelAlignment" : "left",
+                        "LastContainer" : false,
+                        "Margin" : "5",
+                        "MaskInputCharacters" : true,
+                        "PlaceholderText" : "",
+                        "ReadOnly" : false,
+                        "ResponsiveLayout" : false,
+                        "ShowDataLoading" : true,
+                        "TabSequence" : 3,
+                        "Text" : "",
+                        "TextAlign" : "left",
+                        "TextboxLabelStyle" : "DefaultWidgetLabelStyle",
+                        "ToolTipField" : "",
+                        "ToolTipStyle" : "DefaultTooltipStyle",
+                        "Type" : "textbox",
+                        "Visible" : true,
+                        "Width" : 250,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "TextBox"
+                      },
+                      "Widgets" : [ ]
+                    }, {
+                      "Properties" : {
+                        "Area" : "UI",
+                        "DisplayName" : "lbl-sign",
+                        "Height" : 22,
+                        "Id" : "lbl-sign",
+                        "LastContainer" : false,
+                        "Margin" : "5",
+                        "ResponsiveLayout" : false,
+                        "ShowDataLoading" : true,
+                        "Style" : "DefaultLabelStyle",
+                        "Text" : "Sign commits:",
+                        "ToolTipField" : "",
+                        "ToolTipStyle" : "DefaultTooltipStyle",
+                        "Type" : "label",
+                        "Visible" : true,
+                        "Width" : 90,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Label"
+                      },
+                      "Widgets" : [ ]
+                    }, {
+                      "Properties" : {
+                        "Area" : "UI",
+                        "Disabled" : false,
+                        "DisplayName" : "chk-sign",
+                        "Height" : 22,
+                        "Id" : "chk-sign",
+                        "LastContainer" : false,
+                        "Margin" : "0",
+                        "Prompt" : " ",
+                        "ResponsiveLayout" : false,
+                        "ShowDataLoading" : true,
+                        "State" : false,
+                        "Style" : "DefaultCheckboxStyle",
+                        "TabSequence" : 4,
+                        "ToolTipField" : "",
+                        "ToolTipStyle" : "DefaultTooltipStyle",
+                        "Type" : "checkbox",
+                        "Visible" : true,
+                        "Width" : 35,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Checkbox"
+                      },
+                      "Widgets" : [ ]
+                    } ]
+                  }, {
+                    "Properties" : {
+                      "Area" : "UI",
+                      "DisplayName" : "Container Save Fields",
+                      "EnableExpandCollapse" : false,
+                      "Expanded" : true,
+                      "Id" : "container-save-fields",
+                      "LastContainer" : false,
+                      "ResponsiveLayout" : true,
+                      "ShowDataLoading" : true,
+                      "ShowExpandCollapseTab" : false,
+                      "SourceURL" : "",
+                      "Style" : "DefaultContainerStyle",
+                      "Type" : "flexcontainer",
+                      "UseTheme" : true,
+                      "Visible" : true,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Responsive Container",
+                      "align-content" : "flex-start",
+                      "align-items" : "center",
+                      "flex-basis" : "auto",
+                      "flex-direction" : "row",
+                      "flex-grow" : "1",
+                      "flex-wrap" : "nowrap",
+                      "iconClass" : "widgets-flexcontainer",
+                      "justify-content" : "space-evenly",
+                      "positioning" : "responsive"
+                    },
+                    "Widgets" : [ {
+                      "Properties" : {
+                        "ActiveStyle" : "DefaultButtonActiveStyle",
+                        "Area" : "UI",
+                        "ConfirmationRequired" : false,
+                        "CustomClass" : "",
+                        "DisabledStyle" : "DefaultButtonDisabledStyle",
+                        "DisplayName" : "btn-verify",
+                        "FocusStyle" : "DefaultButtonFocusStyle",
+                        "Height" : 30,
+                        "HoverStyle" : "DefaultButtonHoverStyle",
+                        "IconAlignment" : "left",
+                        "Id" : "btn-verify",
+                        "Label" : "Verify Key",
+                        "LastContainer" : false,
+                        "Margin" : "5",
+                        "ResponsiveLayout" : false,
+                        "RoundedCorners" : true,
+                        "ShowDataLoading" : true,
+                        "Style" : "DefaultButtonStyle",
+                        "TabSequence" : 5,
+                        "ToolTipField" : "",
+                        "ToolTipStyle" : "DefaultTooltipStyle",
+                        "Type" : "button",
+                        "Visible" : true,
+                        "Width" : 100,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Button"
+                      },
+                      "Widgets" : [ ]
+                    }, {
+                      "Properties" : {
+                        "ActiveStyle" : "DefaultButtonActiveStyle",
+                        "Area" : "UI",
+                        "ConfirmationRequired" : false,
+                        "CustomClass" : "green-btn",
+                        "DisabledStyle" : "DefaultButtonDisabledStyle",
+                        "DisplayName" : "btn-save",
+                        "FocusStyle" : "DefaultButtonFocusStyle",
+                        "Height" : 30,
+                        "HoverStyle" : "DefaultButtonHoverStyle",
+                        "IconAlignment" : "left",
+                        "Id" : "btn-save",
+                        "Label" : "Save",
+                        "LastContainer" : false,
+                        "Margin" : "5",
+                        "ResponsiveLayout" : false,
+                        "RoundedCorners" : true,
+                        "ShowDataLoading" : true,
+                        "Style" : "DefaultButtonStyle",
+                        "TabSequence" : 6,
+                        "ToolTipField" : "",
+                        "ToolTipStyle" : "DefaultTooltipStyle",
+                        "Type" : "button",
+                        "Visible" : true,
+                        "Width" : 100,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Button"
+                      },
+                      "Widgets" : [ ]
+                    }, {
+                      "Properties" : {
+                        "ActiveStyle" : "DefaultButtonActiveStyle",
+                        "Area" : "UI",
+                        "ConfirmationRequired" : false,
+                        "CustomClass" : "white-btn",
+                        "DisabledStyle" : "DefaultButtonDisabledStyle",
+                        "DisplayName" : "btn-cancel",
+                        "FocusStyle" : "DefaultButtonFocusStyle",
+                        "Height" : 30,
+                        "HoverStyle" : "DefaultButtonHoverStyle",
+                        "IconAlignment" : "left",
+                        "Id" : "btn-cancel",
+                        "Label" : "Cancel",
+                        "LastContainer" : false,
+                        "Margin" : "5",
+                        "ResponsiveLayout" : false,
+                        "RoundedCorners" : true,
+                        "ShowDataLoading" : true,
+                        "Style" : "DefaultButtonStyle",
+                        "TabSequence" : 7,
+                        "ToolTipField" : "",
+                        "ToolTipStyle" : "DefaultTooltipStyle",
+                        "Type" : "button",
+                        "Visible" : true,
+                        "Width" : 100,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Button"
+                      },
+                      "Widgets" : [ ]
+                    } ]
+                  } ]
+                } ]
+              },
+              "mashupType" : "mashup"
+            }
+            ]]>
+            </mashupContent>
+            <preview></preview>
+        </Mashup>
+    </Mashups>
+</Entities>

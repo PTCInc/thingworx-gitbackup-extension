@@ -78,7 +78,7 @@
                  ordinal="13"></FieldDefinition>
                 <FieldDefinition
                  aspect.isPrimaryKey="false"
-                 baseType="STRING"
+                 baseType="PASSWORD"
                  description=""
                  name="Password"
                  ordinal="7"></FieldDefinition>

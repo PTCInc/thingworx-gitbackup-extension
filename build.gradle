@@ -1,0 +1,327 @@
+plugins {
+    id 'java'
+    id 'eclipse'
+}
+
+defaultTasks 'clean', 'packageExtension'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+ext {
+    extensionJar = 'gitbackupextension.jar'
+    sdkZip = file('twx-lib/MED-61098-CD-096_9-6-0_ThingWorx-Extension-SDK-9-6-0.zip')
+    sdkExtractDir = file("${buildDir}/sdk")
+    entitiesDir = file('Entities')
+    configDir = file('configfiles')
+    thirdPartyDir = file('3rdPartyExtensions')
+    zipDir = file("${buildDir}/distributions")
+    packageName = 'GitBackupExtension'
+    packageVersion = '5.1.0'
+    packageVendor = 'Open Source / Vladimir Rosu'
+}
+
+repositories {
+    mavenCentral()
+}
+
+task unpackSdk(type: Copy) {
+    from zipTree(sdkZip)
+    into sdkExtractDir
+    exclude '**/thingworx-javadocs*'
+    exclude 'Common/'
+}
+
+compileJava.dependsOn unpackSdk
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+    }
+}
+
+configurations {
+    packageDependencies
+    implementation.extendsFrom packageDependencies
+}
+
+dependencies {
+    // ThingWorx SDK (extracted from zip)
+    implementation fileTree(dir: sdkExtractDir, include: '*.jar')
+
+    // Runtime dependencies (packaged with the extension)
+    packageDependencies('org.eclipse.jgit:org.eclipse.jgit:6.10.0.202406032230-r') {
+        exclude group: 'commons-codec'
+        exclude group: 'org.slf4j'
+    }
+    packageDependencies 'com.jcraft:jsch:0.1.55'
+    packageDependencies('org.bouncycastle:bcpg-jdk18on:1.72') {
+        exclude group: 'org.slf4j'
+    }
+    packageDependencies 'com.googlecode.javaewah:JavaEWAH:1.2.3'
+    packageDependencies 'commons-io:commons-io:2.18.0'
+    packageDependencies 'org.apache.commons:commons-lang3:3.14.0'
+
+    // Compile-only: already available in ThingWorx platform
+    implementation 'commons-codec:commons-codec:1.22.0'
+
+    // Test dependencies (not packaged since not in packageDependencies)
+    implementation 'org.junit.jupiter:junit-jupiter:5.8.2'
+    implementation 'org.junit.platform:junit-platform-launcher:1.8.2'
+    implementation 'org.testcontainers:testcontainers:2.0.5'
+    implementation 'org.testcontainers:testcontainers-junit-jupiter:2.0.5'
+}
+
+jar {
+    archiveFileName = extensionJar
+    manifest {
+        attributes 'Built-By': packageVendor,
+                   'Build-Date': new Date().format('yyyy-MM-dd HH:mm:ss')
+        attributes 'Package-Title': packageName,
+                   'Package-Version': packageVersion,
+                   'Package-Vendor': packageVendor
+    }
+}
+
+tasks.withType(Test).configureEach {
+    useJUnitPlatform()
+    testClassesDirs = sourceSets.main.output.classesDirs
+    classpath = sourceSets.main.runtimeClasspath
+    testLogging {
+        events 'passed', 'skipped', 'failed'
+    }
+}
+
+test {
+    dependsOn 'packageExtension'
+    include '**/gb/tests/**'
+}
+
+task prepPackage(dependsOn: jar) {
+    def zipStage = file("${buildDir}/zip")
+    doFirst { delete zipStage }
+    doLast {
+        copy {
+            from "${buildDir}/libs/${extensionJar}"
+            into "${zipStage}/lib/common"
+        }
+        copy {
+            from configurations.packageDependencies
+            into "${zipStage}/lib/common"
+        }
+        copy {
+            from configDir
+            into zipStage
+        }
+        copy {
+            from entitiesDir.parent
+            include "${entitiesDir.name}/**/*.xml"
+            into zipStage
+        }
+    }
+}
+
+task packageExtension(type: Zip, dependsOn: prepPackage) {
+    archiveFileName = "${packageName}.zip"
+    destinationDirectory = zipDir
+    from file("${buildDir}/zip")
+}
+
+task packagePack(type: Zip, dependsOn: packageExtension) {
+    archiveFileName = "${packageName}Pack.zip"
+    destinationDirectory = zipDir
+    from zipDir, { include "${packageName}.zip" }
+    from thirdPartyDir
+    doLast {
+        delete file("${zipDir}/${packageName}.zip")
+    }
+}
+
+task composeUp(type: Exec) {
+    workingDir = projectDir
+    commandLine 'docker', 'compose', 'up', '-d'
+    description = 'Start the development stack (PostgreSQL, ThingWorx, Gitea)'
+    group = 'development'
+}
+
+task composeDown(type: Exec) {
+    workingDir = projectDir
+    commandLine 'docker', 'compose', 'down'
+    description = 'Stop and remove the development stack'
+    group = 'development'
+}
+
+task composeDownClean(type: Exec) {
+    workingDir = projectDir
+    commandLine 'docker', 'compose', 'down', '-v'
+    description = 'Stop the stack and delete all volumes'
+    group = 'development'
+}
+
+task composeLogs(type: Exec) {
+    workingDir = projectDir
+    commandLine 'docker', 'compose', 'logs', '-f'
+    description = 'Follow container logs'
+    group = 'development'
+}
+
+task devSetup {
+    dependsOn packageExtension
+    description = 'Build extension, start dev stack, install extension on ThingWorx, and create Gitea test repo'
+    group = 'development'
+    doLast {
+        // 1. Start containers
+        logger.lifecycle("Starting development stack...")
+        exec {
+            workingDir = projectDir
+            commandLine 'docker', 'compose', 'up', '-d'
+        }
+
+        // 2. Wait for ThingWorx health endpoint
+        logger.lifecycle("Waiting for ThingWorx to become healthy (this takes a few minutes)...")
+        def healthy = false
+        for (def i = 1; i <= 60; i++) {
+            try {
+                def url = new URL("http://localhost:8080/Thingworx/health")
+                def conn = (HttpURLConnection) url.openConnection()
+                conn.setConnectTimeout(5000)
+                conn.setReadTimeout(5000)
+                if (conn.getResponseCode() == 200) {
+                    healthy = true
+                    logger.lifecycle("ThingWorx is healthy!")
+                    break
+                }
+            } catch (Exception ignored) {}
+            logger.lifecycle("  Waiting... (${i}/60)")
+            Thread.sleep(15000)
+        }
+        if (!healthy) {
+            throw new GradleException("ThingWorx did not become healthy within ~15 minutes. Check logs: docker compose logs thingworx")
+        }
+
+        // 3. Install extension
+        logger.lifecycle("Installing extension on ThingWorx...")
+        def auth = java.util.Base64.getEncoder().encodeToString(
+                "Administrator:TwxAdm1nP@ssw0rd!".getBytes("UTF-8"))
+        def extZip = file("${buildDir}/distributions/${packageName}.zip")
+        def boundary = "----FormBoundary${System.currentTimeMillis()}"
+
+        def body = new ByteArrayOutputStream()
+        body.write("--${boundary}\r\n".bytes)
+        body.write("Content-Disposition: form-data; name=\"file\"; filename=\"${packageName}.zip\"\r\n".bytes)
+        body.write("Content-Type: application/octet-stream\r\n\r\n".bytes)
+        body.write(extZip.bytes)
+        body.write("\r\n--${boundary}--\r\n".bytes)
+
+        def uploadUrl = new URL("http://localhost:8080/Thingworx/ExtensionPackageUploader?purpose=import")
+        def uploadConn = (HttpURLConnection) uploadUrl.openConnection()
+        uploadConn.setRequestMethod("POST")
+        uploadConn.setRequestProperty("Content-Type", "multipart/form-data; boundary=${boundary}")
+        uploadConn.setRequestProperty("Authorization", "Basic ${auth}")
+        uploadConn.setRequestProperty("X-XSRF-TOKEN", "TWX-XSRF-TOKEN-VALUE")
+        uploadConn.setRequestProperty("X-Requested-By", "ThingWorx")
+        uploadConn.setRequestProperty("Accept", "application/json")
+        uploadConn.setDoOutput(true)
+        uploadConn.setConnectTimeout(30000)
+        uploadConn.setReadTimeout(300000)
+        body.writeTo(uploadConn.getOutputStream())
+
+        def uploadStatus = uploadConn.getResponseCode()
+        def uploadResponse = uploadConn.getInputStream().text
+        if (uploadStatus != 200 && uploadStatus != 201) {
+            throw new GradleException("Extension installation failed: ${uploadStatus} ${uploadResponse}")
+        }
+        logger.lifecycle("Extension installed successfully!")
+
+        // 4. Verify extension installed
+        def verifyUrl = new URL("http://localhost:8080/Thingworx/Things/GIT.Utility.Thing")
+        def verifyConn = (HttpURLConnection) verifyUrl.openConnection()
+        verifyConn.setRequestProperty("Authorization", "Basic ${auth}")
+        verifyConn.setRequestProperty("Accept", "application/json")
+        verifyConn.setConnectTimeout(10000)
+        verifyConn.setReadTimeout(10000)
+        def verifyStatus = verifyConn.getResponseCode()
+        if (verifyStatus != 200 && verifyStatus != 401) {
+            logger.warn("Extension verification returned unexpected status: ${verifyStatus}")
+        } else {
+            logger.lifecycle("Extension verified (GIT.Utility.Thing accessible)!")
+        }
+
+        // 5. Ensure Gitea admin user exists
+        logger.lifecycle("Ensuring Gitea admin user exists...")
+        def giteaReady = false
+        for (def i = 1; i <= 15; i++) {
+            try {
+                def giteaUrl = new URL("http://localhost:3000/")
+                def giteaConn = (HttpURLConnection) giteaUrl.openConnection()
+                giteaConn.setConnectTimeout(5000)
+                if (giteaConn.getResponseCode() == 200) {
+                    giteaReady = true
+                    break
+                }
+            } catch (Exception ignored) {}
+            logger.lifecycle("  Waiting for Gitea... (${i}/15)")
+            Thread.sleep(3000)
+        }
+        if (!giteaReady) {
+            logger.warn("Gitea did not become ready. Create admin user and repo manually at http://localhost:3000")
+        } else {
+            // Create admin user via Gitea CLI (runs inside the container)
+            exec {
+                commandLine 'docker', 'compose', 'exec', '-u', 'git', 'gitea', 'gitea', 'admin', 'user', 'create',
+                        '--username', 'testadmin', '--password', 'testadmin123',
+                        '--email', 'admin@example.com', '--admin'
+                ignoreExitValue = true
+            }
+
+            // Create test repo
+            logger.lifecycle("Creating Gitea test repository...")
+            def giteaAuth = java.util.Base64.getEncoder().encodeToString(
+                    "testadmin:testadmin123".getBytes("UTF-8"))
+            for (def i = 1; i <= 5; i++) {
+                try {
+                    def createUrl = new URL("http://localhost:3000/api/v1/user/repos")
+                    def createConn = (HttpURLConnection) createUrl.openConnection()
+                    createConn.setRequestMethod("POST")
+                    createConn.setRequestProperty("Content-Type", "application/json")
+                    createConn.setRequestProperty("Authorization", "Basic ${giteaAuth}")
+                    createConn.setDoOutput(true)
+                    createConn.setConnectTimeout(5000)
+                    createConn.setReadTimeout(5000)
+                    createConn.getOutputStream().write(
+                            '{"name":"gitbackup-test","auto_init":false,"private":false}'.bytes)
+                    def giteaStatus = createConn.getResponseCode()
+                    if (giteaStatus == 201 || giteaStatus == 200) {
+                        logger.lifecycle("Gitea test repo 'gitbackup-test' created!")
+                        break
+                    }
+                    if (giteaStatus == 409) {
+                        logger.lifecycle("Gitea test repo 'gitbackup-test' already exists.")
+                        break
+                    }
+                    logger.lifecycle("  Gitea responded ${giteaStatus}, retrying... (${i}/5)")
+                } catch (Exception e) {
+                    logger.lifecycle("  Waiting for Gitea API... (${i}/5)")
+                    Thread.sleep(3000)
+                }
+            }
+        }
+
+        logger.lifecycle("")
+        logger.lifecycle("=== Dev Setup Complete ===")
+        logger.lifecycle("ThingWorx:  http://localhost:8080/Thingworx  (Administrator / TwxAdm1nP@ssw0rd!)")
+        logger.lifecycle("Gitea:      http://localhost:3000             (testadmin / testadmin123)")
+        logger.lifecycle("PostgreSQL: localhost:5432                    (postgres / twx_password_123)")
+        logger.lifecycle("")
+        logger.lifecycle("Gitea internal URL for Git thing config: http://gitea:3000/testadmin/gitbackup-test.git")
+        logger.lifecycle("Gitea external URL for cloning:          http://localhost:3000/testadmin/gitbackup-test.git")
+    }
+}
+
+build {
+    dependsOn packagePack
+}

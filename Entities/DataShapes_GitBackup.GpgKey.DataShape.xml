@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entities
+ majorVersion="9"
+ minorVersion="3"
+ universal="password">
+    <DataShapes>
+        <DataShape
+         baseDataShape=""
+         description="Datashape used in the UserExtensions ThingShape to hold GPG signing keys per repository"
+         documentationContent=""
+         homeMashup=""
+         name="GitBackup.GpgKey.DataShape"
+         projectName="GitBackup"
+         tags="">
+            <avatar></avatar>
+            <DesignTimePermissions>
+                <Create></Create>
+                <Read></Read>
+                <Update></Update>
+                <Delete></Delete>
+                <Metadata></Metadata>
+            </DesignTimePermissions>
+            <RunTimePermissions></RunTimePermissions>
+            <VisibilityPermissions>
+                <Visibility></Visibility>
+            </VisibilityPermissions>
+            <ConfigurationTableDefinitions></ConfigurationTableDefinitions>
+            <ConfigurationTables></ConfigurationTables>
+            <FieldDefinitions>
+                <FieldDefinition
+                 aspect.isPrimaryKey="false"
+                 aspect.thingTemplate="GitBackupTemplate"
+                 baseType="THINGNAME"
+                 description="Reference to the Git Thing for which this GPG key is valid"
+                 name="GitThing"
+                 ordinal="1"></FieldDefinition>
+                <FieldDefinition
+                 aspect.isPrimaryKey="false"
+                 baseType="PASSWORD"
+                 description="ASCII-armored PGP private key pasted by the user"
+                 name="GpgPrivateKey"
+                 ordinal="2"></FieldDefinition>
+                <FieldDefinition
+                 aspect.isPrimaryKey="false"
+                 baseType="PASSWORD"
+                 description="Passphrase for the PGP private key"
+                 name="GpgKeyPassphrase"
+                 ordinal="3"></FieldDefinition>
+                <FieldDefinition
+                 aspect.defaultValue="false"
+                 aspect.isPrimaryKey="false"
+                 baseType="BOOLEAN"
+                 description="Whether to sign commits for this repository"
+                 name="SignCommits"
+                 ordinal="4"></FieldDefinition>
+                <FieldDefinition
+                 aspect.isPrimaryKey="false"
+                 baseType="STRING"
+                 description="Derived GPG key fingerprint for display purposes"
+                 name="GpgKeyFingerprint"
+                 ordinal="5"></FieldDefinition>
+            </FieldDefinitions>
+        </DataShape>
+    </DataShapes>
+</Entities>

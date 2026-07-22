@@ -204,6 +204,28 @@
                     "Parameters" : { },
                     "RefreshInterval" : 0,
                     "Target" : "InitUserExtensionProperties"
+                  }, {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "gpg-keys-get",
+                    "Name" : "GetGpgKeys",
+                    "Parameters" : { },
+                    "RefreshInterval" : 0,
+                    "Target" : "GetGpgKeys"
+                  }, {
+                    "APIMethod" : "post",
+                    "Characteristic" : "Services",
+                    "Id" : "gpg-keys-set",
+                    "Name" : "SetGpgKey",
+                    "Parameters" : {
+                      "GitThing" : "",
+                      "GpgPrivateKey" : "",
+                      "GpgKeyPassphrase" : "",
+                      "SignCommits" : false,
+                      "GpgKeyFingerprint" : ""
+                    },
+                    "RefreshInterval" : 0,
+                    "Target" : "SetGpgKey"
                   } ]
                 },
                 "UserExtensions" : {
@@ -266,6 +288,60 @@
                 "TargetArea" : "Data",
                 "TargetId" : "Push",
                 "TargetSection" : "DynamicThingTemplates_GitBackupTemplate"
+              }, {
+                "Id" : "gpg-binding-sign-status",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "SignCommits",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "State",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "property"
+                }, {
+                  "SourceProperty" : "GpgKeyFingerprint",
+                  "SourcePropertyBaseType" : "STRING",
+                  "SourcePropertyType" : "Field",
+                  "TargetProperty" : "Text",
+                  "TargetPropertyBaseType" : "STRING",
+                  "TargetPropertyType" : "property"
+                } ],
+                "SourceArea" : "Data",
+                "SourceDetails" : "AllData",
+                "SourceId" : "gpg-keys-get",
+                "SourceSection" : "Things_GIT.Utility.Thing",
+                "TargetArea" : "UI",
+                "TargetId" : "flex-gpg-sign",
+                "TargetSection" : ""
+              }, {
+                "Id" : "gpg-binding-save-checkbox",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "State",
+                  "SourcePropertyBaseType" : "BOOLEAN",
+                  "TargetProperty" : "SignCommits",
+                  "TargetPropertyBaseType" : "BOOLEAN",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "UI",
+                "SourceId" : "chk-gpg-sign",
+                "SourceSection" : "",
+                "TargetArea" : "Data",
+                "TargetId" : "gpg-keys-set",
+                "TargetSection" : "Things_GIT.Utility.Thing"
+              }, {
+                "Id" : "gpg-binding-gitthing-to-save",
+                "PropertyMaps" : [ {
+                  "SourceProperty" : "value",
+                  "SourcePropertyBaseType" : "THINGNAME",
+                  "TargetProperty" : "GitThing",
+                  "TargetPropertyBaseType" : "THINGNAME",
+                  "TargetPropertyType" : "Parameter"
+                } ],
+                "SourceArea" : "Data",
+                "SourceId" : "EntityName",
+                "SourceSection" : "DynamicThingTemplates_GitBackupTemplate",
+                "TargetArea" : "Data",
+                "TargetId" : "gpg-keys-set",
+                "TargetSection" : "Things_GIT.Utility.Thing"
               } ],
               "DesignTimePermissions" : {
                 "Create" : [ ],
@@ -294,8 +370,8 @@
                 "Id" : "a5abeec6-4bb4-4def-9d76-9a52a66969af"
               }, {
                 "EventHandlerArea" : "Data",
-                "EventHandlerId" : "DynamicThingTemplates_GitBackupTemplate",
-                "EventHandlerService" : "Push",
+                "EventHandlerId" : "Things_GIT.Utility.Thing",
+                "EventHandlerService" : "SetGpgKey",
                 "EventTriggerArea" : "UI",
                 "EventTriggerEvent" : "Clicked",
                 "EventTriggerId" : "ptcsbutton-15",
@@ -319,6 +395,24 @@
                 "EventTriggerId" : "mashup-root",
                 "EventTriggerSection" : "",
                 "Id" : "c1222a85-fcae-4c34-a1c3-3e5d527006ea"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "DynamicThingTemplates_GitBackupTemplate",
+                "EventHandlerService" : "Push",
+                "EventTriggerArea" : "Data",
+                "EventTriggerEvent" : "ServiceInvokeCompleted",
+                "EventTriggerId" : "gpg-keys-set",
+                "EventTriggerSection" : "Things_GIT.Utility.Thing",
+                "Id" : "gpg-event-push-after-save"
+              }, {
+                "EventHandlerArea" : "Data",
+                "EventHandlerId" : "Things_GIT.Utility.Thing",
+                "EventHandlerService" : "GetGpgKeys",
+                "EventTriggerArea" : "Mashup",
+                "EventTriggerEvent" : "Loaded",
+                "EventTriggerId" : "mashup-root",
+                "EventTriggerSection" : "",
+                "Id" : "gpg-event-load-keys"
               } ],
               "Reminders" : [ ],
               "RunTimePermissions" : {
@@ -523,6 +617,126 @@
                   }, {
                     "Properties" : {
                       "Area" : "UI",
+                      "DisplayName" : "flex-gpg-sign",
+                      "EnableExpandCollapse" : false,
+                      "Expanded" : true,
+                      "Height" : 26,
+                      "Id" : "flex-gpg-sign",
+                      "LastContainer" : false,
+                      "Left" : 10,
+                      "Margin" : "5",
+                      "ResponsiveLayout" : false,
+                      "ShowDataLoading" : true,
+                      "ShowExpandCollapseTab" : false,
+                      "SourceURL" : "",
+                      "Style" : "DefaultContainerStyle",
+                      "StyleProperties" : { },
+                      "Top" : 210,
+                      "Type" : "flexcontainer",
+                      "UseTheme" : true,
+                      "Visible" : true,
+                      "Width" : 480,
+                      "Z-index" : 10,
+                      "__TypeDisplayName" : "Responsive Container",
+                      "align-content" : "flex-start",
+                      "align-items" : "center",
+                      "flex-basis" : "auto",
+                      "flex-direction" : "row",
+                      "flex-grow" : 1,
+                      "flex-max-height" : "",
+                      "flex-max-width" : "",
+                      "flex-min-height" : "",
+                      "flex-min-width" : "",
+                      "flex-shrink" : 1,
+                      "flex-size" : "default",
+                      "flex-wrap" : "nowrap",
+                      "iconClass" : "widgets-flexcontainer",
+                      "justify-content" : "flex-start",
+                      "positioning" : "static"
+                    },
+                    "Widgets" : [ {
+                      "Properties" : {
+                        "Alignment" : "left",
+                        "AllowEllipsis" : false,
+                        "Area" : "UI",
+                        "DisplayName" : "lbl-gpg-sign",
+                        "Height" : 22,
+                        "Id" : "lbl-gpg-sign",
+                        "LastContainer" : false,
+                        "Left" : 0,
+                        "Margin" : "5",
+                        "ResponsiveLayout" : false,
+                        "ShowDataLoading" : true,
+                        "Style" : "DefaultLabelStyle",
+                        "Text" : "Sign commit with GPG:",
+                        "ToolTipField" : "",
+                        "ToolTipStyle" : "DefaultTooltipStyle",
+                        "Top" : 0,
+                        "Type" : "label",
+                        "Visible" : true,
+                        "Width" : 145,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Label",
+                        "__supportsTooltip" : true
+                      },
+                      "Widgets" : [ ]
+                    }, {
+                      "Properties" : {
+                        "Area" : "UI",
+                        "Disabled" : false,
+                        "DisplayName" : "chk-gpg-sign",
+                        "Height" : 22,
+                        "Id" : "chk-gpg-sign",
+                        "LastContainer" : false,
+                        "Left" : 150,
+                        "Margin" : "0",
+                        "Prompt" : "",
+                        "ResponsiveLayout" : false,
+                        "ShowDataLoading" : true,
+                        "State" : false,
+                        "Style" : "DefaultCheckboxStyle",
+                        "TabSequence" : 4,
+                        "ToolTipField" : "",
+                        "ToolTipStyle" : "DefaultTooltipStyle",
+                        "Top" : 0,
+                        "Type" : "checkbox",
+                        "Visible" : true,
+                        "Width" : 25,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Checkbox",
+                        "__supportsTooltip" : true
+                      },
+                      "Widgets" : [ ]
+                    }, {
+                      "Properties" : {
+                        "Alignment" : "left",
+                        "AllowEllipsis" : false,
+                        "Area" : "UI",
+                        "DisplayName" : "lbl-gpg-fingerprint",
+                        "Height" : 22,
+                        "Id" : "lbl-gpg-fingerprint",
+                        "LastContainer" : false,
+                        "Left" : 180,
+                        "Margin" : "5",
+                        "ResponsiveLayout" : false,
+                        "ShowDataLoading" : true,
+                        "Style" : "DefaultLabelStyle",
+                        "Text" : "",
+                        "ToolTipField" : "",
+                        "ToolTipStyle" : "DefaultTooltipStyle",
+                        "Top" : 0,
+                        "Type" : "label",
+                        "Visible" : true,
+                        "Width" : 280,
+                        "Z-index" : 10,
+                        "__TypeDisplayName" : "Label",
+                        "__supportsTooltip" : true
+                      },
+                      "Widgets" : [ ]
+                    } ]
+                  }, {
+                    "Properties" : {
+                      "Area" : "UI",
                       "ButtonType" : "secondary",
                       "ContextID" : "",
                       "CustomClass" : "",
@@ -541,7 +755,7 @@
                       "ShowDataLoading" : true,
                       "TabSequence" : 2,
                       "TooltipField" : "",
-                      "Top" : 213,
+                      "Top" : 245,
                       "Type" : "ptcsbutton",
                       "UseTheme" : true,
                       "Visible" : true,
@@ -570,7 +784,7 @@
                       "ShowDataLoading" : true,
                       "TabSequence" : 3,
                       "TooltipField" : "",
-                      "Top" : 214,
+                      "Top" : 245,
                       "Type" : "ptcsbutton",
                       "UseTheme" : true,
                       "Visible" : true,

@@ -20,18 +20,22 @@
                  type="JAR"></FileResource>
                 <FileResource
                  description=""
-                 file="bcpg-jdk18on-172.2.jar"
+                 file="bcpg-jdk18on-1.72.jar"
                  type="JAR"></FileResource>
                 <FileResource
                  description=""
                  file="JavaEWAH-1.2.3.jar"
+                 type="JAR"></FileResource>
+                <FileResource
+                 description=""
+                 file="org.eclipse.jgit-6.10.0.202406032230-r.jar"
                  type="JAR"></FileResource>
             </JarResources>
         </ExtensionPackage>
     </ExtensionPackages>
     <ThingPackages>
         <ThingPackage
-         className="gb.GitBackupTemplate"
+         className="gb.extension.GitBackupTemplate"
          description=""
          name="GitExtensionPackage"></ThingPackage>
     </ThingPackages>
@@ -249,7 +253,7 @@
         <Resource
          aspect.isCreatable="false"
          aspect.isEditableExtensionObject="false"
-         className="gb.GitBackupValidation"
+         className="gb.extension.GitBackupValidation"
          description=""
          name="GitBackupValidation"></Resource>
     </Resources>

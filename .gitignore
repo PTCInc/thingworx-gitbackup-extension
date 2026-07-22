@@ -1,0 +1,26 @@
+# Gradle
+.gradle/
+build/
+
+# Eclipse
+.project
+.classpath
+.settings/
+bin/
+
+# IDE
+*.iml
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# JDK (local, not part of build)
+graalvm-jdk-21*
+
+# Integration test credentials
+.env
+twx-lib/*

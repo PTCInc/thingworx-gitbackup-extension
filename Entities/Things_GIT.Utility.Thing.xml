@@ -434,6 +434,103 @@
                     <ServiceDefinition
                      aspect.isAsync="false"
                      category=""
+                     description="Initializes the GpgKeys UserExtension INFOTABLE property for all users"
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="InitUserExtensionGpgKeysProperty">
+                        <ResultType
+                         baseType="NOTHING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions></ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Returns all GPG keys configured for the current user across all repositories"
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="GetGpgKeys">
+                        <ResultType
+                         aspect.dataShape="GitBackup.GpgKey.DataShape"
+                         baseType="INFOTABLE"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions></ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Saves or updates a GPG key for the current user for a specific repository"
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="SetGpgKey">
+                        <ResultType
+                         baseType="NOTHING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="THINGNAME"
+                             description="Git Thing name"
+                             name="GitThing"
+                             ordinal="1"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="ASCII-armored PGP private key"
+                             name="GpgPrivateKey"
+                             ordinal="2"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="PASSWORD"
+                             description="Passphrase for the PGP private key"
+                             name="GpgKeyPassphrase"
+                             ordinal="3"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="BOOLEAN"
+                             description="Whether to sign commits"
+                             name="SignCommits"
+                             ordinal="4"></FieldDefinition>
+                            <FieldDefinition
+                             baseType="STRING"
+                             description="GPG key fingerprint for display"
+                             name="GpgKeyFingerprint"
+                             ordinal="5"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
+                     description="Removes a GPG key configuration for the current user for a specific repository"
+                     isAllowOverride="false"
+                     isLocalOnly="false"
+                     isOpen="false"
+                     isPrivate="false"
+                     name="DeleteGpgKey">
+                        <ResultType
+                         baseType="NOTHING"
+                         description=""
+                         name="result"
+                         ordinal="0"></ResultType>
+                        <ParameterDefinitions>
+                            <FieldDefinition
+                             baseType="THINGNAME"
+                             description="Git Thing name"
+                             name="GitThing"
+                             ordinal="1"></FieldDefinition>
+                        </ParameterDefinitions>
+                    </ServiceDefinition>
+                    <ServiceDefinition
+                     aspect.isAsync="false"
+                     category=""
                      description=""
                      isAllowOverride="false"
                      isLocalOnly="false"
@@ -1793,6 +1890,184 @@
                                         
                                         if (bool_ThingFound==true) result = "Thing " + GitThingName + " already exists in the platform. Please provide another Thing name.";
                                         else result = "Success. The provided thing name is valid.";
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="InitUserExtensionGpgKeysProperty">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             dataShapeName=""
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var str_CurrentUser = Resources["CurrentSessionInfo"].GetCurrentUser();
+                                        if (str_CurrentUser !== undefined && Users[str_CurrentUser]["GpgKeys"] === undefined) {
+                                            ThingShapes["UserExtensions"].AddPropertyDefinition({
+                                                defaultValue: undefined,
+                                                description: "User-specific GPG signing keys store.",
+                                                readOnly: false,
+                                                type: "INFOTABLE",
+                                                persistent: true,
+                                                name: "GpgKeys",
+                                                dataShape: "GitBackup.GpgKey.DataShape"
+                                            });
+                                            Resources["EntityServices"].RestartDependenciesForThingShape({
+                                                name: "UserExtensions"
+                                            });
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="GetGpgKeys">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             dataShapeName=""
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var str_CurrentUser = Resources["CurrentSessionInfo"].GetCurrentUser();
+                                        if (str_CurrentUser !== undefined && Users[str_CurrentUser]["GpgKeys"] !== undefined) {
+                                            result = Users[str_CurrentUser].GpgKeys;
+                                        } else {
+                                            result = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                                infoTableName: "InfoTable",
+                                                dataShapeName: "GitBackup.GpgKey.DataShape"
+                                            });
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="SetGpgKey">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             dataShapeName=""
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var str_CurrentUser = Resources["CurrentSessionInfo"].GetCurrentUser();
+                                        if (str_CurrentUser !== undefined && Users[str_CurrentUser] !== undefined) {
+                                            if (Users[str_CurrentUser]["GpgKeys"] === undefined) {
+                                                Users[str_CurrentUser].GpgKeys = Resources["InfoTableFunctions"].CreateInfoTableFromDataShape({
+                                                    infoTableName: "InfoTable",
+                                                    dataShapeName: "GitBackup.GpgKey.DataShape"
+                                                });
+                                            }
+                                            var iftbl_GpgKeys = Resources["InfoTableFunctions"].Clone({
+                                                t1: Users[str_CurrentUser].GpgKeys
+                                            });
+                                            iftbl_GpgKeys.Delete({ GitThing: GitThing });
+                                            var entry = {
+                                                GitThing: GitThing,
+                                                GpgPrivateKey: encryptPropertyValue(GpgPrivateKey),
+                                                GpgKeyPassphrase: encryptPropertyValue(GpgKeyPassphrase),
+                                                SignCommits: SignCommits,
+                                                GpgKeyFingerprint: GpgKeyFingerprint
+                                            };
+                                            iftbl_GpgKeys.AddRow(entry);
+                                            Users[str_CurrentUser].GpgKeys = iftbl_GpgKeys;
+                                        }
+                                        ]]>
+                                        </code>
+                                    </Row>
+                                </Rows>
+                            </ConfigurationTable>
+                        </ConfigurationTables>
+                    </ServiceImplementation>
+                    <ServiceImplementation
+                     description=""
+                     handlerName="Script"
+                     name="DeleteGpgKey">
+                        <ConfigurationTables>
+                            <ConfigurationTable
+                             dataShapeName=""
+                             description=""
+                             isMultiRow="false"
+                             name="Script"
+                             ordinal="0">
+                                <DataShape>
+                                    <FieldDefinitions>
+                                        <FieldDefinition
+                                         baseType="STRING"
+                                         description="code"
+                                         name="code"
+                                         ordinal="0"></FieldDefinition>
+                                    </FieldDefinitions>
+                                </DataShape>
+                                <Rows>
+                                    <Row>
+                                        <code>
+                                        <![CDATA[
+                                        var str_CurrentUser = Resources["CurrentSessionInfo"].GetCurrentUser();
+                                        if (str_CurrentUser !== undefined && Users[str_CurrentUser] !== undefined && Users[str_CurrentUser]["GpgKeys"] !== undefined) {
+                                            var iftbl_GpgKeys = Resources["InfoTableFunctions"].Clone({
+                                                t1: Users[str_CurrentUser].GpgKeys
+                                            });
+                                            iftbl_GpgKeys.Delete({ GitThing: GitThing });
+                                            Users[str_CurrentUser].GpgKeys = iftbl_GpgKeys;
+                                        }
                                         ]]>
                                         </code>
                                     </Row>
